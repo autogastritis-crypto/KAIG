@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자가면역성위염 — KAIG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark:  #085041;
+    --green-mid:   #0F6E56;
+    --green-light: #1D9E75;
+    --green-pale:  #E1F5EE;
+    --green-paler: #F0FAF6;
+    --ink:         #1a1a1a;
+    --ink-mid:     #4a4a4a;
+    --ink-soft:    #7a7a7a;
+    --rule:        rgba(0,0,0,0.08);
+    --bg:          #f8f9f7;
+    --white:       #ffffff;
+    --amber:       #BA7517;
+    --amber-pale:  #FAEEDA;
+    --blue:        #185FA5;
+    --blue-pale:   #E6F1FB;
+    --coral:       #993C1D;
+    --coral-pale:  #FAECE7;
+    --radius-sm:   6px;
+    --radius-md:   10px;
+    --radius-lg:   16px;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .app-header {
+    background: var(--green-dark);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .header-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 14px 20px 12px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .header-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+  .header-eng {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+  .search-wrap {
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    padding: 8px 36px 8px 14px;
+    font-size: 13px;
+    color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .search-input::placeholder { color: rgba(255,255,255,0.45); }
+  .search-input:focus {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.35);
+  }
+  .search-icon {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* ── LAYOUT ── */
+  .main-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* ── TOPIC PILLS ── */
+  .topics-section { margin-bottom: 20px; }
+  .topics-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .topics-scroll {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .topic-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 13px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    user-select: none;
+    box-shadow: var(--shadow-card);
+  }
+  .topic-pill:hover {
+    border-color: var(--green-light);
+    color: var(--green-dark);
+  }
+  .topic-pill.active {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(8,80,65,0.25);
+  }
+  .topic-pill .pill-icon { font-size: 13px; }
+  .topic-pill .pill-count {
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+    padding: 1px 6px;
+    font-size: 10px;
+  }
+  .topic-pill.active .pill-count {
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* ── SOURCE TOGGLE ── */
+  .source-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .source-label {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-right: 2px;
+  }
+  .source-chip {
+    padding: 4px 11px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .source-chip:hover { border-color: var(--green-light); color: var(--green-dark); }
+  .source-chip.active {
+    background: var(--green-pale);
+    border-color: var(--green-mid);
+    color: var(--green-dark);
+  }
+
+  /* ── RESULTS HEADER ── */
+  .results-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .results-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .results-count {
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  /* ── PAPER CARDS ── */
+  .papers-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .paper-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+    box-shadow: var(--shadow-card);
+    animation: fadeUp 0.3s ease both;
+  }
+  .paper-card:hover {
+    border-color: rgba(15,110,86,0.25);
+    box-shadow: 0 4px 20px rgba(8,80,65,0.1);
+    transform: translateY(-1px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 7px;
+  }
+  .card-journal {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--green-mid);
+    text-transform: uppercase;
+  }
+  .card-year {
+    font-size: 10px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.45;
+    margin-bottom: 6px;
+    font-family: 'Noto Serif KR', serif;
+  }
+  .card-title-en {
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .panel-title-en {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .card-authors {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .card-abstract {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .badge-row { display: flex; gap: 5px; flex-wrap: wrap; }
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .badge-green  { background: var(--green-pale); color: var(--green-dark); }
+  .badge-blue   { background: var(--blue-pale);  color: var(--blue); }
+  .badge-amber  { background: var(--amber-pale); color: var(--amber); }
+  .badge-gray   { background: #f0efea; color: #5F5E5A; }
+  .badge-coral  { background: var(--coral-pale); color: var(--coral); }
+  .badge-purple { background: #EEEDFE; color: #3C3489; }
+  .card-arrow {
+    font-size: 16px;
+    color: var(--green-light);
+    transition: transform 0.15s;
+    flex-shrink: 0;
+  }
+  .paper-card:hover .card-arrow { transform: translateX(3px); }
+
+  /* ── DETAIL PANEL ── */
+  .detail-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(8,80,65,0.18);
+    backdrop-filter: blur(2px);
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .detail-overlay.open {
+    display: flex;
+    animation: overlayIn 0.2s ease;
+  }
+  @keyframes overlayIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .detail-panel {
+    background: var(--white);
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    max-width: 820px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 0 0 40px;
+    animation: panelUp 0.28s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes panelUp {
+    from { transform: translateY(60px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .panel-handle {
+    width: 36px;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    margin: 12px auto 0;
+  }
+  .panel-header {
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .panel-journal {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--green-mid);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .panel-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .panel-authors {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .panel-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+  .panel-body { padding: 18px 20px; }
+  .panel-section-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    margin-top: 18px;
+  }
+  .panel-section-title:first-child { margin-top: 0; }
+  .panel-abstract {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 4px;
+  }
+  .panel-keypoints {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .panel-keypoints li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.55;
+  }
+  .kp-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-light);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .panel-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .meta-item {
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+  }
+  .meta-label {
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .meta-value {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .panel-actions {
+    padding: 0 20px;
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .panel-btn {
+    flex: 1;
+    padding: 11px;
+    border-radius: var(--radius-md);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    color: var(--ink-mid);
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.15s;
+  }
+  .panel-btn:hover { background: var(--green-pale); border-color: var(--green-mid); color: var(--green-dark); }
+  .panel-btn.primary {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+  }
+  .panel-btn.primary:hover { background: var(--green-mid); }
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .close-btn:hover { background: var(--rule); }
+
+  .sort-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sort-dropdown-wrap {
+    position: relative;
+  }
+  .sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.15s;
+    white-space: nowrap;
+    box-shadow: var(--shadow-card);
+  }
+  .sort-btn:hover, .sort-btn.open {
+    border-color: var(--green-mid);
+    color: var(--green-dark);
+  }
+  .sort-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    z-index: 50;
+    min-width: 140px;
+    overflow: hidden;
+    animation: fadeUp 0.15s ease;
+  }
+  .sort-menu.open { display: block; }
+  .sort-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 9px 14px;
+    border: none;
+    background: none;
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .sort-option:hover { background: var(--green-paler); color: var(--green-dark); }
+  .sort-option.active { color: var(--green-dark); font-weight: 600; }
+
+  /* IF badge on card */
+  .if-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background: var(--amber-pale);
+    color: var(--amber);
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── ADD MODAL ── */
+  .add-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(8,80,65,0.22);
+    backdrop-filter: blur(3px);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .add-overlay.open { display: flex; animation: overlayIn 0.2s ease; }
+  .add-modal {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 620px;
+    max-height: 96vh;
+    overflow-y: auto;
+    padding: 24px 22px 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  }
+  .add-modal h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .add-modal h2 span { font-size: 20px; }
+  .add-field { margin-bottom: 13px; }
+  .add-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 5px;
+  }
+  .add-field label .req { color: var(--coral); margin-left: 2px; }
+  .add-field input, .add-field textarea, .add-field select {
+    width: 100%;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    padding: 8px 11px;
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.15s;
+    resize: vertical;
+  }
+  .add-field input:focus, .add-field textarea:focus, .add-field select:focus {
+    border-color: var(--green-mid);
+    background: var(--white);
+  }
+  .add-field textarea { min-height: 80px; }
+  .add-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .add-topics-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .topic-check {
+    display: none;
+  }
+  .topic-check-label {
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s;
+  }
+  .topic-check:checked + .topic-check-label {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+  }
+  .add-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .add-actions button {
+    flex: 1;
+    padding: 11px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.15s;
+  }
+  .btn-cancel {
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    color: var(--ink-mid);
+  }
+  .btn-cancel:hover { background: #eee; }
+  .btn-save {
+    border: none;
+    background: var(--green-dark);
+    color: #fff;
+  }
+  .btn-save:hover { background: var(--green-mid); }
+  .add-hint {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .add-success {
+    display: none;
+    text-align: center;
+    padding: 24px 0 8px;
+  }
+  .add-success .success-icon { font-size: 40px; margin-bottom: 10px; }
+  .add-success p { font-size: 14px; color: var(--ink-mid); }
+  .export-box {
+    background: #f4f4f4;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 11px;
+    color: #333;
+    margin-top: 14px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 120px;
+    overflow-y: auto;
+    font-family: monospace;
+    border: 1px solid #ddd;
+  }
+  .btn-copy-export {
+    margin-top: 8px;
+    padding: 7px 16px;
+    background: var(--green-dark);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  /* ── ADD PAPER BUTTON ── */
+  .add-paper-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 13px;
+    border: 1.5px dashed rgba(15,110,86,0.3);
+    border-radius: var(--radius-lg);
+    background: var(--green-paler);
+    color: var(--green-mid);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-top: 6px;
+  }
+  .add-paper-btn:hover {
+    border-color: var(--green-mid);
+    background: var(--green-pale);
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--ink-soft);
+  }
+  .empty-icon { font-size: 36px; margin-bottom: 12px; opacity: 0.5; }
+  .empty-text { font-size: 13px; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 18px;
+  }
+  .stat-item {
+    flex: 1;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    box-shadow: var(--shadow-card);
+  }
+  .stat-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-dark);
+    font-family: 'Noto Serif KR', serif;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: var(--ink-soft);
+  }
+
+  /* scrollbar */
+  .detail-panel::-webkit-scrollbar { width: 4px; }
+  .detail-panel::-webkit-scrollbar-track { background: transparent; }
+  .detail-panel::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; }
+
+  @media (min-width: 600px) {
+    .main-wrap { padding: 24px 24px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <span class="header-title">자가면역성위염</span>
+      <span class="header-eng">KAIG · Autoimmune Gastritis</span>
+    </div>
+    <div class="search-wrap">
+      <input class="search-input" id="search-input" type="text" placeholder="저자, 제목, 키워드 검색..." autocomplete="off">
+      <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main-wrap">
+
+  <!-- STATS -->
+  <div class="stats-bar" id="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num" id="stat-total">-</div>
+      <div class="stat-label">총 논문</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="stat-year">-</div>
+      <div class="stat-label">최신 연도</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="stat-topics">-</div>
+      <div class="stat-label">주제 분류</div>
+    </div>
+  </div>
+
+  <!-- TOPICS -->
+  <section class="topics-section">
+    <div class="topics-label">주제별 탐색</div>
+    <div class="topics-scroll" id="topics-container"></div>
+  </section>
+
+  <!-- SOURCE FILTER -->
+  <div class="source-section" id="source-section">
+    <span class="source-label">출처</span>
+    <span class="source-chip active" data-src="all">전체</span>
+    <span class="source-chip" data-src="journal">저널 파일</span>
+    <span class="source-chip" data-src="kaig">KAIG 홈페이지</span>
+    <span class="source-chip" data-src="web">인터넷</span>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-header">
+    <span class="results-title" id="results-title">전체 논문</span>
+    <div class="sort-wrap">
+      <span class="results-count" id="results-count">3편</span>
+      <div class="sort-dropdown-wrap">
+        <button class="sort-btn" id="sort-btn" onclick="toggleSortMenu()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="9" y1="18" x2="15" y2="18"/>
+          </svg>
+          <span id="sort-label">추가순</span>
+        </button>
+        <div class="sort-menu" id="sort-menu">
+          <button class="sort-option active" data-sort="default" onclick="setSort('default','추가순')">추가순</button>
+          <button class="sort-option" data-sort="year" onclick="setSort('year','최신순')">최신순 (연도↓)</button>
+          <button class="sort-option" data-sort="if" onclick="setSort('if','IF 높은순')">IF 높은순</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="papers-list" id="papers-list"></div>
+
+  <!-- ADD BUTTON -->
+  <button class="add-paper-btn" id="add-btn" onclick="openAddMode()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </svg>
+    논문 추가하기
+  </button>
+
+</main>
+
+<!-- ADD PAPER MODAL -->
+<div class="add-overlay" id="add-overlay" onclick="closeAddModal(event)">
+  <div class="add-modal" id="add-modal">
+    <h2><span>📄</span> 논문 추가하기</h2>
+
+    <div id="add-form-section">
+      <div class="add-row">
+        <div class="add-field">
+          <label>저널명 <span class="req">*</span></label>
+          <input type="text" id="af-journal" placeholder="예: Gastroenterology">
+        </div>
+        <div class="add-field">
+          <label>저널 약칭</label>
+          <input type="text" id="af-journal-short" placeholder="예: Gastroenterology">
+        </div>
+      </div>
+      <div class="add-row">
+        <div class="add-field">
+          <label>연도 <span class="req">*</span></label>
+          <input type="number" id="af-year" placeholder="예: 2025" min="2000" max="2100">
+        </div>
+        <div class="add-field">
+          <label>출처</label>
+          <select id="af-source">
+            <option value="journal">저널 파일</option>
+            <option value="kaig">KAIG 홈페이지</option>
+            <option value="web">인터넷</option>
+          </select>
+        </div>
+      </div>
+      <div class="add-field">
+        <label>영어 제목 <span class="req">*</span></label>
+        <input type="text" id="af-title" placeholder="영어 원제목">
+      </div>
+      <div class="add-field">
+        <label>한글 제목 <span class="req">*</span></label>
+        <input type="text" id="af-title-ko" placeholder="한국어 제목">
+      </div>
+      <div class="add-field">
+        <label>저자</label>
+        <input type="text" id="af-authors" placeholder="예: Kim J, Park S, Lee H">
+      </div>
+      <div class="add-field">
+        <label>DOI</label>
+        <input type="text" id="af-doi" placeholder="예: 10.1053/j.gastro.2025.01.001">
+      </div>
+      <div class="add-field">
+        <label>초록 요약 (한글) <span class="req">*</span></label>
+        <textarea id="af-abstract" placeholder="논문 내용을 간략히 요약해 주세요."></textarea>
+      </div>
+      <div class="add-field">
+        <label>핵심 포인트 (줄바꿈으로 구분)</label>
+        <textarea id="af-keypoints" placeholder="핵심 내용 1&#10;핵심 내용 2" style="min-height:90px"></textarea>
+      </div>
+      <div class="add-field">
+        <label>주제 태그</label>
+        <div class="add-topics-grid" id="add-topics-grid"></div>
+      </div>
+      <div class="add-actions">
+        <button class="btn-cancel" onclick="closeAddModalBtn()">취소</button>
+        <button class="btn-save" onclick="saveNewPaper()">✓ 추가하기</button>
+      </div>
+    </div>
+
+    <div class="add-success" id="add-success">
+      <div class="success-icon">✅</div>
+      <p><strong>논문이 추가되었습니다!</strong><br>이번 세션 동안 목록에서 확인하실 수 있습니다.</p>
+      <p style="margin-top:10px; font-size:12px; color:var(--ink-soft)">영구 저장하려면 아래 코드를 복사해 HTML 파일의 PAPERS 배열에 붙여넣으세요.</p>
+      <div class="export-box" id="export-box"></div>
+      <button class="btn-copy-export" onclick="copyExport()">📋 코드 복사하기</button>
+      <div class="add-actions" style="margin-top:16px">
+        <button class="btn-cancel" onclick="closeAddModalBtn()">닫기</button>
+        <button class="btn-save" onclick="addAnotherPaper()">+ 또 추가하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="detail-overlay" id="detail-overlay" onclick="closeDetail(event)">
+  <div class="detail-panel" id="detail-panel">
+    <div class="panel-handle"></div>
+    <div style="position:relative;">
+      <button class="close-btn" onclick="closeDetailBtn()">✕</button>
+      <div class="panel-header">
+        <div class="panel-journal" id="p-journal"></div>
+        <div class="panel-title" id="p-title"></div>
+        <div class="panel-title-en" id="p-title-en"></div>
+        <div class="panel-authors" id="p-authors"></div>
+        <div class="panel-badges" id="p-badges"></div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="panel-section-title">초록 요약</div>
+      <p class="panel-abstract" id="p-abstract"></p>
+      <div class="panel-section-title">핵심 포인트</div>
+      <ul class="panel-keypoints" id="p-keypoints"></ul>
+      <div class="panel-section-title">논문 정보</div>
+      <div class="panel-meta-grid" id="p-meta"></div>
+    </div>
+    <div class="panel-actions">
+      <button class="panel-btn primary" id="p-link-btn">원문 보기 →</button>
+      <button class="panel-btn" onclick="closeDetailBtn()">닫기</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA — 논문 데이터베이스 (여기에 논문을 추가하세요)
+// ═══════════════════════════════════════════════
+const PAPERS = [
+  {
+    id: 1,
+    title: "Autoimmune gastritis: emerging insights and clinical management",
+    title_ko: "자가면역성위염: 새로운 통찰과 임상 관리",
+    journal: "Nature Reviews Gastroenterology & Hepatology",
+    journal_short: "Nat Rev Gastroenterol Hepatol",
+    year: 2026,
+    if: 45.9,
+    authors: "Lenti MV, Miceli E, Vanoli A, Di Sabatino A",
+    doi: "10.1038/s41575-026-01200-0",
+    source: "journal",
+    topics: ["진단", "병리", "치료", "역학"],
+    abstract_ko: "자가면역성위염(AIG)은 위 체부 점막에 영향을 미치는 면역 매개 질환으로, 진행성 위축과 비타민 B12·철분 등 영양소 결핍을 유발합니다. 병인, 임상 양상, 관리에 대한 이해가 지난 20년간 크게 발전했습니다. potential AIG 및 seronegative AIG 두 가지 새로운 형태가 기술되었으며, 위선암 위험도 재평가와 적절한 내시경 감시 방법에 관한 최신 지견을 종합적으로 검토합니다.",
+    keypoints: [
+      "AIG는 전 세계적 질환으로, 전체 유병률 약 3.85%",
+      "H. pylori 의존성 및 비의존성 두 가지 병인 경로 제시",
+      "Potential AIG와 seronegative AIG: 새로 규명된 질환 형태",
+      "위선암 위험: 고령·미진단 환자에서 특히 주의 필요",
+      "내시경 감시는 3~5년 간격이 합리적인 절충안",
+      "비타민 B12 보충은 반드시 근육 주사로 시행"
+    ],
+    meta: {
+      "연구 유형": "리뷰 논문",
+      "저널 인용": "2026년 4월 게재",
+      "가이드라인": "RE.GA.IN 기반"
+    }
+  },
+  {
+    id: 2,
+    title: "Novel insights into autoimmune gastritis: clinical profile and gastric neoplastic risk from an international multicentre study",
+    title_ko: "자가면역성위염 국제 다기관 연구: 임상 특성과 위 신생물 위험도",
+    journal: "Gut",
+    journal_short: "Gut",
+    year: 2026,
+    if: 23.0,
+    authors: "Lenti MV, Miceli E, Soykan I, Riquelme A et al.",
+    doi: "10.1136/gutjnl-2025-337458",
+    source: "journal",
+    topics: ["진단", "암위험", "역학"],
+    abstract_ko: "8개 국제 3차 의료기관(유럽, 터키, 중남미, 미국, 일본)에서 1,240명을 후향적으로 분석했습니다. 지역별로 빈혈 유형(유럽: 거대적혈구빈혈, 터키·중남미: 소적혈구빈혈)과 자가면역 동반질환 빈도(중남미 67.7%)가 달랐습니다. 위선암 36예(2.9%), NET 132예(10.6%) 발생. 위선암 위험인자는 65세 이상, 장상피화생, gastrin-17 >1,316 pg/mL, PPI 사용입니다.",
+    keypoints: [
+      "1,240명 대상 최초 국제 비교 연구 (8개국)",
+      "지역별 임상 표현형 차이: 유럽-거대적혈구빈혈 vs 터키/중남미-소적혈구빈혈",
+      "위선암 조발생률 1.07~1.47 / 100인년, NET 0.70~1.62 / 100인년",
+      "Gastrin-17 > 1,316 pg/mL: 위선암 위험 OR 15.52",
+      "H. pylori 제균: NET 발생 위험 감소 (OR 0.25)",
+      "흡연: NET 위험 유의하게 증가 (OR 2.45)"
+    ],
+    meta: {
+      "연구 설계": "후향적 다기관 코호트",
+      "대상 환자": "1,240명",
+      "참여 기관": "8개 국 (유럽·터키·중남미·미국·일본)",
+      "추적 기간": "중앙값 68개월"
+    }
+  },
+  {
+    id: 3,
+    title: "Artificial Intelligence for Single-Image Diagnosis of Autoimmune Gastritis Using Gastric Corpus Atrophy Images: A Multicenter Retrospective Diagnostic Study",
+    title_ko: "인공지능을 이용한 자가면역성위염 단일 이미지 진단: 다기관 후향적 연구",
+    journal: "Journal of Gastroenterology and Hepatology",
+    journal_short: "J Gastroenterol Hepatol",
+    year: 2026,
+    if: 3.7,
+    authors: "Song Y, Zhang X, Shi L, Lu J et al.",
+    doi: "10.1111/jgh.70296",
+    source: "journal",
+    topics: ["진단", "AI"],
+    abstract_ko: "중국 5개 3차 의료기관 2,137명(AIG 1,064명, HpAG 1,073명) 대상. RegNet 기반 CorpusNet-AIG 시스템이 단일 위체부 위축 이미지만으로 AIG와 H. pylori 관련 위축성위염을 구별합니다. 내부 검증 정확도 94.51%, 외부 검증 92.94%. 단일 이미지 조건에서 초보·중급 내시경의사를 유의하게 능가하고 전문의와 동등한 성능을 보였습니다.",
+    keypoints: [
+      "CorpusNet-AIG: 단일 이미지로 전문의 수준의 진단 정확도",
+      "내부 검증 AUC 0.990 / 외부 검증 AUC 0.972",
+      "AIG를 HpAG로 잘못 분류하는 내시경의사 경향 극복",
+      "단일 이미지 조건: 초보의 73.8% → AI 93.0%",
+      "향후 전향적 다기관 임상 검증 필요",
+      "임상 적용 시 혈청검사·조직검사 결과와 통합 해석 권장"
+    ],
+    meta: {
+      "연구 설계": "다기관 후향적 진단 연구",
+      "대상 환자": "2,137명",
+      "AI 아키텍처": "RegNet (CorpusNet-AIG)",
+      "비교 대상": "내시경의사 15명 (전문·중급·초급)"
+    }
+  },
+  {
+    id: 4,
+    title: "Endoscopic Surveillance in Autoimmune Gastritis: Prevalence of Gastric Cancer and Premalignant Lesions",
+    title_ko: "자가면역성위염의 내시경 감시: 위선암 및 전암성 병변 유병률",
+    journal: "Journal of Clinical Medicine",
+    journal_short: "J Clin Med",
+    year: 2026,
+    if: 3.4,
+    authors: "Moreu L, Luzko I, Llach J, Moreira L",
+    doi: "10.3390/jcm15072486",
+    source: "journal",
+    topics: ["진단", "암위험", "병리"],
+    abstract_ko: "바르셀로나 Hospital Clínic에서 2006~2024년 내시경 감시를 받은 AIG 환자 70명을 후향적으로 분석했습니다. 진행성 전암성 병변(LGD/HGD)은 15.7%, 위선암은 5.7%에서 확인되었습니다. 위 위축은 98.6%, 장상피화생은 74%에서 관찰되었고 완전형이 우세했습니다. 다변량 분석에서 여성은 독립적 보호 인자(OR 0.24), 진단 시 고령은 독립적 위험 인자(OR 1.06)로 확인되었습니다. 단일 기관 소규모 연구로 결과 해석 시 주의가 필요합니다.",
+    keypoints: [
+      "진행성 전암성 병변(LGD/HGD) 유병률 15.7%, 위선암 5.7% — 감시 코호트 기준",
+      "위 위축 98.6%, 장상피화생 74% (완전형 58.6% > 불완전형 17.1%)",
+      "NET 유병률 15.7% (대부분 체부 G1)",
+      "여성: 진행성 종양성 병변에 대한 독립적 보호 인자 (OR 0.24, p=0.044)",
+      "고령(진단 시 연령): 독립적 위험 인자 (OR 1.06, p=0.031)",
+      "⚠️ 소규모(70명) 단일 기관 후향적 연구 — 선택 편향 가능성, 탐색적 결과로 해석 필요"
+    ],
+    meta: {
+      "연구 설계": "단일 기관 후향적 관찰 연구",
+      "대상 환자": "70명",
+      "연구 기간": "2006~2024년",
+      "연구 기관": "Hospital Clínic de Barcelona"
+    }
+  },
+  {
+    id: 5,
+    title: "Research progress on animal models of autoimmune gastritis",
+    title_ko: "자가면역성위염 동물 모델 연구 현황",
+    journal: "Autoimmunity",
+    journal_short: "Autoimmunity",
+    year: 2026,
+    if: 3.3,
+    authors: "Wang J, Zhang X, Tao J, He B, Wang L, Zhang Z, Zhao Y, Li Z",
+    doi: "10.1080/08916934.2026.2620256",
+    source: "journal",
+    topics: ["병인기전", "헬리코박터"],
+    abstract_ko: "AIG 동물 모델 구축 방법을 국제적으로 처음 종합 정리한 리뷰입니다. 신생아 흉선절제술, TxA23·Ctox·AID⁻/⁻ 등 유전자 편집 동물, H⁺/K⁺-ATPase 항원 유도, 바이러스 감염, 복합 모델 5가지 방법을 분류·비교하고, 각 모델의 병인 기전(Th1/Th2/Th17/Treg/B세포 역할), 모델링 성공률, 임상 관련성을 정리합니다. H. pylori 관련 위축성위염 동물 모델과의 비교도 포함합니다.",
+    keypoints: [
+      "AIG 동물 모델 5종류: 흉선절제술, 유전자 편집, 항원 유도, 바이러스, 복합",
+      "TxA23 마우스: Th1 매개 AIG 표준 모델 — 염증→위축→화생 단계 재현",
+      "Th17 매개 AIG가 가장 중증, Treg 억제가 가장 어려움",
+      "Treg 고갈 시 3개월 내 100% 자발성 AIG 발생 (Sakaguchi et al.)",
+      "현 모델의 한계: 악성 빈혈·위암 등 핵심 임상 종점 재현 불가",
+      "향후 방향: CRISPR/Cas9, 인간화 마우스, 위 오가노이드 공동 배양 활용 제안"
+    ],
+    meta: {
+      "연구 유형": "종설 (최초 종합 리뷰)",
+      "연구 기관": "북경중의약대학 동직문병원",
+      "특이사항": "기초과학 논문 — 직접 임상 적용 주의"
+    }
+  },
+  {
+    id: 6,
+    title: "The role of autoimmune gastritis in gastric cancer risk: a systematic review and meta-analysis",
+    title_ko: "자가면역성위염과 위암 위험: 체계적 문헌고찰 및 메타분석",
+    journal: "BMC Gastroenterology",
+    journal_short: "BMC Gastroenterol",
+    year: 2026,
+    if: 3.4,
+    authors: "Liu X, Xu J, Wu Y, Zhao X, Wang S, Su L, Cao S, Chen N, Liu Y",
+    doi: "10.1186/s12876-026-04796-4",
+    source: "journal",
+    topics: ["암위험", "진단", "헬리코박터"],
+    abstract_ko: "8개 연구(10개 코호트) 메타분석으로 AIG의 위선암 위험을 정량화했습니다. 통합 HR 1.93(95% CI 1.59–2.33). H. pylori 음성 AIG에서 위험이 가장 높고(HR 4.31), 조직학적으로 확인된 AIG에서 특히 높았습니다(HR 4.82, I²=0%). 악성 빈혈만으로 AIG를 진단한 구식 연구를 배제하고 2015~2025년 연구만 포함한 최신 메타분석입니다. ⚠️ Article in Press 상태로 최종 편집 전 버전입니다.",
+    keypoints: [
+      "⚠️ Article in Press — 최종 출판 전, 수치 변동 가능성 있음",
+      "통합 HR 1.93 (95% CI 1.59–2.33): AIG는 위암의 독립적 위험인자",
+      "H. pylori 음성 AIG: HR 4.31 — H. pylori 양성(HR 2.36)보다 유의하게 높음",
+      "조직학적 확인 AIG: HR 4.82 (I²=0%) — 혈청검사만으로는 위험도 과소평가",
+      "악성 빈혈(PA) 기반 구연구 제외 → 보다 정확한 AIG 고유 위험 반영",
+      "임상 제안: H. pylori 음성 + 조직학적 AIG = 최고위험군, 3~5년 내시경 감시 필수"
+    ],
+    meta: {
+      "연구 유형": "체계적 문헌고찰·메타분석",
+      "포함 연구": "8편 (10개 코호트)",
+      "연구 기간": "2015~2025년 출판 연구",
+      "연구 기관": "북경대학교 인민병원"
+    }
+  },
+  {
+    id: 7,
+    title: "Autoimmune Metaplastic Atrophic Gastritis Reporting: Are Pathologists and Endoscopists on the Same Page?",
+    title_ko: "AMAG 보고: 병리의와 내시경의는 같은 페이지에 있는가?",
+    journal: "Diagnostics (Basel)",
+    journal_short: "Diagnostics",
+    year: 2025,
+    if: 3.1,
+    authors: "Vienneau N, Lee H, Zhang X, Park E, Cleary M, Zhou J, Tarar S, Liu M, Tadros M",
+    doi: "10.3390/diagnostics15222906",
+    source: "journal",
+    topics: ["진단", "병리"],
+    abstract_ko: "미국 단일 기관에서 AMAG 가능성이 언급된 위 생검 65건(NET 동반 12건 포함)을 후향적 분석. 내시경 점수와 조직학적 소견 간 유의한 상관성이 없었고, 병리 보고 강도와 추적 생검 여부도 무관했습니다. NET 없는 AMAG 환자는 NET 환자보다 추적 생검이 현저히 적었습니다. 미국 가이드라인의 AMAG 관련 명확한 권고 부재가 근본 문제로 지적됩니다. ※ Rugge M.의 논평(2026)과 저자 답신(2026)을 통합 수록.",
+    keypoints: [
+      "내시경 점수와 조직학적 중증도 간 유의한 상관 없음 — AMAG 내시경 소견의 비특이성 반영",
+      "전정부·체부 분리 채취 비율 37% — Sydney 프로토콜 준수율 매우 낮음",
+      "NET 없는 AMAG: 추적 생검 26% vs. NET 동반: 83% — 관리 불균형 확인",
+      "병리 보고 강도는 혈액검사 수에 영향을 주나 추적 생검 여부에는 영향 없음",
+      "【Rugge 논평】H. pylori 동반 감염 미배제 시 위암 위험 과대평가 가능 — 병인 특이적 분석 필요",
+      "【Rugge 논평】AMAG 추적은 주로 NET 이차 예방에 집중해야 하며, 학제 간 소통 체계 개선이 핵심"
+    ],
+    meta: {
+      "연구 설계": "단일 기관 후향적 연구 (미국)",
+      "대상 환자": "65명",
+      "연구 기간": "2013~2023년",
+      "수록 문서": "원 논문 + Rugge 논평(2026) + 저자 답신(2026) 통합"
+    }
+  },
+  {
+    id: 8,
+    title: "Beyond Type 1 Diabetes: Autoimmune Gastritis-Driven Multisystem Disease in Autoimmune Polyglandular Syndrome Type 3",
+    title_ko: "제1형 당뇨를 넘어: APS-3에서 자가면역성위염이 주도하는 다계통 질환",
+    journal: "Cureus",
+    journal_short: "Cureus",
+    year: 2026,
+    if: 1.0,
+    authors: "Ottu Para NK, Ahmmed RA, Mohamed M, Rab S",
+    doi: "10.7759/cureus.104463",
+    source: "journal",
+    topics: ["증례", "역학", "진단", "치료"],
+    abstract_ko: "【증례보고】 T1DM 29년력의 37세 남성에서 5년 이상 당뇨 합병증으로 오인된 APS-3(자가면역성위염+악성빈혈+자가면역성갑상선기능저하증+외분비췌장기능부전) 사례. 가스트린 2,423 pg/mL(정상 13~115), 내인자 항체·벽세포항체 강양성, 분변 엘라스타제 1.15 µg/g(정상 >200)으로 확진. B12 근육주사·췌장효소·갑상선호르몬 3제 병용 후 증상 현저 호전. T1DM 환자에서 AIG를 조기에 의심해야 함을 강조.",
+    keypoints: [
+      "【증례보고】 단일 환자 사례 — 역학적 근거로 직접 인용 불가",
+      "APS-3: T1DM + 자가면역성갑상선질환 + AIG (부신부전 없음) — T1DM 환자의 10~30%에서 AIG 동반",
+      "T1DM 환자의 위장관 증상·영양결핍을 당뇨 합병증으로 오인 → 진단 지연의 전형적 패턴",
+      "극도의 고가스트린혈증(2,423 pg/mL): 벽세포 거의 완전 파괴, ECL세포 과증식·NET 위험 신호",
+      "외분비췌장기능부전: T1DM의 50%에서 분변 엘라스타제 감소 — 자가면역 기전 의심",
+      "임상 메시지: T1DM 진단 시 AIG 동반 여부 적극 선별 필요, 증상 중심 자가면역 확장 평가 권고"
+    ],
+    meta: {
+      "연구 유형": "증례보고 (Case Report)",
+      "대상": "37세 남성 1명",
+      "연구 기관": "Burjeel Hospital, Abu Dhabi, UAE"
+    }
+  },
+  {
+    id: 9,
+    title: "Helicobacter pylori multiplex serology in patients with autoimmune atrophic gastritis negative for Helicobacter pylori at histology: A case-control study",
+    title_ko: "조직학적 H. pylori 음성 자가면역성위축위염에서 H. pylori 멀티플렉스 혈청학: 환자-대조군 연구",
+    journal: "Digestive and Liver Disease",
+    journal_short: "Dig Liver Dis",
+    year: 2026,
+    if: 4.2,
+    authors: "Vavallo M, Butt J, Cingolani S, Cozza G, Schiavone FP, Dilaghi E, Belloni L, Franchitto M, Annibale B, Waterboer T, Lahner E",
+    doi: "10.1016/j.dld.2025.12.002",
+    source: "journal",
+    topics: ["헬리코박터", "병인기전", "진단"],
+    abstract_ko: "단일기관 환자-대조군 연구. 조직학적 H. pylori(Hp) 음성인 AAG 75명, 건강위점막 대조군 78명, Hp 양성 비위축위염 대조군 25명(총 178명) 대상. 13개 Hp 단백 동시 검출 멀티플렉스 혈청검사 시행. AAG에서 전체 Hp 혈청양성률은 21.1%로 건강 대조군(10.3%)의 약 2배였으나 통계적 유의성 미달(p=0.06). Hp 혈청반응 완전 결여(seronegativity)는 AAG 29.3% vs 건강 대조군 38.5%로 유사하여 양 그룹 간 차이 없었음. 가장 면역원성 높은 항원: GroEL(75%), HcpC/HyuA/Catalase/HP1564(62.5%), CagA/NapA(56.2%).",
+    keypoints: [
+      "멀티플렉스 혈청검사로 AAG를 세 아형으로 분류: ① 순수 자가면역형(~30%, Hp 혈청반응 완전 결여), ② Hp 유발형(~20%, 혈청양성), ③ 회색지대(~50%, 기준 이하 약한 반응)",
+      "순수 자가면역형(혈청음성): 중증 체부 위축(72.7%) 및 IFA 양성 비율이 높아 진행성·원발성 AAG를 시사",
+      "Hp 혈청양성 AAG(n=16): GroEL 항체 역가가 활성 Hp 감염 대조군보다 유의하게 낮음(p=0.039) — 과거 감염 후 항체 약화 반영",
+      "가장 오래 지속되는 Hp 항체: GroEL과 CagA — 혈청음성 기준 이하 그룹에서도 각각 27%, 46%가 반응 보여 과거 Hp 노출의 잔존 증거",
+      "anti-UreA 항체와 IFA 역가 간 역상관(Spearman rho -0.25, p=0.03) — Hp 면역반응 소실과 자가면역 진행의 역방향 관계 시사",
+      "임상 시사점: AAG에서 단순 조직학만으로 Hp 과거력을 배제할 수 없으며, 멀티플렉스 혈청검사가 병인 분류에 추가 유용"
+    ],
+    meta: {
+      "연구 설계": "단일기관 환자-대조군 연구",
+      "대상": "AAG 75명 / 건강 대조군 78명 / Hp+ 대조군 25명",
+      "Hp 검사법": "13종 Hp 단백 멀티플렉스 혈청검사",
+      "연구 기관": "Sapienza University of Rome (Sant'Andrea Hospital) & DKFZ Heidelberg"
+    }
+  },
+  {
+    id: 10,
+    title: "Sex-Related Differences in the Diagnosis and Evolution of Parietal Cell Antibody-Positive Autoimmune Gastritis: A Large Single-Center Retrospective Cohort Study",
+    title_ko: "자가면역성위염의 성별 차이: 진단 및 경과에서의 차이 — 대규모 단일기관 후향적 코호트 연구",
+    journal: "Diagnostics",
+    journal_short: "Diagnostics",
+    year: 2026,
+    if: 3.1,
+    authors: "Fuentes-Valenzuela E, Blanco S, Escribano Cruz S, Parra Villanueva J, Calvache Rodríguez A, Gil Diaz A, López-Martín MC, Rubio de la Plaza I, Chivato Martín-Falquina I, Rodríguez-Batllori Aran B, Latorre Martínez R, Castillo Herrera LA, Alcalde Rodríguez D, Guzmán López K, Bejerano Domínguez A",
+    doi: "10.3390/diagnostics16030387",
+    source: "journal",
+    topics: ["역학", "진단", "병리"],
+    abstract_ko: "PCA 양성 AIG 426명(여성 317명[74.4%], 남성 109명, 중앙 연령 53.5세)을 대상으로 한 스페인 단일기관 후향적 코호트. 여성에서 철결핍빈혈(31.6% vs 16.5%, p=0.002), 소화불량(41% vs 25.7%, p=0.004), 자가면역 갑상선기능저하증(22.7% vs 8.3%, p=0.001)이 유의하게 많았고, 남성에서는 B12 결핍(49% vs 33.3%, p=0.004)이 더 흔했다. 진단 시 조직학적·내시경적 병기는 성별 간 차이 없음. 추적 내시경(153명, 중앙 추적 35.2개월)에서 병기 진행률도 여성 39.1% vs 남성 28.1%(p=0.26)로 유의한 차이 없었다.",
+    keypoints: [
+      "여성 AIG 진단의 독립적 연관 인자(로지스틱 회귀): 철결핍빈혈(OR 2.9), 소화불량(OR 2.3), 자가면역 갑상선기능저하증(OR 2.7), 낮은 페리틴(OR 0.99), B12 결핍 낮음(OR 0.47)",
+      "남성: B12 결핍(49% vs 33.3%) 및 흡연율(42.2% vs 28.5%) 유의하게 높음 — 진단 지연 가능성",
+      "진단 시 조직학적 병기(잠재·확인·진행 AIG)는 성별 간 차이 없음 — 면역 손상 정도는 동등",
+      "추적 내시경: 화생 진행률은 여성 12.4% vs 남성 3.1%(p=0.001), 진행성 AIG 증가율도 여성 21% vs 남성 12.5%(p=0.001)로 여성에서 유의하게 높음",
+      "그러나 Kaplan-Meier 전체 병기 진행(log-rank p=0.08): 통계적 유의성 미달 — 추적 코호트 소규모(153명) 한계",
+      "임상 메시지: 철결핍빈혈·소화불량·자가면역 갑상선질환 동반 여성 환자에서 AIG 조기 진단을 특별히 경계할 것"
+    ],
+    meta: {
+      "연구 설계": "단일기관 후향적 코호트",
+      "대상 환자": "426명 (여성 317명, 남성 109명)",
+      "추적 기간": "중앙값 35.2개월 (추적 코호트 153명)",
+      "연구 기관": "Hospital Universitario Infanta Elena, Valdemoro, Spain"
+    }
+  },
+  {
+    id: 11,
+    title: "Characteristics and Incidence of Gastric Cancer Among Patients with Autoimmune and Non-autoimmune Atrophic Gastritis in a U.S. Population",
+    title_ko: "미국 다민족 집단에서 자가면역성 vs 비자가면역성 위축위염의 특성 및 위암 발생률 비교",
+    journal: "Digestive Diseases and Sciences",
+    journal_short: "Dig Dis Sci",
+    year: 2026,
+    if: 3.0,
+    authors: "Tan MC, Caskey KN, Lee IJ, Liu Y, Gomez Cifuentes J, Jain S, El-Serag HB",
+    doi: "10.1007/s10620-026-09800-1",
+    source: "journal",
+    topics: ["암위험", "역학", "헬리코박터", "진단"],
+    abstract_ko: "미국 텍사스주 Houston 안전망 병원(Harris Health)에서 2006~2021년 위내시경·생검 시행 환자를 대상으로 AIG 158명, 비자가면역 위축위염(NAIG) 445명, 정상 대조군 2,389명을 비교한 후향적 코호트. AIG는 NAIG 대비 여성(79.1% vs 50.1%), 히스패닉(72.2% vs 47.6%), 비흡연자(72.8% vs 49.0%)가 유의하게 많았고 H. pylori 양성률은 낮았다(30.4% vs 56.0%). 가스트린 ≥200 pg/mL(OR 10.9)와 벽세포항체 양성(OR 5.4)이 AIG의 강력한 연관 인자. AIG의 위악성종양(전례 NET) 연령조정 발생률 2.6/1,000인년으로 NAIG(0.9/1,000인년) 대비 2.7배 높음.",
+    keypoints: [
+      "AIG vs NAIG: 남성(adj OR 0.33), 현재 흡연(adj OR 0.29), H. pylori 양성(adj OR 0.35)이 AIG에 역연관 — 즉 여성·비흡연·Hp 음성이 AIG의 특징적 프로필",
+      "AIG vs 정상 대조군: 히스패닉(adj OR 3.67), 아시아계(adj OR 4.18), 40세 이상, 여성이 AIG 위험 증가 — 비백인 인종도 AIG 고위험군",
+      "가스트린 ≥200 pg/mL: adj OR 10.9 — AIG 진단의 가장 강력한 단독 바이오마커",
+      "위악성종양 발생: AIG에서 10건(전례 NET) vs NAIG에서 6건(4 선암·1 GIST·1 EBV관련암) — AIG는 NET, NAIG는 선암 위험이 주된 유형",
+      "AIG 위악성종양 발생률 2.6/1,000인년 = 미국 전체 위암 발생률(7.3/100,000인년)의 약 36배 — 이 집단의 암 위험이 일반 인구 대비 현저히 높음",
+      "⚠️ AIG 코호트의 80.9%에서 철결핍 확인(ferritin<45 ng/mL) — 흡수장애 부담 매우 높음; 히스패닉 72.2%로 기존 북유럽 중심 데이터와 다른 민족 구성"
+    ],
+    meta: {
+      "연구 설계": "후향적 코호트 (안전망 병원)",
+      "대상": "AIG 158명 / NAIG 445명 / 정상 대조군 2,389명",
+      "추적 기간": "중앙값 34개월 (AIG), 47개월 (NAIG)",
+      "연구 기관": "Baylor College of Medicine / Harris Health System, Houston TX"
+    }
+  },
+  {
+    id: 12,
+    title: "Beyond Helicobacter pylori: Current Insights into H. pylori-Naive Gastric Cancer",
+    title_ko: "헬리코박터 파일로리를 넘어서: H. pylori 비감염 위암의 최신 지견",
+    journal: "Digestion",
+    journal_short: "Digestion",
+    year: 2026,
+    if: 3.0,
+    authors: "Woo SWD, Yeap VSX, Hau VSF, Tan YB, Lau LHS, Yip HC, Lui R, Chan SM, Chiu P",
+    doi: "10.1159/000551483",
+    source: "journal",
+    topics: ["암위험", "헬리코박터", "진단", "병인기전"],
+    abstract_ko: "H. pylori 비감염 위암(HPnGC)은 전 세계적 Hp 제균 성공에 따라 상대적 비중이 증가하는 독립적 임상 단위로, 자가면역성위염·EBV·유전성 증후군(HDGC, Lynch, FAP, GAPPS, PJS) 등 특정 병인과 연관됩니다. HPnGC는 근위부 발생, 미분화형 조직학, 진단 시 진행 병기, 불량한 예후를 특징으로 하며, H. pylori 양성 위암에 비해 Hp 감염 자체가 주는 Th1/Th17 매개 면역 이점을 결여합니다. 진단에는 단일 검사가 아닌 다중 모달(UBT·분변항원·혈청 IgG·내시경·조직학)의 구조화된 접근이 필수이며, 저자들은 AIG 매개 위축을 HPnGC의 별도 아형으로 인식하는 실용적 진단 프레임워크를 새로 제안합니다.",
+    keypoints: [
+      "HPnGC 정의: 과거·현재 Hp 감염이 없는 위암 — StOP 프로젝트에서 엄격 기준 적용 시 비분문부 위암의 6.6%만 해당(혈청 단독 기준 21.8%에서 대폭 감소)",
+      "주요 병인: ① 자가면역성위염(Correa 경로로 선암 위험 7배↑, NET 위험 주요 경로), ② EBV(전 세계 위암의 8.8%, 근위부·남성 호발), ③ 유전성 증후군(HDGC·Lynch·FAP·GAPPS·PJS 등)",
+      "HPnGC의 불량한 예후 메커니즘: Hp 양성 시 Th1/Th17 염증이 항종양 면역 역할 → Hp 음성이면 이 이점 부재; E-cadherin 변이·MSI가 주요 발암 드라이버로 미분화형·전이 위험 증가",
+      "AIG 관련 HPnGC의 내시경 감별: 체부 우세 위축 + 전정부 보존 → 자가면역성; 다초점 위축(전정부 우세) → Hp 관련 과거 감염 시사 — 벽세포항체/내인자항체로 추가 구별",
+      "진단 프레임워크(저자 제안): ① Hp 제균력 없음, ② 비침습 검사 ≥2개 음성(UBT·분변항원·IgG), ③ 내시경·조직학적 Hp 흔적 없음, ④ AIG 아형은 추가로 자가항체 양성 + 체부 우세 위축 확인",
+      "치료 원칙은 HPpGC와 동일(내시경절제/수술/전신치료); 단 Hp 제균 불필요. AIG 환자에서는 NET 및 선암 조기 발견을 위한 내시경 감시 지속 필수"
+    ],
+    meta: {
+      "논문 유형": "종설 (Review Article)",
+      "연구 기관": "The Chinese University of Hong Kong / Singapore General Hospital",
+      "특이사항": "AIG를 HPnGC의 독립 아형으로 분류한 최초 진단 프레임워크 제안"
+    }
+  },
+  {
+    id: 13,
+    title: "Gastric Cancer in the Post-Helicobacter pylori Era: Non-H. pylori-Related Gastric Microbiota, Non-H. pylori-Related and Post-H. pylori Eradication Gastric Cancer",
+    title_ko: "포스트-헬리코박터 시대의 위암: 비Hp 위내 미생물, 비Hp 관련 위암 및 Hp 제균 후 위암",
+    journal: "Digestion",
+    journal_short: "Digestion",
+    year: 2026,
+    if: 3.0,
+    authors: "Tan AXH, Tee NCH, Ang TL",
+    doi: "10.1159/000551095",
+    source: "journal",
+    topics: ["암위험", "헬리코박터", "병인기전"],
+    abstract_ko: "Hp 제균이 확대되는 시대에 비Hp 관련 위암(GC)의 역할과 임상적 의미를 정리한 서사적 종설. ① 비Hp 위내 미생물(Fusobacterium nucleatum, Streptococcus anginosus, Prevotella, Veillonella 등 구강 병원균 풍부)이 케이스-대조군 연구와 마우스 모델에서 위 발암에 관여함을 정리. ② EBV(전 세계 위암의 8.8%, 체부·분문부 호발, 면역관문억제제 반응성↑)가 유일하게 인과성 입증된 비Hp 감염. ③ 자가면역성위염(AAG) 및 Ménétrier병을 Hp 비감염 위암의 독립 병인으로 명시. ④ Hp 제균 성공 후에도 CAG·GIM 지속 시 위암 발생 가능—제균 후 Fusobacterium·Neisseria 풍부 군에서 유의한 GC 발생률 증가.",
+    keypoints: [
+      "AAG 관련 위암 위험: 연간 선암 발생률 0.27%/인년, 일반 인구 대비 상대위험 6.8배 — 종양 위치는 체부·저부에 집중(자가면역 위축 분포 반영)",
+      "비Hp 미생물의 위 발암 역할: Streptococcus anginosus가 마우스에서 Hp 없이도 독립적으로 만성위염→위축→화생→이형성 유도(TMPC-ANXA2-MAPK 경로) — 인간 인과성은 아직 미확립",
+      "Hp 제균 후에도 위암 발생 가능: 제균 후 Fusobacterium·Neisseria 풍부 군(dysbiotic subgroup)에서 위암 발생 현저히 증가 — 미생물 구성이 제균 후 위암 위험의 독립 예측인자",
+      "구강 미생물과 위암: Prevotella·Fusobacterium이 구강 샘플(타액·치은하)에서 CAG/GIM과 연관 — 치주 건강 유지가 위암 예방 전략으로 부상",
+      "위내 진균총(mycobiome) 이상: C. albicans 증가 등 진균 dysbiosis가 위암과 연관되나 인과성 미확립; Lactobacillus 풍부 시 항PD-1 면역치료 반응률↑",
+      "임상 메시지: ① AAG·Ménétrier병 진단 시 내시경 감시 필수, ② Hp 제균 성공 후에도 광범위 CAG/GIM 존재 시 감시 지속, ③ 비Hp 위암 가능성 인식 확대 — 인구학적 프로필이 Hp 관련 위암과 다름"
+    ],
+    meta: {
+      "논문 유형": "서사적 종설 (Narrative Review)",
+      "연구 기관": "Changi General Hospital, SingHealth / NUS / Duke-NUS, Singapore",
+      "특이사항": "위내 미생물·진균총·유전성 증후군·AAG·Hp 제균 후 위암을 통합 정리"
+    }
+  },
+  {
+    id: 14,
+    title: "Autoimmune gastritis masquerading as subepithelial squamous infiltration: a case report",
+    title_ko: "점막하 편평상피 침윤으로 위장한 자가면역성위염: 증례보고 및 새로운 내시경 소견",
+    journal: "Endoscopy",
+    journal_short: "Endoscopy",
+    year: 2026,
+    if: 11.1,
+    authors: "Wang H, Yu Z, Chen Z, Yang X, Liu X, Hu X",
+    doi: "10.1055/a-2808-7398",
+    source: "journal",
+    topics: ["진단", "증례", "병리"],
+    abstract_ko: "70세 남성 AIG 환자에서 위식도 접합부(GEJ) 상방에 황색 과립상 융기가 관찰되어 내시경적으로 종양의 점막하 편평상피 침윤으로 오인됐으나, ESD 후 병리에서 식도 분문부 선 과형성(cardia gland hyperplasia, MUC6·MUC5AC 양성)임이 확인된 증례. 해당 병변은 AIG 20례 전례(100%)에서 관찰됐고 비AIG 대조군 20례에서는 전례 부재(p<0.001). 위산 저하에 따른 분문부 선 과형성이 AIG의 신규 내시경 표지자일 가능성을 제시.",
+    keypoints: [
+      "신규 내시경 소견: GEJ(Z선) 상방의 황색 과립상 융기 — WLI에서 반투명 '버블' 양상, NBI에서 갈색, ME-NBI에서 미세 그물망 혈관 구조",
+      "병리: 편평상피 하방 식도 고유층 내 과형성·확장된 분문부 선(MUC6+, MUC5AC+) — 종양이 아닌 반응성 변화",
+      "AIG 20례 전례(100%) 존재 vs 비AIG 대조군 20례 전례 부재 (Fisher's exact test p<0.001) — 소규모이나 통계적으로 강력한 연관성",
+      "동반 병변: 위 분문부 대만 측 0-IIa형 병변이 ESD로 절제 → pT1b 고분화 관상/유두상 선암(tub2>tub1>pap, 장형 표현형) 확인 — AIG 동반 선암 사례",
+      "발생 기전 가설: AIG로 인한 저산증(hypochlorhydria) → 분문부 선 보상성 과형성 → GEJ 상방 가시적 병변 형성",
+      "⚠️ 소규모(각 군 20명) 단일기관 후향적 연구 — 저산증 자체(PPI 사용 등)에 의한 비특이적 소견 가능성 배제 안 됨; 전향적 대규모 검증 필요"
+    ],
+    meta: {
+      "연구 유형": "증례보고 + 소규모 후향적 비교",
+      "대상": "AIG 20명 / 비AIG 대조군 20명",
+      "연구 기관": "Sichuan Provincial People's Hospital, Chengdu, China"
+    }
+  },
+  {
+    id: 15,
+    title: "Case Report: Concurrent autoimmune gastritis and high-grade dysplasia in a gastric hyperplastic polyp",
+    title_ko: "자가면역성위염 동반 위 과형성 폴립의 고도 이형성: 증례보고",
+    journal: "Frontiers in Medicine",
+    journal_short: "Front Med",
+    year: 2026,
+    if: 3.1,
+    authors: "Wang T, Luo J, Han Y, Yang Q, Peng S",
+    doi: "10.3389/fmed.2025.1716969",
+    source: "journal",
+    topics: ["증례", "암위험", "진단", "병리"],
+    abstract_ko: "35세 여성에서 AIG 배경 위 체부 과형성 폴립 내 고도 이형성(HGD) 발견 증례. 초기 내시경에서 유경성 폴립 3개(6~10mm) 발견 후 EMR 시행, 1차 병리에서 저도 이형성 동반 과형성 폴립으로 판독됐으나 3차 기관 전문 병리 재검토에서 ① AIG(체부 제한 위축, 유문선 화생, 경도 장상피화생, Hp 음성)와 ② 폴립 두부 HGD(Vienna C4, 절제 절연 음성)로 상향 판정. PCA-IgG 350 U/mL, 가스트린-17 68.9 pmol/L로 상승. 추적 내시경에서 EMR 반흔 치유 확인, 새 과형성 폴립은 이형성 없음.",
+    keypoints: [
+      "AIG 배경 과형성 폴립에서 HGD 발생은 드물지만 관리를 바꾸는 임상적 핵심 소견 — 단순 폴립 절제 후 관리에서 완전 절제 + 체부 집중 감시로 전환 필요",
+      "35세 젊은 여성 사례: AIG는 노인 여성 질환이라는 통념을 깨는 증례; 초기 병리에서 배경 AIG 미인식으로 HGD 저평가 → 전문가 병리 재검토의 중요성 강조",
+      "병인: AIG로 인한 만성 염증·저산증 → 반복 재생 과정의 누적 게놈 손상 → 염증-화생-이형성 경로(Correa 연속체)로 HGD 발생; 가스트린 축 외 선암 경로도 가능",
+      "HGD 절제 후 감시 권고: 6~12개월 단기 재검 + 체부 정밀 검사 + 신규 병변 낮은 역치의 내시경 절제 + 표적 생검으로 위축·화생 모니터링",
+      "진단 교훈: '체부 우세 위축 + 폴립' 조합 → AIG 의심하고 유문선(유문형) 화생·표면 구덩이 과형성 확인 → 폴립 두부에서 HGD 여부 적극 평가",
+      "⚠️ 단일 환자 증례 — 직접 일반화 불가; AIG에서 HGD 발생 빈도·기전에 대한 대규모 전향적 연구 필요"
+    ],
+    meta: {
+      "연구 유형": "증례보고 (Case Report)",
+      "대상": "35세 여성 1명",
+      "연구 기관": "Shenzhen People's Hospital / Peking University Third Hospital, China"
+    }
+  },
+  {
+    id: 16,
+    title: "Pulmonary immunohistochemical markers may be positive in gastric adenocarcinomas associated with autoimmune metaplastic atrophic gastritis",
+    title_ko: "자가면역성위축위염 동반 위선암에서 폐 면역조직화학 표지자(TTF-1, Napsin A) 양성 발현",
+    journal: "Histopathology",
+    journal_short: "Histopathology",
+    year: 2026,
+    if: 4.5,
+    authors: "Toussieng T, Kozak M, Burch M, Gangi A, Gong J, Guindi M, Lai KK, Hutchings DA, Larson BK, Waters KM",
+    doi: "10.1111/his.15526",
+    source: "journal",
+    topics: ["병리", "암위험", "진단"],
+    abstract_ko: "AMAG 동반 위선암 18례와 비AMAG 위선암 36례(대조군)를 TTF-1(클론 SP141, 8G7G3/1) 및 Napsin A(클론 1P64)로 면역조직화학 염색 비교. AMAG군에서 TTF-1(SP141) 양성 39% vs 대조군 11%(p=0.04), Napsin A 양성 28% vs 0%(p<0.01). 배경 위점막에서도 AMAG군은 TTF-1 50%, Napsin A 36% 양성 vs 대조군 3~6%, 0%(모두 p<0.01). 양성 염색은 항상 패치형(종양세포의 1~20%), 장형 선암에서만 발현. 폐전이 선암 오진 방지를 위한 병리 지식 제공이 목적.",
+    keypoints: [
+      "AMAG 배경 위선암에서 Napsin A가 28% 양성 — 비AMAG 대조군 0% 대비 완전 특이적(p<0.01); TTF-1도 유의하게 높음(39% vs 11%, p=0.04)",
+      "배경 위점막(비장상피화생 위선)에서도 TTF-1 50%, Napsin A 36% 패치형 양성 — AMAG에 의한 폐 전분화(pulmonary trans-differentiation)가 선암에 이어 배경 점막에도 반영",
+      "모든 양성 염색은 패치형(종양세포 1~20%) — 폐전이 선암의 미만성 발현(종양세포 대부분 양성)과 명확히 구별되는 패턴",
+      "장형 선암에서만 발현, 미만형(인환세포)에서는 음성 — AMAG 동반 위선암의 조직학적 특성과 일치",
+      "임상적 함의: 위 생검에서 TTF-1/Napsin A 패치형 양성 시 폐전이 오진 주의 → AMAG 가능성 고려 후 추가 임상 검사 필요",
+      "기전 가설: AMAG로 인한 위산 저하 → 위점막 유전자 발현 변화 → 폐·췌장 전분화 → 배경 점막과 발생한 선암 모두에서 TTF-1/Napsin A 발현"
+    ],
+    meta: {
+      "연구 설계": "후향적 비교 연구 (1:2 증례-대조)",
+      "대상": "AMAG 동반 위선암 18례 / 비AMAG 위선암 36례",
+      "연구 기관": "Cedars-Sinai Medical Center, Los Angeles, CA, USA"
+    }
+  },
+  {
+    id: 17,
+    title: "Association of different autoimmune diseases with gastric cancer incidence and risk: a global population-based analysis",
+    title_ko: "다양한 자가면역질환과 위암 발생률·위험도의 연관성: 글로벌 인구 기반 메타분석",
+    journal: "International Journal of Surgery",
+    journal_short: "Int J Surg",
+    year: 2026,
+    if: 12.9,
+    authors: "Cheng J, Cai M, Wang G",
+    doi: "10.1097/JS9.0000000000003937",
+    source: "journal",
+    topics: ["암위험", "역학"],
+    abstract_ko: "PubMed·Web of Science·Embase 기반 체계적 문헌고찰 및 메타분석(285개 연구, 참가자 6,155만 명). 자가면역질환 전체의 위암 상대위험 풀링 RR 1.158(95% CI 1.098–1.222, p<0.001). 자가면역성위염이 가장 강한 위험인자(RR 3.066), 뒤이어 전신경화증(1.788), 제1형 당뇨(1.411), 유육종증(1.388), 건선(1.194) 순. 피부근염(2.100) 및 전신홍반루푸스(1.296)도 잠재적 연관. 궤양성 대장염은 동아시아에서 위암에 대해 유의한 보호 효과(RR 0.732). 성별 차이 없음; 북유럽 환자에서 위험도 가장 높음.",
+    keypoints: [
+      "AIG = 모든 자가면역질환 중 위암 위험이 압도적으로 높음: 풀링 RR 3.066(95% CI 2.569–3.660) — 전신경화증(1.788), T1DM(1.411) 등을 크게 상회",
+      "AIG 위암 발생률: 214.454/100,000 인년 — 자가면역 췌장염(396.6), 피부근염(233.8)에 이어 세 번째로 높은 절대 발생률",
+      "AIG의 위험 효과는 지역에 관계없이 전 세계적으로 일관 — T1DM도 마찬가지; 반면 건선·유육종증은 북유럽에서만 유의",
+      "궤양성 대장염의 위암 보호 효과(RR 0.732) — 특히 동아시아에서 유의; 더 빈번한 내시경 감시 및 식이 개선이 기여 가능성",
+      "성별 차이 없음: 남녀 모두 자가면역 유발 위암에 유사하게 취약 — 남성 절대 발생률이 2배 높은 것은 배경 위암 위험도 차이 반영",
+      "북유럽 환자에서 자가면역질환에 의한 위암 상대위험 가장 높음; 일본 환자에서는 류마티스 관절염 등에 오히려 보호 효과 — 배경 위암 위험도 높아 상대적 영향 희석"
+    ],
+    meta: {
+      "연구 유형": "체계적 문헌고찰 및 메타분석",
+      "포함 연구": "285편 (참가자 61,556,078명)",
+      "검색 범위": "창간~2025년 1월 (PubMed·WoS·Embase)",
+      "연구 기관": "Huazhong University of Science and Technology, Wuhan, China"
+    }
+  }, 
+{
+  id: 18,
+  title: "Helicobacter pylori Gastritis as an Initial Presentation of Evolving Autoimmune Gastritis: A Report of Two Cases",
+  title_ko: "H. pylori 위염으로 초기 발현한 진화하는 자가면역성위염: 2증례 보고",
+  journal: "Internal Medicine",
+  journal_short: "Intern Med",
+  year: 2026,
+  if: 1.0,
+  authors: "Kotera T, Kushima R, Haruma K",
+  doi: "10.2169/internalmedicine.5888-25",
+  source: "journal",
+  topics: ["헬리코박터", "진단", "증례"],
+  abstract_ko: "H. pylori 활성 감염 상태에서 진화하는 자가면역성위염(evolving AIG) 2증례 보고. 1예는 40대 여성으로 H. pylori 제균 후 전정부 점막 정상화와 함께 체부 전반으로 심한 위축이 진행되어 진행성 AIG로 확진(PCA 1:160, 가스트린 463.7 pmol/L). 2예는 50대 남성으로 제균 없이 H. pylori 자연 소실 후 동일 패턴으로 진행성 AIG 발생(PCA 1:80, 가스트린 392.4 pmol/L). 두 증례 모두 초기 내시경에서 위체부 대만에 규칙적 홍반 패턴의 연어알 모양 팽윤 위소와가 관찰되었으며, H. pylori 소실 후 전정부 정상화를 동반한 AIG 명현화가 확인되었다.",
+  keypoints: [
+    "H. pylori 활성 위염 중에도 evolving AIG가 동시 존재 가능 — 제균 또는 자연 소실 후 명현화",
+    "초기 내시경 소견: 위체부 대만 비위축 점막에서 규칙적 홍반 동반 팽윤 위소와(연어알 모양) — AIG 조기 지표",
+    "전정부 점막 색조 정상화: H. pylori 소실 후 AIG 진단 시점에 관찰 — H. pylori 비감염 AIG와 감별 어렵게 함",
+    "일본 AIG 진단 기준은 H. pylori 활성 감염 동반 시 적용 어려움 — 조직학·혈청검사(PCA) 추가 필요",
+    "표준 내시경만으로는 AIG 연어알 모양과 H. pylori 모자이크 패턴 구별 한계 — 색소내시경·조직검사 필수",
+    "⚠️ 2증례 소규모 보고 — H. pylori와 AIG 발생의 인과관계 결론 불가; 대규모 추적 연구 필요"
+  ],
+  meta: {
+    "연구 유형": "증례보고 (Case Report)",
+    "대상": "40대 여성·50대 남성 각 1명",
+    "추적 기간": "증례 1: 2018~2024년 / 증례 2: 2011~2024년",
+    "연구 기관": "Uji-Tokushukai Medical Center / Shiga Univ. of Medical Science / Kawasaki Medical School"
+  }
+},
+{
+  id: 19,
+  title: "GAVE in Systemic Sclerosis with Concurrent Autoimmune Gastritis",
+  title_ko: "전신경화증에서 자가면역성위염과 동반된 위 혈관 확장증(GAVE)",
+  journal: "Internal Medicine",
+  journal_short: "Intern Med",
+  year: 2026,
+  if: 1.0,
+  authors: "Oda N, Kobayashi S, Nakano K",
+  doi: "10.2169/internalmedicine.6785-25",
+  source: "journal",
+  topics: ["증례", "진단", "병인기전"],
+  abstract_ko: "77세 여성이 호흡곤란과 흑색변으로 내원. 혈색소 7.5 g/dL(MCV 92 fL), 낮은 페리틴·비타민 B12가 확인되었다. 내시경에서 '수박 위(watermelon stomach)'로 불리는 종주형 전정부 모세혈관 확장 줄무늬(GAVE)와 체부 우세 위축이 관찰되었다. 항내인자항체·항벽세포항체 양성, 공복 가스트린 3,520 pg/mL로 자가면역성위염(AIG) 진단. ANA(반점형, 1:160) 양성을 단서로 추가 검사에서 RNA 중합효소 III 항체·수지경화증·간질성 폐질환을 동반한 제한성 피부형 전신경화증(lcSSc)이 확인되었다. GAVE에 대해 아르곤 플라즈마 응고술(APC) 시행, 철분 및 비타민 B12 보충으로 빈혈이 교정되었다.",
+  keypoints: [
+    "전신경화증(SSc)에서 GAVE는 RNA 중합효소 III 항체와 상관관계가 있음 — 이 항체 양성 시 GAVE 동반 적극 검색 필요",
+    "AIG와 GAVE의 동시 발생: 철결핍성 빈혈(GAVE 출혈) + 비타민 B12 결핍(AIG 내인자 항체)이 혼합되어 거대적혈구 빈혈이 정구성 빈혈로 위장 — 빈혈 유형 해석에 주의",
+    "H. pylori IgG <3 U/mL(음성) 배경에서 항벽세포항체·항내인자항체 양성 + 가스트린 3,520 pg/mL → Hp 비의존성 AIG 진단",
+    "내시경 소견 3가지 동시 관찰: ① GAVE(전정부 종주형 혈관 확장), ② 위체부 우세 위축, ③ 정상 전정부 점막 — 자가면역 이중 병변의 전형 패턴",
+    "치료: APC로 GAVE 출혈 조절 + 근육주사 비타민 B12 및 경구 철분 보충 → 빈혈 교정; SSc 자체에 대한 면역억제 여부는 별도 검토",
+    "⚠️ 단일 증례 보고 — AIG와 SSc 관련 GAVE 동시 발생 빈도·기전에 대한 대규모 연구 필요; 자가면역 전신 평가의 중요성 시사"
+  ],
+  meta: {
+    "연구 유형": "증례보고 (Case Report, Pictures in Clinical Medicine)",
+    "대상": "77세 여성 1명",
+    "치료": "아르곤 플라즈마 응고술(APC) + 비타민 B12·철분 보충",
+    "연구 기관": "Fukuyama City Hospital / Kawasaki Medical School, Japan"
+  }
+},
+{
+  id: 20,
+  title: "A Retrospective Study on Clinical Characteristics of Autoimmune Gastritis With and Without Anemia",
+  title_ko: "빈혈 동반 및 비동반 자가면역성위염의 임상 특성: 후향적 연구",
+  journal: "Journal of Clinical Gastroenterology",
+  journal_short: "J Clin Gastroenterol",
+  year: 2026,
+  if: 3.1,
+  authors: "Liu J, Yao X, Han J, Wang G, Han Y, Liu M, Li P",
+  doi: "10.1097/MCG.0000000000002365",
+  source: "journal",
+  topics: ["진단", "역학", "헬리코박터"],
+  abstract_ko: "중국 단일 기관(통지병원) 후향적 연구로 2023년 1월~2024년 12월 AIG 117명(여성 72.6%, 중앙 연령 53.6세)을 분석. 빈혈 유병률 39.3%(IDA 17.9%, PA 21.4%). 빈혈 동반군에서 항내인자항체(IFA) 양성률이 유의하게 높았고(34.8% vs 18.3%, p=0.044), 펩시노겐 I(PG-I)이 더 낮았다(5.0 vs 8.0 ng/mL, p=0.033). IDA군은 PA군 대비 H. pylori 감염률이 유의하게 높았으며(66.7% vs 28.0%, p=0.009), PG-I·PG-II·PG-I/II비도 IDA군에서 더 높았다. 다변량 분석에서 IFA 양성(OR 2.379, p=0.047)이 빈혈의 독립적 위험 인자로 확인되었다.",
+  keypoints: [
+    "IFA 양성이 AIG 빈혈의 독립적 위험인자 (다변량 OR 2.379, p=0.047) — PCA 양성, H. pylori, 연령·성별은 빈혈과 무관",
+    "IDA vs PA 구별 핵심: H. pylori 감염률 IDA 66.7% vs PA 28.0%(p=0.009), PG-I도 IDA에서 유의하게 높음(10.9 vs 4.1 ng/mL, p=0.001) — 더 심한 위축이 PA와 연관",
+    "H. pylori 양성 AIG에서 IDA 비율이 Hp 음성 대비 유의하게 높음(28.6% vs 10.3%, p=0.011) — IDA 진단 시 Hp 검사 필수",
+    "21.4% 무증상: 빈혈·소화기·신경정신 증상 없이 발견되는 AIG 비율이 적지 않음 — 우연히 발견되는 경우도 다수",
+    "동반질환: AITD 18.8%(가장 많음), 위과형성 폴립 12%, g-NETs 5.1%, 위선암 0.8% — 위종양 동반 시 Hp 감염 및 고가스트린혈증과 연관",
+    "⚠️ 단일 기관 후향적 연구 — 진행성 AIG 편향 가능성, 일부 조직학적 진단 미확인; 대규모 전향적 다기관 연구 필요"
+  ],
+  meta: {
+    "연구 설계": "단일기관 후향적 연구",
+    "대상 환자": "117명 (여성 85명, 남성 32명)",
+    "연구 기간": "2023년 1월~2024년 12월",
+    "연구 기관": "Tongji Hospital, Huazhong University of Science and Technology, Wuhan, China"
+  }
+},
+{
+  id: 21,
+  title: "Gastric cancer in autoimmune gastritis: ranking the risk",
+  title_ko: "자가면역성위염에서의 위암: 위험도 순위 재정립",
+  journal: "Journal of Gastroenterology",
+  journal_short: "J Gastroenterol",
+  year: 2026,
+  if: 6.9,
+  authors: "Rugge M, Genta RM, Malfertheiner P",
+  doi: "10.1007/s00535-026-02395-4",
+  source: "journal",
+  topics: ["암위험", "헬리코박터", "병인기전"],
+  abstract_ko: "Yamamichi & Aoki의 에디토리얼(AIG와 위선암 위험 논쟁)에 대한 Rugge, Genta, Malfertheiner 3인의 편지. 체부 제한성 위축위염(corpus-restricted atrophic gastritis)이라는 용어가 Hp 감염 동반 전정부 병변을 배제하는 데 더 정확하다고 제안. Hp 비노출 원발성 AIG에서의 위암 발생을 완전히 부정하는 것은 생물학적으로 타당하지 않으나, 저자들의 장기 전향적 추적에서 상피성 종양 병변은 과거 Hp 감염 환자에서만 관찰되었음을 강조. AIG 관련 NET 감시 내시경이 상피성 암전병변도 함께 발견하므로 임상적 논쟁의 실제 영향은 제한적이라고 결론.",
+  keypoints: [
+    "'Corpus-restricted atrophic gastritis'라는 용어 제안 — 전정부 위축 동반 시 Hp 관련 동반질환 가능성을 명확히 배제하기 위한 용어",
+    "Hp 비감염 원발성 AIG에서의 위암을 생물학적으로 완전히 배제하는 것은 부적절 — 그러나 현재까지 데이터는 부족하며 추가 대규모 연구 필요",
+    "저자들의 전향적 장기 추적: 상피성 종양 병변은 과거 Hp 감염 환자에서만 관찰 — Hp 노출이 AIG 관련 선암의 핵심 선행 인자일 가능성",
+    "실제 임상적 함의: AIG 감시 내시경은 NET 조기 발견이 주목적이나, 이 과정에서 산화점막 상피성 암전병변도 함께 포착 가능 — 별도 선암 감시 프로토콜의 추가 가치는 제한적",
+    "비위축성 AIG: 임상 증상 적어 역학·생물학·발암 위험 데이터 극히 부족 — 비위축 단계의 염증 자체가 위축 독립적 발암 촉진 가능성 존재",
+    "⚠️ 편지(Letter to the Editor) 형식 — 데이터 제시 없이 의견과 기존 연구 해석 중심; Hp 비노출 AIG 위암 위험의 정량화를 위한 대규모 연구 촉구"
+  ],
+  meta: {
+    "논문 유형": "Letter to the Editor",
+    "대상 에디토리얼": "Yamamichi & Aoki, J Gastroenterol 2025",
+    "출판일": "2026년 4월 2일 (온라인 선출판)",
+    "연구 기관": "University of Padova / Baylor College of Medicine / LMU Munich"
+  }
+},
+{
+  id: 22,
+  title: "Autoimmune gastritis in children: A prospective cohort with serologic screening in at-risk patients",
+  title_ko: "소아 자가면역성위염: 고위험 환아에서 혈청 스크리닝을 통한 전향적 코호트 연구",
+  journal: "Journal of Pediatric Gastroenterology and Nutrition",
+  journal_short: "J Pediatr Gastroenterol Nutr",
+  year: 2026,
+  if: 2.4,
+  authors: "Chiaro A, Parrinello F, Marazzi C, Zucconi A, Bassi M, Calevo MG, Pesce G, Minuto N, Gastaldi R, Miano M, Gandullia P",
+  doi: "10.1002/jpn3.70408",
+  source: "journal",
+  topics: ["진단", "역학", "병인기전"],
+  abstract_ko: "이탈리아 단일 기관(IRCCS Gaslini, 제노바) 전향적 코호트. 4~17세 자가면역 고위험 소아 203명(제1형 당뇨 119명, 자가면역갑상선염 48명, 난치빈혈 23명, 원발면역조절장애 13명)에서 APCA 및 AIFA 혈청 스크리닝 시행. 19명(9.4%)이 항체 양성, 21명이 내시경 시행. 최종 AIG 조직학적 확진 11명(5.4%). APCA/AIFA의 민감도 81.8%, 특이도 77.9%. AIG 확진군에서 페리틴(p=0.001)과 트랜스페린 포화도(p=0.02)가 유의하게 낮았다. H. pylori는 전례 음성으로 자가면역 기전 확인.",
+  keypoints: [
+    "소아 자가면역 고위험군(T1D·자가면역갑상선염)에서 AIG 유병률 5.4% — 성인 질환으로만 인식되던 AIG가 소아에서도 저평가되어 있음",
+    "T1D 환아의 APCA/AIFA 양성률 10.9%, 자가면역갑상선염 환아 16.6% — 이 두 질환 동반 시 AIG 스크리닝 적극 검토 필요",
+    "APCA/AIFA 복합 혈청검사 민감도 81.8%, 특이도 77.9% — 1차 스크리닝 도구로 유용하나 조직학적 확인이 필수",
+    "혈청 음성이어도 AIG 가능(2명, 9.5%) — 항체 역가 변동 또는 항원 소실 가능성; 임상 의심 시 내시경 고려",
+    "항체 양성이나 조직학 음성인 경우: 위축 선행 단계일 가능성 — 본 센터에서 4~5년 주기 내시경 추적 중",
+    "⚠️ 단일 기관·소규모(AIG 확진 11명) 연구 — 민감도 신뢰구간 넓음(95% CI 48.2~97.7%); 소아 AIG 전용 가이드라인 부재, 대규모 다기관 전향적 연구 필요"
+  ],
+  meta: {
+    "연구 설계": "전향적 코호트 (단일 기관)",
+    "대상 환자": "203명 (4~17세), AIG 확진 11명",
+    "연구 기간": "2022년 9월~2024년 8월",
+    "연구 기관": "IRCCS Istituto Giannina Gaslini, Genoa, Italy"
+  }
+},
+{
+  id: 23,
+  title: "High frequency of microbial overgrowth among symptomatic patients with autoimmune atrophic gastritis",
+  title_ko: "자가면역성위축위염 증상 환자에서 높은 빈도의 미생물 과증식",
+  journal: "Minerva Gastroenterology",
+  journal_short: "Minerva Gastroenterol",
+  year: 2026,
+  if: 2.0,
+  authors: "Damianos JA, Jin M, Ospina-Velasquez L, Chowla N, Wang XJ",
+  doi: "10.23736/S2724-5985.26.04066-0",
+  source: "journal",
+  topics: ["병인기전", "치료", "진단"],
+  abstract_ko: "Mayo Clinic 후향적 연구. 소장 흡인 배양을 시행한 자가면역성위축위염 52명 중 48명(92.3%)이 SIBO 기준(≥10³ CFU/mL) 충족, 39명(75%)이 ≥10⁵ CFU/mL 기준 충족. 반복 배양 시행 환자의 83.3%에서 재발성 SIBO 확인. 호기 검사 시행 24명 중 11명(45.8%) 양성—이 중 90.9%가 메탄 상승(장내 메탄생성균 과증식). 비자가면역 만성위염 대비 SIBO 흡인 배양 양성 교차비 5배 이상(≥10⁵ CFU/mL: 75% vs 34.3%, p<0.00001). 흡인 배양과 호기 검사 간 불일치 높음(7명 중 5명 배양 양성·호기 검사 음성).",
+  keypoints: [
+    "AIG 환자의 SIBO 유병률: 흡인 배양 기준 75~92.3% — 비자가면역 만성위염(34~65%) 대비 5배 이상 높음(OR 5.43~6.46)",
+    "재발성 SIBO: 반복 배양 환자 83.3%에서 재발 — AIG에서 SIBO는 일회성이 아닌 만성·반복 경향",
+    "호기 검사의 낮은 민감도: 배양 양성 환자 중 상당수가 호기 검사 음성 → AIG에서 SIBO 진단은 흡인 배양이 더 적합",
+    "양성 호기 검사의 90.9%가 메탄 상승(장내 메탄생성균 과증식) — 변비 증상과 연관; 위장관 운동장애가 원인일 가능성",
+    "소장 진균 과증식(SIFO) 7.7% — 항상 SIBO와 동반; 위산이 장내 진균 조절에 미치는 영향은 제한적",
+    "⚠️ 증상으로 MO 검사를 받은 선택 집단 연구 — AIG 전체 SIBO 유병률을 과대 추정 가능성; 흡인 배양 기술적 오염(위인두 오염 최대 20%) 고려 필요"
+  ],
+  meta: {
+    "연구 설계": "후향적 단일 기관 연구",
+    "대상 환자": "흡인 배양 52명 / 호기 검사 24명",
+    "비교 대조군": "비자가면역 만성위염 1,634명(배양) / 593명(호기 검사)",
+    "연구 기관": "Mayo Clinic, Rochester, MN, USA"
+  }
+},
+{
+  id: 24,
+  title: "Vitamin D Deficiency and Replacement Challenges in Type 1 Gastric Neuroendocrine Tumors: A Comparative Study",
+  title_ko: "제1형 위 신경내분비종양에서 비타민 D 결핍과 보충 난제: 비교 연구",
+  journal: "Nutrients",
+  journal_short: "Nutrients",
+  year: 2026,
+  if: 4.8,
+  authors: "Benevento E, Coletta M, Liccardi A, Minotta R, Di Iasi G, Di Nola M, Colao A, Modica R",
+  doi: "10.3390/nu18020281",
+  source: "journal",
+  topics: ["치료", "암위험", "병인기전"],
+  abstract_ko: "나폴리 Federico II 대학 ENETS 우수센터에서 2010~2025년 추적한 1형 위NET 13명과 연령·성별 매칭된 장췌장NET(EP-NET) 13명을 비교한 후향적 연구. 비타민 D 결핍(VDD) 유병률: gNET 92.3% vs EP-NET 46.2%(p=0.03, OR 14). 정상화에 필요한 일일 콜레칼시페롤 용량: gNET 3,199 IU/day vs EP-NET 1,580 IU/day(p=0.008). gNET의 38.5%에서 2가지 이상 제형 필요(vs 0%, p=0.04). 골감소증/골다공증 유병률: gNET 61.5% vs EP-NET 15.4%(p=0.04, OR 8.8). 식이 습관 차이 없음. 다변량 분석에서 gNET 자체가 더 높은 콜레칼시페롤 용량 필요의 독립 예측인자(β +1,463 IU/day, p=0.037).",
+  keypoints: [
+    "AIG 배경 1형 위NET에서 VDD 유병률 92.3% — EP-NET 대비 14배 높은 교차비; 저위산증·자가면역 염증·담즙산 변화로 인한 비타민 D 흡수 장애 기전 제안",
+    "비타민 D 정상화에 필요한 용량 2배 이상(3,199 vs 1,580 IU/day, p=0.008) — 표준 경구 보충으로 충분하지 않을 수 있음; 구강분산필름 등 대체 제형 고려 필요",
+    "골 손상(골감소증+골다공증) 유병률 gNET 61.5% vs EP-NET 15.4%(OR 8.8) — AIG 동반 NET 환자에서 골대사 평가 및 DXA 검사를 루틴으로 포함해야 함",
+    "식이 습관(지중해식 식단 PREDIMED 점수)은 두 군 간 차이 없음 — VDD 차이가 식이보다 질환 특이적 기전(저산증·흡수불량)에 기인함을 시사",
+    "비타민 D는 항증식·면역조절 효과를 통해 NET 예후에 영향 가능(p53/AMPK/mTOR 경로) — 낮은 비타민 D가 종양 공격성 증가 및 무진행 생존기간 단축과 연관된다는 기존 연구와 일치",
+    "⚠️ 소규모(각 군 13명) 후향적 단일 기관 연구 — 인과관계 확립 불가; 계절·일조량·담즙산·췌외분비 기능 등 교란 변수 미측정; 대규모 전향적 연구 필요"
+  ],
+  meta: {
+    "연구 설계": "후향적 비교 연구 (1:1 연령·성별 매칭)",
+    "대상 환자": "1형 위NET 13명 / EP-NET 13명",
+    "연구 기간": "2010~2025년",
+    "연구 기관": "University of Naples Federico II, ENETS Center of Excellence, Italy"
+  }
+},
+{
+  id: 25,
+  title: "Autoimmune Gastritis in Children: A Rare Cause of Refractory Iron-Deficiency Anemia",
+  title_ko: "소아 자가면역성위염: 난치성 철결핍빈혈의 드문 원인 — 증례보고",
+  journal: "Reports",
+  journal_short: "Reports",
+  year: 2026,
+  if: 1.0,
+  authors: "Lendínez-Jurado A, García-Ruiz A, Sastre-Domínguez MA, Vallejo-Benítez AM, Scavarda-Lamberti A, Navas-López VM",
+  doi: "10.3390/reports9010053",
+  source: "journal",
+  topics: ["증례", "진단", "치료"],
+  abstract_ko: "11세 남아에서 6개월간 고용량 경구 철분 치료(수크로솜철 최대 1.8 mg/kg/day)에 반응하지 않는 중증 소적혈구 빈혈(Hb 8.1 g/dL, MCV 53 fL) 증례. 내시경은 육안상 정상이었으나 위체부 생검에서 만성 위축성위염(장상피화생, 림프형질세포 침윤) 확인. 항벽세포항체 양성(>169 U/mL), 펩시노겐 I 저하(9.1 ng/mL), 고가스트린혈증(271 pg/mL)으로 AIG 확진. 비타민 B12·항내인자항체는 정상. 정맥 철분 주입 후 일시 호전되었으나 수주 내 철결핍 재발, 2차 정맥 주입 시행. 셀리악병·갑상선질환·혈색소병증·H. pylori 모두 음성.",
+  keypoints: [
+    "소아 AIG의 첫 증상은 난치성 IDA — 비타민 B12 결핍·소화기 증상 없이 철결핍만 단독 발현 가능; 성인과 달리 악성빈혈보다 IDA가 주된 표현형",
+    "내시경 육안 소견 정상 → 조직학이 핵심: 소아 AIG는 내시경으로 병변을 알 수 없는 경우가 많아 반드시 위체부 생검 필요",
+    "경구 철분 반응 불량 시 정맥 철분이 필요하나 재발 반복 — AIG 배경에서 위산 저하로 인한 철분 흡수 구조적 장애가 지속되므로 반복 정맥 치료 예상",
+    "진단 순서: ① 경구 철분 불응 확인 → ② 셀리악·갑상선·혈색소병증 배제 → ③ 상부위장관 내시경+위체부 생검 → ④ 항벽세포항체·가스트린·PG-I 확인",
+    "자가면역 가족력(모친 H. pylori 위염)이 있는 소아에서 AIG 의심도 높여야 — 자가면역 배경 소아는 AIG 동반 스크리닝 고려",
+    "⚠️ 단일 증례 보고 — 소아 AIG 감시 간격은 성인 가이드라인 외삽; 소아 특이적 전향적 연구 부재로 추적 내시경 일정을 임상 경과에 따라 개별화"
+  ],
+  meta: {
+    "연구 유형": "증례보고 (Case Report)",
+    "대상": "11세 남아 1명",
+    "치료": "수크로솜철 경구 → 정맥 철분 2회 (반복 재발)",
+    "연구 기관": "Vithas Xanit Internacional Hospital / Regional University Hospital of Malaga, Spain"
+  }
+},
+{
+  id: 26,
+  title: "Autoimmune gastritis potentiates polypoid nodule scar formation after endoscopic resection: implications for risk-stratified surveillance",
+  title_ko: "자가면역성위염은 내시경 절제 후 폴립양 결절 반흔(PNS) 형성을 촉진한다: 위험 층화 감시에 대한 함의",
+  journal: "Surgical Endoscopy",
+  journal_short: "Surg Endosc",
+  year: 2026,
+  if: 3.1,
+  authors: "Mai S, Zhao X, Feng X, Shi Y, Liu Z, Zhang H",
+  doi: "10.1007/s00464-025-12521-7",
+  source: "journal",
+  topics: ["진단", "암위험", "병인기전"],
+  abstract_ko: "중국 의과대학 제1부속병원(2021~2024년) 후향적 코호트. 위 전정부 ESD/EMR R0 절제 후 내시경 추적이 가능한 109명 분석. PNS(폴립양 결절 반흔) 발생 23명(21.1%). 단변량 분석에서 여성(p<0.001), 연령<62세(p=0.028), 기저 염증성 병변(p<0.001), AIG(p<0.001)가 유의한 예측인자. Firth 다변량 회귀에서 기저 염증성 병변(OR=10.96)과 AIG(OR=83.22, p<0.001)가 독립적 위험인자로 확인. 가스트린-17 데이터가 있는 28명 분석에서 PNS군의 가스트린-17이 유의하게 높았으며(72.9 vs 3.4 pmol/L, p<0.001) PNS 예측 AUC 0.913.",
+  keypoints: [
+    "AIG가 ESD/EMR 후 PNS 발생의 가장 강력한 독립 위험인자(Firth OR 83.22, p<0.001) — AIG 환자의 94.7%(18/19)에서 PNS 발생 vs 비AIG 5.6%(5/90)",
+    "가스트린-17이 PNS 예측 바이오마커로 유력(AUC=0.913) — PNS군 중앙 72.9 pmol/L vs 대조군 3.4 pmol/L(p<0.001); 고가스트린혈증이 위점막 과재생을 촉진하는 핵심 기전",
+    "PNS 91.3%는 장기 추적에서 형태학적으로 안정(크기 변화 <10%) — 대부분 경과 관찰로 충분하나, 8.7%에서 확대 및 ESD 후 재발(전례 AIG 환자)",
+    "AIG 환자에서 전정부 ESD/EMR 시행 후 반기 내시경 + 가스트린-17 모니터링 조합 감시 프로토콜 제안",
+    "PNS 존재 자체가 미진단 AIG를 의심하게 하는 경고 신호 — ESD 후 PNS 발견 시 AIG 검사 고려 필요",
+    "⚠️ 단일 기관 후향적 연구(n=109), AIG 증례 수 적어 OR 과대 추정 가능(Firth 보정에도 불구); 가스트린-17 결측치 많아 다변량 포함 불가; 대규모 전향적 다기관 연구 필요"
+  ],
+  meta: {
+    "연구 설계": "후향적 코호트 (단일 기관)",
+    "대상 환자": "109명 (ESD/EMR R0 절제 후 추적)",
+    "연구 기간": "2021년 1월~2024년 12월",
+    "연구 기관": "The First Affiliated Hospital of China Medical University, Shenyang, China"
+  }
+},
+{
+  id: 27,
+  title: "Clinicopathological characteristics of neuroendocrine cell dysplasia in gastric oxyntic gland mucosa",
+  title_ko: "위 산분비선 점막 신경내분비세포 이형성의 임상병리학적 특징",
+  journal: "National Medical Journal of China (中华医学杂志)",
+  journal_short: "Natl Med J China",
+  year: 2026,
+  if: 2.1,
+  authors: "Hou W, Zhang Y, Liu W, Zhang S, Di X, Zhang X, Hu X, Jin M",
+  doi: "10.3760/cma.j.cn112137-20250530-01340",
+  source: "journal",
+  topics: ["병리", "암위험", "진단"],
+  abstract_ko: "중국 2개 기관(2011~2024년)에서 ESD/EMR로 절제된 위 산분비선 점막 NE세포 이형성 15명 25병변을 후향적 분석. 중앙 연령 54세(여 9명), 병변의 84%가 위체부에 위치, 중앙 직경 11.0mm. 배경 점막: 전례 중증 만성위축성위염+장상피화생, 13예에서 AIG 내시경·조직학 소견 확인. 조직학적으로 NE세포가 고형 미세결절(≤150μm), 선상·주상 배열을 보이며, 미세결절 확대(>150μm)·융합·출아·미세침윤·간질형성을 특징으로 함. 시냅토파이신·크로모그라닌 양성, 결절 직경<0.5mm, 점막하층 침윤 없음. 64%에서 G1 NET 동반(경계 불명확), 중앙 추적 52개월에서 전이 발생 없음.",
+  keypoints: [
+    "위 NE세포 이형성은 NET의 전구병변 — AIG 배경 고가스트린혈증에 의한 ECL세포 과증식의 스펙트럼 중 하나; 이형성→NET 진행률 64%(본 연구)",
+    "진단 핵심: 간질 침윤 유무 식별 — 6가지 침윤 지표: ① 미세결절 확대(>150μm), ② 미세결절 융합, ③ 미세침윤소, ④ 간질 동반 결절, ⑤ 결절 출아(예각/불규칙), ⑥ 결절 위치 이상(상방 이동·점막근 내)",
+    "양성 증생과의 감별: 양성은 선 내에 국한, 미세결절 경계 명확·기저막 완전 포위; 이형성은 이 중 하나라도 위반 시 진단 가능",
+    "EMR 절제연 양성률 32%(ESD 대비 높음) → 이형성+NET 병변에서 ESD를 우선 권장, 절제 범위 충분히 확보 필요",
+    "중앙 추적 52개월: 전이 발생 없음 — AIG 관련 NE세포 이형성·G1 NET은 대부분 인돌런트 경과; 재발·신생 병변 발생은 있으나 내시경 치료로 관리 가능",
+    "⚠️ 소규모(15명 25병변) 단일/이기관 후향적 연구, 혈청 가스트린·자가항체 미측정; 이형성의 정의·진단 기준 표준화 필요, 다기관 전향적 연구 요구"
+  ],
+  meta: {
+    "연구 설계": "후향적 증례 시리즈",
+    "대상 환자": "15명 25병변 (ESD 17, EMR 8)",
+    "연구 기간": "2011년 1월~2024년 10월",
+    "연구 기관": "Xiangcheng County People's Hospital / 989th Hospital / Beijing Chaoyang Hospital, China"
+  }
+},
+{
+  id: 28,
+  title: "Transforming Gastric Biopsy Diagnostics: Integrating Omics Technologies and Artificial Intelligence",
+  title_ko: "위 생검 진단의 혁신: 오믹스 기술과 인공지능의 통합",
+  journal: "Biomedicines",
+  journal_short: "Biomedicines",
+  year: 2026,
+  if: 3.9,
+  authors: "Alwahaibi N",
+  doi: "10.3390/biomedicines14020407",
+  source: "journal",
+  topics: ["AI", "진단", "암위험"],
+  abstract_ko: "오만 술탄 카부스 대학의 서술적 종설. 위 생검 진단에서 다중오믹스(유전체학·전사체학·후성유전체학·단백질체학·지질체학·대사체학·마이크로바이옴·공간오믹스)와 AI의 통합 현황을 요약. AI는 내시경 병변 검출(miss rate 27.3%→6.1%, 무작위대조시험), 장상피화생 AI 검출(민감도 94%, 특이도 93%, AUC 0.97, 메타분석), H. pylori 진단, 디지털 조직병리(위선암 AUC 0.97~0.99), 위암 침윤 깊이 예측 등에서 강력한 성능 입증. 다중오믹스는 클론 진화·경로 이상·면역 미세환경 상호작용·대사 재편성을 포착하여 분류 정밀도를 높임. 현재 임상 적용의 주요 장벽은 데이터 품질·표준화·해석 가능성·비용·규제·윤리 문제.",
+  keypoints: [
+    "AI 내시경: 무작위대조시험에서 위 신생물 miss rate 27.3%→6.1%(RR 0.224, p=0.015) — AI 보조 실시간 내시경의 임상 유용성 확립",
+    "AI 장상피화생 검출 메타분석(12연구, 11,173명): 민감도 94%, 특이도 93%, AUC 0.97 — AI 민감도(95%)가 내시경의(79%)보다 유의하게 높음",
+    "디지털 병리 AI: CNN/RNN 기반 조직병리 분류에서 위선암 AUC 0.97, 위선종 AUC 0.99 — 전문의 수준에 근접",
+    "현재 임상 적용 가능 오믹스: 타겟 DNA 시퀀싱 패널, 면역조직화학 멀티플렉스, 타겟 RNA 패널 (FFPE 가능) — 전장유전체·단일세포 오믹스는 아직 연구 단계",
+    "자가면역성위염 특이성: AIG는 위 생검이 필요한 핵심 진단 대상 중 하나로 명시 — 오믹스·AI가 AIG 진단 정확도·위험 층화 개선에 기여 가능",
+    "⚠️ 관점(Viewpoint) 논문 — 단일 저자 서술적 종설로 체계적 검색·비뚤림 평가 없음; AI 연구 대부분 후향적·단일기관; 전향적 검증 및 비용효과 분석 필요"
+  ],
+  meta: {
+    "논문 유형": "관점(Viewpoint) / 서술적 종설",
+    "다루는 오믹스": "유전체·전사체·후성유전체·단백질체·지질체·대사체·마이크로바이옴·공간오믹스",
+    "AI 분야": "내시경 CADe, 조직병리 분류, 위험 층화, 워크플로 자동화",
+    "연구 기관": "Sultan Qaboos University, Muscat, Oman"
+  }
+},
+{
+  id: 29,
+  title: "Pernicious Anemia Resulting in Intramedullary Hemolysis, Masking Underlying Polycythemia Vera and Mild Alpha-Thalassemia—A Case Report",
+  title_ko: "악성빈혈로 인한 골수내 용혈이 진성적혈구증가증과 경도 알파지중해빈혈을 가린 증례",
+  journal: "Case Reports in Hematology",
+  journal_short: "Case Rep Hematol",
+  year: 2026,
+  if: 1.0,
+  authors: "Rohner A, Schnegg-Kaufmann AS, Banz Y, Rosenstock P",
+  doi: "10.1155/crh/8353795",
+  source: "journal",
+  topics: ["증례", "진단", "치료"],
+  abstract_ko: "48세 여성이 피로·체중감소·범혈구감소증으로 내원. 심한 거대적혈구빈혈, 용혈 소견, 비타민 B12 극심한 저하 확인. 위내시경+항체 검사로 자가면역성위축위염(악성빈혈) 확진. 골수 생검에서 과세포성·범골수증식·골수섬유증(MF-2) 소견이 반응성으로 해석되었으나, 비타민 B12 보충 후 범혈구감소증 회복. 4개월 추적에서 적혈구증가증·백혈구증가증·혈소판증가증 발생, JAK2 V617F 변이(변이 대립유전자 빈도 40%)가 확인되어 골수섬유증으로 진행 중인 진성적혈구증가증 확진. 이후 소적혈구 저색소성 혈구 소견에서 이형접합성 알파지중해빈혈 추가 진단. 정맥천자·저용량 아스피린·하이드록시우레아 치료 중.",
+  keypoints: [
+    "악성빈혈(PA)로 인한 심한 비타민 B12 결핍이 진성적혈구증가증(PV)의 과증식 특성을 완전히 가릴 수 있음 — B12 보충 후 범혈구감소증이 해소되자 다혈증·백혈구증가증·혈소판증가증이 출현",
+    "골수 소견 해석 주의: 골수섬유증(MF-2)·범골수증식·거대핵세포 이형성은 B12 결핍의 반응성 변화로 오인하기 쉬우나, 골수섬유증 자체는 B12 결핍의 특징이 아니므로 MPN을 적극 의심해야 함",
+    "PA + PV + 알파지중해빈혈 3중 동반: 문헌상 최초 보고 — 각 질환이 적혈구 지수에 상반된 영향을 미쳐 진단이 극도로 복잡; B12 보충 후 소적혈구 저색소성 혈구 소견에서 알파지중해빈혈 발견",
+    "PA 환자에서 B12 보충 후 혈구 수치의 완전한 회복 여부를 4~6개월까지 반드시 추적 — 과도하거나 예상 외의 혈구 증가가 있으면 골수증식성 종양 검사(JAK2 변이 등) 시행 필요",
+    "Hashimoto 갑상선염 병력: AIG와 자가면역 갑상선 질환의 동반은 흔하며, 본 증례에서도 동반; 자가면역 다발성 질환 환자에서 다른 자가면역 이상 선별 검사 중요",
+    "⚠️ 단일 증례 보고 — PA와 PV의 동반이 우연인지 인과적인지 현재 근거로 판단 불가(1968년 증례-대조연구에서 유의한 연관성 없음); 극히 드문 3중 동반 사례"
+  ],
+  meta: {
+    "연구 유형": "증례보고 (Case Report)",
+    "대상": "48세 여성 1명",
+    "진단": "PA(AIG) + 진성적혈구증가증(JAK2 V617F 40%) + 경도 알파지중해빈혈",
+    "연구 기관": "Inselspital, Bern University Hospital, Switzerland"
+  }
+},
+{
+  id: 30,
+  title: "Inverse expression of ubiquitin-specific peptidase 19 and caspase 7 correlates with gastric neoplastic transformation",
+  title_ko: "USP19와 카스파제 7의 역발현이 위 신생물 변환과 상관관계를 보임",
+  journal: "Diagnostic Pathology",
+  journal_short: "Diagn Pathol",
+  year: 2026,
+  if: 2.4,
+  authors: "Kelemen P, Naumann M, Vieth M",
+  doi: "10.1186/s13000-026-01777-9",
+  source: "journal",
+  topics: ["병리", "병인기전", "암위험"],
+  abstract_ko: "탈유비퀴틴화효소(DUB)인 USP19와 세포사멸 실행 카스파제인 카스파제 7의 발현 양상을 Correa cascade를 따라 면역조직화학으로 분석한 연구. 296례 파라핀 포매 위 조직(정상, A-위염, HP-위염, C-위염, 선종, 선암)에서 USP19는 HP-위염·선종·선암에서 유의하게 과발현된 반면, 카스파제 7은 A-위염·HP-위염에서 증가하고 선종·선암에서 현저히 감소하는 역(逆)발현 패턴을 확인. USP19 과발현과 카스파제 7 소실의 조합이 신생물 변환의 새로운 조직학적 표지자로 제안됨.",
+  keypoints: [
+    "USP19(세포질) 과발현: HP-위염(52.8% 강양성, p=0.001), 선종(72.7%, p<0.001), 선암(58.1%, p<0.001) — A-위염은 정상과 동등(p=0.364)",
+    "카스파제 7(핵) 발현: A-위염(42% 강양성, p<0.001)·HP-위염(39.6%, p<0.001)에서 증가 → 선종(47.7% 약양성, p=0.002)·선암(69% 중등도, 강양성 0%, p<0.001)에서 뚜렷한 감소",
+    "역발현 패턴의 의미: USP19↑ + 카스파제 7↓ = 항세포사멸 신호 우세 → 신생물 변환 지표; USP19↑ + 카스파제 7↑ = 염증·재생 상태(HP-위염)",
+    "C-위염: USP19 감소 경향(9.6% 약양성, p=0.068) + 카스파제 7 소폭 증가(25% 강양성) — 반응성 점막병증 패턴과 일치",
+    "통계 방법: Wilcoxon 순위합검정 + Benjamini-Hochberg 다중비교 보정 + Hodges-Lehmann 효과 추정(부트스트랩 5,000회)",
+    "임상적 함의: 만성 위염의 조기(염증) 단계와 후기(신생물) 변환을 USP19/카스파제 7 이중 마커로 감별하는 보조적 면역조직화학 전략 제안"
+  ],
+  meta: {
+    "연구 설계": "후향적 면역조직화학 분석",
+    "대상": "296례 (정상 52·A-위염 52·HP-위염 53·C-위염 52·선종 44·선암 43)",
+    "연구 기관": "Klinikum Bayreuth / Otto-von-Guericke-Universität Magdeburg / FAU Erlangen-Nürnberg, Germany",
+    "특이사항": "Correa cascade 전 단계를 포함한 USP19 면역조직화학 최초 분석"
+  }
+},
+{
+  id: 31,
+  title: "Association of Antiparietal Cell and Anti-Intrinsic Factor Antibodies With Risk of Gastric Cancer",
+  title_ko: "항벽세포항체·항내인자항체와 위암 위험도의 연관성",
+  journal: "JAMA Oncology",
+  journal_short: "JAMA Oncol",
+  year: 2022,
+  if: 28.4,
+  authors: "Song M, Camargo MC, Katki HA, Weinstein SJ, Männistö S, Albanes D, Surcel HM, Rabkin CS",
+  doi: "10.1001/jamaoncol.2021.5395",
+  source: "journal",
+  topics: ["암위험", "진단", "역학", "헬리코박터"],
+  abstract_ko: "핀란드 여성 산모 코호트(FMC, 529쌍)와 ATBC 남성 코호트(457쌍)를 이용한 전향적 중첩 환자-대조군 연구. 혈청 APCA(항벽세포항체) 양성은 젊은 여성(FMC)에서 위암 위험과 유의한 연관성을 보였으나(전체 OR 1.85), H. pylori 음성 여성에서 효과가 극적으로 강화되었고(OR 5.52), 특히 위저부·체부 종양에서 OR 24.84로 가장 강력했다. 반면 남성 흡연자(ATBC)에서는 연관성이 없었다. H. pylori 음성 여성에서 APCA의 인구기여위험도(PAR)는 32.4%로, AIG가 H. pylori를 대체하는 새로운 위암 발생 경로임을 제시한 최초의 대규모 전향적 연구.",
+  keypoints: [
+    "APCA 양성 + H. pylori 음성 여성: 위저부·체부 암 OR 24.84 (95% CI 8.49–72.72) — 자가면역 위축성 위염이 위암의 독립적 강력 위험인자",
+    "H. pylori 음성 여성에서 APCA의 PAR(인구기여위험도) 32.4% → 전체 위암의 8.1% 귀속 — 공중보건적 의미 최초 정량화",
+    "남성 흡연자(ATBC)에서는 APCA 연관성 없음(OR 0.98) — 흡연이 APCA 양성률을 억제하는 역상관 효과 및 성별 차이 시사",
+    "APCA 수준은 8~23년 추적에서 거의 불변(mean 6.2→6.1 U/mL, p=0.99) — 장기 위험 예측 바이오마커로서의 안정성 입증",
+    "출생 코호트 분석: 후기 출생 여성(≥1970년)에서 APCA 양성 위암 비율 증가 + H. pylori 양성 감소 → 자가면역 구동 위암이 Hp 구동 위암을 대체하는 시대적 전환 제시",
+    "항내인자항체(AIFA) 양성률은 양 코호트 모두 <2%로 매우 낮아 통계적 유의성 미달 — 진단 민감도 한계 반영"
+  ],
+  meta: {
+    "연구 설계": "전향적 중첩 환자-대조군 연구",
+    "대상": "FMC 여성 529쌍 (평균 30.5세) + ATBC 남성 457쌍 (평균 57.5세)",
+    "추적 기간": "중앙값 FMC 17.4년 / ATBC 11.0년",
+    "연구 기관": "National Cancer Institute (NIH) / Finnish Institute for Health and Welfare"
+  }
+},
+{
+  id: 32,
+  title: "Gastric cancer in autoimmune gastritis: A case-control study from the German centers of the staR project on gastric cancer research",
+  title_ko: "자가면역성위염에서의 위암: 독일 staR 프로젝트 다기관 환자-대조군 연구",
+  journal: "United European Gastroenterology Journal",
+  journal_short: "United Eur Gastroenterol J",
+  year: 2020,
+  if: 4.8,
+  authors: "Weise F, Vieth M, Reinhold D, Haybaeck J, Goni E, Lippert H, Ridwelski K, Lingohr P, et al. (Malfertheiner P, Venerito M)",
+  doi: "10.1177/2050640619891580",
+  source: "journal",
+  topics: ["암위험", "진단", "병리", "헬리코박터"],
+  abstract_ko: "독일 staR 다기관 코호트(759명 위암 환자)에서 조직학적 AIG 동반 위암 환자 28명(4.9%)을 연령·성별 매칭 비AIG 위암 환자 56명과 비교한 환자-대조군 연구. AIG 위암 환자에서 악성빈혈이 내시경 시행의 주된 계기(OR 29.0)가 되어 조기 위암 비율이 높고(64% vs 20%), 원격전이 없는 경우가 많았으며(UICC I-III 93% vs 68%), 5년 생존율이 현저히 높았다(84.7% vs 53.5%). 악성빈혈로 인한 내시경 조기 시행이 AIG 관련 위암의 우월한 예후를 설명하는 핵심 기전으로 제시됨.",
+  keypoints: [
+    "AIG 동반 위암 유병률 4.9%(28/572) — AIG 일반 인구 유병률(2~5%)과 유사, 위암 환자에서 AIG 유병률 최초 보고",
+    "악성빈혈(PA)이 내시경 시행의 주 적응증: AIG군 36% vs 비AIG군 0% (OR 29.0, 95% CI 7.2–116.4) → 조기 위암 발견의 핵심 경로",
+    "조기 위암 비율: AIG군 64% vs 비AIG군 20% (OR 7.4); UICC I-II 79% vs 39% (OR 5.7) — 악성빈혈 유발 내시경의 직접 결과",
+    "5년 생존율: AIG군 84.7% vs 비AIG군 53.5% (OR 0.25, p=0.001) — 여성 92.3% vs 66.3%(p=0.025), 남성 73.3% vs 36.7%(p=0.010)",
+    "AIG 위암의 위치: 근위부(분문부·저부·체부) 71% vs 비AIG 48% (OR 2.7) + 체부 중등도-중증 위축 100% vs 27%(OR 16.7) — 자가면역 위축 분포 반영",
+    "H. pylori 음성 AIG 환자에서도 위암 발생 확인 — AIG 자체가 독립적 위암 위험인자임을 지지; 악성빈혈은 AIG 증상 유무와 무관하게 내시경 감시의 절대적 적응증"
+  ],
+  meta: {
+    "연구 설계": "다기관 환자-대조군 연구 (1:2 매칭)",
+    "대상": "AIG 위암 28명 / 비AIG 위암 56명 (전체 코호트 759명)",
+    "연구 기간": "2013년 4월~2017년 5월 (추적 최대 142개월)",
+    "연구 기관": "Otto-von-Guericke University Hospital Magdeburg 외 독일 다기관 (staR 프로젝트)"
+  }
+},
+{
+  id: 33,
+  title: "Marked intestinal trans-differentiation by autoimmune gastritis along with ectopic pancreatic and pulmonary trans-differentiation",
+  title_ko: "자가면역성위염에 의한 현저한 장형 전분화 및 이소성 췌장·폐 전분화",
+  journal: "Journal of Gastroenterology",
+  journal_short: "J Gastroenterol",
+  year: 2024,
+  if: 6.9,
+  authors: "Takeuchi C, Sato J, Yamamichi N, Kageyama-Yahara N, Sasaki A, Akahane T, Aoki R, Nakajima S, Ito M, et al. (Ushijima T, Fujishiro M)",
+  doi: "10.1007/s00535-023-02055-x",
+  source: "journal",
+  topics: ["병인기전", "병리", "암위험"],
+  abstract_ko: "AIG, H. pylori 위염(HPG), 정상 위 점막 생검을 이용한 최초의 포괄적 유전자 발현 분석 연구(도쿄대 다기관). AIG 점막은 HPG 및 정상과 뚜렷이 구별되는 고유 발현 프로파일을 보였다. 장형 전분화가 HPG보다 AIG에서 훨씬 더 현저했으며(CDX 의존적), AIG에서만 췌장 소화효소 유전자(PNLIP, CEL, CTRB1, CTRC)와 폐 마스터 조절 유전자(NKX2-1/TTF1) 및 계면활성단백질(SFTPB, SFTPC)의 이소성 발현이 확인됐다. 기전적으로, 산성 환경이 소장 마스터 조절 유전자(CDX2)와 줄기세포 표지자를 억제함을 보여, AIG로 인한 pH 상승이 비정상적 분화의 원인임을 제안.",
+  keypoints: [
+    "AIG 특이 유전자 발현 프로파일: ATP4A 극저발현 + GAST·PAPPA2 고발현(NET 발생 관련) — HPG·정상과 비지도 계층 클러스터에서 완전 분리",
+    "장형 전분화: AIG에서 십이지장·소장 특이 유전자 농축(-log10 P=68.5) > HPG(-log10 P=25.8) — AIG에서 더 높은 장상피화생 발생률(90.9% vs 42.9%) 확인",
+    "AIG 특이 이소성 발현 ①췌장: PNLIP·CEL·CTRB1·CTRC (췌장 선방세포 표지 PNLIP·BCL10 면역염색으로 확인) — 말기 AIG의 췌장 선방세포 화생과 일치",
+    "AIG 특이 이소성 발현 ②폐: NKX2-1/TTF1(폐 마스터 조절자)·SFTPB·SFTPC 미만성 발현 — AIG 내시경 시 흔히 보이는 끈적한 점액과 연관 가능; 폐 전분화는 완전히 새로운 발견",
+    "기전: 산성 조건(pH 6.5) 배양에서 CDX2·LGR5·ASCL2·OLFM4 발현 억제 → AIG로 인한 pH 상승이 장형 전분화의 초기 촉발 인자로 제안",
+    "⚠️ 소규모(AIG 14례) 연구 — 단일세포 분석 미시행; H. pylori 과거 감염 완전 배제 불가; AIG 특이 유전자의 진단·위험 표지자 가치는 대규모 전향적 연구 필요"
+  ],
+  meta: {
+    "연구 설계": "다기관 포괄적 유전자 발현 분석 (마이크로어레이 + RT-PCR + 면역조직화학)",
+    "대상": "AIG 14례 / HPG 13례 / 정상 9례 (추가 RT-PCR 코호트 포함)",
+    "데이터": "Gene Expression Omnibus GSE233973 공개",
+    "연구 기관": "The University of Tokyo / National Cancer Center Research Institute, Tokyo, Japan"
+  }
+}
+];
+
+// ═══════════════════════════════════════════════
+// TOPICS CONFIG — 주제 추가 시 여기에만 입력하세요
+// ═══════════════════════════════════════════════
+const TOPICS = [
+  { id: "all",      label: "전체",          icon: "◎" },
+  { id: "진단",     label: "진단",          icon: "🔬" },
+  { id: "병리",     label: "병리·위축·화생", icon: "🧫" },
+  { id: "치료",     label: "치료·보충",      icon: "💊" },
+  { id: "암위험",   label: "암 위험도",      icon: "📊" },
+  { id: "AI",       label: "인공지능",       icon: "🤖" },
+  { id: "역학",     label: "역학·분류",      icon: "🌏" },
+  { id: "헬리코박터", label: "헬리코박터",   icon: "🦠" },
+  { id: "병인기전", label: "병인·기전",      icon: "🔭" },
+  { id: "증례",    label: "증례",           icon: "🏥" },
+];
+
+const BADGE_COLORS = {
+  "저널 파일":  "badge-green",
+  "KAIG":      "badge-blue",
+  "인터넷":    "badge-amber",
+  "진단":      "badge-blue",
+  "병리":      "badge-amber",
+  "치료":      "badge-green",
+  "암위험":    "badge-gray",
+  "AI":        "badge-amber",
+  "역학":      "badge-blue",
+  "헬리코박터": "badge-coral",
+  "병인기전":   "badge-purple",
+  "증례":       "badge-coral",
+};
+
+const SOURCE_LABELS = { journal: "저널 파일", kaig: "KAIG", web: "인터넷" };
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let activeTopic  = "all";
+let activeSource = "all";
+let searchQuery  = "";
+let activeSort   = "default";
+
+// ═══════════════════════════════════════════════
+// SORT
+// ═══════════════════════════════════════════════
+function toggleSortMenu() {
+  const menu = document.getElementById("sort-menu");
+  const btn  = document.getElementById("sort-btn");
+  const isOpen = menu.classList.toggle("open");
+  btn.classList.toggle("open", isOpen);
+  if (isOpen) {
+    setTimeout(() => document.addEventListener("click", closeSortOnOutside), 0);
+  }
+}
+function closeSortOnOutside(e) {
+  if (!document.getElementById("sort-menu").contains(e.target) &&
+      !document.getElementById("sort-btn").contains(e.target)) {
+    document.getElementById("sort-menu").classList.remove("open");
+    document.getElementById("sort-btn").classList.remove("open");
+    document.removeEventListener("click", closeSortOnOutside);
+  }
+}
+function setSort(key, label) {
+  activeSort = key;
+  document.getElementById("sort-label").textContent = label;
+  document.querySelectorAll(".sort-option").forEach(o => {
+    o.classList.toggle("active", o.dataset.sort === key);
+  });
+  document.getElementById("sort-menu").classList.remove("open");
+  document.getElementById("sort-btn").classList.remove("open");
+  renderPapers();
+}
+function getSorted(list) {
+  if (activeSort === "year") return [...list].sort((a,b) => b.year - a.year || b.id - a.id);
+  if (activeSort === "if")   return [...list].sort((a,b) => (b.if||0) - (a.if||0));
+  return list; // default: insertion order
+}
+
+// ═══════════════════════════════════════════════
+// RENDER TOPICS
+// ═══════════════════════════════════════════════
+function renderTopics() {
+  const container = document.getElementById("topics-container");
+  container.innerHTML = TOPICS.map(t => {
+    const count = t.id === "all"
+      ? PAPERS.length
+      : PAPERS.filter(p => p.topics.includes(t.id)).length;
+    return `<button class="topic-pill ${activeTopic === t.id ? 'active' : ''}"
+      onclick="setTopic('${t.id}')">
+      <span class="pill-icon">${t.icon}</span>
+      ${t.label}
+      <span class="pill-count">${count}</span>
+    </button>`;
+  }).join("");
+}
+
+// ═══════════════════════════════════════════════
+// RENDER PAPERS
+// ═══════════════════════════════════════════════
+function getFiltered() {
+  return PAPERS.filter(p => {
+    const topicOk  = activeTopic === "all" || p.topics.includes(activeTopic);
+    const sourceOk = activeSource === "all" || p.source === activeSource;
+    const q = searchQuery.toLowerCase();
+    const searchOk = !q
+      || p.title.toLowerCase().includes(q)
+      || p.title_ko.includes(q)
+      || p.authors.toLowerCase().includes(q)
+      || p.abstract_ko.includes(q)
+      || p.topics.some(t => t.includes(q));
+    return topicOk && sourceOk && searchOk;
+  });
+}
+
+function renderPapers() {
+  const list = document.getElementById("papers-list");
+  const filtered = getSorted(getFiltered());
+
+  document.getElementById("results-count").textContent = filtered.length + "편";
+  document.getElementById("stat-total").textContent = PAPERS.length;
+
+  const topicLabel = activeTopic === "all" ? "전체 논문" :
+    TOPICS.find(t => t.id === activeTopic)?.label + " 논문";
+  document.getElementById("results-title").textContent =
+    searchQuery ? `"${searchQuery}" 검색 결과` : topicLabel;
+
+  if (!filtered.length) {
+    list.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <div class="empty-text">해당 조건의 논문이 없습니다.</div>
+    </div>`;
+    return;
+  }
+
+  list.innerHTML = filtered.map((p, i) => {
+    const srcLabel = SOURCE_LABELS[p.source] || p.source;
+    const allBadges = [srcLabel, ...p.topics];
+    const badgeHtml = allBadges.slice(0,4).map(b =>
+      `<span class="badge ${BADGE_COLORS[b] || 'badge-gray'}">${b}</span>`
+    ).join("");
+    return `<article class="paper-card" style="animation-delay:${i*50}ms"
+      onclick="openDetail(${p.id})">
+      <div class="card-top">
+        <div class="card-journal">${p.journal_short}${p.if ? `<span class="if-badge">IF ${p.if}</span>` : ''}</div>
+        <div class="card-year">${p.year}</div>
+      </div>
+      <div class="card-title">${p.title_ko}</div>
+      <div class="card-title-en">${p.title}</div>
+      <div class="card-authors">${p.authors}</div>
+      <div class="card-abstract">${p.abstract_ko}</div>
+      <div class="card-footer">
+        <div class="badge-row">${badgeHtml}</div>
+        <span class="card-arrow">→</span>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+// ═══════════════════════════════════════════════
+// DETAIL PANEL
+// ═══════════════════════════════════════════════
+function openDetail(id) {
+  const p = PAPERS.find(x => x.id === id);
+  if (!p) return;
+
+  document.getElementById("p-journal").innerHTML =
+    p.journal + " · " + p.year +
+    (p.if ? ` <span class="if-badge">IF ${p.if}</span>` : "");
+  document.getElementById("p-title").textContent = p.title_ko;
+  document.getElementById("p-title-en").textContent = p.title;
+  document.getElementById("p-authors").textContent = p.authors;
+
+  const srcLabel = SOURCE_LABELS[p.source] || p.source;
+  const allBadges = [srcLabel, ...p.topics];
+  document.getElementById("p-badges").innerHTML = allBadges.map(b =>
+    `<span class="badge ${BADGE_COLORS[b] || 'badge-gray'}">${b}</span>`
+  ).join("");
+
+  document.getElementById("p-abstract").textContent = p.abstract_ko;
+
+  document.getElementById("p-keypoints").innerHTML = p.keypoints.map(k =>
+    `<li><span class="kp-dot"></span><span>${k}</span></li>`
+  ).join("");
+
+  const metaEntries = [
+    ...Object.entries(p.meta),
+    ["DOI", p.doi]
+  ];
+  document.getElementById("p-meta").innerHTML = metaEntries.map(([k,v]) =>
+    `<div class="meta-item">
+      <div class="meta-label">${k}</div>
+      <div class="meta-value">${v}</div>
+    </div>`
+  ).join("");
+
+  const linkBtn = document.getElementById("p-link-btn");
+  linkBtn.onclick = () => window.open("https://doi.org/" + p.doi, "_blank");
+
+  document.getElementById("detail-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeDetail(e) {
+  if (e.target === document.getElementById("detail-overlay")) closeDetailBtn();
+}
+function closeDetailBtn() {
+  document.getElementById("detail-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+// ═══════════════════════════════════════════════
+// FILTERS
+// ═══════════════════════════════════════════════
+function setTopic(id) {
+  activeTopic = id;
+  renderTopics();
+  renderPapers();
+}
+
+document.querySelectorAll(".source-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    document.querySelectorAll(".source-chip").forEach(c => c.classList.remove("active"));
+    chip.classList.add("active");
+    activeSource = chip.dataset.src;
+    renderPapers();
+  });
+});
+
+document.getElementById("search-input").addEventListener("input", e => {
+  searchQuery = e.target.value.trim();
+  renderPapers();
+});
+
+// ═══════════════════════════════════════════════
+// ADD PAPER MODAL
+// ═══════════════════════════════════════════════
+function openAddMode() {
+  // Build topic checkboxes
+  const grid = document.getElementById("add-topics-grid");
+  grid.innerHTML = TOPICS.filter(t => t.id !== "all").map(t =>
+    `<input type="checkbox" class="topic-check" id="ck-${t.id}" value="${t.id}">
+     <label class="topic-check-label" for="ck-${t.id}">${t.icon} ${t.label}</label>`
+  ).join("");
+
+  document.getElementById("add-form-section").style.display = "";
+  document.getElementById("add-success").style.display = "none";
+  document.getElementById("add-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+  // 항상 폼 상단부터 보이도록
+  setTimeout(() => { document.getElementById("add-modal").scrollTop = 0; }, 10);
+}
+
+function closeAddModal(e) {
+  if (e.target === document.getElementById("add-overlay")) closeAddModalBtn();
+}
+function closeAddModalBtn() {
+  document.getElementById("add-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function saveNewPaper() {
+  const journal    = document.getElementById("af-journal").value.trim();
+  const year       = parseInt(document.getElementById("af-year").value);
+  const title      = document.getElementById("af-title").value.trim();
+  const title_ko   = document.getElementById("af-title-ko").value.trim();
+  const abstract_ko = document.getElementById("af-abstract").value.trim();
+
+  if (!journal || !year || !title || !title_ko || !abstract_ko) {
+    alert("* 표시된 필수 항목을 입력해 주세요.");
+    return;
+  }
+
+  const journal_short = document.getElementById("af-journal-short").value.trim() || journal;
+  const authors  = document.getElementById("af-authors").value.trim() || "";
+  const doi      = document.getElementById("af-doi").value.trim().replace(/^https?:\/\/doi\.org\//,"") || "";
+  const source   = document.getElementById("af-source").value;
+  const kpRaw    = document.getElementById("af-keypoints").value.trim();
+  const keypoints = kpRaw ? kpRaw.split("\n").map(s => s.trim()).filter(Boolean) : [];
+  const topics   = [...document.querySelectorAll(".topic-check:checked")].map(c => c.value);
+
+  const newId = PAPERS.length > 0 ? Math.max(...PAPERS.map(p => p.id)) + 1 : 1;
+  const paper = {
+    id: newId, title, title_ko, journal, journal_short,
+    year, authors, doi, source, topics,
+    abstract_ko, keypoints, meta: {}
+  };
+
+  PAPERS.push(paper);
+  renderTopics();
+  renderPapers();
+  document.getElementById("stat-total").textContent = PAPERS.length;
+  document.getElementById("stat-year").textContent = Math.max(...PAPERS.map(p => p.year));
+
+  // Generate export code
+  const code = JSON.stringify(paper, null, 2)
+    .replace(/"([^"]+)":/g, '$1:')
+    .replace(/"/g, '"');
+  document.getElementById("export-box").textContent = code;
+  document.getElementById("add-form-section").style.display = "none";
+  document.getElementById("add-success").style.display = "block";
+  // 성공 화면이 보이도록 모달 상단으로 스크롤
+  document.getElementById("add-modal").scrollTop = 0;
+}
+
+function addAnotherPaper() {
+  // Reset form
+  ["af-journal","af-journal-short","af-year","af-title","af-title-ko",
+   "af-authors","af-doi","af-abstract","af-keypoints"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
+  document.getElementById("af-source").value = "journal";
+  document.querySelectorAll(".topic-check").forEach(c => c.checked = false);
+  document.getElementById("add-form-section").style.display = "";
+  document.getElementById("add-success").style.display = "none";
+}
+
+function copyExport() {
+  const text = document.getElementById("export-box").textContent;
+  // clipboard API가 로컬 파일에서 막힐 경우 fallback
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector(".btn-copy-export");
+      btn.textContent = "✓ 복사됨!";
+      setTimeout(() => btn.textContent = "📋 코드 복사하기", 2000);
+    }).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand("copy");
+    const btn = document.querySelector(".btn-copy-export");
+    btn.textContent = "✓ 복사됨!";
+    setTimeout(() => btn.textContent = "📋 코드 복사하기", 2000);
+  } catch(e) {
+    alert("자동 복사가 지원되지 않습니다.\n아래 코드 박스를 클릭 후 Ctrl+A → Ctrl+C 로 직접 복사해 주세요.");
+  }
+  document.body.removeChild(ta);
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+renderTopics();
+renderPapers();
+document.getElementById("stat-total").textContent = PAPERS.length;
+document.getElementById("stat-year").textContent = Math.max(...PAPERS.map(p => p.year));
+document.getElementById("stat-topics").textContent = TOPICS.length - 1;
+</script>
+</body>
+</html>
