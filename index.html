@@ -572,6 +572,106 @@
     vertical-align: middle;
   }
 
+  /* ── TTS BAR ── */
+  .tts-bar {
+    margin: 0 16px 12px;
+    background: linear-gradient(135deg, var(--green-paler), #f0f8f5);
+    border: 1px solid rgba(15,110,86,0.18);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    box-shadow: 0 1px 4px rgba(8,80,65,0.07);
+  }
+  .tts-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tts-play-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--green-dark);
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, transform 0.1s;
+    box-shadow: 0 2px 8px rgba(8,80,65,0.25);
+  }
+  .tts-play-btn:hover { background: var(--green-mid); transform: scale(1.05); }
+  .tts-play-btn.playing { background: #B85C00; }
+  .tts-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .tts-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tts-progress-wrap { display: flex; align-items: center; gap: 6px; }
+  .tts-progress-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(8,80,65,0.12);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .tts-progress-fill {
+    height: 100%;
+    background: var(--green-light);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.4s linear;
+  }
+  .tts-voice-toggle {
+    display: flex;
+    gap: 3px;
+    background: rgba(8,80,65,0.08);
+    border-radius: 20px;
+    padding: 2px;
+  }
+  .tts-gender-btn {
+    padding: 4px 10px;
+    border-radius: 16px;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+  .tts-gender-btn.active {
+    background: var(--green-dark);
+    color: #fff;
+    box-shadow: 0 1px 4px rgba(8,80,65,0.3);
+  }
+  .tts-stop-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(8,80,65,0.2);
+    color: var(--ink-soft);
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .tts-stop-btn:hover { background: var(--coral-pale); border-color: var(--coral); color: var(--coral); }
+
   /* ── ADD MODAL ── */
   .add-overlay {
     display: none;
@@ -981,6 +1081,25 @@
       <ul class="panel-keypoints" id="p-keypoints"></ul>
       <div class="panel-section-title">논문 정보</div>
       <div class="panel-meta-grid" id="p-meta"></div>
+    </div>
+    <!-- TTS BAR -->
+    <div class="tts-bar" id="tts-bar">
+      <div class="tts-controls">
+        <button class="tts-play-btn" id="tts-play-btn" onclick="ttsToggle()" title="읽기 시작">
+          <span id="tts-icon">▶</span>
+        </button>
+        <div class="tts-info">
+          <div class="tts-label" id="tts-section-label">🔊 음성으로 듣기</div>
+          <div class="tts-progress-wrap">
+            <div class="tts-progress-bar"><div class="tts-progress-fill" id="tts-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="tts-voice-toggle">
+          <button class="tts-gender-btn" id="tts-female-btn" onclick="ttsSetGender('female')" title="여성 목소리">♀</button>
+          <button class="tts-gender-btn active" id="tts-male-btn" onclick="ttsSetGender('male')" title="남성 목소리">♂</button>
+        </div>
+        <button class="tts-stop-btn" onclick="ttsStop()" title="중지">■</button>
+      </div>
     </div>
     <div class="panel-actions">
       <button class="panel-btn primary" id="p-link-btn">원문 보기 →</button>
@@ -2738,6 +2857,8 @@ function openDetail(id) {
 
   document.getElementById("detail-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
+  // TTS 초기화
+  ttsStop();
 }
 
 function closeDetail(e) {
@@ -2885,6 +3006,149 @@ function fallbackCopy(text) {
     alert("자동 복사가 지원되지 않습니다.\n아래 코드 박스를 클릭 후 Ctrl+A → Ctrl+C 로 직접 복사해 주세요.");
   }
   document.body.removeChild(ta);
+}
+
+// ═══════════════════════════════════════════════
+// TTS — 음성 읽기 기능
+// ═══════════════════════════════════════════════
+let ttsGender   = 'male';   // 'male' | 'female'
+let ttsUtter    = null;
+let ttsPlaying  = false;
+let ttsSegments = [];
+let ttsIndex    = 0;
+
+function ttsSetGender(g) {
+  ttsGender = g;
+  document.getElementById('tts-male-btn').classList.toggle('active', g === 'male');
+  document.getElementById('tts-female-btn').classList.toggle('active', g === 'female');
+  if (ttsPlaying) { ttsStop(); setTimeout(() => ttsStart(), 200); }
+}
+
+function ttsGetVoice() {
+  const voices = speechSynthesis.getVoices();
+  // 한국어 목소리 우선, 성별 매칭
+  const koVoices = voices.filter(v => v.lang.startsWith('ko'));
+  if (koVoices.length) {
+    // 이름에 성별 힌트가 있으면 선택
+    const genderHint = ttsGender === 'female'
+      ? koVoices.find(v => /여성|female|yuna|혜준|지현|유나/i.test(v.name))
+      : koVoices.find(v => /남성|male|junho|준호|유리/i.test(v.name));
+    return genderHint || koVoices[ttsGender === 'male' ? 0 : koVoices.length - 1];
+  }
+  return voices[0] || null;
+}
+
+function ttsBuildSegments(paper) {
+  const kps = paper ? [...document.querySelectorAll('#p-keypoints li span:last-child')].map(el => el.textContent) : [];
+  return [
+    { label: '📄 제목', text: document.getElementById('p-title').textContent },
+    { label: '📝 초록 요약', text: document.getElementById('p-abstract').textContent },
+    ...kps.map((k, i) => ({ label: `💡 핵심 포인트 ${i + 1}`, text: k }))
+  ].filter(s => s.text.trim());
+}
+
+function ttsSpeak(segment, onEnd) {
+  const utter = new SpeechSynthesisUtterance(segment.text);
+  const voice = ttsGetVoice();
+  if (voice) utter.voice = voice;
+  utter.lang  = 'ko-KR';
+  utter.rate  = 0.92;
+  utter.pitch = ttsGender === 'female' ? 1.15 : 0.88;
+  utter.volume = 1;
+  utter.onend = onEnd;
+  utter.onerror = onEnd;
+  ttsUtter = utter;
+  speechSynthesis.speak(utter);
+}
+
+function ttsPlaySegment(i) {
+  if (i >= ttsSegments.length) {
+    ttsFinish(); return;
+  }
+  const seg = ttsSegments[i];
+  ttsIndex = i;
+  const pct = Math.round((i / ttsSegments.length) * 100);
+  document.getElementById('tts-section-label').textContent = seg.label;
+  document.getElementById('tts-progress-fill').style.width = pct + '%';
+  ttsSpeak(seg, () => {
+    if (ttsPlaying) ttsPlaySegment(i + 1);
+  });
+}
+
+function ttsStart() {
+  if (!window.speechSynthesis) {
+    alert('이 브라우저는 음성 합성을 지원하지 않습니다.');
+    return;
+  }
+  speechSynthesis.cancel();
+  ttsSegments = ttsBuildSegments();
+  if (!ttsSegments.length) return;
+  ttsPlaying = true;
+  ttsIndex   = 0;
+  document.getElementById('tts-play-btn').classList.add('playing');
+  document.getElementById('tts-icon').textContent = '⏸';
+  // Voices may load async — small delay
+  setTimeout(() => ttsPlaySegment(0), 120);
+}
+
+function ttsPause() {
+  speechSynthesis.pause();
+  ttsPlaying = false;
+  document.getElementById('tts-play-btn').classList.remove('playing');
+  document.getElementById('tts-icon').textContent = '▶';
+  document.getElementById('tts-section-label').textContent = '⏸ 일시정지됨';
+}
+
+function ttsResume() {
+  ttsPlaying = true;
+  document.getElementById('tts-play-btn').classList.add('playing');
+  document.getElementById('tts-icon').textContent = '⏸';
+  if (speechSynthesis.paused) {
+    speechSynthesis.resume();
+  } else {
+    ttsPlaySegment(ttsIndex);
+  }
+}
+
+function ttsToggle() {
+  if (!ttsPlaying && !speechSynthesis.paused) {
+    ttsStart();
+  } else if (ttsPlaying) {
+    ttsPause();
+  } else {
+    ttsResume();
+  }
+}
+
+function ttsStop() {
+  speechSynthesis.cancel();
+  ttsPlaying = false;
+  ttsIndex   = 0;
+  document.getElementById('tts-play-btn').classList.remove('playing');
+  document.getElementById('tts-icon').textContent = '▶';
+  document.getElementById('tts-section-label').textContent = '🔊 음성으로 듣기';
+  document.getElementById('tts-progress-fill').style.width = '0%';
+}
+
+function ttsFinish() {
+  ttsPlaying = false;
+  document.getElementById('tts-play-btn').classList.remove('playing');
+  document.getElementById('tts-icon').textContent = '▶';
+  document.getElementById('tts-section-label').textContent = '✅ 읽기 완료';
+  document.getElementById('tts-progress-fill').style.width = '100%';
+}
+
+// 패널 닫을 때 음성 중지
+const _origCloseDetail = closeDetailBtn;
+function closeDetailBtn() {
+  ttsStop();
+  document.getElementById("detail-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+// Voices가 늦게 로드되는 브라우저 대응
+if (window.speechSynthesis) {
+  speechSynthesis.onvoiceschanged = () => {};
 }
 
 // ═══════════════════════════════════════════════
