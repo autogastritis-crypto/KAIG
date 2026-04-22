@@ -3088,6 +3088,7 @@ let ttsUtter    = null;
 let ttsPlaying  = false;
 let ttsSegments = [];
 let ttsIndex    = 0;
+let ttsPlayId   = 0;  // 재생 세션 ID — skip/seek 시 이전 콜백 무효화용
 
 function ttsGetVoice() {
   const voices = speechSynthesis.getVoices();
@@ -3103,60 +3104,78 @@ function ttsGetVoice() {
 }
 
 function ttsCleanText(text) {
-  // 통계 약어 풀어 읽기 (단어 경계 기준)
   const abbrevMap = {
-    'OR':  '오즈비',
-    'HR':  '위험비',
-    'SIR': '표준화발생비',
-    'RR':  '상대위험도',
-    'CI':  '신뢰구간',
-    'SD':  '표준편차',
-    'SE':  '표준오차',
-    'IQR': '사분위범위',
-    'AUC': '곡선하면적',
-    'PPV': '양성예측도',
-    'NPV': '음성예측도',
-    'BMI': '체질량지수',
-    'PPI': '양성자펌프억제제',
-    'AIG': '자가면역성위염',
+    'HpAG': '헬리코박터파일로리위축성위염',
     'ACAG': '자가면역성만성위축성위염',
-    'GIM': '위장상피화생',
-    'NET': '신경내분비종양',
-    'OLGA': '올가',
     'OLGIM': '올짐',
+    'OLGA': '올가',
     'GERD': '위식도역류질환',
     'APCA': '항벽세포항체',
-    'PCA':  '항벽세포항체',
     'AIFA': '내인인자항체',
-    'IFA':  '내인인자항체',
-    'IF':   '내인인자',
-    'Treg': '조절T세포',
     'Tregs': '조절T세포',
-    'IFN':  '인터페론',
-    'SLE':  '전신홍반루푸스',
-    'IBD':  '염증성장질환',
-    'HLA':  '인간백혈구항원',
+    'Treg': '조절T세포',
     'AIRE': '자가면역조절유전자',
+    'AIG': '자가면역성위염',
+    'AUC': '곡선하면적',
+    'BMI': '체질량지수',
+    'GIM': '위장상피화생',
+    'HLA': '인간백혈구항원',
+    'IBD': '염증성장질환',
+    'IFA': '내인인자항체',
+    'IFN': '인터페론',
+    'IQR': '사분위범위',
+    'NET': '신경내분비종양',
+    'NPV': '음성예측도',
+    'PCA': '항벽세포항체',
+    'PPI': '양성자펌프억제제',
+    'PPV': '양성예측도',
+    'SIR': '표준화발생비',
+    'SLE': '전신홍반루푸스',
+    'AUC': '곡선하면적',
+    'CI':  '신뢰구간',
+    'HR':  '위험비',
+    'IF':  '내인인자',
+    'OR':  '오즈비',
+    'RR':  '상대위험도',
+    'SD':  '표준편차',
+    'SE':  '표준오차',
   };
+
   let t = text;
+
+  // 1. 한글 뒤에 오는 괄호 내 약어 제거 (중복 읽기 방지)
+  //    예: 자가면역성위염(AIG) → 자가면역성위염
+  t = t.replace(/([가-힣]+)\s*\(([A-Za-z0-9\-\s/]+)\)/g, '$1');
+
+  // 2. 약어 → 한글 변환 (단어 경계 기준, 긴 약어 우선 처리됨)
   for (const [abbr, full] of Object.entries(abbrevMap)) {
-    // 단어 경계에서만 치환 (대소문자 구분)
     t = t.replace(new RegExp('\\b' + abbr + '\\b', 'g'), full);
   }
-  return t
-    // 소수점 숫자: 3.85 → 3점 85
-    .replace(/(\d+)\.(\d+)/g, (_, int, dec) => int + '점 ' + dec)
-    // 슬래시 제거
-    .replace(/\s*\/\s*/g, ' ')
-    .replace(/\s*\\\s*/g, ' ')
-    // 괄호 안 영문 약어 제거
-    .replace(/\(([A-Za-z0-9\-\s]+)\)/g, '')
-    // 기타 기호
-    .replace(/[·•→←↑↓※▶▷◆◇■□△▲▽▼]/g, ', ')
-    // 구두점 뒤 공백
-    .replace(/,\s*/g, ', ')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
+
+  // 3. 남은 괄호 내 영문·숫자 약어 제거
+  t = t.replace(/\(([A-Za-z0-9\-\s]+)\)/g, '');
+
+  // 4. 천 단위 쉼표 숫자: 2,137 → 2137 (쉼표 제거 후 숫자로 읽힘)
+  t = t.replace(/(\d{1,3}(?:,\d{3})+)/g, m => m.replace(/,/g, ''));
+
+  // 5. 소수점: 3.85 → 3점 85  (각 자리를 개별 숫자로)
+  t = t.replace(/(\d+)\.(\d+)/g, (_, int, dec) => {
+    const digits = dec.split('').join(' ');  // 각 자리 분리: "85" → "8 5"
+    return int + '점 ' + digits;
+  });
+
+  // 6. 슬래시 제거
+  t = t.replace(/\s*\/\s*/g, ' ');
+  t = t.replace(/\s*\\\s*/g, ' ');
+
+  // 7. 기타 기호
+  t = t.replace(/[·•→←↑↓※▶▷◆◇■□△▲▽▼]/g, ', ');
+
+  // 8. 공백 정리
+  t = t.replace(/,\s*/g, ', ');
+  t = t.replace(/\s{2,}/g, ' ');
+
+  return t.trim();
 }
 
 function ttsBuildSegments() {
@@ -3181,7 +3200,7 @@ function ttsUpdateUI() {
   }
 }
 
-function ttsSpeak(segment, onEnd) {
+function ttsSpeak(segment, sessionId, onEnd) {
   const utter = new SpeechSynthesisUtterance(ttsCleanText(segment.text));
   const voice = ttsGetVoice();
   if (voice) utter.voice = voice;
@@ -3189,8 +3208,10 @@ function ttsSpeak(segment, onEnd) {
   utter.rate    = 0.92;
   utter.pitch   = 0.88;
   utter.volume  = 1;
-  utter.onend   = onEnd;
-  utter.onerror = onEnd;
+  // sessionId가 현재와 다르면 콜백 무시 → 중복 재생 방지
+  const guard = () => { if (ttsPlayId === sessionId) onEnd(); };
+  utter.onend   = guard;
+  utter.onerror = guard;
   ttsUtter = utter;
   speechSynthesis.speak(utter);
 }
@@ -3199,8 +3220,9 @@ function ttsPlaySegment(i) {
   if (i >= ttsSegments.length) { ttsFinish(); return; }
   ttsIndex = i;
   ttsUpdateUI();
-  ttsSpeak(ttsSegments[i], () => {
-    if (ttsPlaying) ttsPlaySegment(i + 1);
+  const myId = ttsPlayId;  // 현재 세션 ID 캡처
+  ttsSpeak(ttsSegments[i], myId, () => {
+    if (ttsPlaying && ttsPlayId === myId) ttsPlaySegment(i + 1);
   });
 }
 
@@ -3255,6 +3277,7 @@ function ttsSkip(delta) {
     if (!ttsSegments.length) return;
   }
   const next = Math.max(0, Math.min(ttsSegments.length - 1, ttsIndex + delta));
+  ttsPlayId++;  // 이전 콜백 무효화
   speechSynthesis.cancel();
   ttsIndex = next;
   ttsUpdateUI();
@@ -3266,6 +3289,7 @@ function ttsSkip(delta) {
 }
 
 function ttsStop() {
+  ttsPlayId++;  // 이전 콜백 모두 무효화
   speechSynthesis.cancel();
   ttsPlaying = false;
   ttsIndex   = 0;
@@ -3301,6 +3325,7 @@ function ttsFinish() {
     const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
     const targetIdx = Math.min(ttsSegments.length - 1, Math.floor(ratio * ttsSegments.length));
     if (targetIdx === ttsIndex && ttsPlaying) return; // 같은 섹션 중복 실행 방지
+    ttsPlayId++;  // 이전 콜백 무효화
     speechSynthesis.cancel();
     ttsIndex = targetIdx;
     ttsUpdateUI();
