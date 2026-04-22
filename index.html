@@ -1224,6 +1224,28 @@
     <span class="sponsor-cta">자세히 보기</span>
   </a>
 
+  <!-- BOOKMARK JUMP BANNER -->
+  <div id="bookmark-jump-banner" style="display:none;
+    background: linear-gradient(135deg, #FAEEDA, #fff8ee);
+    border: 1.5px solid #BA7517;
+    border-radius: 12px;
+    padding: 11px 16px;
+    margin-bottom: 10px;
+    display: none;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(186,117,23,0.13);
+    transition: box-shadow 0.18s;"
+    onclick="jumpToBookmark()">
+    <span style="font-size:22px;flex-shrink:0;">🔖</span>
+    <div style="flex:1;min-width:0;">
+      <div style="font-size:12px;font-weight:700;color:#BA7517;margin-bottom:2px;">읽던 논문 이어보기</div>
+      <div id="bookmark-jump-title" style="font-size:12px;color:#5a3a00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+    </div>
+    <span style="font-size:13px;font-weight:600;color:#BA7517;background:#fff3d6;border-radius:20px;padding:4px 11px;flex-shrink:0;">이동 →</span>
+  </div>
+
   <!-- STATS -->
   <div class="stats-bar" id="stats-bar">
     <div class="stat-item">
@@ -3844,6 +3866,93 @@ const PAPERS = [
     "대상 환자": "약 1,273명 (미국·이탈리아·멕시코)",
     "PROSPERO": "CRD420251001281"
   }
+},
+{
+  id: 92,
+  title: "A Multitask Network for the Diagnosis of Autoimmune Gastritis",
+  title_ko: "자가면역성위염 진단을 위한 멀티태스크 네트워크",
+  journal: "Journal of Imaging",
+  journal_short: "J. Imaging",
+  year: 2025,
+  if: null,
+  authors: "Cao Y, Zhao Y, Jin X, Zhang J, Zhang G, Huang P, Zhang G, Han Y",
+  doi: "10.3390/jimaging11050154",
+  source: "journal",
+  topics: ["AI", "진단"],
+  abstract_ko: "자가면역성위염(AIG)은 위 신경내분비종양 및 위암과 강한 연관성을 가지므로 조기·정확한 진단이 중요합니다. AIG의 내시경 소견은 H. pylori 위염과 달리 위체부·저부에 위축이 집중되는 '역위축' 패턴을 보입니다. 본 연구는 환자 단위 멀티태스크 위내시경 이미지 분류 네트워크를 제안합니다. SIFT 알고리즘으로 이미지 유사도 행렬을 생성하고, 계층적 군집화로 이미지를 그룹화한 후, 대형 커널 합성곱을 활용하는 RepLKNet 모델로 해부학적 부위 분류(저부·체부·전정부)와 병변 인식(정상·위축)을 동시에 수행합니다. 해부학적 부위 분류 정확도 93.4±0.5%, 병변 인식 정확도 90.2±1.0%(모두 95% CI)를 달성하였습니다.",
+  keypoints: [
+    "멀티태스크 접근: 해부학적 부위 분류(저부·체부·전정부)와 병변 인식(정상·위축)을 단일 네트워크에서 동시 수행",
+    "SIFT 기반 이미지 그룹화: 환자 내 내시경 이미지 간 유사도 행렬을 구성하여 상관 이미지를 묶어 분류 정확도 향상",
+    "해부학적 부위 분류 정확도 93.4%, 정밀도 92.6% — 비교군 최고 모델(RepLKNet 단독 92.0%)보다 우수",
+    "병변 인식 정확도 90.2%, 정밀도 90.5% — 비교군 최고 모델(RepLKNet 단독 88.2%)보다 우수",
+    "Grad-CAM 해석 가능성: 저부는 카디아·저부궁, 전정부는 유문·유문관을 핵심 특징으로 인식; 체부는 국소 랜드마크 없어 넓은 영역을 참조",
+    "⚠️ 단일 기관 소규모 데이터셋(298명, 5,981장); 다기관 외부 검증 미시행; 이미지 밝기 편향이 병변 인식 히트맵에 영향"
+  ],
+  meta: {
+    "연구 설계": "단일기관 딥러닝 모델 개발 연구",
+    "대상 환자": "298명 (AIG 96명 / H. pylori 양성 102명 / H. pylori 음성 100명)",
+    "이미지 수": "5,981장 (훈련 3,529 / 검증 1,275 / 테스트 1,177)",
+    "AI 아키텍처": "RepLKNet-31B (대형 커널 합성곱) + SIFT 이미지 그룹화",
+    "연구 기관": "저장대학교 제어과학공학부 / 저장대학교 의학부 제2부속병원, 항저우, 중국"
+  }
+}
+,{
+  id: 93,
+  title: "Helicobacter pylori VacA-induced gastric mucosal atrophy: a comparative analysis with other forms of atrophic gastritis",
+  title_ko: "H. pylori VacA 유발 위 점막 위축: 다른 형태의 위축성위염과의 비교 분석",
+  journal: "Journal of Molecular Histology",
+  journal_short: "J Mol Histol",
+  year: 2025,
+  if: null,
+  authors: "Wang YK, Chen WR, Lu LY, Li YY, Qiu RK, Zhu CY, Zhang FS, Wang SN, Xu SL",
+  doi: "10.1007/s10735-025-10469-5",
+  source: "journal",
+  topics: ["병리", "병인기전", "헬리코박터", "진단"],
+  abstract_ko: "984례의 내시경 위 점막 생검을 대상으로 H. pylori VacA 유발 위축과 다른 형태의 위축성위염을 비교 분석한 연구입니다. H. pylori 감염 관련 위축 65.9%, 자가면역성 위축 3.5%, 퇴행성 변성 위축 6.0%, 약물 유발 위축 7.3%, 비특이적 위축 17.4%로 분류하였습니다. VacA는 위소와 심부·위선 협부·경부 점액세포의 상방 이동과 보상성 증식을 유도하여 위 위축을 일으키는 핵심 기전으로 제안됩니다. 각 위축 유형별 조직학적 진단 기준을 처음으로 체계적으로 제시하였으며, 면역조직화학 소견(VacA, CDX2, p53, Ki-67 등)을 통한 감별 진단 전략을 제시합니다.",
+  keypoints: [
+    "위 점막 위축 5분류 체계 최초 제안: H. pylori 감염성(65.9%) · 자가면역성(3.5%) · 퇴행성 변성(6.0%) · 약물 유발(7.3%) · 비특이적(17.4%)",
+    "H. pylori VacA 기전: 위소와 심부·위선 협부·경부 점액세포의 상방 이동 및 보상성 증식 유도 → 위축 진행; 핵 내 유백색 구형체 관찰",
+    "자가면역성 위축(3.5%): 여성 76.5%, 85.3%가 60세 미만으로 조기 발병 — VacA⁻, CDX2⁻, p53⁻, Ki-67 0~10%; CgA·Syn·CD56 양성이 특징",
+    "퇴행성 변성 위축: 고령(89.8%가 60세 초과)에서 전 점막층 동시 위축; 보상성 증식 없음, 염증 침윤 없음 — VacA⁻, Ki-67 0~5%",
+    "H. pylori 감염성 위축: VacA⁺, CDX2⁺, p53 국소 양성, Ki-67 10~40% — 림프여포 외 세포 증식 → MALT 림프종 주의",
+    "⚠️ 단일 기관 위주 연구, 외부 검증 미시행; VacA 유발 위축과 위암 진행 간 인과관계 규명을 위한 전향적 다기관 연구 필요"
+  ],
+  meta: {
+    "연구 설계": "다기관 횡단면 분석 (3개 기관)",
+    "대상 환자": "984명 (내시경 생검 확인 위축성위염)",
+    "연구 기간": "2023년 9월~2024년 6월",
+    "면역조직화학": "VacA(5E4), CDX2, p53, Ki-67, CgA, Syn, CD56, MUC5AC, MUC6 등 13종",
+    "연구 기관": "선전 롱강구 제4인민병원 / 정저우대학교 제3부속병원 / 허창중심병원, 중국"
+  }
+}
+,{
+  id: 94,
+  title: "Pediatric autoimmune gastritis: An international, multicentric study",
+  title_ko: "소아 자가면역성위염: 국제 다기관 연구",
+  journal: "Journal of Pediatric Gastroenterology and Nutrition",
+  journal_short: "J Pediatr Gastroenterol Nutr",
+  year: 2025,
+  if: 2.4,
+  authors: "Lenti MV, Joudaki S, Miceli E, Lahner E, Massironi S, Votto M, Licari A, et al. (Di Sabatino A)",
+  doi: "10.1002/jpn3.70187",
+  source: "journal",
+  topics: ["진단", "역학", "병인기전", "동반질환"],
+  abstract_ko: "소아(18세 미만) AIG의 임상·검사·조직병리학적 특성을 규명한 이탈리아·이스라엘 14개 기관 국제 다기관 후향적 종단 코호트 연구입니다. 조직학적으로 확인된 소아 AIG 51명(중앙 연령 13세, IQR 11~16; 여:남 1.7:1)을 분석하였습니다. 92.1%가 명현성 AIG였으며 H. pylori 감염은 단 2%(1명)에서만 확인되어 소아 AIG에서 자가면역이 감염보다 훨씬 중요한 역할을 함을 시사합니다. 아토피피부염·비염·천식 등 Th2 관련 질환이 흔히 동반되었으며, 콜라겐성위염이 AIG 발현에 선행하는 새로운 패턴이 4례(7.8%)에서 확인되었습니다.",
+  keypoints: [
+    "소아 AIG에서 H. pylori 감염 극히 희귀(2.0%) — 성인과 달리 자가면역 기전이 압도적으로 우세; H. pylori 비노출 집단에서 순수 자가면역 AIG 확인",
+    "Th2 관련 질환 동반: 아토피피부염 9.8%, 알레르기비염 7.8%, 천식 5.9%, 호산구성식도염 3.9%, 호산구성위염 9.8% — 소아 AIG와 Th2 면역 경로의 연관 가능성 시사",
+    "콜라겐성위염 선행(4례, 7.8%): 호산구 침윤·상피하 콜라겐 비후로 시작 → 2년 내 전례 명현성 AIG로 진행 — 소아 AIG의 새로운 전구 패턴",
+    "혈청음성(PCA 음성) AIG가 소아에서 상대적으로 흔함(15.7%): 기능성 소화불량·과민성장증후군으로 오진 多; PCA 음성군에서 NET 진단이 유의하게 빠름(중앙 12개월 vs 84개월, p=0.002)",
+    "신경내분비종양 및 상피 이형성 각 13.7%(7/51) — 위선암 없음; 12세 이상 연령군에서 NET 진단이 더 빠름(12 vs 84개월, p=0.003)",
+    "⚠️ 후향적 소규모(51명) 연구; 추적 기간 중앙 24개월로 장기 합병증 위험 평가 불충분; 이탈리아·이스라엘 위주로 다양한 민족 미반영"
+  ],
+  meta: {
+    "연구 설계": "국제 다기관 후향적 종단 코호트 (14개 기관)",
+    "대상 환자": "51명 (18세 미만, 2019~2024년 진단)",
+    "추적 기간": "중앙값 24개월 (IQR 12~57)",
+    "참여 기관": "이탈리아 13개 기관 + 이스라엘 1개 기관",
+    "연구 기관": "파비아대학교 IRCCS 폴리클리니코 산마테오 / 로마 사피엔자대학교 산탄드레아병원 외"
+  }
 }
 ];
 
@@ -3861,7 +3970,7 @@ const TOPICS = [
   { id: "헬리코박터", label: "헬리코박터",   icon: "🦠" },
   { id: "병인기전", label: "병인·기전",      icon: "🔭" },
   { id: "증례",    label: "증례",           icon: "🏥" },
-  { id: "동반질환", label: "동반 자가면역질환", icon: "🫀" },
+  { id: "동반질환", label: "동반 자가면역질환", icon: "🦋" },
 ];
 
 const BADGE_COLORS = {
@@ -4096,6 +4205,25 @@ function loadBookmark() {
       bookmarkScrollPct = d.pct || 0;
     }
   } catch(e) {}
+  renderBookmarkBanner();
+}
+
+function renderBookmarkBanner() {
+  const banner = document.getElementById('bookmark-jump-banner');
+  if (!banner) return;
+  if (bookmarkPaperId) {
+    const p = PAPERS.find(x => x.id === bookmarkPaperId);
+    if (p) {
+      document.getElementById('bookmark-jump-title').textContent = p.title_ko;
+      banner.style.display = 'flex';
+      return;
+    }
+  }
+  banner.style.display = 'none';
+}
+
+function jumpToBookmark() {
+  if (bookmarkPaperId) openDetail(bookmarkPaperId);
 }
 
 function saveBookmark() {
@@ -4110,6 +4238,7 @@ function saveBookmark() {
   renderBookmarkLine();
   updateDoneBtn();
   renderPapers();
+  renderBookmarkBanner();
 }
 
 function clearBookmark() {
@@ -4121,6 +4250,7 @@ function clearBookmark() {
   updateDoneBtn();
   showBookmarkToast('다 읽으셨군요! 책갈피가 삭제되었어요 ✓');
   renderPapers();
+  renderBookmarkBanner();
 }
 
 function updateDoneBtn() {
