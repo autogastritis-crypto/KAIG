@@ -984,6 +984,36 @@
   .detail-panel::-webkit-scrollbar-track { background: transparent; }
   .detail-panel::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; }
 
+  /* ── RELATED PAPERS ── */
+  .related-section { padding: 0 20px; margin-bottom: 12px; }
+  .related-list { display: flex; flex-direction: column; gap: 8px; }
+  .related-card {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 12px;
+    background: var(--bg); border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    cursor: pointer; transition: all 0.15s;
+    text-align: left; width: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .related-card:hover { border-color: var(--green-mid); background: var(--green-paler); }
+  .related-type-badge {
+    flex-shrink: 0; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.04em; padding: 2px 6px; border-radius: 4px;
+    margin-top: 2px; white-space: nowrap;
+  }
+  .related-type-original { background: var(--green-pale); color: var(--green-dark); }
+  .related-type-letter   { background: var(--amber-pale); color: var(--amber); }
+  .related-card-body { flex: 1; min-width: 0; }
+  .related-card-title {
+    font-size: 12px; font-weight: 500; color: var(--ink);
+    line-height: 1.45; margin-bottom: 2px;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .related-card-meta { font-size: 10px; color: var(--ink-soft); }
+  .related-card-arrow { flex-shrink: 0; font-size: 13px; color: var(--green-light); margin-top: 2px; }
+
   /* ── PAGINATION ── */
   .pagination {
     display: flex;
@@ -1243,6 +1273,11 @@
       <ul class="panel-keypoints" id="p-keypoints"></ul>
       <div class="panel-section-title">논문 정보</div>
       <div class="panel-meta-grid" id="p-meta"></div>
+    </div>
+    <!-- RELATED PAPERS -->
+    <div id="related-section" class="related-section" style="display:none">
+      <div class="panel-section-title" style="padding:0;margin-bottom:8px;">관련 논문</div>
+      <div class="related-list" id="related-list"></div>
     </div>
     <!-- TTS BAR -->
     <div class="tts-bar" id="tts-bar">
@@ -3423,34 +3458,6 @@ const PAPERS = [
   }
 },
 {
-  id: 76,
-  title: "Characteristics of Early Gastric Cancer in a Patient with a History of Helicobacter pylori Infection and No History of Eradication Therapy",
-  title_ko: "H. pylori 감염 과거력이 있고 제균 치료력이 없는 환자에서 조기 위암의 임상병리학적 특성",
-  journal: "Internal Medicine",
-  journal_short: "Intern Med",
-  year: 2025,
-  if: 1.0,
-  authors: "Kuraoka S, Kawano S, Ino S, Satomi T, Hamada K, Kono Y, Iwamuro M, Kawahara Y, Tanaka T, Okada H, Otsuka M",
-  doi: "10.2169/internalmedicine.3617-24",
-  source: "journal",
-  topics: ["암위험", "헬리코박터", "역학", "진단"],
-  abstract_ko: "H. pylori 감염 과거력이 있으나 제균 치료를 받지 않은 위축성 점막 환자(그룹A, 102명)와 제균 치료군(그룹B, 161명)의 조기 위암 임상병리학적 특성을 비교한 후향적 연구입니다. 그룹A는 그룹B보다 연령이 유의하게 높고(평균 75세 vs 71세), 융기형 위암 빈도가 유의하게 높았습니다(32.4% vs 17.4%, p=0.006). 5년 이상 제균 후 군과 비교 시에도 그룹A에서 개방형 위축, 위체부 대만측 염증·위축·장상피화생 빈도가 더 높았습니다. 중증 위축 무제균군 중 6.7%(4/60명)에서 AIG가 확인되었으며, 이들의 75%에서 융기형 위암이 관찰되었습니다.",
-  keypoints: [
-    "제균 치료력 없는 H. pylori 과거 감염군에서 융기형 조기 위암 빈도가 제균 치료군보다 유의하게 높음(32.4% vs 17.4%) — 고령(평균 75세)과 함께 다변량 분석에서 독립 위험인자로 확인",
-    "위체부 대만측 염증·위축·장상피화생이 5년 이상 제균군보다 유의하게 높음 → H. pylori 자연 소실 후 더 오랜 기간 경과한 점막 변화 반영",
-    "중증 위축(O-2, O-3) 무제균군에서도 중증 위축 제균군보다 융기형 암 빈도 유의하게 높음(39.3% vs 16.0%, p=0.002) — 배경 위축 정도를 보정해도 차이 유지",
-    "중증 위축 무제균군의 6.7%(4/60명)에서 AIG 진단 — 이들의 75%가 융기형 위암; 크로모그라닌A 면역염색으로 AIG 동반 여부 확인 권고",
-    "경증 위축군(C2~O1)이 중증 위축군(O2~O3)보다 상부 2/3 위치 암 비율이 낮음(47.8% vs 67.9%, p=0.04)",
-    "⚠️ 단일기관 후향적 연구; 제균 이력 망각·무관한 항생제 복용 환자 완전 배제 불가; 혈청 가스트린 미측정"
-  ],
-  meta: {
-    "연구 설계": "단일기관 후향적 코호트 연구",
-    "대상 환자": "ESD 시행 위암 환자 263명 (제균 무치료 102명, 제균 치료 161명)",
-    "연구 기간": "2013년 1월 ~ 2020년 12월",
-    "연구 기관": "오카야마 대학교 의치약학총합연구과 소화기·간장내과학, 일본"
-  }
-},
-{
   id: 77,
   title: "Mucosal Atrophy of the Fornix as an Important Endoscopic Finding for an Autoimmune Gastritis Diagnosis",
   title_ko: "자가면역성위염 진단에서 중요한 내시경 소견으로서의 위저부(fornix) 점막 위축",
@@ -3486,7 +3493,7 @@ const PAPERS = [
   journal: "International Journal of Molecular Sciences",
   journal_short: "Int J Mol Sci",
   year: 2025,
-  volume: "26",
+  if: 4.9,
   authors: "Bordin DS, Livzan MA, Mozgovoi SI, Gaus OV",
   doi: "10.3390/ijms26167737",
   source: "journal",
@@ -3506,7 +3513,7 @@ const PAPERS = [
   }
 },
 {
-  id: 76,
+  id: 85,
   title: "Associations Between Antiparietal Cell Antibody Values and Atrophy in a South and Southeast Asian General Population",
   title_ko: "남아시아·동남아시아 일반 인구에서 항벽세포항체 값과 위축의 연관성",
   journal: "Journal of Clinical Gastroenterology",
@@ -3532,6 +3539,124 @@ const PAPERS = [
     "연구 기간": "1996년 1월~2012년 1월",
     "연구 기관": "Oita University / Dhaka Medical College / Chiang Mai University / Baylor College of Medicine 등"
   }
+},
+{
+  id: 86,
+  title: "Risk Factors Analysis and Predictive Model Construction for Autoimmune Gastritis: A Nationwide Multicenter Case–Control Study in China",
+  title_ko: "자가면역성위염 위험인자 분석 및 예측 모델 구축: 중국 전국 다기관 환자-대조군 연구",
+  journal: "Journal of Gastroenterology and Hepatology",
+  journal_short: "J Gastroenterol Hepatol",
+  year: 2025,
+  if: 3.7,
+  authors: "Ma X-Y, Hao Y, Xie Y-H, Cao Q, Sun D-F, Wang J-L, Zhang Y-X, Cui Y, Zhang Y, Ding H, Sun T-T, Tan J, Fu L-N, Zou T-H, Yu Q-X, Yu Y-N, Wu Q, Yang L, Zhang M-X, Aiken A, Shu X, Sheng J-Q, Wang Y-G, Tian Z-B, Wang B-M, Zhou C-B, Chen Y-X, Fang J-Y",
+  doi: "10.1111/jgh.16912",
+  source: "journal",
+  topics: ["역학", "진단", "병인기전"],
+  abstract_ko: "중국 7개 기관에서 479명(AIG 279명, 전정부 위주 만성위축위염 112명, 비위축위염 88명)을 대상으로 한 전국 다기관 환자-대조군 연구. 식이·생활습관 인자와 AIG 발생의 연관성을 체계적으로 분석하고 비침습적 AIG 예측 모델을 구축·검증하였습니다. 예측 모델에서 조리용 기름 사용량 증가 및 자가면역 갑상선질환 동반은 위험인자, 비타민 B12 풍부 식품 섭취는 보호인자로 확인되었습니다. 발견 및 검증 코호트의 AUC는 각각 0.72 및 0.74였습니다.",
+  keypoints: [
+    "예측 모델 3인자: 조리용 기름 사용량 증가(위험, OR 1.043) + 자가면역 갑상선질환 동반(위험, OR 2.770) + 비타민 B12 풍부 식품 섭취(보호, OR 0.952)",
+    "AUC 발견 코호트 0.72 / 검증 코호트 0.74 — 민감도 65.2%, 특이도 69.8%(최적 절단값 0.545)",
+    "AIG 환자 중앙 연령 55세, 여성 63.44% — 중장년 여성 우세 확인",
+    "동반 자가면역 갑상선질환(AITD) 27.24%로 가장 흔한 동반 자가면역질환; 신규 진단 갑상선 이상 21례 포함",
+    "비타민 B12 결핍 39.04%, PG I 저하 88.99%, G-17 상승 98.62%",
+    "흡연 + AIG → 이형성·선암 위험 9.667배(95% CI 1.548–60.374) — AIG 환자 금연의 중요성",
+    "ECL세포 과증식 26.67%, 1형 NET 5.38%로 신생물 합병증 감시 중요성 확인",
+    "⚠️ 횡단면 연구로 인과관계 추론 한계; 식품빈도조사지 회상 편향; 표본 수 제한으로 랜덤포레스트·XGBoost 적용 불가"
+  ],
+  meta: {
+    "연구 설계": "전국 다기관 환자-대조군 연구 (7개 기관)",
+    "대상 환자": "479명 (AIG 279명 / B군 112명 / C군 88명)",
+    "연구 기간": "2022년 6월~2024년 1월",
+    "연구 기관": "상하이 교통대학교 의과대학 런지병원 외 중국 7개 기관",
+    "임상시험 등록": "NCT05820607"
+  },
+  related_ids: [87, 88, 89]
+},
+{
+  id: 87,
+  title: "Beyond Identified Risk Factors: Exploring Diet, Microbial Dysbiosis, and Immune Crosstalk in Autoimmune Gastritis",
+  title_ko: "확인된 위험인자를 넘어서: 자가면역성위염에서 식이, 미생물 불균형, 면역 교차작용 탐구",
+  journal: "Journal of Gastroenterology and Hepatology",
+  journal_short: "J Gastroenterol Hepatol",
+  year: 2025,
+  if: 3.7,
+  authors: "Li Y, Gao X, Deng X",
+  doi: "10.1111/jgh.16970",
+  source: "journal",
+  topics: ["병인기전", "역학"],
+  abstract_ko: "Ma et al. 연구(id 86)에 대한 편집자 서한. 조리용 기름 사용량과 비타민 B12 섭취가 AIG에 미치는 영향이 비Hp 위내 미생물군 변화 및 면역 교차반응을 통해 매개될 수 있음을 제안합니다. 16S rRNA 시퀀싱 연구에서 확인된 독특한 위 미생물 서명, 단쇄지방산 등 대사산물의 면역 조절 기능, 다기관 자가면역에서 분자 모방의 역할을 포함한 통합적 연구 접근의 필요성을 강조합니다.",
+  keypoints: [
+    "【편집자 서한 — Ma et al. 원 논문(id 86)에 대한 논평】",
+    "비Hp 위내 미생물(16S rRNA 서명)이 T세포 활성화 및 상피세포 회전율을 조절하여 AIG 발생에 관여할 가능성 제기",
+    "조리용 기름 고온 가열·재사용 → 산화 부산물 → 친염증성 미생물 군집 조성 기전 제안",
+    "불포화지방산·항산화제 풍부 식이 → 면역 항상성 유지 미생물 군집 지원 — '기름 사용량' 변수가 diet-microbiome-immune 복잡성을 단순화했을 가능성",
+    "AIG와 자가면역 갑상선질환 공존에서 분자 모방 또는 교차반응 T세포가 다기관 자가면역 유발 가능 — 미생물 생태 변화가 이 과정 증폭 가능",
+    "향후 연구 제언: 기름 종류(올리브·카놀라·동물성) + 조리 방법 + 위 미생물 서명 + 항벽세포항체 통합 분석 필요",
+    "⚠️ 편지 형식 — 새로운 데이터 없이 문헌 기반 제안; 전향적 검증 필요"
+  ],
+  meta: {
+    "논문 유형": "Letter to the Editor",
+    "원 논문": "Ma et al., J Gastroenterol Hepatol 2025 (doi: 10.1111/jgh.16912)",
+    "연구 기관": "덩양인민병원 한방과 / 청두중의약대학교 부속병원 / 청두중의약대학교, 중국"
+  },
+  related_ids: [86, 88, 89]
+},
+{
+  id: 88,
+  title: "Optimizing Model Construction and Ideal Cutoff Mechanisms in Targeted Screening for Autoimmune Gastritis",
+  title_ko: "자가면역성위염 표적 선별에서 모델 구축 및 최적 절단값 메커니즘 최적화",
+  journal: "Journal of Gastroenterology and Hepatology",
+  journal_short: "J Gastroenterol Hepatol",
+  year: 2025,
+  if: 3.7,
+  authors: "Passos PRC, Costa Filho VO",
+  doi: "10.1111/jgh.16940",
+  source: "journal",
+  topics: ["진단", "역학"],
+  abstract_ko: "Ma et al. 연구(id 86)에 대한 편집자 서한. 예측 모델의 방법론적 개선을 위한 두 가지 핵심 제안을 제시합니다. ① 범주형 변수를 연속형으로 전환하여 통계 검력을 향상시키고, ② Youden 지수 기반 단일 절단값 대신 선별(민감도 우선)과 확진(특이도 우선)에 각기 다른 절단값을 적용하는 이중 절단값 전략을 권고합니다.",
+  keypoints: [
+    "【편집자 서한 — Ma et al. 원 논문(id 86)에 대한 방법론 논평】",
+    "범주형 → 연속형 변수 전환 권고: 음식 섭취 빈도 등 수치 입력 항목을 범주화하면 정보 손실·통계 검력 감소 발생",
+    "Youden 지수의 한계: 민감도와 특이도를 동등 가중치로 처리 — AIG vs 만성위염 감별의 임상 목적과 불일치 가능",
+    "이중 절단값 전략 제안: ① 선별 절단값(민감도 우선, NPV 극대화) → 추가 검사 불필요 환자 식별; ② 진단 절단값(특이도 우선) → 확진 검사 대상 선별",
+    "항벽세포항체 위양성 문제: H. pylori 감염 시 AIG 없이도 양성 가능 — 모델 양성 결과를 베이즈 사전확률로 확진 검사와 연계하는 체계 필요",
+    "⚠️ 편지 형식 — 방법론 권고 중심; 이중 절단값의 실제 임상 데이터 검증 필요"
+  ],
+  meta: {
+    "논문 유형": "Letter to the Editor",
+    "원 논문": "Ma et al., J Gastroenterol Hepatol 2025 (doi: 10.1111/jgh.16912)",
+    "연구 기관": "연방 세아라대학교 약물개발연구센터(NPDM) / 암세포유전체학연구소 / 생의학연구센터(NUBIMED), 브라질"
+  },
+  related_ids: [86, 87, 89]
+},
+{
+  id: 89,
+  title: "Strengthening Predictive Models and Risk Assessment in Autoimmune Gastritis: A Critical Appraisal",
+  title_ko: "자가면역성위염 예측 모델 및 위험 평가 강화: 비판적 고찰",
+  journal: "Journal of Gastroenterology and Hepatology",
+  journal_short: "J Gastroenterol Hepatol",
+  year: 2025,
+  if: 3.7,
+  authors: "Abid E, Abid A, Abid H, Hussain SI, Jalal AA",
+  doi: "10.1111/jgh.16967",
+  source: "journal",
+  topics: ["진단", "병인기전", "역학"],
+  abstract_ko: "Ma et al. 연구(id 86)에 대한 편집자 서한. 연구의 주요 한계점과 향후 보완 방향을 다섯 가지로 정리합니다: ① 외부 검증 부재, ② 염증성 사이토카인(IL-17, IL-10, TNF-α) 미분석, ③ 위 미생물군 구성 미평가, ④ 비타민 D 수준 미측정, ⑤ 중금속·내분비교란물질 등 환경 독소 미고려.",
+  keypoints: [
+    "【편집자 서한 — Ma et al. 원 논문(id 86)에 대한 비판적 고찰】",
+    "외부 검증 부재: Riley et al. 기준에 따라 외부 검증이 예측 모델 과적합 방지 및 임상 유용성 확인의 핵심 단계 — 중국 코호트 외 적용 가능성 미확인",
+    "사이토카인 미분석: IL-17·IL-10·TNF-α는 AIG 진단·관리의 주요 바이오마커 — 분석 시 AIG와 Hp 위염·NSAID 유발 위염 감별력 향상 및 면역조절 표적 발굴 가능",
+    "위 미생물군 미평가: AIG 환자에서 위 미생물 다양성 감소가 확인됨 — 생활습관·식이 인자가 미생물 매개 경로로 AIG 위험에 영향 가능, 탈루 변수로 작용 가능",
+    "비타민 D 미측정: Massironi et al.에서 AIG 환자의 25(OH)D가 대조군보다 유의하게 낮음 — 비타민 B12·식이 분석과 통합 시 해석력 향상",
+    "환경 독소 미고려: 중금속·내분비교란물질이 면역 내성 손상·항산화 저하로 자가면역에 기여 가능 — 노출 데이터 포함 시 실제 임상 환경에서 모델 적용력 강화",
+    "⚠️ 편지 형식 — 문헌 기반 비판 중심; 각 제안 항목의 AIG 예측 기여도 검증 필요"
+  ],
+  meta: {
+    "논문 유형": "Letter to the Editor",
+    "원 논문": "Ma et al., J Gastroenterol Hepatol 2025 (doi: 10.1111/jgh.16912)",
+    "연구 기관": "진나 신드 의과대학교, 카라치, 파키스탄"
+  },
+  related_ids: [86, 87, 88]
 }
 ];
 
@@ -3801,6 +3926,32 @@ function openDetail(id) {
 
   const linkBtn = document.getElementById("p-link-btn");
   linkBtn.onclick = () => window.open("https://doi.org/" + p.doi, "_blank");
+
+  // ── 관련 논문 섹션 ──
+  const relatedSection = document.getElementById("related-section");
+  const relatedList    = document.getElementById("related-list");
+  const relIds = p.related_ids || [];
+  if (relIds.length) {
+    const relPapers = relIds.map(rid => PAPERS.find(x => x.id === rid)).filter(Boolean);
+    relatedList.innerHTML = relPapers.map(rp => {
+      const isLetter = rp.meta && rp.meta["논문 유형"] &&
+        rp.meta["논문 유형"].toLowerCase().includes("letter");
+      const typeLabel = isLetter ? "Letter" : "원 논문";
+      const typeClass = isLetter ? "related-type-letter" : "related-type-original";
+      const firstAuthor = rp.authors.split(',')[0] + (rp.authors.includes(',') ? ' 외' : '');
+      return `<button class="related-card" onclick="openDetail(${rp.id})">
+        <span class="related-type-badge ${typeClass}">${typeLabel}</span>
+        <div class="related-card-body">
+          <div class="related-card-title">${rp.title_ko}</div>
+          <div class="related-card-meta">${firstAuthor} · ${rp.year} · ${rp.journal_short}</div>
+        </div>
+        <span class="related-card-arrow">→</span>
+      </button>`;
+    }).join("");
+    relatedSection.style.display = "block";
+  } else {
+    relatedSection.style.display = "none";
+  }
 
   document.getElementById("detail-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
