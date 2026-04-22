@@ -880,6 +880,79 @@
   .empty-text { font-size: 13px; }
 
   /* ── STATS BAR ── */
+  /* ── SPONSOR BANNER ── */
+  .sponsor-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    cursor: pointer;
+    transition: box-shadow 0.18s, border-color 0.18s;
+    overflow: hidden;
+  }
+  .sponsor-banner:hover {
+    border-color: rgba(15,110,86,0.3);
+    box-shadow: 0 4px 16px rgba(8,80,65,0.1);
+  }
+  .sponsor-badge {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+    padding: 2px 6px;
+    white-space: nowrap;
+  }
+  .sponsor-logo {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--green-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .sponsor-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .sponsor-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sponsor-desc {
+    font-size: 11px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sponsor-cta {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--green-dark);
+    background: var(--green-pale);
+    border-radius: 20px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
   .stats-bar {
     display: flex;
     gap: 2px;
@@ -911,6 +984,61 @@
   .detail-panel::-webkit-scrollbar-track { background: transparent; }
   .detail-panel::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; }
 
+  /* ── PAGINATION ── */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .page-btn {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-card);
+  }
+  .page-btn:hover:not(:disabled) {
+    border-color: var(--green-mid);
+    color: var(--green-dark);
+    background: var(--green-pale);
+  }
+  .page-btn.active {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(8,80,65,0.25);
+  }
+  .page-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .page-ellipsis {
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 0 4px;
+    line-height: 36px;
+  }
+  .page-info {
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 8px;
+  }
+
   @media (min-width: 600px) {
     .main-wrap { padding: 24px 24px 60px; }
   }
@@ -936,6 +1064,17 @@
 
 <!-- MAIN -->
 <main class="main-wrap">
+
+  <!-- SPONSOR BANNER -->
+  <a class="sponsor-banner" id="sponsor-banner" href="#" target="_blank" rel="noopener">
+    <span class="sponsor-badge">AD</span>
+    <div class="sponsor-logo">🏥</div>
+    <div class="sponsor-body">
+      <div class="sponsor-name">스폰서명을 입력하세요</div>
+      <div class="sponsor-desc">광고 문구를 여기에 입력하세요</div>
+    </div>
+    <span class="sponsor-cta">자세히 보기</span>
+  </a>
 
   <!-- STATS -->
   <div class="stats-bar" id="stats-bar">
@@ -990,6 +1129,10 @@
   </div>
 
   <div class="papers-list" id="papers-list"></div>
+
+  <!-- PAGINATION -->
+  <div class="pagination" id="pagination"></div>
+  <div class="page-info" id="page-info"></div>
 
   <!-- ADD BUTTON -->
   <button class="add-paper-btn" id="add-btn" onclick="openAddMode()">
@@ -2726,6 +2869,362 @@ const PAPERS = [
     "핵심 주제": "AIG 면역병인, 장기특이적 vs. 전신 자가면역, 에피토프 확산, 표적 치료 전망",
     "이해충돌": "없음(재정 지원 없음)"
   }
+}  ,{
+  id: 58,
+  title: "Management of type I gastric-neuroendocrine tumors: the less the better?",
+  title_ko: "1형 위 신경내분비종양의 관리: 최소 치료가 최선인가?",
+  journal: "Frontiers in Endocrinology",
+  journal_short: "Front Endocrinol",
+  year: 2025,
+  if: 5.2,
+  authors: "Rossi RE, Masoni B, Poletti V, Maselli R, Carrara S, Bertuzzi AF, Uccella S, Lania AGA, Zerbi A, Hassan C, Repici A",
+  doi: "10.3389/fendo.2025.1666699",
+  source: "journal",
+  topics: ["암위험", "치료", "진단"],
+  abstract_ko: "1형 위 신경내분비종양(gNET)은 예후가 양호한 것으로 알려져 있습니다. 본 연구는 2014~2024년 3차 의료기관에서 진단된 1형 gNET 환자 23명(병변 36개)을 후향적으로 분석한 실제 임상 경험을 보고합니다. 중앙 종양 크기 7mm(범위 2~20mm)로, 29개는 G1, 7개는 G2였습니다. 내시경 절제(34병변)와 수술(2병변)로 치료하였으며, 중앙 추적기간 14개월 동안 6명 환자에서 10건의 국소 재발이 있었으나 모두 G1이었고, 원격전이 및 종양 관련 사망은 없었습니다. 수술 전 내시경초음파(EUS) 시행이 1건에서만 치료 방침을 변경시켰으며, 향후 위험도 계층화를 위한 연구가 필요합니다.",
+  keypoints: [
+    "연구 결과: 23명 환자, 36병변 — 중앙 크기 7mm(범위 2~20mm), G1 29개(80.6%), G2 7개(19.4%); 내시경 절제 34병변(hot-EMR 22, 겸자 5, 냉올가미 4, ESD 1, hybrid-ESD 1), 수술 2병변; 추적 중 10건 국소재발(6명, 55.5%) — 모두 G1, 원격전이·종양사망 없음",
+    "EUS 역할 재고: 수술 전 EUS 13건 시행 중 1건(20mm G1)에서만 림프절 전이 확인 → 수술 방침 변경; 나머지 12건은 음성 결과로 방침 변경 없음 — EUS가 치료 방침을 실질적으로 변경하는 경우는 드물며, 비용·대기시간 증가 고려 시 적응증 재검토 필요",
+    "재발 특성 및 해석: 재발률 27.7%(10/36)이나 전체 생존율에 영향 없음 — 재발은 '진정한 재발'보다 위험 점막에서 지속적으로 발생하는 이시성 다발 병변으로 해석; R1 절제 후 재발률도 전체 생존에 영향 없음",
+    "절제 기법 선택: hot-EMR이 주요 기법(52.9%) — 10mm 미만 단발 G1 병변은 내시경 감시 vs. 절제를 개별적으로 결정; G2-G3 종양은 크기 무관하게 절제 우선 고려; 겸자·냉올가미는 재발률 최대 60%로 치료 목적 사용 부적합",
+    "향후 전망: 인공지능(AI) 활용 — 고위험 위 병변 조기 인식 및 gNET 내시경 감시 중 재발 모니터링에 머신러닝 시스템 도입 가능성; 위험 계층화를 위한 예측인자 규명 연구 필요"
+  ],
+  meta: {
+    "연구 유형": "단일기관 후향적 증례 연구",
+    "연구 기간": "2014년 ~ 2024년",
+    "연구 기관": "이탈리아 밀라노 IRCCS 후마니타스 연구병원(ENETS 우수센터)",
+    "대상": "1형 gNET 환자 23명, 병변 36개",
+    "한계점": "제한적 표본 크기, 후향적 설계, 추적 기간 중앙값 14개월"
+  }
+}  ,{
+  id: 59,
+  title: "Differential target of oxidative damage in Helicobacter pylori-related and autoimmune atrophic gastritis: a single-center study",
+  title_ko: "헬리코박터 파일로리 관련 위염과 자가면역성위축성위염에서 산화적 손상의 차별적 표적: 단일기관 연구",
+  journal: "Frontiers in Medicine",
+  journal_short: "Front Med",
+  year: 2025,
+  if: 3.9,
+  authors: "Pelizzaro F, Cardin R, Maddalo G, Palo M, Minotto M, Carlotto C, Fassan M, Farinati F, Zingone F",
+  doi: "10.3389/fmed.2025.1583833",
+  source: "journal",
+  topics: ["병인기전", "암위험", "병리"],
+  abstract_ko: "산화적 스트레스는 염증성·자가면역 질환의 특징으로 위축성위염 진행에 관여합니다. 본 연구는 자가면역성위축성위염(AAG) 70명과 다병소위축성위염(MAG) 50명을 대상으로 산화적 스트레스 패턴을 비교하였습니다. 혈청 활성산소대사물(dROM), 산화단백질산물(AOPP), 일산화질소(NO), 조직 사이토카인(IL-10, TNFα), 유전체 손상 지표인 8-수산화탈산소구아노신(8-OHdG)을 측정하였습니다. 두 군 간 dROM·NO·AOPP 수준에는 유의한 차이가 없었으나, 8-OHdG는 MAG에서 AAG보다 유의하게 높았으며(p=0.001), IL-10도 MAG에서 높았습니다(p=0.008). 이는 AAG에서 유전체 산화 손상이 적어 선암 위험이 낮은 기전을 설명합니다.",
+  keypoints: [
+    "핵심 발견: 8-OHdG(유전체 산화 손상 지표)가 MAG 환자에서 AAG보다 유의하게 높음(중앙값 16.2 vs. 10.75 adducts/10의5승 dG, p=0.001) — 절단값 28.1에서 AAG와 MAG 감별 정확도 77%, 특이도 92.5%(오즈비 0.08, p=0.0002)",
+    "AAG 내 산화 스트레스 패턴: 조기 OLGA 병기(0~1) AAG에서 진행 병기보다 dROM 수준 유의하게 높음(381.9 vs. 327.9 U, p=0.03) — 점막 위축이 진행될수록 산화 스트레스 표적(위 점막)이 소실되어 자유라디칼 생성 감소",
+    "ECL 과증식과 산화 스트레스: AAG에서 ECL 과증식 초기(0~2) 단계에서 dROM 및 AOPP 수준이 진행 단계(3~5)보다 유의하게 높음(p=0.02, p=0.008) — AOPP가 신항원 형성을 유도해 초기 자가면역 반응을 유지하는 역할 가능",
+    "MAG에서 높은 IL-10: 조직 IL-10이 MAG에서 AAG보다 유의하게 높음(중앙값 114.02 vs. 45.0 pg/mL, p=0.008) — 헬리코박터 감염에 의한 대식세포 동원·만성 염증에 대한 방어 반응으로 해석; TNFα는 두 군 간 차이 없음",
+    "임상적 의의: 대식세포 침윤이 주된 MAG에서는 8-OHdG 매개 유전체 손상→선암 진행 경로가 활성화되는 반면, 림프구 매개 염증이 주된 AAG에서는 이 경로가 억제되어 선암 위험 낮음 — AAG의 종양 위험은 ECL 세포 과증식을 통한 유형 1 카르시노이드에 집중"
+  ],
+  meta: {
+    "연구 유형": "전향적 단일기관 비교 연구",
+    "연구 기간": "2017년 ~ 2018년",
+    "연구 기관": "이탈리아 파도바대학교 병원 소화기내과",
+    "대상": "AAG 70명, MAG 50명 (총 120명)",
+    "측정 지표": "dROM, AOPP, NO, IL-10, TNFα, 8-OHdG"
+  }
+}
+  ,{
+  id: 60,
+  title: "Immunological and clinical overlap between autoimmune gastritis and autoimmune liver diseases: a prospective cohort study",
+  title_ko: "자가면역성위염과 자가면역성간질환의 면역학적·임상적 중첩: 전향적 코호트 연구",
+  journal: "Frontiers in Immunology",
+  journal_short: "Front Immunol",
+  year: 2025,
+  if: 7.3,
+  authors: "Massironi S, Dispinzieri G, Rossi A, Cristoferi L, Lenti MV, Gerussi A, Elvevi A, Carbone M, Bonfichi A, Di Sabatino A, Danese S, Invernizzi P",
+  doi: "10.3389/fimmu.2025.1628478",
+  source: "journal",
+  topics: ["동반질환", "진단", "역학"],
+  abstract_ko: "자가면역성위염(AIG)과 자가면역성간질환(AILD) — 자가면역간염(AIH), 원발성담즙성담관염(PBC), 원발성경화성담관염(PSC) — 은 모두 만성 장기특이적 면역매개 질환입니다. 본 전향적 연구는 AILD 환자 104명을 대상으로 항벽세포항체(APCA) 선별검사를 시행하고, 양성자에서 상부위장관 내시경 및 조직검사로 AIG를 확인하였습니다. APCA 양성률은 22.1%였으며, 양성자의 91.3%에서 조직학적 AIG가 확인되었습니다. 장상피화생은 95.7%에서 관찰되었고, PBC가 APCA 양성군에서 불균형적으로 높은 비율(47.8%)을 차지했습니다.",
+  keypoints: [
+    "주요 결과: AILD 104명 중 23명(22.1%)에서 항벽세포항체 양성 — APCA 양성자의 91.3%에서 조직학적 자가면역성위염 확인; 장상피화생 95.7%; OLGA 병기 분포: I기 8명, II기 8명, III기 4명, IV기 1명",
+    "PBC와의 연관성: APCA 양성군에서 원발성담즙성담관염(PBC) 비율이 47.8%로, 전체 AILD 코호트(39.0%)보다 높음(비유의적) — 일반 인구에서 항벽세포항체 양성 시 조직학적 AIG 확인율이 50~60%인 데 반해, 본 AILD 코호트에서는 91.3%로 현저히 높아 AILD 환자가 고위험군임을 시사",
+    "동반 자가면역질환: APCA 양성자의 56.5%에서 추가 자가면역질환 동반 — 자가면역갑상선염 43.5%(최다), 류마티스질환 17.4%, 건선 13.0%; '갑상위장 증후군' 개념과 일치",
+    "임상적 시사점: APCA 양성이거나 자가면역갑상선질환을 동반한 AILD 환자(특히 PBC)에서 AIG 선별검사 및 내시경 감시 고려 권고 — 연구 기간 중 위암·신경내분비종양은 발견되지 않았으나 추적 기간 제한적이므로 장기 추적 필요",
+    "연구의 의의와 한계: AILD-AIG 중첩을 전향적으로 평가한 최초 연구 중 하나 — 한계: APCA 양성자만 내시경 시행(APCA 음성군 AIG 과소추정 가능), 표본 수 제한(APCA 양성군 23명), 단면 연구로 인과관계 규명 불가"
+  ],
+  meta: {
+    "연구 유형": "단일기관 전향적 코호트 연구",
+    "연구 기간": "2019년 1월 ~ 2022년 12월",
+    "연구 기관": "이탈리아 IRCCS San Gerardo dei Tintori, 몬차 (자가면역질환 전문 3차 의료기관)",
+    "대상": "AILD 환자 104명 (AIH 33명, PBC 41명, PSC 14명 등)",
+    "선별 방법": "전체 AILD 코호트 APCA 검사 → 양성자 상부내시경+조직검사"
+  }
+}  ,{
+  id: 61,
+  title: "Multiple gastric tumors in patients with combined autoimmune and helicobacter pylori-associated gastritis: a case report and literature review",
+  title_ko: "자가면역성위염과 헬리코박터 파일로리 관련 위염이 공존하는 환자에서 다발성 위 종양: 증례 보고 및 문헌 고찰",
+  journal: "Frontiers in Immunology",
+  journal_short: "Front Immunol",
+  year: 2025,
+  if: 7.3,
+  authors: "Lin W, Wu C, Xu G, Yi G, Zhang G, Li H, Zheng J, Li D, Wang W",
+  doi: "10.3389/fimmu.2025.1562853",
+  source: "journal",
+  topics: ["증례", "암위험", "병인기전"],
+  abstract_ko: "본 논문은 자가면역성위염(AIG)과 헬리코박터 파일로리(H. pylori) 관련 위염이 공존하는 4증례를 보고하며, 모든 증례에서 위 종양이 발생했고 일부에서는 복수의 조직학적 기원을 가진 종양이 관찰되었습니다. 서술적 문헌 고찰을 통해 이 맥락에서의 종양 발생 기전과 임상적 의의를 탐구합니다. AIG와 H. pylori 위염의 공존이 상승적 점막 손상을 통해 이질적 신생물을 유발할 수 있음을 강조하며, 이 환자군에서 보다 적극적인 내시경 감시가 필요함을 제언합니다.",
+  keypoints: [
+    "4증례 요약: 모두 AIG와 H. pylori 위염 공존 — 증례1(51세 여): 선암·편평암·옥신틱선종·NET 포함 충돌종양(4가지 조직형); 증례2(56세 여): 다병소 NET G1 + 철결핍빈혈; 증례3(52세 여): 분화형 세관선암 + NET 동시 발생; 증례4(75세 남): NET G1 재발 + 거대적아구성 빈혈",
+    "공존 위염의 종양 형성 기전: AIG에서 고가스트린혈증→ECL 세포 과증식→NET 발생; H. pylori에서 대식세포 침윤→산화적 유전체 손상→선암 발생 — 두 기전이 동시에 작동하여 다양한 조직형의 종양이 동일 환자에서 발생 가능",
+    "분자적 연결: H. pylori 감염이 분자 모방을 통해 항벽세포항체를 유도하여 AIG를 촉발할 수 있음 — Ihara 등은 H. pylori 위염이 수년에 걸쳐 AIG로 진행된 증례 보고; 역으로 H. pylori 제균 후 AIG가 급속 진행된 증례도 보고됨",
+    "H. pylori 음성 AIG에서의 위암 위험: Rugge 등의 전향적 연구(211명, 10,541 인년)에서 순수 AIG의 위암 위험은 낮았으나, 이전에 발견되지 않은 H. pylori 감염이 기여했을 가능성 시사 — 본 증례에서 H. pylori 음성 2명도 조직학적 진행 위축 또는 거대적아구성 빈혈 존재",
+    "감시 권고: AIG + H. pylori 위염 공존 환자에서 6~12개월마다 확대색소내시경 + 표적 생검 시행; 혈청 가스트린·크로모그라닌A 모니터링; 비타민B12·철분 정기 평가 권고 — MEN1 감별 위해 50세 미만 또는 가족력 있는 다발성 NET 환자에서 유전자 검사 고려"
+  ],
+  meta: {
+    "논문 유형": "증례 보고 및 서술적 문헌 고찰",
+    "증례 수": "4증례 (51~75세, 여성 3명·남성 1명)",
+    "연구 기관": "중국 푸저우 인민해방군 제900병원 소화기내과",
+    "핵심 개념": "충돌종양, AIG+H.pylori 공존, 상승적 발암 기전"
+  }
+}
+  ,{
+  id: 62,
+  title: "Autoimmune gastritis diagnosed due to recurrent gastric neuroendocrine tumor: a case report",
+  title_ko: "재발성 위 신경내분비종양으로 진단된 자가면역성위염: 증례 보고",
+  journal: "Frontiers in Medicine",
+  journal_short: "Front Med",
+  year: 2025,
+  if: 3.9,
+  authors: "Yang Q, Jin X, Lv X, Hu J",
+  doi: "10.3389/fmed.2024.1519819",
+  source: "journal",
+  topics: ["증례", "암위험", "진단"],
+  abstract_ko: "내시경이 보편화되면서 자가면역성위염(AIG) 진단이 증가하고 있으나 진단 지연이 여전히 문제입니다. 본 증례는 3년 이내 두 차례 위내시경에서 위 신경내분비종양(GNET)이 발견되어 내시경점막하박리술(ESD)을 받은 53세 여성 환자로, 재발성 GNET를 계기로 AIG가 최종 진단되었습니다. 재발성 GNET, 철결핍빈혈, 갑상선기능저하증, 고가스트린혈증, 저펩시노겐I 등 복합 소견이 AIG 진단의 단서가 되었습니다. 재발성 GNET 환자, 특히 빈혈 및 자가면역 갑상선질환 동반 시 AIG 가능성을 적극 평가해야 합니다.",
+  keypoints: [
+    "증례 경과: 53세 여성 — 3년 전 타원 내시경에서 GNET G1 발견, ESD 시행; 재내원 시 위체부·저부 심한 점막위축, 전정부 궤양, 위체부 점막 융기 2개 발견; 조직검사에서 GNET G2(Ki-67 3%) 확인, ESD 재시행 → 조직: 만성 중증 위축성위염 + 장상피화생",
+    "진단 단서: 혈청 가스트린 328 µg/L(상승), 펩시노겐I 10.2 µg/L(감소), PGI/PGII 0.94(감소); 철결핍빈혈(헤모글로빈 93 g/L, 혈청철 3.8 µmol/L), 비타민B12 감소(114 pmol/L); 갑상선자극호르몬 경미 상승(5.91 µIU/mL) — 항벽세포항체 미검사이나 일본 진단기준으로 AIG 확진",
+    "AIG와 GNET의 연관성: AIG에서 GNET 발생률 최대 15.4% — 고가스트린혈증이 ECL 세포 증식·과형성·비정형 과형성을 유발하여 GNET 형성; GNET는 보통 1cm 미만 위체부·저부 폴립/결절로 나타나며 전이율 1~3%로 낮음",
+    "임상적 교훈: 악성빈혈 발생 이전에도 철결핍빈혈과 비타민B12 감소가 선행 — 악성빈혈만을 AIG 단서로 삼으면 진단 추가 지연; 재발성 GNET + 철결핍빈혈 + 자가면역 갑상선질환 동반 시 가스트린·펩시노겐·항벽세포항체·내인인자항체 적극 검사 권고",
+    "AIG 동반 자가면역질환 현황: AIG 환자의 68.6%에서 다른 자가면역질환 동반(갑상선염 60.9%, 당뇨 19.9%) — 본 증례도 갑상선기능저하증 동반하여 일치; 단순 증상 치료보다 포괄적 자가면역·영양 평가 필수"
+  ],
+  meta: {
+    "논문 유형": "증례 보고",
+    "증례": "53세 여성, GNET G2 재발로 AIG 진단",
+    "연구 기관": "중국 저장성 둥양인민병원 소화기내과",
+    "핵심 메시지": "재발성 GNET는 AIG 진단의 중요 단서 — 내시경의가 AIG-GNET 연관성 인지해야"
+  }
+}  ,{
+  id: 63,
+  title: "Comparison of clinicopathological features of gastric carcinoma in autoimmune gastritis with and without Helicobacter pylori infection",
+  title_ko: "자가면역성위염에서 헬리코박터 파일로리 감염 유무에 따른 위암의 임상병리학적 특징 비교",
+  journal: "Gastric Cancer",
+  journal_short: "Gastric Cancer",
+  year: 2025,
+  if: 7.4,
+  authors: "Takasu A, Hirasawa T, Higashi Y, Nakano K, Nunobe S, Gotoda T, Kawachi H",
+  doi: "10.1007/s10120-025-01649-z",
+  source: "journal",
+  topics: ["암위험", "병리", "진단", "헬리코박터"],
+  abstract_ko: "만성 위축성위염은 위암(GC)의 위험인자이며, 헬리코박터 파일로리(H. pylori) 또는 자가면역성위염(AIG)이 대표적입니다. 본 후향적 연구는 2008~2024년 단일기관에서 AIG에 동반된 위암(GC-AIG) 65증례를 H. pylori 음성군(그룹A, 18증례 25병변)과 H. pylori 감염군(그룹B, 47증례 72병변)으로 분류해 임상병리학적 차이를 비교했습니다. H. pylori 음성 GC-AIG는 더 젊은 연령, 더 높은 혈청 가스트린, 위상부·중부 위치, 미분화형 선암 비율이 높은 특징을 보였습니다.",
+  keypoints: [
+    "종양 위치 차이: 그룹A(H. pylori 음성)에서 상부 44.0%, 중부 40.0% — 그룹B(H. pylori 감염)에서 하부 48.6%(p=0.006) — AIG 위축은 위체부·저부에서 시작되어 상부 위치 종양 多; H. pylori 위축은 전정부→체부 진행으로 하부 위치 종양 多",
+    "조직형 차이: 순수 미분화형 선암 그룹A 28.0% vs. 그룹B 8.3%(p=0.027) — 미분화형은 장상피화생이 적은 점막에서 발생; H. pylori가 AIG와 상승적으로 장상피화생을 촉진해 그룹B에서 분화형 선암 비율 높음(77.8%)",
+    "혈청 가스트린 차이: 그룹A 중앙값 1133 pmol/L vs. 그룹B 419 pmol/L(p=0.019) — H. pylori에 의한 전정부 위축이 G세포 분비를 억제해 그룹B 가스트린 낮음; 고가스트린혈증이 상부 위암 발생과 연관",
+    "연령 차이: 그룹A 중앙 연령 70세 vs. 그룹B 75세(p=0.045) — 일본 내 H. pylori 감염률 출생코호트별 감소 반영; Rugge 등의 순수 AIG 코호트(55.7세, 추적 7.5년)에서는 GC 미발생했으나 본 연구 그룹A의 중앙 발병 연령 70세로 장기 추적 시 AIG 단독 발암 가능성 배제 불가",
+    "임상적 시사점: GC-AIG의 임상병리 특징은 H. pylori 감염 상태에 따라 다름 — H. pylori 음성 AIG에서도 특히 60세 이상에서 적극적인 내시경 감시 필요; 동시성·이시성 다발성 GC 비율 두 군 모두 높아(동시성 약 22%) AIG 자체의 발암 환경 역할 시사"
+  ],
+  meta: {
+    "연구 유형": "단일기관 후향적 연구",
+    "연구 기간": "2008년 7월 ~ 2024년 8월",
+    "연구 기관": "일본 도쿄 암연구회 암연구소병원",
+    "대상": "GC-AIG 65증례(97병변) — H. pylori 음성 18증례, H. pylori 감염 47증례",
+    "한계": "후향적 단일기관, 소표본, H. pylori 음성 정의의 자발적 제균 배제 불완전"
+  }
+}
+  ,{
+  id: 64,
+  title: "Exploring the potential of artificial intelligence in assessing the risk of gastric neoplastic lesions in patients with corpus atrophic gastritis",
+  title_ko: "위체부 위축성위염 환자에서 위 신생물성 병변 위험 평가를 위한 인공지능의 가능성 탐색",
+  journal: "Gastric Cancer",
+  journal_short: "Gastric Cancer",
+  year: 2025,
+  if: 7.4,
+  authors: "Dilaghi E, Cesaroni E, Ligato I, Silvestri M, Liuzzi G, Annibale B, Lucidi S, Esposito G, Sciandrone M",
+  doi: "10.1007/s10120-025-01679-7",
+  source: "journal",
+  topics: ["AI", "암위험", "진단", "역학"],
+  abstract_ko: "위체부 위축성위염(CAG) 환자는 위 신생물성 병변(GNL) 발생 위험으로 내시경-조직학적 감시가 필요합니다. 본 연구는 2001~2023년 감시 프로그램에 참여한 CAG 환자 코호트에서 30개 임상·내시경·조직학 변수를 활용해 Fisher 점수 기반 변수 선택과 단일분류 서포트벡터머신(One-Class SVM) 모델로 GNL 발생 예측 변수를 도출했습니다. 최종 분석 103명 중 22명에서 GNL 발생(상피성 13명, T1gNET 9명). 항벽세포항체와 저펩시노겐I이 두 병변 모두와 연관되었고, 저용량 아스피린은 상피성 GNL과 역연관, H. pylori 제균치료는 T1gNET와 역연관을 보였습니다.",
+  keypoints: [
+    "상피성 GNL 예측 변수(민감도 92.3%, 특이도 77.9%): 항벽세포항체 양성(계수 0.60), 저펩시노겐I 30 µg/L 미만(계수 0.62), 60세 초과(계수 0.27), 전정부 염증(계수 0.28) — 역연관: 저용량 아스피린 사용(계수 -0.46)",
+    "T1gNET 예측 변수(민감도 77.8%, 특이도 92.6%): 항벽세포항체 양성(0.41), 저펩시노겐I(0.43), 항갑상선과산화효소항체(0.36), 소화불량 증상(0.37), 흡연(0.35) — 역연관: CAG 진단 시 H. pylori 제균치료(계수 -0.68)",
+    "인공지능 방법론: Fisher 점수로 29개 변수 순위화 → One-Class SVM(선형 커널)으로 최적 변수 부분집합 선택 → leave-one-out 교차검증 + 합성데이터(CTGAN) 추가 검증 — 불균형 데이터셋에서 희귀 사건(GNL) 탐지에 적합한 이상 탐지 모델 활용",
+    "저용량 아스피린의 보호 효과: 상피성 GNL 발생과 역연관 — 한국 전국 코호트(6만명) 및 메타분석 결과와 일치하나 CAG 환자 특이적 분석 부재로 구체적 권고는 불가",
+    "임상적 의의: CAG 진단 시점부터 항벽세포항체·펩시노겐I·항갑상선과산화효소항체·소화불량·흡연 여부로 GNL 고위험군 조기 식별 가능 — AI 보조 위험 층화 시스템의 임상 적용 가능성 제시; 외부 독립 코호트 검증 필요"
+  ],
+  meta: {
+    "연구 유형": "후향적 단일기관 코호트 + AI 모델링",
+    "연구 기간": "2001년 ~ 2023년",
+    "연구 기관": "이탈리아 로마 사피엔자대학교 산탄드레아병원",
+    "대상": "CAG 355명 → 최종 분석 103명(GNL 발생 22명)",
+    "AI 방법": "Fisher 점수 변수 선택 + One-Class SVM(선형 커널) + CTGAN 합성데이터 검증"
+  }
+}  ,{
+  id: 65,
+  title: "Multiple gastric adenocarcinoma of the fundic gland type with various endoscopic features in autoimmune gastritis: a case report and literature review",
+  title_ko: "자가면역성위염에서 다양한 내시경 소견을 보이는 다발성 위저선형 위선암: 증례 보고 및 문헌 고찰",
+  journal: "Gastroenterology Report",
+  journal_short: "Gastroenterol Rep",
+  year: 2025,
+  if: 4.2,
+  authors: "Zhao X, Zhang Z, Du Z, Du X, Wu W, Zhang H",
+  doi: "10.1093/gastro/goaf066",
+  source: "journal",
+  topics: ["증례", "암위험", "진단"],
+  abstract_ko: "위저선형 위선암(GA-FG)은 위저선을 향해 분화하는 저등급 이형성 상피 종양으로, 비위축 점막의 깊은 층에서 발생하며 점막하종양(SMT) 유사 형태 등 다양한 내시경 소견을 보입니다. 본 증례는 자가면역성위염(AIG) 환자에서 4가지 서로 다른 내시경 형태를 가진 9개의 GA-FG 병변이 발견된 희귀 사례입니다. 50세 남성으로 항벽세포항체 양성, H. pylori 음성이었으며 모든 병변을 내시경적 일괄 절제 후 1년 추적에서 재발 없었습니다.",
+  keypoints: [
+    "9개 병변의 4가지 내시경 형태: 유형1(위저부, Paris 0-IIa, 발적 표면, 8mm); 유형2(위체부 상부 전벽, Paris 0-Is, 발적 표면, 8mm); 유형3(위체부 상부 대만, Paris 0-IIb, 백색 표면, 10mm); 유형4(위체부 중상부 산재, SMT 유사 형태+수지상 혈관, 5~8mm, 6개) — AIG에서 GA-FG는 매우 드문 병변",
+    "조직병리: 종양선이 위저선을 대체하며 정상 소와 상피로 피복; 심층에서 현저한 이형성; 근층판을 관통해 점막하층 침윤(488 µm); 면역조직화학: 펩시노겐I 및 MUC6 양성, H+/K+ ATPase 및 MUC5AC 음성 → 주세포 우세형 GA-FG 확진",
+    "AIG에서 GA-FG 발생 기전: AIG에서 진행성 위저선 소실로 GA-FG 발생 조건 형성이 어려우나 초기 AIG(two-layer 구조 교란되나 위소와 대 위선 비율 정상)에서는 GA-FG 발생의 전제 조건 가능 — AIG 환자에서의 GA-FG 보고는 Wang 등, Sumida 등에 이어 세 번째",
+    "내시경·치료: GA-FG의 표준 내시경 소견은 SMT 유사+수지상 혈관이나, AIG에서는 4가지 형태로 다양하게 나타나 NET와 감별 필요 — 점막하 침윤이 있더라도 림프혈관 침습·원격전이 경향 낮아 내시경 일괄 절제 가능; 1년 추적 재발·전이 없음",
+    "문헌 고찰: 340개 GA-FG 병변 분석에서 대부분 단발이나 다발 사례 존재 — GNAS 돌연변이가 특징적 유전 소견이나 다발성 병변과의 연관성 미규명; 소형 GA-FG도 점막하 침윤 가능하나 예후 양호"
+  ],
+  meta: {
+    "논문 유형": "증례 보고 및 문헌 고찰",
+    "증례": "50세 남성, AIG + 다발성 GA-FG 9개(4가지 형태)",
+    "연구 기관": "중국 광저우 광저우중의약대학교 제2부속병원 소화기내과",
+    "희귀성": "AIG에서 GA-FG는 극히 드물며, 9개 다발 병변은 세계 최초 수준"
+  }
+}
+  ,{
+  id: 66,
+  title: "Real-time gastric juice analysis to rule out the presence of autoimmune gastritis: a case-control study",
+  title_ko: "자가면역성위염 배제를 위한 실시간 위액 분석: 증례-대조 연구",
+  journal: "GE - Portuguese Journal of Gastroenterology",
+  journal_short: "GE Port J Gastroenterol",
+  year: 2025,
+  if: 2.1,
+  authors: "Dilaghi E, Esposito G, Ligato I, Del Forno A, Rossi RE, Hassan C, Annibale B, Zullo A",
+  doi: "10.1159/000540117",
+  source: "journal",
+  topics: ["진단", "AI"],
+  abstract_ko: "자가면역성위염(AIG)은 신경내분비종양과 위암 위험을 증가시키는 드문 질환입니다. 본 연구는 내시경 중 위액의 실시간 pH 측정(EndoFaster® 장치, 절단값 pH 4.5)이 AIG를 정확하게 배제할 수 있는지 평가한 증례-대조 연구입니다. AIG 환자 40명과 매칭 대조군 212명을 분석한 결과, 민감도 73%, 특이도 94%, 음성예측도(NPV) 95%를 달성했습니다. 100명 중 EndoFaster® 음성 환자에서 AIG를 놓치는 경우는 5명에 불과해, 정상 소견 점막에서의 불필요한 생검을 피하는 데 유용한 도구임을 시사합니다.",
+  keypoints: [
+    "주요 성능 지표: 민감도 73%(95% CI 0.57~0.84), 특이도 94%(0.90~0.97), 정확도 91%(0.87~0.95), 양성예측도 71%, 음성예측도(NPV) 95%(0.93~0.97) — 양성우도비 12.9, 음성우도비 0.29",
+    "위액 pH 분포: AIG 환자 72.5%(29/40)에서 pH 4.5 초과 vs. 대조군 5.7%(12/212)에서 양성 — pH 4.5 이상은 옥신틱 점막 위축으로 인한 산분비 저하의 실시간 지표",
+    "위음성 분석: 11건의 위음성 중 6건(54.5%)에서 경중등도 위축만 존재 — 부분적·반점형 산분비 위선 감소는 pH에 검출될 만큼 충분한 산분비 저하를 일으키지 않을 수 있음; 일부 경도 위축은 병리과 과잉보고 가능성도 있음",
+    "임상적 활용: EndoFaster® 음성 시 정상 소견 점막에서 생검 생략 가능(100명당 5명만 AIG 놓침) — 양성 시 표준 프로토콜(전정부 2개·각절 1개·위체부 2개) 생검 시행 권고; 동시에 암모늄 농도 측정으로 H. pylori도 배제 가능",
+    "의의 및 한계: AIG에서 EndoFaster® 성능을 평가한 최초 연구 — 한계: 소표본(40명), 후향적 설계, H. pylori 감염 및 PPI 사용 환자 제외로 실제 임상 적용 제한; 대규모 다기관 전향적 연구 필요"
+  ],
+  meta: {
+    "연구 유형": "후향적 증례-대조 연구",
+    "연구 기관": "이탈리아 로마 사피엔자대학교 산탄드레아병원 외",
+    "대상": "AIG 40명 + 매칭 대조군 212명",
+    "진단 도구": "EndoFaster®(실시간 위액 pH·암모늄 측정, 절단값 pH 4.5)",
+    "한계": "소표본, 후향적 설계, H. pylori 양성·PPI 사용자 제외"
+  }
+},
+{
+  id: 67,
+  title: "Autoimmune Gastritis in Korean Patients with Gastric Tumors: Clinicopathologic Correlations and Diagnostic Histological Features",
+  title_ko: "한국인 위종양 환자에서의 자가면역성위염: 임상병리학적 상관관계 및 진단적 조직학적 소견",
+  journal: "Gut and Liver",
+  journal_short: "Gut Liver",
+  year: 2024,
+  if: 4.0,
+  authors: "Ahn S, Kim TS, Kushima R, Lee JH, Kim KM",
+  doi: "10.5009/gnl240223",
+  source: "journal",
+  topics: ["진단", "병리", "암위험", "헬리코박터", "역학"],
+  abstract_ko: "삼성서울병원에서 위종양(위암 612명 + 신경내분비종양 12명) 환자 624명을 대상으로 항벽세포항체(APCA) 양성자에서 내시경·조직학 검토를 통해 AIG 유병률과 임상병리학적 특성을 분석한 후향적 연구입니다. 전체 624명 중 37명(5.9%)이 APCA 양성이었고, 최종 11명(1.8%)이 AIG 진단 기준을 충족하였습니다. 위암에서 AIG 유병률은 1.3%(8/612), 신경내분비종양에서는 25.0%(3/12)였습니다. AIG 환자의 54.5%(6명)에서 H. pylori 항체 양성으로, AIG 동반 위암 환자의 75%가 H. pylori 현재·과거 감염력을 보였습니다. AIG 동반 위암에서 펩시노겐 I 수치와 I/II 비율이 비AIG 위암 대비 유의하게 낮았습니다. 조직학적으로는 ECL세포 과증식 동반 시 AIG 확진이 가능하였으나, H. pylori 동반 감염 시 진단 기준 적용에 각별한 주의가 필요합니다.",
+  keypoints: [
+    "위암 환자에서 AIG 유병률 1.3% — 신경내분비종양에서는 25.0%로 현저히 높음",
+    "AIG 동반 위암 환자의 75%(6/8)에서 H. pylori 현재 또는 과거 감염 동반 — H. pylori 비감염 순수 AIG에서 위암 위험은 낮을 가능성 시사",
+    "펩시노겐 원 수치 및 원/투 비율: AIG 동반 위암에서 유의하게 낮음(p=0.042, p=0.016) — 보조 진단 지표로 활용 가능하나 H. pylori 감염 시 PG 수치 상승으로 확진 불가",
+    "H. pylori 동반 AIG의 조직학 진단 핵심: 전층 염증(full-thickness inflammation) + 산분비선 소실 + ECL세포 과증식 3가지 조합 — 전정부 위축이 체부보다 심할 때 동반 진단 가능",
+    "APCA 양성이나 AIG 비확진 26명 중 84.6%가 H. pylori 양성 — H. pylori 관련 위염이 APCA를 비특이적으로 유발할 수 있음",
+    "한국 최초 위종양 환자 대상 엄격한 진단 기준 적용 AIG 연구 — H. pylori 고유병률 국가에서 AIG 진단 시 H. pylori 상태 파악이 핵심"
+  ],
+  meta: {
+    "연구 설계": "단일기관 후향적 관찰 연구",
+    "대상 환자": "624명 (위암 612명 + 신경내분비종양 12명)",
+    "연구 기간": "2021년 1월~2023년 6월",
+    "연구 기관": "삼성서울병원, 성균관대학교 의과대학 (+ 일본 시가의과대학)"
+  }
+},
+{
+  id: 68,
+  title: "What Is the Easiest Way to Diagnose Advanced-Stage Autoimmune Gastritis in the Korean Context?",
+  title_ko: "한국에서 진행성 자가면역성위염을 진단하는 가장 쉬운 방법은 무엇인가?",
+  journal: "Gut and Liver",
+  journal_short: "Gut Liver",
+  year: 2025,
+  if: 4.0,
+  authors: "Lee SY",
+  doi: "10.5009/gnl250081",
+  source: "journal",
+  topics: ["진단", "역학", "헬리코박터"],
+  abstract_ko: "건국대학교 의과대학 이선영 교수가 Ahn et al.의 연구(Gut Liver 2025;19:177-188)에 대해 작성한 에디토리얼입니다. 한국에서 AIG 진단율을 높이기 위한 가장 현실적인 전략으로, 위암 검진 위내시경 시 역위축(reverse atrophy) 소견 발견 시 혈청 APCA 검사를 시행할 것을 제안합니다. 한국 정부가 40~75세 모든 국민에게 2년마다 위내시경 검진을 제공하고 있으므로, 내시경의사 교육을 통한 AIG 내시경 소견 인식 향상이 AIG 진단율 향상의 핵심 전략이라고 결론짓습니다. APCA 정확도는 81%, 항내인자항체 정확도는 27%로 동아시아에서 AIG 환자의 97%가 APCA 양성으로 진단됩니다. 초기 단계 AIG는 역위축 소견이 없어 조기 발견이 어려울 수 있으나, 이 시기는 즉각적 처치가 필요한 공격적 질환이 아니므로 임상적으로 큰 문제가 되지 않는다고 설명합니다.",
+  keypoints: [
+    "한국에서 AIG 진단율 향상 전략: 위암 검진 내시경에서 역위축(reverse atrophy) 발견 시 혈청 APCA 검사 시행 — 전수 APCA 검사는 위양성 多로 비권고",
+    "APCA 정확도 81% vs 항내인자항체 27% — 동아시아 AIG 환자의 97%가 APCA 양성으로 진단, 빈혈(19.3%) 비율이 낮은 동아시아 특성 반영",
+    "한국 AIG 유병률(개방형 위축 O3 기준): 1.0%(11/1,101) — 체부 우세 위축 81.8%, 가스트린-17 >30 pmol/L; 범위축 18.2%, 가스트린-17 <0.4 pmol/L",
+    "H. pylori 감염 시 펩시노겐 원 상승으로 AIG 동반 여부와 무관하게 수치 증가 → 저펩시노겐 원·저원/투 비율·고가스트린 조합만으로 AIG 확진 불가",
+    "AIG의 3단계 진행(조기→전성기→말기)에서 역위축 등 전형적 내시경 소견은 전성기·말기에서 관찰 — 조기 AIG 발견은 현 전략의 한계이나 즉각 처치 불필요한 진행 속도",
+    "결론: 내시경의사 대상 AIG 내시경 소견 교육이 한국(H. pylori 비감염 인구 증가 추세)에서 AIG 진단율 향상의 가장 현실적인 방법"
+  ],
+  meta: {
+    "논문 유형": "에디토리얼 (Editorial)",
+    "대상 논문": "Ahn S et al., Gut Liver 2025;19:177-188 (id 67번 논문)",
+    "출판일": "Gut and Liver, Vol. 19, No. 2, March 2025",
+    "연구 기관": "건국대학교 의과대학 내과학교실, 서울"
+  }
+},
+{
+  id: 69,
+  title: "Incidence of Gastric Cancer and Neuroendocrine Tumors in Autoimmune Gastritis: A Systematic Review and Meta-Analysis of Follow-Up Studies",
+  title_ko: "자가면역성위염에서 위암 및 신경내분비종양 발생률: 추적 연구의 체계적 문헌고찰 및 메타분석",
+  journal: "Helicobacter",
+  journal_short: "Helicobacter",
+  year: 2025,
+  if: 4.8,
+  authors: "He B, Ma X, Liu M, Zou X, Ye JCXP, Zhang R, Li Z",
+  doi: "10.1111/hel.70096",
+  source: "journal",
+  topics: ["암위험", "역학", "헬리코박터", "진단"],
+  abstract_ko: "자가면역성위염(AIG)에서 위암(GC)과 위 신경내분비종양(gNET)의 실제 발생률은 H. pylori 감염 상태, AIG 아형, 연령에 따라 크게 다를 수 있으나 이를 종합적으로 분석한 메타분석은 없었습니다. 본 연구는 PubMed·Embase·Cochrane Library(2025년 5월까지)를 검색하여 23개 연구(병원 기반 코호트 19개 n=4,309명 + 국가 레지스트리 4개 n=36,015명)를 포함하였습니다. 병원 기반 코호트에서 위암 통합 발생률은 0.12/100인년(95% CI 0.06–0.17, I²=45.7%), gNET 발생률은 1.09/100인년(95% CI 0.61–1.58, I²=81.3%)이었습니다. AIG 아형별로는 악성빈혈(PA)에서 위암 위험이 가장 높고(0.29/100인년), PCA 양성군에서 가장 낮았습니다(0.09/100인년). H. pylori 비감염(naive) 군의 위암 발생률은 0.12/100인년으로 H. pylori 노출군(0.07/100인년)보다 낮지 않아 H. pylori 비감염이 보호 인자가 아님을 확인하였습니다. 연령 층화 분석에서 60세 이상 환자의 위암 발생률(0.27/100인년)과 gNET 발생률(1.48/100인년)이 60세 미만(각각 0.10, 0.87/100인년)보다 일관되게 높았고, 메타회귀에서 고령이 gNET 발생의 유일한 독립 위험인자였습니다. 이를 바탕으로 60세 이상은 2년 간격, 60세 미만은 4년 간격의 연령 기반 개별화 감시 전략을 처음으로 제안하였습니다.",
+  keypoints: [
+    "위암 통합 발생률 0.12/100인년, gNET 1.09/100인년 — gNET이 위암의 약 9배로 내시경 감시의 주요 표적은 gNET이어야 함",
+    "AIG 아형별 위암 위험: PA 0.29 > 조직학적 AIG 0.12 > PCA 양성 0.09/100인년 — 각 아형이 AIG의 서로 다른 병기를 반영, PA가 말기 AIG의 임상 표현",
+    "H. pylori 비감염(naive) AIG의 위암 발생률 0.12/100인년 — H. pylori 노출군(0.07)보다 낮지 않아, H. pylori 비감염 상태가 위암 예방 인자가 아님을 메타분석으로 최초 확인",
+    "연령이 종양 진행의 핵심 인자: 60세 이상에서 위암 0.27, gNET 1.48/100인년 — 메타회귀에서 고령이 gNET 발생의 유일한 유의한 독립 예측인자(계수 0.87, p=0.001)",
+    "연령 기반 개별화 감시 전략 최초 제안: ≥60세 → 2년마다 내시경, <60세 → 4년마다; PA·지속적 고가스트린혈증·gNET 기왕력 고위험군은 더 짧은 간격 권고",
+    "⚠️ 상당한 이질성 잔존(gNET I²=81.3%); 대부분 유럽 연구로 아시아 데이터 제한적; 개별 환자 데이터 없이 요약 통계치 사용; 출판 편향 GC에서 유의(Egger p=0.002)"
+  ],
+  meta: {
+    "연구 유형": "체계적 문헌고찰 및 메타분석 (PROSPERO CRD420251047873)",
+    "포함 연구": "23편 (병원 기반 19편 n=4,309명 / 레지스트리 4편 n=36,015명)",
+    "검색 기준일": "2025년 5월 8일 (PubMed·Embase·Cochrane)",
+    "연구 기관": "베이징 중의약대학 동직문병원 / 허난 중의약대학 제1부속병원, 중국"
+  }
+},
+{
+  id: 70,
+  title: "Parietal Cell Antibody Levels Among Chronic Gastritis Patients in a Country With Low Helicobacter pylori Infection: Epidemiology, Histopathological Features, and H. pylori Infection",
+  title_ko: "헬리코박터 저유병률 국가(인도네시아)의 만성위염 환자에서 항벽세포항체 수준: 역학, 조직병리학적 소견, H. pylori 감염과의 관계",
+  journal: "Helicobacter",
+  journal_short: "Helicobacter",
+  year: 2025,
+  if: 4.8,
+  authors: "Amalia R, Miftahussurur M, Syam AF, Uchida T, Alfaray RI, Fauzia KA, Rezkitha YAA, Akada J, Matsumoto T, Yamaoka Y",
+  doi: "10.1111/hel.70035",
+  source: "journal",
+  topics: ["역학", "헬리코박터", "진단", "병인기전"],
+  abstract_ko: "인도네시아는 H. pylori 유병률이 낮음에도(전체 8.6%) 위축성위염을 포함한 만성위염 발생률이 높아 AIG가 원인으로 추정되어 왔습니다. 2014~2017년 인도네시아 11개 지역에서 수집된 만성위염 환자 혈청 및 위 생검 138례(위염군 113명 + 대조군 25명)를 대상으로 PCA(형광항체법, 절단값 10 RU/mL)와 일본 AIG 진단 기준(CARP/JGES)에 따른 조직학적 재평가를 시행하였습니다. 전체의 78.99%(109/138)가 PCA 양성이었으나, 전정부 조직학이 보전되고 H. pylori가 음성인 진정한 AIG는 단 1례(0.72%)였습니다. PCA 양성의 55.96%가 H. pylori 양성으로, H. pylori 양성군에서 PCA 수치가 음성군보다 유의하게 높았으며(p<0.05, R=0.31), 위체부 염증·위축·위저부 점막 층판고유층 염증 점수와 유의한 양의 상관관계를 보였습니다. PG I/II 비율은 H. pylori 항체 및 PCA 수치와 역상관(각 R=-0.48, -0.21)이었습니다. 이 결과는 인도네시아의 H. pylori 비감염 만성위염이 AIG에 의한 것이 아님을 시사하며, H. pylori 감염이 APCA 상승 및 AIG 유사 조직병리 변화를 유발하는 주요 인자임을 보여줍니다.",
+  keypoints: [
+    "인도네시아 만성위염 환자에서 진정한 AIG 유병률 0.72%(1/138) — PCA 양성률은 78.99%로 매우 높지만 전정부 보전+H. pylori 음성 기준을 적용하면 AIG는 극히 드묾",
+    "PCA 양성의 55.96%가 H. pylori 양성 — H. pylori 감염이 PCA 수치 상승의 주요 원인; H. pylori 양성군의 PCA 수치가 음성군보다 유의하게 높음(p<0.05, R=0.31)",
+    "AIG 아형 오진 위험 강조: PCA 양성+체부 위염 조직 소견 42.75%에서 AIG 유사 조직병리 관찰되나, H. pylori가 이 변화를 주도 — 진정한 AIG 진단에는 전정부 보전+H. pylori 배제가 필수",
+    "PG I/II 비율과 H. pylori 항체(R=-0.48) 및 PCA(R=-0.21) 역상관 — PG I/II 비율이 위점막 손상 및 질환 진행 평가의 보조 지표로 유용",
+    "H. pylori 감염 기전: urease β 서브유닛과 위 양성자 펌프(H⁺/K⁺-ATPase) 간 분자 모방(molecular mimicry)으로 자가면역 반응 유발 → AIG 유사 조직병리 변화",
+    "⚠️ 소규모(138명)·오래된 검체(2014~2017년), H&E 단독(면역조직화학 미시행); 선택 편향(위염 환자 위주); 인도네시아 전체 AIG 유병률 일반화에 한계"
+  ],
+  meta: {
+    "연구 설계": "다기관 횡단면 연구 (인도네시아 11개 지역)",
+    "대상 환자": "138명 (위염군 113명 + 대조군 25명)",
+    "연구 기간": "2014~2017년 (검체 수집), 2024년 (분석)",
+    "연구 기관": "오이타대학교 의학부 / 아이를랑가대학교 열대의학연구소, 인도네시아 / Baylor College of Medicine, USA"
+  }
 }
 ];
 
@@ -2771,6 +3270,8 @@ let activeTopic  = "all";
 let activeSource = "all";
 let searchQuery  = "";
 let activeSort   = "default";
+let currentPage  = 1;
+const PAGE_SIZE  = 15;
 
 // ═══════════════════════════════════════════════
 // SORT
@@ -2794,6 +3295,7 @@ function closeSortOnOutside(e) {
 }
 function setSort(key, label) {
   activeSort = key;
+  currentPage = 1;
   document.getElementById("sort-label").textContent = label;
   document.querySelectorAll(".sort-option").forEach(o => {
     o.classList.toggle("active", o.dataset.sort === key);
@@ -2847,8 +3349,16 @@ function getFiltered() {
 function renderPapers() {
   const list = document.getElementById("papers-list");
   const filtered = getSorted(getFiltered());
+  const total = filtered.length;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
-  document.getElementById("results-count").textContent = filtered.length + "편";
+  // 현재 페이지가 범위를 벗어나면 보정
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageItems = filtered.slice(start, start + PAGE_SIZE);
+
+  document.getElementById("results-count").textContent = total + "편";
   document.getElementById("stat-total").textContent = PAPERS.length;
 
   const topicLabel = activeTopic === "all" ? "전체 논문" :
@@ -2856,21 +3366,23 @@ function renderPapers() {
   document.getElementById("results-title").textContent =
     searchQuery ? `"${searchQuery}" 검색 결과` : topicLabel;
 
-  if (!filtered.length) {
+  if (!pageItems.length) {
     list.innerHTML = `<div class="empty-state">
       <div class="empty-icon">🔍</div>
       <div class="empty-text">해당 조건의 논문이 없습니다.</div>
     </div>`;
+    document.getElementById("pagination").innerHTML = "";
+    document.getElementById("page-info").textContent = "";
     return;
   }
 
-  list.innerHTML = filtered.map((p, i) => {
+  list.innerHTML = pageItems.map((p, i) => {
     const srcLabel = SOURCE_LABELS[p.source] || p.source;
     const allBadges = [srcLabel, ...p.topics];
     const badgeHtml = allBadges.slice(0,4).map(b =>
       `<span class="badge ${BADGE_COLORS[b] || 'badge-gray'}">${b}</span>`
     ).join("");
-    return `<article class="paper-card" style="animation-delay:${i*50}ms"
+    return `<article class="paper-card" style="animation-delay:${i*40}ms"
       onclick="openDetail(${p.id})">
       <div class="card-top">
         <div class="card-journal">${p.journal_short}${p.if ? `<span class="if-badge">IF ${p.if}</span>` : ''}</div>
@@ -2886,6 +3398,61 @@ function renderPapers() {
       </div>
     </article>`;
   }).join("");
+
+  // 페이지네이션 렌더
+  renderPagination(totalPages);
+
+  // 페이지 정보 표시
+  const endNum = Math.min(start + PAGE_SIZE, total);
+  document.getElementById("page-info").textContent =
+    `전체 ${total}편 중 ${start + 1}–${endNum}편`;
+}
+
+function renderPagination(totalPages) {
+  const nav = document.getElementById("pagination");
+  if (totalPages <= 1) { nav.innerHTML = ""; return; }
+
+  const cp = currentPage;
+  let pages = [];
+
+  // 항상 1페이지
+  pages.push(1);
+  // 현재 주변 ±2
+  for (let i = Math.max(2, cp - 2); i <= Math.min(totalPages - 1, cp + 2); i++) {
+    pages.push(i);
+  }
+  // 항상 마지막 페이지
+  if (totalPages > 1) pages.push(totalPages);
+
+  // 중복 제거 후 정렬
+  pages = [...new Set(pages)].sort((a, b) => a - b);
+
+  let html = "";
+
+  // 이전 버튼
+  html += `<button class="page-btn" onclick="goPage(${cp - 1})" ${cp === 1 ? 'disabled' : ''}>‹</button>`;
+
+  // 페이지 번호 + 말줄임
+  let prev = 0;
+  for (const p of pages) {
+    if (p - prev > 1) html += `<span class="page-ellipsis">…</span>`;
+    html += `<button class="page-btn ${p === cp ? 'active' : ''}" onclick="goPage(${p})">${p}</button>`;
+    prev = p;
+  }
+
+  // 다음 버튼
+  html += `<button class="page-btn" onclick="goPage(${cp + 1})" ${cp === totalPages ? 'disabled' : ''}>›</button>`;
+
+  nav.innerHTML = html;
+}
+
+function goPage(n) {
+  const filtered = getSorted(getFiltered());
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  currentPage = Math.max(1, Math.min(n, totalPages));
+  renderPapers();
+  // 목록 상단으로 부드럽게 스크롤
+  document.getElementById("papers-list").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 // ═══════════════════════════════════════════════
@@ -2947,6 +3514,7 @@ function closeDetailBtn() {
 // ═══════════════════════════════════════════════
 function setTopic(id) {
   activeTopic = id;
+  currentPage = 1;
   renderTopics();
   renderPapers();
 }
@@ -2956,12 +3524,14 @@ document.querySelectorAll(".source-chip").forEach(chip => {
     document.querySelectorAll(".source-chip").forEach(c => c.classList.remove("active"));
     chip.classList.add("active");
     activeSource = chip.dataset.src;
+    currentPage = 1;
     renderPapers();
   });
 });
 
 document.getElementById("search-input").addEventListener("input", e => {
   searchQuery = e.target.value.trim();
+  currentPage = 1;
   renderPapers();
 });
 
@@ -3106,6 +3676,55 @@ function ttsGetVoice() {
 function ttsCleanText(text) {
   const abbrevMap = {
     'HpAG': '헬리코박터파일로리위축성위염',
+    'AAG':  '자가면역성위축성위염',
+    'CagA': '캐그에이',
+    'gNET': '위신경내분비종양',
+    'gNETs': '위신경내분비종양',
+    'EMR':  '내시경점막절제술',
+    'ESD':  '내시경점막하박리술',
+    'EUS':  '내시경초음파',
+    'CAG':  '만성위축성위염',
+    'SSA':  '소마토스타틴유사체',
+    'SSAs': '소마토스타틴유사체',
+    'ZES':  '졸링거-엘리슨증후군',
+    'ECL세포': '장크롬친화성유사세포',
+    'ECL':  '장크롬친화성유사세포',
+    'MAG':  '다병소위축성위염',
+    'AAG':  '자가면역성위축성위염',
+    'AILD': '자가면역성간질환',
+    'AIH':  '자가면역간염',
+    'PBC':  '원발성담즙성담관염',
+    'PSC':  '원발성경화성담관염',
+    'ANA':  '항핵항체',
+    'AMA':  '항미토콘드리아항체',
+    'AOPP': '산화단백질산물',
+    'dROM': '활성산소대사물',
+    'GNET': '위신경내분비종양',
+    'GNETs': '위신경내분비종양',
+    'MEN1': '다발성내분비종양1형',
+    'GC':   '위암',
+    'PGI/PGII': '펩시노겐 원투 비율',
+    'PGI/II': '펩시노겐 원투 비율',
+    'PG-I/PG-II': '펩시노겐 원투 비율',
+    'PG-I/II': '펩시노겐 원투 비율',
+    'PG1/PG2': '펩시노겐 원투 비율',
+    'PG1/2': '펩시노겐 원투 비율',
+    'PGII': '펩시노겐 투',
+    'PGI':  '펩시노겐 원',
+    'PG-II': '펩시노겐 투',
+    'PG-I': '펩시노겐 원',
+    'PG2':  '펩시노겐 투',
+    'PG1':  '펩시노겐 원',
+    'GNL':  '위신생물성병변',
+    'GNLs': '위신생물성병변',
+    'IEN':  '상피내신생물',
+    'SVM':  '서포트벡터머신',
+    'P-CAB': '포타슘경쟁적산차단제',
+    'GA-FG': '위저선형위선암',
+    'SMT':   '점막하종양',
+    'NPV':   '음성예측도',
+    'PPV':   '양성예측도',
+    'LR':    '우도비',
     'ACAG': '자가면역성만성위축성위염',
     'OLGIM': '올짐',
     'OLGA': '올가',
@@ -3143,6 +3762,19 @@ function ttsCleanText(text) {
 
   let t = text;
 
+  // 0. 공백 포함 PG 비율 패턴 (단어 경계 \b가 잡지 못하는 형태) — 먼저 처리
+  // PG I/II, PG I / II, PG I/PG II 등 비율 표현
+  t = t.replace(/PG\s*[–\-]?\s*I\s*[\/\·]\s*(?:PG\s*[–\-]?\s*)?II/gi, '펩시노겐 원투 비율');
+  t = t.replace(/PG\s*I\s*[\/\·]\s*II/gi, '펩시노겐 원투 비율');
+  t = t.replace(/펩시노겐\s*I\s*[\/\·]\s*II/g, '펩시노겐 원투 비율');
+  t = t.replace(/펩시노겐\s*I\s*[\/\·]\s*펩시노겐\s*II/g, '펩시노겐 원투 비율');
+  // PG II (공백 포함) — 비율 처리 후 개별 변환
+  t = t.replace(/\bPG\s+II\b/gi, '펩시노겐 투');
+  t = t.replace(/\bPG\s+I\b/gi, '펩시노겐 원');
+  // 한글 '펩시노겐' 뒤에 바로 붙거나 공백 후 I/II 로마자
+  t = t.replace(/펩시노겐\s*II\b/g, '펩시노겐 투');
+  t = t.replace(/펩시노겐\s*I\b/g, '펩시노겐 원');
+
   // 1. 한글 뒤에 오는 괄호 내 약어 제거 (중복 읽기 방지)
   //    예: 자가면역성위염(AIG) → 자가면역성위염
   t = t.replace(/([가-힣]+)\s*\(([A-Za-z0-9\-\s/]+)\)/g, '$1');
@@ -3152,19 +3784,103 @@ function ttsCleanText(text) {
     t = t.replace(new RegExp('\\b' + abbr + '\\b', 'g'), full);
   }
 
-  // 3. 남은 괄호 내 영문·숫자 약어 제거
-  t = t.replace(/\(([A-Za-z0-9\-\s]+)\)/g, '');
+  // 3. 남은 괄호 내 영문·숫자 약어 제거 — 소수점 변환 전에 괄호 내용을 먼저 처리
+  // 괄호 안의 숫자·소수점 포함 통계값도 여기서 읽기 좋은 형태로 변환 후 괄호 제거
+  // 예: (p=0.042) → , p는 영점 042, / (95% CI, 0.06–0.17) → 95퍼센트 신뢰구간 영점 06에서 영점 17
+  t = t.replace(/\(([^)]{1,80})\)/g, (match, inner) => {
+    // 안에 한글이 있으면 그냥 유지 (한글 설명 괄호)
+    if (/[가-힣]/.test(inner)) return match;
+    // 통계값 패턴이면 쉼표로 풀어서 읽음
+    // 소수점 처리를 미리 여기서도 적용
+    let s = inner
+      .replace(/(\d{1,3}(?:,\d{3})+)/g, m => m.replace(/,/g, ''))  // 천단위 쉼표
+      .replace(/(\d+)\.(\d+)/g, (_, int, dec) =>
+        int === '0' ? '영점 ' + dec : int + '점 ' + dec.split('').join(' '))
+      .replace(/([A-Za-z²]+)\s*=\s*/g, (_, v) => v + '은 ')          // p=, R=, I²= 등
+      .replace(/–|—/g, '에서 ')
+      .replace(/,\s*/g, ', ')
+      .trim();
+    return ', ' + s + ' ';
+  });
 
   // 4. 천 단위 쉼표 숫자: 2,137 → 2137 (쉼표 제거 후 숫자로 읽힘)
   t = t.replace(/(\d{1,3}(?:,\d{3})+)/g, m => m.replace(/,/g, ''));
 
-  // 5. 소수점: 3.85 → 3점 85  (각 자리를 개별 숫자로)
+  // 5. 소수점 처리
+  // 정수부 0인 경우(0.90, 0.57 등 CI 범위): "영점 90" 형태로 읽기
+  // 정수부 1자리 이상(3.85, 45.9 등): 각 자리 분리해서 읽기
   t = t.replace(/(\d+)\.(\d+)/g, (_, int, dec) => {
-    const digits = dec.split('').join(' ');  // 각 자리 분리: "85" → "8 5"
+    if (int === '0') {
+      return '영점 ' + dec;  // 0.90 → 영점 90
+    }
+    const digits = dec.split('').join(' ');  // 3.85 → 3점 8 5
     return int + '점 ' + digits;
   });
 
-  // 6. 슬래시 제거
+  // 6. 단위 읽기
+  const unitMap = [
+    [/(\d+(?:\.\d+)?)\s*µg\/[Ll]/g,      (_, n) => n + ' 마이크로그램퍼리터'],
+    [/(\d+(?:\.\d+)?)\s*µg\/d[Ll]/g,     (_, n) => n + ' 마이크로그램퍼데시리터'],
+    [/(\d+(?:\.\d+)?)\s*ng\/m[Ll]/g,     (_, n) => n + ' 나노그램퍼밀리리터'],
+    [/(\d+(?:\.\d+)?)\s*pg\/m[Ll]/g,     (_, n) => n + ' 피코그램퍼밀리리터'],
+    [/(\d+(?:\.\d+)?)\s*pmol\/[Ll]/g,    (_, n) => n + ' 피코몰퍼리터'],
+    [/(\d+(?:\.\d+)?)\s*nmol\/[Ll]/g,    (_, n) => n + ' 나노몰퍼리터'],
+    [/(\d+(?:\.\d+)?)\s*µmol\/[Ll]/g,    (_, n) => n + ' 마이크로몰퍼리터'],
+    [/(\d+(?:\.\d+)?)\s*mmol\/[Ll]/g,    (_, n) => n + ' 밀리몰퍼리터'],
+    [/(\d+(?:\.\d+)?)\s*g\/d[Ll]/g,      (_, n) => n + ' 그램퍼데시리터'],
+    [/(\d+(?:\.\d+)?)\s*µIU\/m[Ll]/g,    (_, n) => n + ' 마이크로아이유퍼밀리리터'],
+    [/(\d+(?:\.\d+)?)\s*IU\/m[Ll]/g,     (_, n) => n + ' 아이유퍼밀리리터'],
+    [/(\d+(?:\.\d+)?)\s*U\/m[Ll]/g,      (_, n) => n + ' 유닛퍼밀리리터'],
+    [/(\d+(?:\.\d+)?)\s*µmol/g,           (_, n) => n + ' 마이크로몰'],
+    [/(\d+(?:\.\d+)?)\s*µg/g,             (_, n) => n + ' 마이크로그램'],
+    [/(\d+(?:\.\d+)?)\s*mg/g,             (_, n) => n + ' 밀리그램'],
+    [/(\d+(?:\.\d+)?)\s*mm/g,             (_, n) => n + ' 밀리미터'],
+    [/(\d+(?:\.\d+)?)\s*cm/g,             (_, n) => n + ' 센티미터'],
+    [/adducts\/10[⁵5]?\s*dG/g,             () => '십만디옥시구아노신당 부가물'],
+    [/no\.\s*adducts/g,                     () => '부가물 수'],
+    [/U\s*CARR/g,                            () => '유 카'],
+  ];
+  for (const [pattern, replacer] of unitMap) {
+    t = t.replace(pattern, replacer);
+  }
+
+  // ECL 세포 중복 읽기 방지
+  t = t.replace(/장크롬친화성유사세포\s*세포/g, '장크롬친화성유사세포');
+  // "비율 비율" 중복 제거 (펩시노겐 원투 비율 비율 등)
+  t = t.replace(/비율\s*비율/g, '비율');
+
+  // 7-0. 괄호 밖 등호 처리: X= 또는 X = → X는
+  // 예: R=0.31 → R은 영점 31 / p=0.042 → p는 영점 042
+  t = t.replace(/\b([A-Za-z²³⁰-⁹]{1,4})\s*=\s*/g, (_, v) => v + '은 ');
+
+  // 7-0b. 한글 약어 변환 후 조사 교정
+  // 한글로 끝나는 단어 뒤에 오는 영문 조사 대체
+  // '자가면역성위염가' → '자가면역성위염이', '자가면역성위염는' → '자가면역성위염은' 등
+  // 받침 있는 글자: 이/은/을/이/과/로/으로 / 받침 없는 글자: 가/는/를/야/와/로
+  t = t.replace(/([\uAC00-\uD7A3])(가|이|은|는|을|를|과|와|로|으로|의|에서|에게|이다|입니다)\b/g, (match, lastChar, josa) => {
+    const code = lastChar.charCodeAt(0);
+    const hasBatchim = (code - 0xAC00) % 28 !== 0; // 받침 있으면 true
+    const josakMap = {
+      '가':  hasBatchim ? '이'  : '가',
+      '이':  hasBatchim ? '이'  : '가',   // 중립 → 자동 선택
+      '은':  hasBatchim ? '은'  : '는',
+      '는':  hasBatchim ? '은'  : '는',
+      '을':  hasBatchim ? '을'  : '를',
+      '를':  hasBatchim ? '을'  : '를',
+      '과':  hasBatchim ? '과'  : '와',
+      '와':  hasBatchim ? '과'  : '와',
+      '로':  hasBatchim ? (lastChar === 'ㄹ' ? '로' : '으로') : '로',
+      '으로': hasBatchim ? '으로' : '로',
+      '의':  '의',
+      '에서': '에서',
+      '에게': '에게',
+      '이다': hasBatchim ? '이다' : '다',
+      '입니다': '입니다',
+    };
+    return lastChar + (josakMap[josa] || josa);
+  });
+
+  // 7-1. 슬래시 제거
   t = t.replace(/\s*\/\s*/g, ' ');
   t = t.replace(/\s*\\\s*/g, ' ');
 
@@ -3242,7 +3958,8 @@ function ttsStart() {
 }
 
 function ttsPause() {
-  speechSynthesis.pause();
+  ttsPlayId++;             // 진행 중인 콜백 무효화
+  speechSynthesis.cancel(); // pause() 대신 cancel — 브라우저 호환성 확보
   ttsPlaying = false;
   document.getElementById('tts-play-btn').classList.remove('playing');
   document.getElementById('tts-icon').textContent = '▶';
@@ -3250,23 +3967,21 @@ function ttsPause() {
 }
 
 function ttsResume() {
+  if (!ttsSegments.length) { ttsStart(); return; }
   ttsPlaying = true;
   document.getElementById('tts-play-btn').classList.add('playing');
   document.getElementById('tts-icon').textContent = '⏸';
-  if (speechSynthesis.paused) {
-    speechSynthesis.resume();
-  } else {
-    ttsPlaySegment(ttsIndex);
-  }
+  // 항상 현재 ttsIndex 섹션부터 재생 (처음으로 돌아가지 않음)
+  ttsPlaySegment(ttsIndex);
 }
 
 function ttsToggle() {
-  if (!ttsPlaying && !speechSynthesis.paused) {
-    ttsStart();
+  if (!ttsPlaying && !ttsSegments.length) {
+    ttsStart();          // 최초 시작
   } else if (ttsPlaying) {
-    ttsPause();
+    ttsPause();          // 재생 중 → 일시정지
   } else {
-    ttsResume();
+    ttsResume();         // 일시정지 중 → 현재 섹션부터 재개
   }
 }
 
