@@ -1201,10 +1201,10 @@
     margin-bottom: 0;
   }
   .share-btn {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--white);
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-md);
+    background: var(--bg);
     border: 1px solid var(--rule);
     font-size: 15px;
     cursor: pointer;
@@ -1213,10 +1213,9 @@
     align-items: center;
     justify-content: center;
     transition: background 0.15s, color 0.15s, border-color 0.15s;
-    box-shadow: var(--shadow-card);
     flex-shrink: 0;
   }
-  .share-btn:hover { background: var(--green-pale); color: var(--green-dark); }
+  .share-btn:hover { background: var(--green-pale); color: var(--green-dark); border-color: var(--green-mid); }
 
   .share-sheet-overlay {
     display: none;
@@ -1465,12 +1464,6 @@
   <section class="topics-section">
     <div class="topics-label-row">
       <div class="topics-label">주제별 탐색</div>
-      <button class="share-btn" id="share-btn" onclick="openShareSheet()" title="공유하기">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-        </svg>
-      </button>
     </div>
     <div class="topics-scroll" id="topics-container"></div>
   </section>
@@ -1662,6 +1655,12 @@
       <button class="panel-btn primary" id="p-link-btn">원문 보기 →</button>
       <button class="panel-btn" id="p-done-btn" onclick="clearBookmark()" style="display:none">✓ 다 읽었어요</button>
       <button class="panel-btn" onclick="closeDetailBtn()">닫기</button>
+      <button class="share-btn" id="share-btn" onclick="openShareSheet()" title="공유하기" style="flex-shrink:0;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+      </button>
     </div>
   </div>
 </div>
