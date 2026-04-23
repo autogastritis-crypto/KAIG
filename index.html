@@ -1303,6 +1303,9 @@
   <!-- PAGINATION -->
   <div class="pagination" id="pagination"></div>
   <div class="page-info" id="page-info"></div>
+  <div id="swipe-hint" style="text-align:center;font-size:11px;color:var(--ink-soft);margin-top:4px;display:none;">
+    ← 스와이프로 페이지 이동 →
+  </div>
 
   <!-- ADD BUTTON -->
   <button class="add-paper-btn" id="add-btn" onclick="openAddMode()">
@@ -3954,6 +3957,63 @@ const PAPERS = [
     "연구 기관": "파비아대학교 IRCCS 폴리클리니코 산마테오 / 로마 사피엔자대학교 산탄드레아병원 외"
   }
 }
+,{
+  id: 95,
+  title: "Altered serum metabolic profile in patients with autoimmune gastritis compared to other chronic gastritis",
+  title_ko: "자가면역성위염 환자의 혈청 대사체 프로파일 변화: 다른 만성위염과의 비교",
+  journal: "Journal of Pharmaceutical Analysis",
+  journal_short: "J Pharm Anal",
+  year: 2025,
+  if: null,
+  authors: "Shi J, Zhang Y, Wang Y, Huang Y, Chen Z, Xu X, Li W, Chen D, Luo H, Luo Q, Yang R, Qiao X",
+  doi: "10.1016/j.jpha.2024.101104",
+  source: "journal",
+  topics: ["병인기전", "진단"],
+  abstract_ko: "UHPLC/Q-Orbitrap-MS를 이용해 AIG 31명과 비AIG 만성위염 27명의 혈청 대사체 프로파일을 비교한 연구입니다. OPLS-DA 분석에서 두 군이 명확히 분리되어 혈청 대사체 프로파일의 유의한 차이를 확인하였습니다. 단변량·다변량 분석으로 46개 차별 대사체를 발굴하고, 33개 대사 경로와의 연관성을 확인하였습니다. 이 중 위 점막 전사체·단백체 발현과 일치하면서 임상 진단 지표(펩시노겐, 항벽세포항체)와도 상관관계를 보인 9개 핵심 대사체를 선별하였으며, 특히 L-글루탐산·안트라닐레이트·데옥시아데노신 3종은 각각 GOT1·KYNU·ADA 유전자 조절과 연결되어 AIG의 새로운 비침습적 바이오마커 후보로 제시되었습니다.",
+  keypoints: [
+    "AIG vs 비AIG 혈청 대사체 프로파일 최초 비교: OPLS-DA에서 두 군 명확히 분리 — 소분자 바이오마커 기반 비침습적 AIG 감별 진단 가능성 최초 제시",
+    "46개 차별 대사체 → 33개 대사 경로 이상: 불포화지방산 생합성·지방산 대사·아미노산 대사(글라이신·세린·트레오닌·알라닌·아스파르트산·글루탐산) 등이 주요 경로",
+    "L-글루탐산(AIG에서 79% 수준): GOT1 mRNA 21%·단백질 20% 감소와 동반 — GOT1 하향 조절 → L-글루탐산 감소 → Treg 증식·기능 억제 → 자가면역 악화 가설",
+    "안트라닐레이트(AIG에서 165% 수준): KYNU mRNA 10.6배·단백질 5.7배 증가와 동반 — 트립토판 대사 경로 이상과 장 염증 연관성 시사",
+    "데옥시아데노신(AIG에서 152% 수준): ADA mRNA 12%·단백질 4% 감소와 동반 — ADA 하향 조절 → 데옥시아데노신 축적 → 면역 조절 이상 기전 제안",
+    "⚠️ 소규모(AIG 31명, 비AIG 27명) 단일 기관 연구; 전사체 분석은 AIG 9명·비AIG 3명으로 매우 제한적; 독립적 외부 검증 코호트 없음"
+  ],
+  meta: {
+    "연구 설계": "단일기관 혈청 대사체 분석 (단면 연구)",
+    "대상 환자": "AIG 31명 / 비AIG 만성위염 27명",
+    "분석 방법": "UHPLC/Q-Orbitrap-MS + OPLS-DA + MetaboAnalyst 5.0 경로 분석",
+    "추가 검증": "위 점막 전사체(AIG 9명·비AIG 3명) + qPCR + 단백체 분석",
+    "연구 기관": "베이징병원 국가노년의학센터 / 베이징대학교 약학부, 중국"
+  }
+}
+,{
+  id: 96,
+  title: "Monitoring the follow-up of autoimmune chronic atrophic gastritis using parietal cell antibodies and markers of gastric function",
+  title_ko: "항벽세포항체와 위기능 표지자를 이용한 자가면역성 만성 위축성위염의 추적 모니터링",
+  journal: "Journal of Translational Autoimmunity",
+  journal_short: "J Transl Autoimmun",
+  year: 2025,
+  if: null,
+  authors: "Panozzo MP, Antico A, Bizzaro N",
+  doi: "10.1016/j.jtauto.2025.100273",
+  source: "journal",
+  topics: ["진단", "치료", "암위험", "병인기전"],
+  abstract_ko: "자가면역성 만성 위축성위염(A-CAG)의 추적 모니터링에서 항벽세포항체(PCA) 단독 측정의 한계를 짚고, 위기능 표지자(펩시노겐·가스트린-17)와의 통합 접근을 제안하는 종설입니다. PCA는 A-CAG 초기 단계에 유용한 진단 표지자이지만 질환이 진행하면서 역가가 변동하거나 소실될 수 있어 모니터링 단독 지표로는 불충분합니다. 최근 근거들은 PCA와 PGI/PGII 비율·G17을 함께 측정하는 통합 접근이 위 점막 상태의 실시간 모니터링에 더 효과적임을 지지합니다. 특히 G17은 잠재성에서 명현성 A-CAG로의 이행을 추적하는 데 PCA보다 신뢰도가 높은 표지자로 제시됩니다.",
+  keypoints: [
+    "PCA 단독 모니터링의 한계: 역가는 초기(평균 480U) → 전성기(220U) → 말기(150U) 단계적 감소 경향이나 변동 폭이 크고 최대 7년까지 안정적으로 유지되기도 함 — 병기와의 상관이 일관되지 않아 단독 추적 지표로 불충분",
+    "통합 접근 권고: PGI/PGII 비율(진단 AUC 0.90) + PCA(진단 AUC 0.93으로 향상) — 갑상선질환에서 TPO항체+TSH를 함께 측정하듯, A-CAG에서도 자가항체+위기능 표지자를 함께 측정해야 함",
+    "G17 = 추적의 핵심 표지자: 잠재성 → 명현성 A-CAG 이행 추적에서 PCA보다 신뢰도 높음; 높은 G17 수치는 더 심한 병기·광범위한 점막 손상을 반영; OLGA 병기 진행 시 G17 유의하게 상승",
+    "PCA 음성이라도 A-CAG 배제 불가: 말기 A-CAG에서 벽세포 소실과 함께 PCA·IFA 모두 소실 가능; 건강 성인의 2.5~9%에서도 PCA 양성 — 특이도 제한",
+    "잠재성 A-CAG: PCA 양성 + 조직학적 위축 없음 → 연간 10.9%가 명현성으로 진행; 이 단계의 조기 발견과 추적이 중요 — PCA만으로는 잠재성을 명현성으로 이행하는 시점 예측 불가",
+    "A-CAG 암 위험 재정리: H. pylori 비감염 순수 A-CAG에서 위선암 위험은 일반 인구 수준; NET 위험은 높음(특히 중증 병기) — PGI 저하+고G17 조합이 NET 고위험군 식별에 유용"
+  ],
+  meta: {
+    "논문 유형": "종설 (특집호: 자가항체와 추적관찰)",
+    "핵심 제안": "PCA + PGI/PGII(진단) + G17(추적) 통합 모니터링 전략",
+    "참조 코호트": "Miceli et al. 498명 18년 추적 코호트 포함 최신 근거 종합",
+    "연구 기관": "AULSS7 Pedemontana / AULSS2 Marca Trevigiana / Udine 대학통합병원 임상병리검사실, 이탈리아"
+  }
+}
 ];
 
 // ═══════════════════════════════════════════════
@@ -4145,7 +4205,13 @@ function renderPapers() {
 
 function renderPagination(totalPages) {
   const nav = document.getElementById("pagination");
-  if (totalPages <= 1) { nav.innerHTML = ""; return; }
+  const hint = document.getElementById("swipe-hint");
+  if (totalPages <= 1) {
+    nav.innerHTML = "";
+    if (hint) hint.style.display = "none";
+    return;
+  }
+  if (hint) hint.style.display = "block";
 
   const cp = currentPage;
   let pages = [];
@@ -4978,6 +5044,76 @@ document.getElementById("stat-year").textContent = Math.max(...PAPERS.map(p => p
 document.getElementById("stat-topics").textContent = TOPICS.length - 1;
 loadBookmark();
 initPanelScroll();
+
+// ═══════════════════════════════════════════════
+// SWIPE & PAGE NAV
+// ═══════════════════════════════════════════════
+(function initSwipe() {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+  const SWIPE_THRESHOLD = 60;   // 최소 수평 이동 픽셀
+  const ANGLE_LIMIT = 40;       // 허용 각도 (세로 스크롤과 구분)
+  const TIME_LIMIT = 400;       // ms 이내
+
+  const main = document.querySelector('.main-wrap');
+
+  main.addEventListener('touchstart', (e) => {
+    // 패널 열려있으면 무시
+    if (document.getElementById('detail-overlay').classList.contains('open')) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartTime = Date.now();
+  }, { passive: true });
+
+  main.addEventListener('touchend', (e) => {
+    if (document.getElementById('detail-overlay').classList.contains('open')) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    const dt = Date.now() - touchStartTime;
+    if (dt > TIME_LIMIT) return;
+    if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+    const angle = Math.abs(Math.atan2(dy, dx) * 180 / Math.PI);
+    // 수평에 가까울 때만 (180°-angle 도 고려)
+    const isHorizontal = angle < ANGLE_LIMIT || angle > 180 - ANGLE_LIMIT;
+    if (!isHorizontal) return;
+
+    const filtered = getSorted(getFiltered());
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+    if (dx < 0 && currentPage < totalPages) {
+      // 왼쪽 스와이프 → 다음 페이지
+      goPage(currentPage + 1);
+      showPageToast(currentPage);
+    } else if (dx > 0 && currentPage > 1) {
+      // 오른쪽 스와이프 → 이전 페이지
+      goPage(currentPage - 1);
+      showPageToast(currentPage);
+    }
+  }, { passive: true });
+
+  // 토스트 알림
+  function showPageToast(page) {
+    let toast = document.getElementById('page-swipe-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'page-swipe-toast';
+      toast.style.cssText = `
+        position:fixed; bottom:80px; left:50%; transform:translateX(-50%);
+        background:rgba(8,80,65,0.88); color:#fff; font-size:13px; font-weight:600;
+        padding:7px 18px; border-radius:20px; z-index:400;
+        opacity:0; transition:opacity 0.25s; pointer-events:none;
+        font-family:'Noto Sans KR',sans-serif; white-space:nowrap;
+      `;
+      document.body.appendChild(toast);
+    }
+    const filtered = getSorted(getFiltered());
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+    toast.textContent = `${page} / ${totalPages} 페이지`;
+    toast.style.opacity = '1';
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 1200);
+  }
+})();
 </script>
 </body>
 </html>
