@@ -111,6 +111,70 @@
     padding: 20px 16px 60px;
   }
 
+  /* ── YEAR FILTER ── */
+  .year-section { margin-bottom: 18px; }
+  .year-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .year-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .year-scroll {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .year-pill {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    user-select: none;
+    box-shadow: var(--shadow-card);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .year-pill:hover {
+    border-color: var(--green-light);
+    color: var(--green-dark);
+  }
+  .year-pill.active {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(8,80,65,0.25);
+  }
+  .year-pill .year-count {
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+    padding: 1px 5px;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .year-pill.active .year-count {
+    background: rgba(255,255,255,0.2);
+  }
+  .year-divider {
+    height: 1px;
+    background: var(--rule);
+    margin-bottom: 18px;
+  }
+
   /* ── TOPIC PILLS ── */
   .topics-section { margin-bottom: 20px; }
   .topics-label {
@@ -1481,6 +1545,15 @@
       <div class="stat-label">주제 분류</div>
     </div>
   </div>
+
+  <!-- YEAR FILTER -->
+  <section class="year-section">
+    <div class="year-label-row">
+      <div class="year-label">📅 연도별 탐색</div>
+    </div>
+    <div class="year-scroll" id="year-container"></div>
+  </section>
+  <div class="year-divider"></div>
 
   <!-- TOPICS -->
   <section class="topics-section">
@@ -4799,6 +4872,7 @@ const SOURCE_LABELS = { journal: "저널 파일", kaig: "KAIG", web: "인터넷"
 // ═══════════════════════════════════════════════
 let activeTopic  = "all";
 let activeSource = "all";
+let activeYear   = "all";
 let searchQuery  = "";
 let activeSort   = "default";
 let currentPage  = 1;
@@ -4842,6 +4916,37 @@ function getSorted(list) {
 }
 
 // ═══════════════════════════════════════════════
+// RENDER YEARS
+// ═══════════════════════════════════════════════
+function renderYears() {
+  const container = document.getElementById("year-container");
+  // 고유 연도 목록 (내림차순)
+  const years = [...new Set(PAPERS.map(p => p.year))].sort((a,b) => b - a);
+
+  const allBtn = `<button class="year-pill ${activeYear === 'all' ? 'active' : ''}"
+    onclick="setYear('all')">
+    전체 <span class="year-count">${PAPERS.length}</span>
+  </button>`;
+
+  const yearBtns = years.map(y => {
+    const count = PAPERS.filter(p => p.year === y).length;
+    return `<button class="year-pill ${activeYear === y ? 'active' : ''}"
+      onclick="setYear(${y})">
+      ${y} <span class="year-count">${count}</span>
+    </button>`;
+  }).join("");
+
+  container.innerHTML = allBtn + yearBtns;
+}
+
+function setYear(y) {
+  activeYear = y;
+  currentPage = 1;
+  renderYears();
+  renderPapers();
+}
+
+// ═══════════════════════════════════════════════
 // RENDER TOPICS
 // ═══════════════════════════════════════════════
 function renderTopics() {
@@ -4866,6 +4971,7 @@ function getFiltered() {
   return PAPERS.filter(p => {
     const topicOk  = activeTopic === "all" || p.topics.includes(activeTopic);
     const sourceOk = activeSource === "all" || p.source === activeSource;
+    const yearOk   = activeYear === "all" || p.year === activeYear;
     const q = searchQuery.toLowerCase();
     const searchOk = !q
       || p.title.toLowerCase().includes(q)
@@ -4873,7 +4979,7 @@ function getFiltered() {
       || p.authors.toLowerCase().includes(q)
       || p.abstract_ko.includes(q)
       || p.topics.some(t => t.includes(q));
-    return topicOk && sourceOk && searchOk;
+    return topicOk && sourceOk && yearOk && searchOk;
   });
 }
 
@@ -4894,8 +5000,9 @@ function renderPapers() {
 
   const topicLabel = activeTopic === "all" ? "전체 논문" :
     TOPICS.find(t => t.id === activeTopic)?.label + " 논문";
+  const yearSuffix = activeYear !== "all" ? ` (${activeYear}년)` : "";
   document.getElementById("results-title").textContent =
-    searchQuery ? `"${searchQuery}" 검색 결과` : topicLabel;
+    searchQuery ? `"${searchQuery}" 검색 결과` : topicLabel + yearSuffix;
 
   if (!pageItems.length) {
     list.innerHTML = `<div class="empty-state">
@@ -5796,6 +5903,7 @@ if (window.speechSynthesis) {
 // INIT
 // ═══════════════════════════════════════════════
 renderTopics();
+renderYears();
 renderPapers();
 document.getElementById("stat-total").textContent = PAPERS.length;
 document.getElementById("stat-year").textContent = Math.max(...PAPERS.map(p => p.year));
