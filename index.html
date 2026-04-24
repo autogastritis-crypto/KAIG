@@ -1680,6 +1680,18 @@
 </style>
 
 /* ── PREVIEW GATE ── */
+body.gate-locked {
+  overflow: hidden;
+}
+body.gate-locked .app-header,
+body.gate-locked .main-wrap,
+body.gate-locked .detail-overlay,
+body.gate-locked .share-sheet-overlay,
+body.gate-locked .add-overlay,
+body.gate-locked #bookmark-save-btn,
+body.gate-locked .ev-add-btn {
+  visibility: hidden;
+}
 #preview-gate {
   position: fixed;
   inset: 0;
@@ -7264,6 +7276,8 @@ const GATE_SESSION_KEY = 'kaig_preview_unlocked';
     document.getElementById('preview-gate').style.display = 'none';
     return;
   }
+  // 잠금: 뒤 콘텐츠 숨김
+  document.body.classList.add('gate-locked');
   // 포커스
   setTimeout(() => {
     const el = document.getElementById('gate-input');
@@ -7275,6 +7289,7 @@ function gateUnlock() {
   const val = document.getElementById('gate-input').value;
   if (val === PREVIEW_PASSWORD) {
     sessionStorage.setItem(GATE_SESSION_KEY, '1');
+    document.body.classList.remove('gate-locked'); // 콘텐츠 다시 표시
     const gate = document.getElementById('preview-gate');
     gate.classList.add('unlocked');
     setTimeout(() => { gate.style.display = 'none'; }, 420);
