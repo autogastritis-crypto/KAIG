@@ -1678,8 +1678,107 @@
   .ev-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-light); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
 </style>
+
+/* ── PREVIEW GATE ── */
+#preview-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #085041 0%, #0F6E56 60%, #1D9E75 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#preview-gate.unlocked {
+  animation: gateOut 0.4s ease forwards;
+  pointer-events: none;
+}
+@keyframes gateOut {
+  to { opacity: 0; transform: scale(1.03); }
+}
+.gate-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 44px 40px 36px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+.gate-logo {
+  width: 52px;
+  height: 52px;
+  background: var(--green-pale);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: 0 auto 16px;
+}
+.gate-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.gate-sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 26px;
+  line-height: 1.6;
+}
+.gate-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--rule);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  outline: none;
+  background: var(--bg);
+  color: var(--ink);
+  transition: border-color 0.2s;
+  letter-spacing: 0.15em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.gate-input:focus { border-color: var(--green-mid); background: #fff; }
+.gate-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--green-dark);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+  transition: background 0.18s;
+  margin-bottom: 8px;
+}
+.gate-btn:hover { background: var(--green-mid); }
+.gate-error {
+  font-size: 12px;
+  color: #c0392b;
+  min-height: 18px;
+}
+</style>
 </head>
 <body>
+
+<!-- ═══ PREVIEW GATE ═══ -->
+<div id="preview-gate">
+  <div class="gate-box">
+    <div class="gate-logo">🔒</div>
+    <div class="gate-title">자가면역성위염 — KAIG</div>
+    <div class="gate-sub">프리뷰 페이지입니다.<br>담당자에게 받은 비밀번호를 입력하세요.</div>
+    <input class="gate-input" type="password" id="gate-input" placeholder="비밀번호 입력"
+      onkeydown="if(event.key==='Enter') gateUnlock()">
+    <button class="gate-btn" onclick="gateUnlock()">입장하기</button>
+    <div class="gate-error" id="gate-error"></div>
+  </div>
+</div>
 
 <!-- HEADER -->
 <header class="app-header">
@@ -1706,13 +1805,13 @@
 
 <div class="page-section active" id="section-papers">
 
-  <!-- SPONSOR BANNER -->
-  <a class="sponsor-banner" id="sponsor-banner" href="#" target="_blank" rel="noopener">
+  <!-- SPONSOR BANNER 1 (TOP) -->
+  <a class="sponsor-banner" id="sponsor-banner-top" href="#" target="_blank" rel="noopener">
     <span class="sponsor-badge">AD</span>
     <div class="sponsor-logo">🏥</div>
     <div class="sponsor-body">
-      <div class="sponsor-name">스폰서명을 입력하세요</div>
-      <div class="sponsor-desc">광고 문구를 여기에 입력하세요</div>
+      <div class="sponsor-name">광고주 1 — 스폰서명을 입력하세요</div>
+      <div class="sponsor-desc">첫 번째 광고 문구를 여기에 입력하세요</div>
     </div>
     <span class="sponsor-cta">자세히 보기</span>
   </a>
@@ -1811,13 +1910,16 @@
     ← 스와이프로 페이지 이동 →
   </div>
 
-  <!-- ADD BUTTON -->
-  <button class="add-paper-btn" id="add-btn" onclick="openAddMode()">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-    </svg>
-    논문 추가하기
-  </button>
+  <!-- SPONSOR BANNER 2 (BOTTOM) -->
+  <a class="sponsor-banner" id="sponsor-banner-bottom" href="#" target="_blank" rel="noopener" style="margin-top:6px;margin-bottom:0;">
+    <span class="sponsor-badge">AD</span>
+    <div class="sponsor-logo">💊</div>
+    <div class="sponsor-body">
+      <div class="sponsor-name">광고주 2 — 스폰서명을 입력하세요</div>
+      <div class="sponsor-desc">두 번째 광고 문구를 여기에 입력하세요</div>
+    </div>
+    <span class="sponsor-cta">자세히 보기</span>
+  </a>
 
 </div><!-- /section-papers -->
 
@@ -6009,6 +6111,7 @@ function openDetail(id) {
   const p = PAPERS.find(x => x.id === id);
   if (!p) return;
   _currentPaperId = id;
+  if (typeof kaigTrackPaper === 'function') kaigTrackPaper(id, p.title_ko || p.title);
 
   document.getElementById("p-journal").innerHTML =
     p.journal + " · " + p.year +
@@ -6982,6 +7085,87 @@ function evSave() {
 }
 
 // ═══════════════════════════════════════════════
+// ANALYTICS TRACKING
+// ═══════════════════════════════════════════════
+(function kaigAnalytics() {
+  const AKEY = 'kaig_analytics';
+  const ADMIN_FLAG_KEY = 'kaig_is_admin';
+
+  // 관리자이면 트래킹 완전 중단
+  if (localStorage.getItem(ADMIN_FLAG_KEY) === '1') return;
+
+  function getStore() {
+    try { return JSON.parse(localStorage.getItem(AKEY)) || {}; } catch { return {}; }
+  }
+  function saveStore(s) {
+    try { localStorage.setItem(AKEY, JSON.stringify(s)); } catch {}
+  }
+
+  // 날짜 키: "2025-06-01"
+  function todayKey() {
+    const d = new Date();
+    return d.getFullYear() + '-' +
+      String(d.getMonth()+1).padStart(2,'0') + '-' +
+      String(d.getDate()).padStart(2,'0');
+  }
+
+  // 고유 방문자: 오늘 처음 방문인지 확인
+  function trackVisit() {
+    const s = getStore();
+    const dk = todayKey();
+    if (!s.visits) s.visits = {};
+    if (!s.visits[dk]) s.visits[dk] = 0;
+    s.visits[dk]++;
+    // 고유 방문자: 세션스토리지로 중복 제거
+    if (!s.uniqueVisits) s.uniqueVisits = {};
+    if (!s.uniqueVisits[dk]) s.uniqueVisits[dk] = 0;
+    if (!sessionStorage.getItem('kaig_visited')) {
+      s.uniqueVisits[dk]++;
+      sessionStorage.setItem('kaig_visited', '1');
+    }
+    saveStore(s);
+  }
+
+  // 논문 클릭 트래킹
+  window.kaigTrackPaper = function(paperId, paperTitle) {
+    const s = getStore();
+    const dk = todayKey();
+    if (!s.paperClicks) s.paperClicks = {};
+    const key = paperId + '||' + (paperTitle || '');
+    if (!s.paperClicks[key]) s.paperClicks[key] = { title: paperTitle, daily: {} };
+    if (!s.paperClicks[key].daily[dk]) s.paperClicks[key].daily[dk] = 0;
+    s.paperClicks[key].daily[dk]++;
+    saveStore(s);
+  };
+
+  // 배너 클릭 트래킹
+  window.kaigTrackBanner = function(bannerId, bannerName) {
+    const s = getStore();
+    const dk = todayKey();
+    if (!s.bannerClicks) s.bannerClicks = {};
+    if (!s.bannerClicks[bannerId]) s.bannerClicks[bannerId] = { name: bannerName, daily: {} };
+    if (!s.bannerClicks[bannerId].daily[dk]) s.bannerClicks[bannerId].daily[dk] = 0;
+    s.bannerClicks[bannerId].daily[dk]++;
+    saveStore(s);
+  };
+
+  // 배너에 클릭 이벤트 연결
+  function attachBannerTracking() {
+    const banners = [
+      { id: 'sponsor-banner-top',    name: '상단 배너' },
+      { id: 'sponsor-banner-bottom', name: '하단 배너' },
+    ];
+    banners.forEach(({ id, name }) => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('click', () => kaigTrackBanner(id, name));
+    });
+  }
+
+  trackVisit();
+  attachBannerTracking();
+})();
+
+// ═══════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════
 renderTopics();
@@ -7066,6 +7250,41 @@ evRenderAll();
     toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 1200);
   }
 })();
+
+// ═══════════════════════════════════════════════
+// PREVIEW GATE
+// 오픈 후 아래 한 줄을 지우거나 주석 처리하면 잠금이 해제됩니다.
+// ═══════════════════════════════════════════════
+const PREVIEW_PASSWORD = 'kaig2025'; // ← 비밀번호를 여기서 변경하세요
+const GATE_SESSION_KEY = 'kaig_preview_unlocked';
+
+(function initGate() {
+  // 이미 이번 세션에 인증했으면 바로 열기
+  if (sessionStorage.getItem(GATE_SESSION_KEY) === '1') {
+    document.getElementById('preview-gate').style.display = 'none';
+    return;
+  }
+  // 포커스
+  setTimeout(() => {
+    const el = document.getElementById('gate-input');
+    if (el) el.focus();
+  }, 100);
+})();
+
+function gateUnlock() {
+  const val = document.getElementById('gate-input').value;
+  if (val === PREVIEW_PASSWORD) {
+    sessionStorage.setItem(GATE_SESSION_KEY, '1');
+    const gate = document.getElementById('preview-gate');
+    gate.classList.add('unlocked');
+    setTimeout(() => { gate.style.display = 'none'; }, 420);
+  } else {
+    const err = document.getElementById('gate-error');
+    err.textContent = '비밀번호가 올바르지 않습니다.';
+    document.getElementById('gate-input').value = '';
+    setTimeout(() => { err.textContent = ''; }, 2500);
+  }
+}
 </script>
 </body>
 </html>
