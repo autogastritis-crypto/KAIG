@@ -6280,7 +6280,7 @@ function switchTab(tab) {
 // ═══════════════════════════════════════════════
 const EV_STORAGE_KEY = 'kaig_events_v1';
 const EV_UPDATED_KEY = 'kaig_events_updated';
-const EV_SORT_VERSION = 'v2'; // 이 값을 바꾸면 localStorage 강제 재정렬
+const EV_SORT_VERSION = 'v3'; // 이 값을 바꾸면 localStorage 강제 재정렬
 const EV_SORT_VER_KEY = 'kaig_events_sort_ver';
 
 const EV_DOMESTIC = ['대한소화기학회','대한소화기내시경학회','대한상부위장관헬리코박터학회','대한위대장내시경학회'];
@@ -6302,6 +6302,7 @@ const EV_SEED = [
   {id:'s4',title:'KSGE Days 2025 (대한소화기내시경학회 추계)',society:'대한소화기내시경학회',type:'학술대회',start:'2025-09-19',end:'2025-09-20',location:'BPEX 부산항국제전시컨벤션센터, 부산',url:'https://ksgedays.or.kr/2025/',desc:'The Future of GI Endoscopy: Connection, Innovation, Progress. 22개국 650여명 참석.'},
   {id:'s5',title:'JDDW 2025 & 일본소화기내시경학회 제110회 총회',society:'일본소화기내시경학회(JGES)',type:'학술대회',start:'2025-10-30',end:'2025-11-01',location:'Japan',url:'https://www.jddw.jp/jddw2025/en/',desc:'Japan Digestive Disease Week 2025 & The 110th Congress of JGES 통합 개최.'},
   {id:'s6',title:'KDDW 2025 (소화기연관학회 통합학술대회)',society:'대한소화기학회',type:'학술대회',start:'2025-11-13',end:'2025-11-15',location:'그랜드 워커힐 서울',url:'https://www.kddw.org/',desc:'국내 소화기 관련 학회 통합 국제학술대회.'},
+  {id:'s15',title:'HUG 2026 (대한상부위장관헬리코박터학회 국제학술대회)',society:'대한상부위장관헬리코박터학회',type:'학술대회',start:'2026-03-19',end:'2026-03-21',location:'롯데호텔 서울',url:'https://www.helicobacterkorea.org/',desc:'The International Symposium on Helicobacter and Upper Gastrointestinal Diseases & 제34차 대한상부위장관헬리코박터학회 연례학술대회 통합 개최.'},
   {id:'s7',title:'SIDDS 2026 & 대한소화기학회 춘계학술대회',society:'대한소화기학회',type:'학술대회',start:'2026-04-18',end:'2026-04-19',location:'그랜드 워커힐 서울',url:'https://sidds.org/',desc:'SIDDS 2026 & 대한소화기학회 춘계학술대회 통합 개최.'},
   {id:'s8',title:'대한소화기내시경학회 전북지회 연수강좌',society:'대한소화기내시경학회',type:'연수강좌',start:'2026-04-25',end:'2026-04-25',location:'전북대병원 임상연구지원센터 2층 새만금홀',url:'https://www.gie.or.kr',desc:'대한소화기내시경학회 전북지회 제14회 연수강좌.'},
   {id:'s9',title:'DDW 2026 (Digestive Disease Week)',society:'미국소화기학회(AGA)',type:'학술대회',start:'2026-05-02',end:'2026-05-05',location:'Chicago, IL, USA',url:'https://ddw.org/',desc:'소화기 분야 세계 최대 연례 학술대회. AGA·AASLD·ASGE·SSAT 공동 주최.'},
@@ -6310,6 +6311,7 @@ const EV_SEED = [
   {id:'s12',title:'KSGE Days 2026 (대한소화기내시경학회 추계)',society:'대한소화기내시경학회',type:'학술대회',start:'2026-09-04',end:'2026-09-05',location:'Seoul, Korea',url:'https://www.gie.or.kr',desc:'대한소화기내시경학회 추계 국제학술대회.'},
   {id:'s13',title:'UEG Week 2026',society:'유럽소화기학회(UEG)',type:'학술대회',start:'2026-10-17',end:'2026-10-20',location:'Fira Gran Via, Barcelona, Spain',url:'https://ueg.eu/week',desc:'유럽 최대 소화기 학술대회. 약 13,000명 참가. 온·오프라인 하이브리드.'},
   {id:'s14',title:'JDDW 2026 (일본소화기학회/소화기내시경학회 통합)',society:'일본소화기학회(JSG)',type:'학술대회',start:'2026-11-05',end:'2026-11-07',location:'Kobe, Japan',url:'https://www.jddw.jp',desc:'Japan Digestive Disease Week 2026. 일본소화기학회·소화기내시경학회·헬리코박터학회 등 공동 개최.'},
+  {id:'s16',title:'KDDW 2026 (소화기연관학회 통합학술대회)',society:'대한소화기학회',type:'학술대회',start:'2026-11-19',end:'2026-11-21',location:'그랜드 워커힐 서울',url:'https://www.kddw.org/',desc:'제10차 소화기연관학회 국제학술대회. 국내 8개 소화기연관학회 공동 개최.'},
 ];
 
 let evEvents = [];
@@ -6322,14 +6324,16 @@ function evLoad() {
     const savedVer = localStorage.getItem(EV_SORT_VER_KEY);
 
     if (raw) {
-      // 버전이 다르면 → 기존 데이터를 날짜순 재정렬 후 저장 (캐시 갱신)
       const parsed = JSON.parse(raw);
-      evEvents = evSortByDate(parsed);
-
       if (savedVer !== EV_SORT_VERSION) {
-        // 재정렬된 데이터를 다시 저장하고 버전 기록
+        // 버전 변경 시 → seed에만 있는 신규 항목을 기존 데이터에 병합 후 재정렬
+        const existingIds = new Set(parsed.map(e => e.id));
+        const newSeedItems = EV_SEED.filter(e => !existingIds.has(e.id));
+        evEvents = evSortByDate([...parsed, ...newSeedItems]);
         localStorage.setItem(EV_STORAGE_KEY, JSON.stringify(evEvents));
         localStorage.setItem(EV_SORT_VER_KEY, EV_SORT_VERSION);
+      } else {
+        evEvents = evSortByDate(parsed);
       }
     } else {
       // 처음 방문 → seed 데이터(이미 정렬됨) 저장
@@ -6347,7 +6351,7 @@ function evLoad() {
   }
 }
 
-function evGetRegion(s) { return EV_DOMESTIC.includes(s) ? '국내' : '해외'; }
+function evGetRegion(society) { return EV_DOMESTIC.includes(society) ? '국내' : '해외'; }
 
 function evFmtDate(start, end) {
   const s = new Date(start);
@@ -6400,8 +6404,13 @@ function evRenderMonths() {
   all.innerHTML = '전체';
   all.onclick = () => { evMonth = 'all'; evRenderAll(); };
   row.appendChild(all);
+  // 월 필터를 제외한 현재 필터 기준으로 카운트 (국내/해외/학회/검색 반영)
+  const savedMonth = evMonth;
+  evMonth = 'all';
+  const baseList = evGetFiltered();
+  evMonth = savedMonth;
   EV_MONTHS.forEach((label, idx) => {
-    const count = evEvents.filter(e => evGetMonth(e) === idx).length;
+    const count = baseList.filter(e => evGetMonth(e) === idx).length;
     if (!count) return;
     const btn = document.createElement('button');
     btn.className = 'ev-month-tab' + (evMonth == idx ? ' active' : '');
