@@ -1679,118 +1679,9 @@
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
 </style>
 
-/* ── PREVIEW GATE ── */
-body.gate-locked {
-  overflow: hidden;
-}
-body.gate-locked .app-header,
-body.gate-locked .main-wrap,
-body.gate-locked .detail-overlay,
-body.gate-locked .share-sheet-overlay,
-body.gate-locked .add-overlay,
-body.gate-locked #bookmark-save-btn,
-body.gate-locked .ev-add-btn {
-  visibility: hidden;
-}
-#preview-gate {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: linear-gradient(135deg, #085041 0%, #0F6E56 60%, #1D9E75 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#preview-gate.unlocked {
-  animation: gateOut 0.4s ease forwards;
-  pointer-events: none;
-}
-@keyframes gateOut {
-  to { opacity: 0; transform: scale(1.03); }
-}
-.gate-box {
-  background: #fff;
-  border-radius: 20px;
-  padding: 44px 40px 36px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-}
-.gate-logo {
-  width: 52px;
-  height: 52px;
-  background: var(--green-pale);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  margin: 0 auto 16px;
-}
-.gate-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
-}
-.gate-sub {
-  font-size: 12px;
-  color: var(--ink-soft);
-  margin-bottom: 26px;
-  line-height: 1.6;
-}
-.gate-input {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1.5px solid var(--rule);
-  border-radius: 10px;
-  font-size: 14px;
-  font-family: 'Noto Sans KR', sans-serif;
-  outline: none;
-  background: var(--bg);
-  color: var(--ink);
-  transition: border-color 0.2s;
-  letter-spacing: 0.15em;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.gate-input:focus { border-color: var(--green-mid); background: #fff; }
-.gate-btn {
-  width: 100%;
-  padding: 12px;
-  background: var(--green-dark);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: 'Noto Sans KR', sans-serif;
-  cursor: pointer;
-  transition: background 0.18s;
-  margin-bottom: 8px;
-}
-.gate-btn:hover { background: var(--green-mid); }
-.gate-error {
-  font-size: 12px;
-  color: #c0392b;
-  min-height: 18px;
-}
 </style>
 </head>
 <body>
-
-<!-- ═══ PREVIEW GATE ═══ -->
-<div id="preview-gate">
-  <div class="gate-box">
-    <div class="gate-logo">🔒</div>
-    <div class="gate-title">자가면역성위염 — KAIG</div>
-    <div class="gate-sub">프리뷰 페이지입니다.<br>담당자에게 받은 비밀번호를 입력하세요.</div>
-    <input class="gate-input" type="password" id="gate-input" placeholder="비밀번호 입력"
-      onkeydown="if(event.key==='Enter') gateUnlock()">
-    <button class="gate-btn" onclick="gateUnlock()">입장하기</button>
-    <div class="gate-error" id="gate-error"></div>
-  </div>
-</div>
 
 <!-- HEADER -->
 <header class="app-header">
@@ -7262,44 +7153,6 @@ evRenderAll();
     toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 1200);
   }
 })();
-
-// ═══════════════════════════════════════════════
-// PREVIEW GATE
-// 오픈 후 아래 한 줄을 지우거나 주석 처리하면 잠금이 해제됩니다.
-// ═══════════════════════════════════════════════
-const PREVIEW_PASSWORD = 'kaig2025'; // ← 비밀번호를 여기서 변경하세요
-const GATE_SESSION_KEY = 'kaig_preview_unlocked';
-
-(function initGate() {
-  // 이미 이번 세션에 인증했으면 바로 열기
-  if (sessionStorage.getItem(GATE_SESSION_KEY) === '1') {
-    document.getElementById('preview-gate').style.display = 'none';
-    return;
-  }
-  // 잠금: 뒤 콘텐츠 숨김
-  document.body.classList.add('gate-locked');
-  // 포커스
-  setTimeout(() => {
-    const el = document.getElementById('gate-input');
-    if (el) el.focus();
-  }, 100);
-})();
-
-function gateUnlock() {
-  const val = document.getElementById('gate-input').value;
-  if (val === PREVIEW_PASSWORD) {
-    sessionStorage.setItem(GATE_SESSION_KEY, '1');
-    document.body.classList.remove('gate-locked'); // 콘텐츠 다시 표시
-    const gate = document.getElementById('preview-gate');
-    gate.classList.add('unlocked');
-    setTimeout(() => { gate.style.display = 'none'; }, 420);
-  } else {
-    const err = document.getElementById('gate-error');
-    err.textContent = '비밀번호가 올바르지 않습니다.';
-    document.getElementById('gate-input').value = '';
-    setTimeout(() => { err.textContent = ''; }, 2500);
-  }
-}
 </script>
 </body>
 </html>
