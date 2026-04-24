@@ -6280,6 +6280,8 @@ function switchTab(tab) {
 // ═══════════════════════════════════════════════
 const EV_STORAGE_KEY = 'kaig_events_v1';
 const EV_UPDATED_KEY = 'kaig_events_updated';
+const EV_SORT_VERSION = 'v2'; // 이 값을 바꾸면 localStorage 강제 재정렬
+const EV_SORT_VER_KEY = 'kaig_events_sort_ver';
 
 const EV_DOMESTIC = ['대한소화기학회','대한소화기내시경학회','대한상부위장관헬리코박터학회','대한위대장내시경학회'];
 const EV_OVERSEAS  = ['미국소화기학회(AGA)','미국소화기내시경학회(ASGE)','유럽소화기학회(UEG)','유럽헬리코박터학회(EHMSG)','일본소화기학회(JSG)','일본소화기내시경학회(JGES)','일본헬리코박터학회(JSHP)'];
@@ -6287,14 +6289,15 @@ const EV_ALL_SOC   = [...EV_DOMESTIC, ...EV_OVERSEAS];
 const EV_MONTHS    = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 const EV_TYPE_CLASS = {'학술대회':'tc','워크샵':'tw','세미나':'ts','연수강좌':'tk'};
 
-// 날짜순 정렬 함수 (공통)
+// 날짜순 정렬 함수 — EV_SEED보다 반드시 먼저 선언
 function evSortByDate(arr) {
   return [...arr].sort((a, b) => a.start.localeCompare(b.start));
 }
 
-const EV_SEED = evSortByDate([
-  {id:'s1',title:'SIDDS 2025 & 대한소화기학회 춘계학술대회',society:'대한소화기학회',type:'학술대회',start:'2025-04-19',end:'2025-04-20',location:'그랜드 워커힐 서울',url:'http://2025.sidds.org/',desc:'Seoul International Digestive Disease Symposium(SIDDS) 2025와 대한소화기학회 춘계학술대회 통합 개최.'},
+// ── SEED 데이터 (날짜 오름차순으로 미리 정렬됨) ──
+const EV_SEED = [
   {id:'s2',title:'대한소화기내시경학회 제71회 춘계 세미나',society:'대한소화기내시경학회',type:'세미나',start:'2025-03-22',end:'2025-03-22',location:'서울',url:'https://www.gie.or.kr',desc:'대한소화기내시경학회 제71회 춘계 세미나.'},
+  {id:'s1',title:'SIDDS 2025 & 대한소화기학회 춘계학술대회',society:'대한소화기학회',type:'학술대회',start:'2025-04-19',end:'2025-04-20',location:'그랜드 워커힐 서울',url:'http://2025.sidds.org/',desc:'Seoul International Digestive Disease Symposium(SIDDS) 2025와 대한소화기학회 춘계학술대회 통합 개최.'},
   {id:'s3',title:'EHMSG 38th Workshop (유럽헬리코박터학회)',society:'유럽헬리코박터학회(EHMSG)',type:'워크샵',start:'2025-09-11',end:'2025-09-13',location:'Rome, Italy',url:'https://www.ehmsg.org',desc:'38th Annual Workshop on Helicobacter and Microbiota in Inflammation and Cancer.'},
   {id:'s4',title:'KSGE Days 2025 (대한소화기내시경학회 추계)',society:'대한소화기내시경학회',type:'학술대회',start:'2025-09-19',end:'2025-09-20',location:'BPEX 부산항국제전시컨벤션센터, 부산',url:'https://ksgedays.or.kr/2025/',desc:'The Future of GI Endoscopy: Connection, Innovation, Progress. 22개국 650여명 참석.'},
   {id:'s5',title:'JDDW 2025 & 일본소화기내시경학회 제110회 총회',society:'일본소화기내시경학회(JGES)',type:'학술대회',start:'2025-10-30',end:'2025-11-01',location:'Japan',url:'https://www.jddw.jp/jddw2025/en/',desc:'Japan Digestive Disease Week 2025 & The 110th Congress of JGES 통합 개최.'},
@@ -6307,7 +6310,7 @@ const EV_SEED = evSortByDate([
   {id:'s12',title:'KSGE Days 2026 (대한소화기내시경학회 추계)',society:'대한소화기내시경학회',type:'학술대회',start:'2026-09-04',end:'2026-09-05',location:'Seoul, Korea',url:'https://www.gie.or.kr',desc:'대한소화기내시경학회 추계 국제학술대회.'},
   {id:'s13',title:'UEG Week 2026',society:'유럽소화기학회(UEG)',type:'학술대회',start:'2026-10-17',end:'2026-10-20',location:'Fira Gran Via, Barcelona, Spain',url:'https://ueg.eu/week',desc:'유럽 최대 소화기 학술대회. 약 13,000명 참가. 온·오프라인 하이브리드.'},
   {id:'s14',title:'JDDW 2026 (일본소화기학회/소화기내시경학회 통합)',society:'일본소화기학회(JSG)',type:'학술대회',start:'2026-11-05',end:'2026-11-07',location:'Kobe, Japan',url:'https://www.jddw.jp',desc:'Japan Digestive Disease Week 2026. 일본소화기학회·소화기내시경학회·헬리코박터학회 등 공동 개최.'},
-]);
+];
 
 let evEvents = [];
 let evRegion = 'all', evType = 'all', evSoc = 'all', evMonth = 'all', evSearchQ = '';
@@ -6316,14 +6319,26 @@ let evDetailId = null;
 function evLoad() {
   try {
     const raw = localStorage.getItem(EV_STORAGE_KEY);
+    const savedVer = localStorage.getItem(EV_SORT_VER_KEY);
+
     if (raw) {
-      // localStorage에 저장된 데이터도 날짜순으로 정렬해서 불러옴
-      evEvents = evSortByDate(JSON.parse(raw));
+      // 버전이 다르면 → 기존 데이터를 날짜순 재정렬 후 저장 (캐시 갱신)
+      const parsed = JSON.parse(raw);
+      evEvents = evSortByDate(parsed);
+
+      if (savedVer !== EV_SORT_VERSION) {
+        // 재정렬된 데이터를 다시 저장하고 버전 기록
+        localStorage.setItem(EV_STORAGE_KEY, JSON.stringify(evEvents));
+        localStorage.setItem(EV_SORT_VER_KEY, EV_SORT_VERSION);
+      }
     } else {
-      evEvents = EV_SEED; // 이미 evSortByDate로 정렬된 상태
+      // 처음 방문 → seed 데이터(이미 정렬됨) 저장
+      evEvents = EV_SEED;
       localStorage.setItem(EV_STORAGE_KEY, JSON.stringify(evEvents));
+      localStorage.setItem(EV_SORT_VER_KEY, EV_SORT_VERSION);
     }
   } catch { evEvents = EV_SEED; }
+
   const iso = localStorage.getItem(EV_UPDATED_KEY);
   if (iso) {
     const d = new Date(iso);
