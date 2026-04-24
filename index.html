@@ -1592,18 +1592,24 @@
   .ev-date-block {
     flex-shrink: 0; text-align: center;
     background: var(--green-paler); border-radius: var(--radius-sm);
-    padding: 5px 9px; min-width: 42px; border: 1px solid var(--green-pale);
+    padding: 5px 9px; min-width: 48px; border: 1px solid var(--green-pale);
   }
   .ev-card.tc .ev-date-block { background: var(--blue-pale); border-color: #C5DCEF; }
   .ev-card.tw .ev-date-block { background: var(--amber-pale); border-color: #E8D4A0; }
   .ev-card.ts .ev-date-block { background: #EDE8F7; border-color: #C9BDE8; }
   .ev-card.tk .ev-date-block { background: var(--coral-pale); border-color: #E8BCA8; }
+  .ev-year-lbl { font-size: 8px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.03em; line-height: 1.2; margin-bottom: 1px; }
   .ev-month-lbl { font-size: 9px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--green-mid); }
   .ev-card.tc .ev-month-lbl { color: var(--blue); }
   .ev-card.tw .ev-month-lbl { color: var(--amber); }
   .ev-card.ts .ev-month-lbl { color: #5B3FA0; }
   .ev-card.tk .ev-month-lbl { color: var(--coral); }
   .ev-day { font-size: 18px; font-weight: 700; line-height: 1; color: var(--ink); }
+  .ev-year-sep {
+    font-size: 11px; font-weight: 700; color: var(--ink-soft);
+    letter-spacing: 0.05em; padding: 6px 2px 4px;
+    border-bottom: 1px solid var(--rule); margin-bottom: 4px;
+  }
   .ev-main { flex: 1; min-width: 0; }
   .ev-title { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.4; }
   .ev-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
@@ -6278,10 +6284,10 @@ function switchTab(tab) {
 // ═══════════════════════════════════════════════
 // EVENTS DATA & STATE
 // ═══════════════════════════════════════════════
-const EV_STORAGE_KEY = 'kaig_events_v1';
+const EV_STORAGE_KEY = 'kaig_events_v2';
 const EV_UPDATED_KEY = 'kaig_events_updated';
-const EV_SORT_VERSION = 'v3'; // 이 값을 바꾸면 localStorage 강제 재정렬
-const EV_SORT_VER_KEY = 'kaig_events_sort_ver';
+const EV_SORT_VERSION = 'v1';
+const EV_SORT_VER_KEY = 'kaig_events_sort_ver_v2';
 
 const EV_DOMESTIC = ['대한소화기학회','대한소화기내시경학회','대한상부위장관헬리코박터학회','대한위대장내시경학회'];
 const EV_OVERSEAS  = ['미국소화기학회(AGA)','미국소화기내시경학회(ASGE)','유럽소화기학회(UEG)','유럽헬리코박터학회(EHMSG)','일본소화기학회(JSG)','일본소화기내시경학회(JGES)','일본헬리코박터학회(JSHP)'];
@@ -6294,24 +6300,21 @@ function evSortByDate(arr) {
   return [...arr].sort((a, b) => a.start.localeCompare(b.start));
 }
 
-// ── SEED 데이터 (날짜 오름차순으로 미리 정렬됨) ──
+// ── SEED 데이터 (2026~2027, 날짜 오름차순) ──
 const EV_SEED = [
-  {id:'s2',title:'대한소화기내시경학회 제71회 춘계 세미나',society:'대한소화기내시경학회',type:'세미나',start:'2025-03-22',end:'2025-03-22',location:'서울',url:'https://www.gie.or.kr',desc:'대한소화기내시경학회 제71회 춘계 세미나.'},
-  {id:'s1',title:'SIDDS 2025 & 대한소화기학회 춘계학술대회',society:'대한소화기학회',type:'학술대회',start:'2025-04-19',end:'2025-04-20',location:'그랜드 워커힐 서울',url:'http://2025.sidds.org/',desc:'Seoul International Digestive Disease Symposium(SIDDS) 2025와 대한소화기학회 춘계학술대회 통합 개최.'},
-  {id:'s3',title:'EHMSG 38th Workshop (유럽헬리코박터학회)',society:'유럽헬리코박터학회(EHMSG)',type:'워크샵',start:'2025-09-11',end:'2025-09-13',location:'Rome, Italy',url:'https://www.ehmsg.org',desc:'38th Annual Workshop on Helicobacter and Microbiota in Inflammation and Cancer.'},
-  {id:'s4',title:'KSGE Days 2025 (대한소화기내시경학회 추계)',society:'대한소화기내시경학회',type:'학술대회',start:'2025-09-19',end:'2025-09-20',location:'BPEX 부산항국제전시컨벤션센터, 부산',url:'https://ksgedays.or.kr/2025/',desc:'The Future of GI Endoscopy: Connection, Innovation, Progress. 22개국 650여명 참석.'},
-  {id:'s5',title:'JDDW 2025 & 일본소화기내시경학회 제110회 총회',society:'일본소화기내시경학회(JGES)',type:'학술대회',start:'2025-10-30',end:'2025-11-01',location:'Japan',url:'https://www.jddw.jp/jddw2025/en/',desc:'Japan Digestive Disease Week 2025 & The 110th Congress of JGES 통합 개최.'},
-  {id:'s6',title:'KDDW 2025 (소화기연관학회 통합학술대회)',society:'대한소화기학회',type:'학술대회',start:'2025-11-13',end:'2025-11-15',location:'그랜드 워커힐 서울',url:'https://www.kddw.org/',desc:'국내 소화기 관련 학회 통합 국제학술대회.'},
   {id:'s15',title:'HUG 2026 (대한상부위장관헬리코박터학회 국제학술대회)',society:'대한상부위장관헬리코박터학회',type:'학술대회',start:'2026-03-19',end:'2026-03-21',location:'롯데호텔 서울',url:'https://www.helicobacterkorea.org/',desc:'The International Symposium on Helicobacter and Upper Gastrointestinal Diseases & 제34차 대한상부위장관헬리코박터학회 연례학술대회 통합 개최.'},
-  {id:'s7',title:'SIDDS 2026 & 대한소화기학회 춘계학술대회',society:'대한소화기학회',type:'학술대회',start:'2026-04-18',end:'2026-04-19',location:'그랜드 워커힐 서울',url:'https://sidds.org/',desc:'SIDDS 2026 & 대한소화기학회 춘계학술대회 통합 개최.'},
-  {id:'s8',title:'대한소화기내시경학회 전북지회 연수강좌',society:'대한소화기내시경학회',type:'연수강좌',start:'2026-04-25',end:'2026-04-25',location:'전북대병원 임상연구지원센터 2층 새만금홀',url:'https://www.gie.or.kr',desc:'대한소화기내시경학회 전북지회 제14회 연수강좌.'},
-  {id:'s9',title:'DDW 2026 (Digestive Disease Week)',society:'미국소화기학회(AGA)',type:'학술대회',start:'2026-05-02',end:'2026-05-05',location:'Chicago, IL, USA',url:'https://ddw.org/',desc:'소화기 분야 세계 최대 연례 학술대회. AGA·AASLD·ASGE·SSAT 공동 주최.'},
+  {id:'s7', title:'SIDDS 2026 & 대한소화기학회 춘계학술대회',society:'대한소화기학회',type:'학술대회',start:'2026-04-18',end:'2026-04-19',location:'그랜드 워커힐 서울',url:'https://sidds.org/',desc:'SIDDS 2026 & 대한소화기학회 춘계학술대회 통합 개최.'},
+  {id:'s8', title:'대한소화기내시경학회 전북지회 연수강좌',society:'대한소화기내시경학회',type:'연수강좌',start:'2026-04-25',end:'2026-04-25',location:'전북대병원 임상연구지원센터 2층 새만금홀',url:'https://www.gie.or.kr',desc:'대한소화기내시경학회 전북지회 제14회 연수강좌.'},
+  {id:'s9', title:'DDW 2026 (Digestive Disease Week)',society:'미국소화기학회(AGA)',type:'학술대회',start:'2026-05-02',end:'2026-05-05',location:'Chicago, IL, USA',url:'https://ddw.org/',desc:'소화기 분야 세계 최대 연례 학술대회. AGA·AASLD·ASGE·SSAT 공동 주최.'},
   {id:'s10',title:'일본소화기내시경학회 제111회 총회',society:'일본소화기내시경학회(JGES)',type:'학술대회',start:'2026-05-08',end:'2026-05-10',location:'Japan',url:'https://www.jges.net',desc:'The 111th Congress of JGES.'},
   {id:'s11',title:'HPI 2026 (Helicobacter 국제워크샵)',society:'유럽헬리코박터학회(EHMSG)',type:'워크샵',start:'2026-07-01',end:'2026-07-04',location:'Helsingør, Denmark',url:'https://helicobacterhelsingor.com/',desc:'16th International Workshop on Pathogenesis and Host Response in Helicobacter Infections.'},
   {id:'s12',title:'KSGE Days 2026 (대한소화기내시경학회 추계)',society:'대한소화기내시경학회',type:'학술대회',start:'2026-09-04',end:'2026-09-05',location:'Seoul, Korea',url:'https://www.gie.or.kr',desc:'대한소화기내시경학회 추계 국제학술대회.'},
   {id:'s13',title:'UEG Week 2026',society:'유럽소화기학회(UEG)',type:'학술대회',start:'2026-10-17',end:'2026-10-20',location:'Fira Gran Via, Barcelona, Spain',url:'https://ueg.eu/week',desc:'유럽 최대 소화기 학술대회. 약 13,000명 참가. 온·오프라인 하이브리드.'},
   {id:'s14',title:'JDDW 2026 (일본소화기학회/소화기내시경학회 통합)',society:'일본소화기학회(JSG)',type:'학술대회',start:'2026-11-05',end:'2026-11-07',location:'Kobe, Japan',url:'https://www.jddw.jp',desc:'Japan Digestive Disease Week 2026. 일본소화기학회·소화기내시경학회·헬리코박터학회 등 공동 개최.'},
   {id:'s16',title:'KDDW 2026 (소화기연관학회 통합학술대회)',society:'대한소화기학회',type:'학술대회',start:'2026-11-19',end:'2026-11-21',location:'그랜드 워커힐 서울',url:'https://www.kddw.org/',desc:'제10차 소화기연관학회 국제학술대회. 국내 8개 소화기연관학회 공동 개최.'},
+  {id:'s17',title:'DDW 2027 (Digestive Disease Week)',society:'미국소화기학회(AGA)',type:'학술대회',start:'2027-05-15',end:'2027-05-18',location:'Washington, D.C., USA',url:'https://ddw.org/',desc:'소화기 분야 세계 최대 연례 학술대회. AGA·AASLD·ASGE·SSAT 공동 주최.'},
+  {id:'s18',title:'UEG Week 2027',society:'유럽소화기학회(UEG)',type:'학술대회',start:'2027-10-16',end:'2027-10-19',location:'TBA',url:'https://ueg.eu/week',desc:'유럽 최대 소화기 학술대회. 온·오프라인 하이브리드.'},
+  {id:'s19',title:'JDDW 2027 (일본소화기학회/소화기내시경학회 통합)',society:'일본소화기학회(JSG)',type:'학술대회',start:'2027-10-28',end:'2027-10-31',location:'Kobe, Japan',url:'https://www.jddw.jp',desc:'Japan Digestive Disease Week 2027.'},
 ];
 
 let evEvents = [];
@@ -6429,17 +6432,30 @@ function evRenderList() {
     return;
   }
   el.innerHTML = '';
+  let lastYear = null;
   list.forEach(ev => {
     const d = new Date(ev.start);
+    const yr = d.getFullYear();
     const mo = EV_MONTHS[d.getMonth()];
     const day = d.getDate();
     const tc = EV_TYPE_CLASS[ev.type] || '';
     const reg = evGetRegion(ev.society);
+
+    // 연도 구분선
+    if (yr !== lastYear) {
+      const sep = document.createElement('div');
+      sep.className = 'ev-year-sep';
+      sep.textContent = yr + '년';
+      el.appendChild(sep);
+      lastYear = yr;
+    }
+
     const card = document.createElement('div');
     card.className = `ev-card ${tc}`;
     card.innerHTML = `
       <div class="ev-top">
         <div class="ev-date-block">
+          <div class="ev-year-lbl">${yr}</div>
           <div class="ev-month-lbl">${mo}</div>
           <div class="ev-day">${day}</div>
         </div>
