@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>학술행사 일정 — KAIG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark:  #085041;
+    --green-mid:   #0F6E56;
+    --green-light: #1D9E75;
+    --green-pale:  #E1F5EE;
+    --green-paler: #F0FAF6;
+    --ink:         #1a1a1a;
+    --ink-mid:     #4a4a4a;
+    --ink-soft:    #7a7a7a;
+    --rule:        rgba(0,0,0,0.08);
+    --bg:          #f8f9f7;
+    --white:       #ffffff;
+    --amber:       #BA7517;
+    --amber-pale:  #FAEEDA;
+    --blue:        #185FA5;
+    --blue-pale:   #E6F1FB;
+    --coral:       #993C1D;
+    --coral-pale:  #FAECE7;
+    --purple:      #5B3FA0;
+    --purple-pale: #EDE8F7;
+    --radius-sm:   6px;
+    --radius-md:   10px;
+    --radius-lg:   16px;
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .app-header {
+    background: var(--green-dark);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 14px 20px 12px;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .header-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+  .header-eng {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+  .header-nav-link {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: all 0.15s;
+  }
+  .header-nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .search-wrap { position: relative; }
+  .search-input {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    padding: 8px 36px 8px 14px;
+    font-size: 13px;
+    color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .search-input::placeholder { color: rgba(255,255,255,0.45); }
+  .search-input:focus { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.35); }
+  .search-icon {
+    position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
+    opacity: 0.5; pointer-events: none;
+  }
+
+  /* ── LAYOUT ── */
+  .main-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 16px 80px;
+  }
+
+  /* ── LAST UPDATED ── */
+  .last-updated {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .last-updated .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green-light);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.5; transform:scale(0.85); }
+  }
+
+  /* ── FILTER ROW ── */
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    align-items: center;
+  }
+  .filter-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-right: 2px;
+  }
+  .filter-chip {
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    white-space: nowrap;
+    box-shadow: var(--shadow-card);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .filter-chip:hover { border-color: var(--green-light); color: var(--green-dark); }
+  .filter-chip.active {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(8,80,65,0.25);
+  }
+  .filter-chip.domestic.active { background: var(--blue); border-color: var(--blue); }
+  .filter-chip.overseas.active { background: var(--coral); border-color: var(--coral); }
+
+  /* ── SOCIETY CHIPS ── */
+  .society-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .soc-chip {
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    white-space: nowrap;
+    box-shadow: var(--shadow-card);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .soc-chip:hover { border-color: var(--green-light); color: var(--green-dark); }
+  .soc-chip.active {
+    background: var(--green-pale);
+    border-color: var(--green-mid);
+    color: var(--green-dark);
+    font-weight: 700;
+  }
+  .soc-chip.dom { }
+  .soc-chip.intl { }
+  .soc-chip.dom.active { background: var(--blue-pale); border-color: var(--blue); color: var(--blue); }
+  .soc-chip.intl.active { background: var(--coral-pale); border-color: var(--coral); color: var(--coral); }
+
+  /* divider between rows */
+  .section-divider {
+    height: 1px; background: var(--rule); margin: 0 0 18px;
+  }
+
+  /* ── MONTH TABS ── */
+  .month-row {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .month-tab {
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    box-shadow: var(--shadow-card);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .month-tab:hover { background: var(--green-paler); color: var(--green-dark); }
+  .month-tab.active {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+  }
+  .month-tab .badge {
+    display: inline-block;
+    background: rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 0 5px;
+    font-size: 9px;
+    margin-left: 2px;
+  }
+  .month-tab.active .badge { background: rgba(255,255,255,0.2); }
+
+  /* ── RESULTS HEADER ── */
+  .results-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .results-title { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .results-count { font-size: 12px; color: var(--ink-soft); }
+
+  /* ── EVENT CARDS ── */
+  .event-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .event-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--rule);
+    box-shadow: var(--shadow-card);
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: box-shadow 0.15s, border-color 0.15s, transform 0.1s;
+    position: relative;
+    overflow: hidden;
+  }
+  .event-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
+    background: var(--green-mid);
+    transition: width 0.15s;
+  }
+  .event-card.type-conference::before { background: var(--blue); }
+  .event-card.type-workshop::before  { background: var(--amber); }
+  .event-card.type-seminar::before   { background: var(--purple); }
+  .event-card.type-course::before    { background: var(--coral); }
+
+  .event-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09), 0 8px 24px rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.13);
+    transform: translateY(-1px);
+  }
+
+  .event-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .event-date-block {
+    flex-shrink: 0;
+    text-align: center;
+    background: var(--green-paler);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    min-width: 46px;
+    border: 1px solid var(--green-pale);
+  }
+  .event-card.type-conference .event-date-block { background: var(--blue-pale); border-color: #C5DCEF; }
+  .event-card.type-workshop .event-date-block   { background: var(--amber-pale); border-color: #E8D4A0; }
+  .event-card.type-seminar .event-date-block    { background: var(--purple-pale); border-color: #C9BDE8; }
+  .event-card.type-course .event-date-block     { background: var(--coral-pale); border-color: #E8BCA8; }
+
+  .event-month {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+  }
+  .event-card.type-conference .event-month { color: var(--blue); }
+  .event-card.type-workshop .event-month   { color: var(--amber); }
+  .event-card.type-seminar .event-month    { color: var(--purple); }
+  .event-card.type-course .event-month     { color: var(--coral); }
+
+  .event-day {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .event-main { flex: 1; min-width: 0; }
+  .event-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .event-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .event-society {
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  .event-type-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: var(--green-pale);
+    color: var(--green-dark);
+  }
+  .type-conference .event-type-badge { background: var(--blue-pale); color: var(--blue); }
+  .type-workshop .event-type-badge   { background: var(--amber-pale); color: var(--amber); }
+  .type-seminar .event-type-badge    { background: var(--purple-pale); color: var(--purple); }
+  .type-course .event-type-badge     { background: var(--coral-pale); color: var(--coral); }
+
+  .region-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: #f0f0f0;
+    color: var(--ink-soft);
+  }
+  .event-location {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .event-location svg { flex-shrink: 0; }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--ink-soft);
+  }
+  .empty-state .empty-icon { font-size: 40px; margin-bottom: 12px; }
+  .empty-state p { font-size: 13px; }
+
+  /* ── ADMIN PANEL ── */
+  .admin-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 200;
+    background: var(--green-dark);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px; height: 48px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(8,80,65,0.4);
+    transition: background 0.15s, transform 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .admin-toggle:hover { background: var(--green-mid); transform: scale(1.05); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-sheet {
+    background: var(--white);
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px;
+    box-shadow: 0 -4px 32px rgba(0,0,0,0.12);
+    animation: slideUp 0.2s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .modal-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--green-dark);
+  }
+  .modal-close {
+    background: none; border: none;
+    font-size: 20px; cursor: pointer;
+    color: var(--ink-soft);
+    line-height: 1;
+  }
+  .form-group { margin-bottom: 14px; }
+  .form-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    padding: 9px 12px;
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--green-mid);
+    background: var(--white);
+  }
+  .form-textarea { resize: vertical; min-height: 70px; }
+  .form-row { display: flex; gap: 10px; }
+  .form-row .form-group { flex: 1; }
+  .btn-submit {
+    width: 100%;
+    background: var(--green-dark);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background 0.15s;
+  }
+  .btn-submit:hover { background: var(--green-mid); }
+
+  /* ── DETAIL OVERLAY ── */
+  .detail-overlay {
+    position: fixed; inset: 0; z-index: 250;
+    background: rgba(0,0,0,0.35);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .detail-overlay.open { display: flex; }
+  .detail-sheet {
+    background: var(--white);
+    border-radius: 16px 16px 0 0;
+    width: 100%; max-width: 600px;
+    max-height: 80vh; overflow-y: auto;
+    padding: 20px 20px 32px;
+    box-shadow: 0 -4px 32px rgba(0,0,0,0.12);
+    animation: slideUp 0.2s ease;
+  }
+  .detail-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .detail-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px; font-weight: 600; color: var(--ink);
+    flex: 1; line-height: 1.4; padding-right: 12px;
+  }
+  .detail-close {
+    background: none; border: none; font-size: 20px;
+    cursor: pointer; color: var(--ink-soft); flex-shrink: 0;
+  }
+  .detail-row {
+    display: flex; align-items: flex-start; gap: 8px;
+    margin-bottom: 10px; font-size: 13px; color: var(--ink-mid);
+  }
+  .detail-row-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--ink-soft);
+    width: 60px; flex-shrink: 0; padding-top: 1px;
+  }
+  .detail-link {
+    color: var(--blue); text-decoration: underline; word-break: break-all;
+  }
+  .detail-desc {
+    font-size: 13px; line-height: 1.7; color: var(--ink-mid);
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule);
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    background: rgba(8,80,65,0.9); color: #fff;
+    font-size: 13px; font-weight: 600;
+    padding: 8px 20px; border-radius: 20px;
+    z-index: 400; opacity: 0; transition: opacity 0.25s;
+    pointer-events: none; font-family: 'Noto Sans KR', sans-serif; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; }
+
+  /* ── SECTION HEADING ── */
+  .section-heading {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .form-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="header-brand">
+        <span class="header-title">학술행사 일정</span>
+        <span class="header-eng">Academic Events · KAIG</span>
+      </div>
+      <a href="index.html" class="header-nav-link">← 논문</a>
+    </div>
+    <div class="search-wrap">
+      <input class="search-input" id="search-input" type="text" placeholder="행사명, 학회, 장소 검색…" autocomplete="off">
+      <svg class="search-icon" width="15" height="15" viewBox="0 0 20 20" fill="none">
+        <circle cx="8.5" cy="8.5" r="5.5" stroke="white" stroke-width="1.8"/>
+        <path d="M13 13l3.5 3.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<main class="main-wrap">
+
+  <!-- Last updated -->
+  <div class="last-updated">
+    <div class="dot"></div>
+    <span id="updated-text">마지막 업데이트: —</span>
+  </div>
+
+  <!-- Region filter -->
+  <div class="filter-row">
+    <span class="filter-label">지역</span>
+    <button class="filter-chip active" data-region="all">전체</button>
+    <button class="filter-chip domestic" data-region="국내">🇰🇷 국내</button>
+    <button class="filter-chip overseas" data-region="해외">🌏 해외</button>
+  </div>
+
+  <!-- Type filter -->
+  <div class="filter-row">
+    <span class="filter-label">종류</span>
+    <button class="filter-chip active" data-type="all">전체</button>
+    <button class="filter-chip" data-type="학술대회">학술대회</button>
+    <button class="filter-chip" data-type="워크샵">워크샵</button>
+    <button class="filter-chip" data-type="세미나">세미나</button>
+    <button class="filter-chip" data-type="연수강좌">연수강좌</button>
+  </div>
+
+  <!-- Society chips -->
+  <div class="section-heading">학회별</div>
+  <div class="society-row" id="society-row"></div>
+
+  <div class="section-divider"></div>
+
+  <!-- Month tabs -->
+  <div class="month-row" id="month-row"></div>
+
+  <!-- Results -->
+  <div class="results-header">
+    <span class="results-title" id="results-title">행사 일정</span>
+    <span class="results-count" id="results-count"></span>
+  </div>
+
+  <div class="event-list" id="event-list"></div>
+</main>
+
+<!-- ── ADD EVENT BUTTON ── -->
+<button class="admin-toggle" id="add-btn" title="행사 추가">＋</button>
+
+<!-- ── ADD EVENT MODAL ── -->
+<div class="modal-overlay" id="add-modal">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <span class="modal-title">새 행사 등록</span>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">행사명 *</label>
+      <input class="form-input" id="f-title" type="text" placeholder="예: 대한소화기학회 춘계학술대회">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">주관학회 *</label>
+        <select class="form-select" id="f-society">
+          <optgroup label="국내">
+            <option value="대한소화기학회">대한소화기학회</option>
+            <option value="대한소화기내시경학회">대한소화기내시경학회</option>
+            <option value="대한상부위장관헬리코박터학회">대한상부위장관헬리코박터학회</option>
+            <option value="대한위대장내시경학회">대한위대장내시경학회</option>
+          </optgroup>
+          <optgroup label="해외">
+            <option value="미국소화기학회(AGA)">미국소화기학회(AGA)</option>
+            <option value="미국소화기내시경학회(ASGE)">미국소화기내시경학회(ASGE)</option>
+            <option value="유럽소화기학회(UEG)">유럽소화기학회(UEG)</option>
+            <option value="유럽헬리코박터학회(EHMSG)">유럽헬리코박터학회(EHMSG)</option>
+            <option value="일본소화기학회(JSG)">일본소화기학회(JSG)</option>
+            <option value="일본소화기내시경학회(JGES)">일본소화기내시경학회(JGES)</option>
+            <option value="일본헬리코박터학회(JSHP)">일본헬리코박터학회(JSHP)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">행사 종류 *</label>
+        <select class="form-select" id="f-type">
+          <option value="학술대회">학술대회</option>
+          <option value="워크샵">워크샵</option>
+          <option value="세미나">세미나</option>
+          <option value="연수강좌">연수강좌</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">시작일 *</label>
+        <input class="form-input" id="f-start" type="date">
+      </div>
+      <div class="form-group">
+        <label class="form-label">종료일</label>
+        <input class="form-input" id="f-end" type="date">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">장소</label>
+      <input class="form-input" id="f-location" type="text" placeholder="예: 코엑스 그랜드볼룸, 서울">
+    </div>
+    <div class="form-group">
+      <label class="form-label">공식 URL</label>
+      <input class="form-input" id="f-url" type="url" placeholder="https://…">
+    </div>
+    <div class="form-group">
+      <label class="form-label">설명 (선택)</label>
+      <textarea class="form-textarea" id="f-desc" placeholder="행사 개요, 주요 프로그램 등"></textarea>
+    </div>
+    <button class="btn-submit" id="f-submit">등록하기</button>
+  </div>
+</div>
+
+<!-- ── DETAIL OVERLAY ── -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-sheet">
+    <div class="detail-header">
+      <div class="detail-title" id="d-title"></div>
+      <button class="detail-close" id="detail-close">✕</button>
+    </div>
+    <div class="detail-row">
+      <div class="detail-row-label">학회</div>
+      <div id="d-society"></div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-row-label">종류</div>
+      <div id="d-type"></div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-row-label">일정</div>
+      <div id="d-date"></div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-row-label">장소</div>
+      <div id="d-location"></div>
+    </div>
+    <div class="detail-row" id="d-url-row">
+      <div class="detail-row-label">링크</div>
+      <a class="detail-link" id="d-url" target="_blank" rel="noopener"></a>
+    </div>
+    <div class="detail-desc" id="d-desc"></div>
+    <div style="margin-top:16px; display:flex; gap:8px;">
+      <button id="d-delete" style="flex:1; padding:10px; border:1px solid var(--coral); border-radius:6px; background:none; color:var(--coral); font-size:13px; font-weight:600; cursor:pointer; font-family:'Noto Sans KR',sans-serif;">삭제</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA & CONSTANTS
+// ═══════════════════════════════════════════════
+const STORAGE_KEY = 'kaig_events_v1';
+const UPDATED_KEY = 'kaig_events_updated';
+
+const DOMESTIC = ['대한소화기학회','대한소화기내시경학회','대한상부위장관헬리코박터학회','대한위대장내시경학회'];
+const OVERSEAS  = ['미국소화기학회(AGA)','미국소화기내시경학회(ASGE)','유럽소화기학회(UEG)','유럽헬리코박터학회(EHMSG)','일본소화기학회(JSG)','일본소화기내시경학회(JGES)','일본헬리코박터학회(JSHP)'];
+const ALL_SOCIETIES = [...DOMESTIC, ...OVERSEAS];
+
+const TYPE_CLASS = {
+  '학술대회': 'type-conference',
+  '워크샵':   'type-workshop',
+  '세미나':   'type-seminar',
+  '연수강좌': 'type-course',
+};
+
+const MONTHS = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+
+// ── 실제 검증된 행사 데이터 (2025~2026) ──
+const SEED_EVENTS = [
+  // ── 2025 ──
+  {
+    id: 's1',
+    title: 'SIDDS 2025 & 대한소화기학회 춘계학술대회',
+    society: '대한소화기학회',
+    type: '학술대회',
+    start: '2025-04-19',
+    end:   '2025-04-20',
+    location: '그랜드 워커힐 서울',
+    url: 'http://2025.sidds.org/',
+    desc: 'Seoul International Digestive Disease Symposium(SIDDS) 2025와 대한소화기학회 춘계학술대회 통합 개최. 주제: Frontiers in Digestive Research and Practice. 8개국 217명 국내외 석학 초청.',
+  },
+  {
+    id: 's2',
+    title: '대한소화기내시경학회 제71회 춘계 세미나',
+    society: '대한소화기내시경학회',
+    type: '세미나',
+    start: '2025-03-22',
+    end:   '2025-03-22',
+    location: '서울',
+    url: 'https://www.gie.or.kr',
+    desc: '대한소화기내시경학회 제71회 춘계 세미나.',
+  },
+  {
+    id: 's3',
+    title: 'EHMSG 38th Workshop (유럽헬리코박터학회)',
+    society: '유럽헬리코박터학회(EHMSG)',
+    type: '워크샵',
+    start: '2025-09-11',
+    end:   '2025-09-13',
+    location: 'Rome, Italy',
+    url: 'https://www.ehmsg.org',
+    desc: '38th Annual Workshop on Helicobacter and Microbiota in Inflammation and Cancer.',
+  },
+  {
+    id: 's4',
+    title: 'KSGE Days 2025 (대한소화기내시경학회 추계)',
+    society: '대한소화기내시경학회',
+    type: '학술대회',
+    start: '2025-09-19',
+    end:   '2025-09-20',
+    location: 'BPEX 부산항국제전시컨벤션센터, 부산',
+    url: 'https://ksgedays.or.kr/2025/',
+    desc: '주제: The Future of GI Endoscopy: Connection, Innovation, Progress. 22개국 650여명 참석.',
+  },
+  {
+    id: 's5',
+    title: 'JDDW 2025 & 일본소화기내시경학회 제110회 총회',
+    society: '일본소화기내시경학회(JGES)',
+    type: '학술대회',
+    start: '2025-10-30',
+    end:   '2025-11-01',
+    location: 'Japan',
+    url: 'https://www.jddw.jp/jddw2025/en/',
+    desc: 'Japan Digestive Disease Week 2025 & The 110th Congress of JGES 통합 개최.',
+  },
+  {
+    id: 's6',
+    title: 'KDDW 2025 (소화기연관학회 통합학술대회)',
+    society: '대한소화기학회',
+    type: '학술대회',
+    start: '2025-11-13',
+    end:   '2025-11-15',
+    location: '그랜드 워커힐 서울',
+    url: 'https://www.kddw.org/',
+    desc: '국내 소화기 관련 학회 통합 국제학술대회. 대한소화기학회, 대한소화기내시경학회 등 다수 학회 공동 주최.',
+  },
+  // ── 2026 ──
+  {
+    id: 's7',
+    title: 'DDW 2026 (Digestive Disease Week)',
+    society: '미국소화기학회(AGA)',
+    type: '학술대회',
+    start: '2026-05-02',
+    end:   '2026-05-05',
+    location: 'Chicago, IL, USA',
+    url: 'https://ddw.org/',
+    desc: '소화기 분야 세계 최대 연례 학술대회. AGA·AASLD·ASGE·SSAT 공동 주최. Exhibit Hall: 5월 3~5일.',
+  },
+  {
+    id: 's8',
+    title: '일본소화기내시경학회 제111회 총회',
+    society: '일본소화기내시경학회(JGES)',
+    type: '학술대회',
+    start: '2026-05-08',
+    end:   '2026-05-10',
+    location: 'Japan',
+    url: 'https://www.jges.net',
+    desc: 'The 111th Congress of JGES.',
+  },
+  {
+    id: 's9',
+    title: 'HPI 2026 (Helicobacter 국제워크샵)',
+    society: '유럽헬리코박터학회(EHMSG)',
+    type: '워크샵',
+    start: '2026-07-01',
+    end:   '2026-07-04',
+    location: 'Helsingør (Copenhagen 근교), Denmark',
+    url: 'https://helicobacterhelsingor.com/',
+    desc: '16th International Workshop on Pathogenesis and Host Response in Helicobacter Infections. EHMSG 산하 HPI 주최.',
+  },
+  {
+    id: 's10',
+    title: 'KSGE Days 2026 (대한소화기내시경학회 추계)',
+    society: '대한소화기내시경학회',
+    type: '학술대회',
+    start: '2026-09-04',
+    end:   '2026-09-05',
+    location: 'Seoul, Korea',
+    url: 'https://www.gie.or.kr',
+    desc: '대한소화기내시경학회 추계 국제학술대회.',
+  },
+  {
+    id: 's11',
+    title: 'UEG Week 2026',
+    society: '유럽소화기학회(UEG)',
+    type: '학술대회',
+    start: '2026-10-17',
+    end:   '2026-10-20',
+    location: 'Fira Gran Via, Barcelona, Spain',
+    url: 'https://ueg.eu/week',
+    desc: '유럽 최대 소화기 학술대회. 약 13,000명 참가. 온·오프라인 하이브리드 개최.',
+  },
+  {
+    id: 's12',
+    title: 'JDDW 2026 (일본소화기학회/소화기내시경학회 통합)',
+    society: '일본소화기학회(JSG)',
+    type: '학술대회',
+    start: '2026-11-05',
+    end:   '2026-11-07',
+    location: 'Kobe, Japan',
+    url: 'https://www.jddw.jp',
+    desc: 'Japan Digestive Disease Week 2026. 일본소화기학회·소화기내시경학회·헬리코박터학회 등 공동 개최.',
+  },
+  {
+    id: 's13',
+    title: 'SIDDS 2026 & 대한소화기학회 춘계학술대회',
+    society: '대한소화기학회',
+    type: '학술대회',
+    start: '2026-04-18',
+    end:   '2026-04-19',
+    location: '그랜드 워커힐 서울',
+    url: 'https://sidds.org/',
+    desc: 'SIDDS 2026 & 대한소화기학회 춘계학술대회 통합 개최.',
+  },
+  {
+    id: 's14',
+    title: '대한소화기내시경학회 전북지회 연수강좌',
+    society: '대한소화기내시경학회',
+    type: '연수강좌',
+    start: '2026-04-25',
+    end:   '2026-04-25',
+    location: '전북대병원 임상연구지원센터 2층 새만금홀',
+    url: 'https://www.gie.or.kr',
+    desc: '대한소화기내시경학회 전북지회 제14회 연수강좌.',
+  },
+];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let events = [];
+let filterRegion = 'all';
+let filterType   = 'all';
+let filterSociety= 'all';
+let filterMonth  = 'all';
+let searchQ      = '';
+let detailId     = null;
+
+// ═══════════════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════════════
+function loadEvents() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      events = JSON.parse(raw);
+    } else {
+      events = SEED_EVENTS;
+      saveEvents();
+    }
+  } catch(e) {
+    events = SEED_EVENTS;
+  }
+}
+
+function saveEvents() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+  const now = new Date();
+  localStorage.setItem(UPDATED_KEY, now.toISOString());
+  updateLastUpdated();
+}
+
+function updateLastUpdated() {
+  const iso = localStorage.getItem(UPDATED_KEY);
+  if (!iso) return;
+  const d = new Date(iso);
+  document.getElementById('updated-text').textContent =
+    `마지막 업데이트: ${d.getFullYear()}. ${d.getMonth()+1}. ${d.getDate()}. ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+// ═══════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════
+function getRegion(society) {
+  return DOMESTIC.includes(society) ? '국내' : '해외';
+}
+
+function formatDateRange(start, end) {
+  const s = new Date(start);
+  const fmt = d => `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+  if (!end || end === start) return fmt(s);
+  const e = new Date(end);
+  if (s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear()) {
+    return `${s.getFullYear()}년 ${s.getMonth()+1}월 ${s.getDate()}~${e.getDate()}일`;
+  }
+  return `${fmt(s)} – ${fmt(e)}`;
+}
+
+function getMonth(ev) { return new Date(ev.start).getMonth(); } // 0-indexed
+
+// ═══════════════════════════════════════════════
+// FILTER
+// ═══════════════════════════════════════════════
+function getFiltered() {
+  let list = [...events];
+
+  if (filterRegion !== 'all') {
+    list = list.filter(e => getRegion(e.society) === filterRegion);
+  }
+  if (filterType !== 'all') {
+    list = list.filter(e => e.type === filterType);
+  }
+  if (filterSociety !== 'all') {
+    list = list.filter(e => e.society === filterSociety);
+  }
+  if (filterMonth !== 'all') {
+    list = list.filter(e => getMonth(e) === Number(filterMonth));
+  }
+  if (searchQ) {
+    const q = searchQ.toLowerCase();
+    list = list.filter(e =>
+      e.title.toLowerCase().includes(q) ||
+      e.society.toLowerCase().includes(q) ||
+      (e.location||'').toLowerCase().includes(q)
+    );
+  }
+  list.sort((a,b) => a.start.localeCompare(b.start));
+  return list;
+}
+
+// ═══════════════════════════════════════════════
+// RENDER — SOCIETIES
+// ═══════════════════════════════════════════════
+function renderSocieties() {
+  const row = document.getElementById('society-row');
+  row.innerHTML = '';
+  const all = document.createElement('button');
+  all.className = 'soc-chip' + (filterSociety === 'all' ? ' active' : '');
+  all.textContent = '전체 학회';
+  all.onclick = () => { filterSociety = 'all'; renderAll(); };
+  row.appendChild(all);
+
+  ALL_SOCIETIES.forEach(soc => {
+    const isDom = DOMESTIC.includes(soc);
+    const btn = document.createElement('button');
+    btn.className = 'soc-chip ' + (isDom ? 'dom' : 'intl') + (filterSociety === soc ? ' active' : '');
+    btn.textContent = soc;
+    btn.onclick = () => { filterSociety = soc; renderAll(); };
+    row.appendChild(btn);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// RENDER — MONTHS
+// ═══════════════════════════════════════════════
+function renderMonths() {
+  const row = document.getElementById('month-row');
+  row.innerHTML = '';
+  
+  const all = document.createElement('button');
+  all.className = 'month-tab' + (filterMonth === 'all' ? ' active' : '');
+  all.innerHTML = '전체';
+  all.onclick = () => { filterMonth = 'all'; renderAll(); };
+  row.appendChild(all);
+
+  const visible = getFiltered();
+  MONTHS.forEach((label, idx) => {
+    const count = events.filter(e => getMonth(e) === idx).length;
+    if (count === 0) return;
+    const btn = document.createElement('button');
+    btn.className = 'month-tab' + (filterMonth == idx ? ' active' : '');
+    btn.innerHTML = `${label}<span class="badge">${count}</span>`;
+    btn.onclick = () => { filterMonth = idx; renderAll(); };
+    row.appendChild(btn);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// RENDER — EVENT LIST
+// ═══════════════════════════════════════════════
+function renderEvents() {
+  const list = getFiltered();
+  const el = document.getElementById('event-list');
+  document.getElementById('results-count').textContent = `${list.length}건`;
+
+  if (list.length === 0) {
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><p>조건에 맞는 행사가 없습니다.</p></div>`;
+    return;
+  }
+
+  el.innerHTML = '';
+  list.forEach(ev => {
+    const d = new Date(ev.start);
+    const mo = MONTHS[d.getMonth()];
+    const day = d.getDate();
+    const typeClass = TYPE_CLASS[ev.type] || '';
+    const region = getRegion(ev.society);
+
+    const card = document.createElement('div');
+    card.className = `event-card ${typeClass}`;
+    card.innerHTML = `
+      <div class="event-top">
+        <div class="event-date-block">
+          <div class="event-month">${mo}</div>
+          <div class="event-day">${day}</div>
+        </div>
+        <div class="event-main">
+          <div class="event-title">${ev.title}</div>
+          <div class="event-meta">
+            <span class="event-type-badge">${ev.type}</span>
+            <span class="region-badge">${region}</span>
+            <span class="event-society">${ev.society}</span>
+          </div>
+          ${ev.location ? `<div class="event-location">
+            <svg width="10" height="12" viewBox="0 0 12 15" fill="none"><path d="M6 0C3.24 0 1 2.24 1 5c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 6 3.5a1.5 1.5 0 0 1 0 3z" fill="currentColor" opacity=".5"/></svg>
+            ${ev.location}
+          </div>` : ''}
+        </div>
+      </div>
+    `;
+    card.onclick = () => openDetail(ev.id);
+    el.appendChild(card);
+  });
+}
+
+function renderAll() {
+  renderSocieties();
+  renderMonths();
+  renderEvents();
+}
+
+// ═══════════════════════════════════════════════
+// DETAIL PANEL
+// ═══════════════════════════════════════════════
+function openDetail(id) {
+  const ev = events.find(e => e.id === id);
+  if (!ev) return;
+  detailId = id;
+  document.getElementById('d-title').textContent    = ev.title;
+  document.getElementById('d-society').textContent  = ev.society;
+  document.getElementById('d-type').textContent     = ev.type;
+  document.getElementById('d-date').textContent     = formatDateRange(ev.start, ev.end);
+  document.getElementById('d-location').textContent = ev.location || '—';
+  const urlRow = document.getElementById('d-url-row');
+  const urlEl  = document.getElementById('d-url');
+  if (ev.url) {
+    urlEl.href = ev.url;
+    urlEl.textContent = ev.url;
+    urlRow.style.display = 'flex';
+  } else {
+    urlRow.style.display = 'none';
+  }
+  const descEl = document.getElementById('d-desc');
+  descEl.textContent = ev.desc || '';
+  descEl.style.display = ev.desc ? 'block' : 'none';
+  document.getElementById('detail-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+document.getElementById('detail-close').onclick = () => {
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+document.getElementById('detail-overlay').onclick = (e) => {
+  if (e.target === e.currentTarget) {
+    document.getElementById('detail-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+};
+document.getElementById('d-delete').onclick = () => {
+  if (!detailId) return;
+  if (!confirm('이 행사를 삭제하시겠습니까?')) return;
+  events = events.filter(e => e.id !== detailId);
+  saveEvents();
+  renderAll();
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  showToast('행사가 삭제되었습니다.');
+};
+
+// ═══════════════════════════════════════════════
+// ADD MODAL
+// ═══════════════════════════════════════════════
+document.getElementById('add-btn').onclick = () => {
+  document.getElementById('add-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+document.getElementById('modal-close').onclick = closeModal;
+document.getElementById('add-modal').onclick = (e) => {
+  if (e.target === e.currentTarget) closeModal();
+};
+function closeModal() {
+  document.getElementById('add-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('f-submit').onclick = () => {
+  const title   = document.getElementById('f-title').value.trim();
+  const society = document.getElementById('f-society').value;
+  const type    = document.getElementById('f-type').value;
+  const start   = document.getElementById('f-start').value;
+  const end     = document.getElementById('f-end').value;
+  const location= document.getElementById('f-location').value.trim();
+  const url     = document.getElementById('f-url').value.trim();
+  const desc    = document.getElementById('f-desc').value.trim();
+
+  if (!title || !start) { showToast('행사명과 시작일은 필수입니다.'); return; }
+
+  const ev = {
+    id: 'e' + Date.now(),
+    title, society, type, start,
+    end: end || start,
+    location, url, desc,
+  };
+  events.push(ev);
+  saveEvents();
+  renderAll();
+  closeModal();
+  // reset
+  ['f-title','f-start','f-end','f-location','f-url','f-desc'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  showToast('행사가 등록되었습니다 ✓');
+};
+
+// ═══════════════════════════════════════════════
+// FILTERS
+// ═══════════════════════════════════════════════
+document.querySelectorAll('[data-region]').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('[data-region]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterRegion = btn.dataset.region;
+    filterSociety = 'all';
+    renderAll();
+  };
+});
+document.querySelectorAll('[data-type]').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('[data-type]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterType = btn.dataset.type;
+    renderAll();
+  };
+});
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+  searchQ = e.target.value.trim();
+  renderAll();
+});
+
+// ═══════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+loadEvents();
+updateLastUpdated();
+renderAll();
+</script>
+</body>
+</html>
