@@ -2531,21 +2531,22 @@ const PAPERS = [
     doi: "10.3390/diagnostics15222906",
     source: "journal",
     topics: ["진단", "병리"],
-    abstract_ko: "미국 단일 기관에서 AMAG 가능성이 언급된 위 생검 65건(NET 동반 12건 포함)을 후향적 분석. 내시경 점수와 조직학적 소견 간 유의한 상관성이 없었고, 병리 보고 강도와 추적 생검 여부도 무관했습니다. NET 없는 AMAG 환자는 NET 환자보다 추적 생검이 현저히 적었습니다. 미국 가이드라인의 AMAG 관련 명확한 권고 부재가 근본 문제로 지적됩니다. ※ Rugge M.의 논평(2026)과 저자 답신(2026)을 통합 수록.",
+    abstract_ko: "미국 단일 기관(Albany Medical Center, 2013~2023년) 후향적 연구. AMAG 가능성이 언급된 위 생검 65건(NET 동반 12건 포함)을 대상으로 ① 내시경 소견과 조직학적 소견의 상관성, ② 병리 보고 강도와 추적 검사·생검의 연관성을 분석. 내시경 점수(ES1·ES2)는 조직학적 위축 등급·ECL세포 과증식·병리 보고 강도와 유의한 상관 없음. 병리 보고 강도는 추적 생검 시행 여부와 무관하나 3개 이상 혈액검사 시행과 연관됨. NET 동반 환자는 추적 생검 83% vs. NET 없는 AMAG 26%로 감시 불균형 확인. 미국 가이드라인의 AMAG 관련 명확한 권고 부재가 근본 문제.",
     keypoints: [
-      "내시경 점수와 조직학적 중증도 간 유의한 상관 없음 — AMAG 내시경 소견의 비특이성 반영",
-      "전정부·체부 분리 채취 비율 37% — Sydney 프로토콜 준수율 매우 낮음",
-      "NET 없는 AMAG: 추적 생검 26% vs. NET 동반: 83% — 관리 불균형 확인",
-      "병리 보고 강도는 혈액검사 수에 영향을 주나 추적 생검 여부에는 영향 없음",
-      "【Rugge 논평】H. pylori 동반 감염 미배제 시 위암 위험 과대평가 가능 — 병인 특이적 분석 필요",
-      "【Rugge 논평】AMAG 추적은 주로 NET 이차 예방에 집중해야 하며, 학제 간 소통 체계 개선이 핵심"
+      "내시경 점수(ES1·ES2)와 조직학적 중증도(위축 등급·ECL 과증식·병리 보고 강도) 간 유의한 상관 없음 — AMAG 내시경 소견의 비특이성 반영; '비결정적 위염(inconclusive gastritis)'이 가장 흔한 내시경 판정",
+      "Sydney 프로토콜 준수율 매우 낮음: 전정부·체부 분리 채취 비율 37%(권장: 100%) — 분리 채취 시 내시경 점수가 유의하게 높아지는 경향(ES1 p=0.03); 병리의 진단 정확도에 직접 영향",
+      "NET 동반 vs. AMAG 단독 감시 불균형: 추적 생검 83%(10/12) vs. 26%(14/53) — NET 없는 AMAG 환자가 체계적 내시경 감시에서 소외되고 있음을 직접 수치로 입증",
+      "병리 보고 강도의 이중적 영향: 병리 코멘트 강도↑ → 혈액검사 3개 이상 시행과 유의한 연관(p=0.03); 그러나 추적 생검 시행 여부와는 무관(p=0.62) — 병리의 경고가 임상의의 검사 오더에는 영향을 주나 내시경 재검 결정에는 영향을 주지 못함",
+      "혈청 펩시노겐 I/II 시행률 0%: AMAG 관련 혈액검사 7종 중 가스트린(20%)·항벽세포항체(18.5%)도 낮으며, 위축 마커로 가장 유용한 펩시노겐은 단 한 건도 시행되지 않음 — 미국 임상 현장의 AMAG 혈청 검사 실천 격차 확인",
+      "⚠️ 단일 기관 소규모(65명) 후향적 연구 — Rugge M.의 논평(2026, id 125)과 저자 답신(2026, id 126) 참조"
     ],
     meta: {
-      "연구 설계": "단일 기관 후향적 연구 (미국)",
-      "대상 환자": "65명",
-      "연구 기간": "2013~2023년",
-      "수록 문서": "원 논문 + Rugge 논평(2026) + 저자 답신(2026) 통합"
-    }
+      "연구 설계": "단일 기관 후향적 코호트",
+      "대상 환자": "65명 (NET 동반 12명, AMAG 단독 53명)",
+      "연구 기간": "2013~2023년 (추적 최대 2024년)",
+      "연구 기관": "Albany Medical Center, NY, USA"
+    },
+    related_ids: [125, 126]
   },
   {
     id: 8,
@@ -2931,7 +2932,8 @@ const PAPERS = [
     "대상 에디토리얼": "Yamamichi & Aoki, J Gastroenterol 2025",
     "출판일": "2026년 4월 2일 (온라인 선출판)",
     "연구 기관": "University of Padova / Baylor College of Medicine / LMU Munich"
-  }
+  },
+  related_ids: [123]
 },
 {
   id: 22,
@@ -5706,6 +5708,203 @@ const PAPERS = [
       "추적 기간": "평균 6.8년 (범위 1~16년), 환자당 평균 5.7회 시술",
       "병리 평가": "업데이트 Sydney 시스템 + OLGA 병기 + WHO NET 분류; 시냅토파이신·크로모그라닌·Ki-67 IHC",
       "연구 기관": "Department of Pathology, Yale University School of Medicine, New Haven, CT"
+    }
+  },
+  {
+    id: 121,
+    title: "Behçet's Disease and Autoimmune Atrophic Gastritis: An Incidental Finding",
+    title_ko: "베체트병과 자가면역성위축위염: 우연한 발견",
+    journal: "Case Reports in Medicine",
+    journal_short: "Case Rep Med",
+    year: 2025,
+    if: 1.0,
+    authors: "Attieh P, Al Hazzouri A, Daou RM, El Haddad S, Karam K, Fiani E",
+    doi: "10.1155/carm/5813761",
+    source: "journal",
+    topics: ["증례", "진단", "동반질환", "병인기전"],
+    abstract_ko: "【증례보고】 62세 남성이 구강 아프타 궤양, 모호한 복부 통증, 상복부 불편감, 식후 오심으로 내원. HLA-B5 양성으로 베체트병(BD) 진단. 대장내시경은 완전 정상이었으나, 위내시경에서 위저부 다발 미란과 위체부 위축성 주름이 관찰되었고, 생검에서 위저부 및 전정부에 걸친 자가면역성위축위염(AAG)이 확인되었다. BD에서 일반적으로 관찰되는 회장 말단부 아프타 궤양은 본 증례에서 없었고, 이 조합은 문헌상 최초 보고이다. BD와 AAG의 연결 고리로 자가면역세포 공유 기전이 제안되었다.",
+    keypoints: [
+      "【증례보고】 단일 환자 사례 — 역학적 근거로 직접 인용 불가",
+      "BD에서 AAG 동반은 문헌상 최초 보고 — 기존에는 BD가 전신홍반루푸스·류마티스관절염·자가면역갑상선염·IBD와 동반되는 것이 알려져 있었으나, AAG 동반은 기술되지 않음",
+      "BD는 자가면역과 자가염증 증후군의 교차점에 위치 — 고중성구 활성, IL-1β 상승, MEFV 유전자 변이 공유 등 자가염증 특성을 동시에 보유",
+      "비전형적 내시경 소견: 회장 말단부 아프타 궤양 없음(대장내시경 완전 정상) + 위체부 우세 위축(AAG 전형 패턴) — BD 소화기 침범 의심 시 상부 위장관 내시경도 필요함을 시사",
+      "공통 면역 기전 가설: CVID 환자에서 BD·SLE·쇼그렌증후군과 AAG가 동반되는 사례에서, 자가반응성 T세포 비정상 활성화가 BD와 AAG를 연결하는 공유 경로일 가능성",
+      "⚠️ 단일 증례, 62세 남성 1명 — BD-AAG 동반이 인과적인지 우연한 중복인지 현재 판단 불가; AAG 전체 인구 유병률 약 1%이므로 단순 우연 공존 가능성 배제 불가"
+    ],
+    meta: {
+      "연구 유형": "증례보고 (Case Report)",
+      "대상": "62세 남성 1명",
+      "진단 근거": "HLA-B5 양성(BD) + 위내시경·생검(AAG)",
+      "연구 기관": "University of Balamand, Beirut, Lebanon"
+    }
+  },
+  {
+    id: 122,
+    title: "Serological Diagnostic Strategies for Autoimmune Metaplastic Atrophic Gastritis",
+    title_ko: "자가면역성위축위염의 혈청학적 진단 전략",
+    journal: "Clinical Laboratory",
+    journal_short: "Clin. Lab.",
+    year: 2025,
+    if: 1.3,
+    authors: "Zhang J, Zhang D, Wu L, Gong Y, Qin X",
+    doi: "10.7754/Clin.Lab.2025.250334",
+    source: "journal",
+    topics: ["증례", "진단", "치료"],
+    abstract_ko: "【증례보고】 중국 60세 여성이 2개월간의 어지럼증·하지 무력감·범혈구감소증으로 내원. 혈색소 29 g/dL의 심한 거대적혈구빈혈, 비타민 B12 극심한 저하(<50 pg/mL), 골수 도말에서 거대적혈구빈혈 소견 확인. 악성빈혈(PA) 확진 후 원인 규명을 위해 혈청 APCA, AIFA, PGI, PGII, 가스트린 검사 추가 시행. APCA 양성(1:100, ++), PGI 4.1 ng/mL(정상 ≥70), PGI/PGII 비 1.3(정상 ≥3.0), 가스트린 812 pg/mL(정상 13~115)로 AMAG 진단. AIFA는 음성. 비타민 B12·엽산·철분 보충 및 수혈 후 1주 만에 퇴원. AMAG의 혈청 진단 바이오마커 조합의 활용 전략을 제시한 증례.",
+    keypoints: [
+      "【증례보고】 단일 환자 사례 — 역학적 근거로 직접 인용 불가",
+      "'혈청 위 생검(serum gastric biopsy)' 개념 강조: APCA/AIFA(자가면역 본질 확인) + PGI·PGII·PGI/PGII 비(체부 위축 확인) + 가스트린(G세포 과자극 확인)의 조합이 AMAG 진단에 핵심",
+      "APCA 민감도 ~80%(PA·AMAG에서 높음), 특이도 다소 낮음(자가면역 내분비 질환에서도 양성 가능); AIFA 특이도 높으나 민감도 ~50%, 병의 후기에만 양성 — 두 항체의 상보적 해석 필요",
+      "PGI 저하·PGI/PGII 비 저하: 체부 산분비선 위축→주세포 감소→PGI 분비 감소 반영; 가스트린 상승: 벽세포 소실→위산 저하→G세포 보상성 과자극 반영",
+      "중국 임상 현장 문제 제기: PA·AMAG가 중국에서 저진단(underdiagnosed)되는 이유로 ① 다양하고 서서히 진행하는 증상, ② 빈혈 원인 미규명(조혈 보충재 투여로 증상만 해소) 두 가지를 제시",
+      "⚠️ 단일 증례·소규모 단일기관 연구 — AMAG 혈청 진단 기준의 표준화 및 대규모 연구 필요; AIFA 음성이 AMAG를 배제하지 않음(민감도 50% 한계)"
+    ],
+    meta: {
+      "연구 유형": "증례보고 (Case Report)",
+      "대상": "60세 여성 1명",
+      "핵심 혈청 소견": "APCA 1:100 양성 / PGI 4.1 ng/mL / PGI/PGII 1.3 / 가스트린 812 pg/mL",
+      "연구 기관": "Shengjing Hospital of China Medical University, Shenyang, China"
+    }
+  },
+  {
+    id: 123,
+    title: "Clinical and Endoscopic-Histological Features of Multifocal and Corpus-Restricted Atrophic Gastritis Patients with Non-Cardia Gastric Cancer or Dysplasia: A Multicenter, Cross-Sectional Study",
+    title_ko: "다병소성 및 체부제한성 위축위염 환자의 비분문부 위암·이형성 임상·내시경-조직학적 특성: 다기관 횡단면 연구",
+    journal: "Clinical and Translational Gastroenterology",
+    journal_short: "Clin Transl Gastroenterol",
+    year: 2025,
+    if: 3.8,
+    authors: "Lahner E, Annibale B, Dilaghi E, Millado Luciano C, Lenti MV, Di Sabatino A, Miceli E, Massironi S, et al.",
+    doi: "10.14309/ctg.0000000000000862",
+    source: "journal",
+    topics: ["암위험", "진단", "병리", "헬리코박터"],
+    abstract_ko: "이탈리아 11개 소화기내과 센터에서 체부 위축을 동반한 비분문부 위암(GC)·이형성(GD) 환자 84명(다병소성 위축위염 MF-AG 45명, 체부제한성 위축위염 CR-AG 39명)을 분석한 다기관 횡단면 연구. GC 47명(56%), 고도이형성 6명(7.1%), 저도이형성 31명(36.9%). MF-AG와 CR-AG 간 GC·GD 발생 빈도는 통계적으로 차이 없었다(p>0.05). 그러나 CR-AG에서 GD-GC가 체부에 더 자주 위치하고(55.3% vs 28.6%, p=0.02), 폴립양 형태가 더 흔했다(51.6% vs 27.3%, p=0.048). CR-AG에서 수술적 치료 빈도가 더 높았으며(48.6% vs 23.1%, p=0.02), 조직학적 Hp 양성률은 양 군 모두 낮았다(2.3% vs 2.9%).",
+    keypoints: [
+      "핵심 메시지: CR-AG(체부제한성 위축위염 = 자가면역성위염의 전형 패턴)에서도 비분문부 GC·GD 발생 빈도가 MF-AG와 동등 — CR-AG 감시를 '선택적'으로 고려하던 기존 관행에 도전",
+      "OLGA 병기 한계 재확인: CR-AG에서는 전정부 보존으로 인해 최고 달성 가능 OLGA 병기가 II단계에 국한 → OLGA III-IV에서만 감시를 집중하는 전략이 CR-AG에서 암·이형성을 놓칠 위험",
+      "CR-AG에서 GD-GC의 위치: 체부 55.3% 외에도 전정부(34.2%), 각절흔(10.5%)에서도 발생 — '보존된 전정부'에서도 위암 발생 가능성 존재; 전정부 발생 일부는 Hp 혈청 양성(31%)과 연관",
+      "CR-AG에서 수술 치료가 더 빈번(48.6% vs 23.1%, p=0.02), 수술 환자 종양 크기가 내시경 절제 환자보다 2배 이상 큼(37.4 vs 15.9 mm) — 폴립양 병변의 조기 발견 및 내시경 절제 기회를 놓친 결과일 가능성",
+      "Hp의 잠재적 역할: 조직학적 Hp 양성률은 양 군 모두 2~3%로 낮으나, Hp 음성 환자의 20~30%에서 활성 염증(다핵구 침윤) 및 CR-AG 환자의 31%에서 Hp IgG 혈청 양성 → 과거 Hp 노출이 CR-AG 관련 위암에도 기여 가능",
+      "⚠️ 횡단면 연구·선택 편향 가능성: 배경 점막 생검이 없는 환자(진행성 병변, 응급 출혈 등)는 제외되어 CR-AG 관련 GC 비율이 과대평가될 수 있음; GC·GD 발생률/유병률 산출은 본 연구 설계의 한계"
+    ],
+    meta: {
+      "연구 설계": "다기관 횡단면 연구 (후향적 데이터 수집)",
+      "대상 환자": "84명 (MF-AG 45명 / CR-AG 39명); 전체 코호트 2,714명 중 선별",
+      "연구 기간": "2001~2023년",
+      "연구 기관": "이탈리아 11개 소화기내과 센터 (Sapienza 로마대·파비아대·파도바대 등)"
+    },
+    related_ids: [21]
+  },
+  {
+    id: 124,
+    title: "Endogenous glucocorticoids moderate the gastric inflammatory response to Helicobacter infection and protect from autoimmunity",
+    title_ko: "내인성 글루코코르티코이드는 헬리코박터 감염에 대한 위 염증 반응을 조절하고 자가면역으로부터 보호한다",
+    journal: "Cellular and Molecular Gastroenterology and Hepatology",
+    journal_short: "Cell Mol Gastroenterol Hepatol",
+    year: 2026,
+    if: 7.1,
+    authors: "Druffner SR, Duncan BC, Morris MT, Pascoe JL, Abner TM, Hussain S, Piazuelo MB, Peek RM Jr, Zhang M, DiPaolo RJ, Busada JT",
+    doi: "10.1016/j.jcmgh.2025.101699",
+    source: "journal",
+    topics: ["병인기전", "헬리코박터", "암위험"],
+    abstract_ko: "내인성 글루코코르티코이드(GC)가 Helicobacter 감염에 대한 위 면역 반응을 어떻게 조절하는지, 그리고 AIG 발생에 어떠한 영향을 미치는지 마우스 모델로 규명한 연구. 부신절제(ADX)로 GC를 제거한 마우스와 부신보존(intact) 마우스에 H. felis를 감염시켜 비교. ADX 마우스는 ① 위 T세포 침윤 및 Th1 사이토카인(IFN-γ, TNF, IL-1β)이 현저히 증가하고, ② Treg 반응이 소실되며, ③ H. felis를 2~3주 내 자발적으로 제균했음에도 불구하고 만성 위 염증·위축·화생·이형성이 지속되었다. 또한 ADX 마우스는 H. felis 제균 후에도 위 내인자에 대한 IgG 자가항체를 포함한 더 광범위하고 높은 역가의 자가항체를 지속적으로 생성했다. 코르티코스테론 보충 후에는 점막 회복이 촉진되었다. Hp 감염 중 GC 신호 장애가 자가면역 위염을 개시하고, 제균 후에도 신생물 진행을 지속시킬 수 있음을 제안.",
+    keypoints: [
+      "GC의 이중적 역할: 위 면역을 억제하여 Helicobacter의 만성 집락을 허용하는 동시에, 자기항원에 대한 면역 관용을 유지 — GC 결핍 시 제균은 가능하나 자가면역 위염이 지속",
+      "ADX 마우스의 자발 제균(2~3주): H. felis DNA가 디지털 PCR로도 검출 불가 → GC가 Helicobacter 면역 회피의 핵심 숙주 인자임을 직접 증명",
+      "제균 후에도 지속되는 병리: ADX 마우스에서 항생제 제균 1개월 후 위 염증·위축·화생이 그대로 유지 → '제균 = 회복'이 아님을 시사; 12개월 추적에서 45% 이형성 발생",
+      "위 내인자 특이 IgG 자가항체는 ADX 마우스에서만 검출 — 내인성 GC가 항내인자항체 생성 억제에 관여하며, GC 결핍이 악성빈혈 전구 단계를 촉진할 가능성",
+      "코르티코스테론 보충의 점막 회복 효과: 항생제 + 코르티코스테론 병용 시 벽세포·주세포 구조 정상화 — 단 상피내 림프구 침윤과 T세포 증가는 부분 잔존; 임상 적용 가능성 탐색 필요",
+      "⚠️ 동물 실험(C57BL/6J 암컷 마우스 + H. felis) — H. pylori·인간에 직접 외삽 한계; GC 수용체 길항제(미페프리스톤 등) 사용 중 Hp 감염 시 AIG 위험 증가 가능성 경고 (임상적 함의)"
+    ],
+    meta: {
+      "연구 설계": "동물 실험 (마우스 모델, in vivo)",
+      "모델": "C57BL/6J 암컷 마우스 / H. felis 감염 / 부신절제(ADX) vs 보존",
+      "추적 기간": "최대 12개월",
+      "연구 기관": "West Virginia University / Vanderbilt University Medical Center / Saint Louis University School of Medicine, USA"
+    }
+  },
+  {
+    id: 125,
+    title: "Autoimmune Gastritis Diagnosis: Encompassing Pessimism, Realism, and Wish for the Future. Comment on Vienneau et al. Diagnostics 2025, 15, 2906",
+    title_ko: "자가면역성위염 진단: 비관론·현실주의·미래에 대한 기대 — Vienneau et al.에 대한 논평",
+    journal: "Diagnostics (Basel)",
+    journal_short: "Diagnostics",
+    year: 2026,
+    if: 3.1,
+    authors: "Rugge M",
+    doi: "10.3390/diagnostics16071073",
+    source: "journal",
+    topics: ["진단", "병리", "암위험"],
+    abstract_ko: "Vienneau et al.(Diagnostics 2025, 15, 2906; id 7)에 대한 Rugge M.의 논평. 내시경의사·병리의·임상의 간의 학제 간 소통 부재가 AMAG 관리 불균형의 핵심이며, 조직검사 샘플링 최소화 관행(병리의 업무 부담 감소 목적)이 진단 정확도를 떨어뜨리고 있다고 지적. H. pylori 감염 미배제 시 Hp 연관 위암 위험이 자가면역성 AIG에 귀속될 위험성, AMAG 추적의 실질적 목표는 위암 선암보다 NET 이차 예방에 있음을 강조. 현행 AMAG 관리의 '비관적 현실'을 직시하고 표준화된 생검 프로토콜·병리 보고 체계·감시 가이드라인 확립을 촉구.",
+    keypoints: [
+      "【논평 — Vienneau et al. 원 논문(id 7)에 대한 Rugge M.의 공식 코멘트】",
+      "생검 최소화 관행 비판: 내시경의사들이 병리의 업무 부담 감소를 이유로 체부·전정부 분리 생검을 회피하는 경향 → Sydney 프로토콜 준수 촉구",
+      "임상 의뢰 정보 부재 문제: 의뢰서에 EGD 시행 적응증이 명시되지 않으면 병리의가 자가면역 대상 감별을 놓칠 가능성 — 내시경의사·병리의 간 구조화된 소통 체계 필요",
+      "H. pylori 미배제의 위험: AMAG 환자에서 Hp 과거 감염이 완전히 배제되지 않으면 Hp 관련 위암 위험이 '자가면역 유발'로 오귀속될 수 있어 위험도 평가 왜곡",
+      "AMAG 감시의 실질적 목표 재정립: 위선암 예방보다 NET 이차 예방에 집중해야 하며, 순수 Hp 음성 AIG에서 선암 위험은 현재 증거로 과대평가 가능성",
+      "⚠️ 논평(Comment) 형식 — 새로운 데이터 없이 Vienneau et al. 결과를 해석·비판하는 전문가 의견 중심; 이중 맹검 없이 단일 저자(Rugge)의 관점"
+    ],
+    meta: {
+      "논문 유형": "Comment (논평)",
+      "원 논문": "Vienneau et al., Diagnostics 2025, 15, 2906 (id 7)",
+      "출판일": "2026년 4월 2일",
+      "연구 기관": "University of Padova, Italy"
+    },
+    related_ids: [7, 126]
+  },
+  {
+    id: 126,
+    title: "Reply to Rugge, M. Autoimmune Gastritis Diagnosis: Encompassing Pessimism, Realism, and Wish for the Future. Comment on Vienneau et al. Diagnostics 2025, 15, 2906",
+    title_ko: "Rugge M.의 논평에 대한 저자 답신 — AMAG 보고: 병리의와 내시경의는 같은 페이지에 있는가?",
+    journal: "Diagnostics (Basel)",
+    journal_short: "Diagnostics",
+    year: 2026,
+    if: 3.1,
+    authors: "Vienneau N, Lee H, Zhang X, Park E, Cleary M, Zhou J, Tarar S, Liu M, Tadros M",
+    doi: "10.3390/diagnostics16071074",
+    source: "journal",
+    topics: ["진단", "병리"],
+    abstract_ko: "Rugge M.의 논평(Diagnostics 2026, 16, 1073; id 125)에 대한 원저자(Vienneau et al.)의 공식 답신. 원 논문(id 7)의 결론과 연구 설계의 타당성을 옹호하며, Rugge가 제기한 H. pylori 미배제 문제·생검 프로토콜 준수율·AMAG 감시 목표 관련 논점에 대해 저자 관점의 해명을 제시.",
+    keypoints: [
+      "【저자 답신 — Rugge 논평(id 125)에 대한 Vienneau et al.의 공식 응답】",
+      "원 논문(id 7)과 Rugge 논평(id 125)을 함께 읽어야 논쟁의 전체 맥락을 파악할 수 있음",
+      "⚠️ 저자 답신(Reply) 형식 — 새로운 데이터 없이 원 논문 결론을 방어하는 의견 중심"
+    ],
+    meta: {
+      "논문 유형": "Reply (저자 답신)",
+      "원 논문": "Vienneau et al., Diagnostics 2025, 15, 2906 (id 7)",
+      "논평 대상": "Rugge M., Diagnostics 2026, 16, 1073 (id 125)",
+      "출판일": "2026년 4월 2일",
+      "연구 기관": "Albany Medical Center, NY, USA"
+    },
+    related_ids: [7, 125]
+  },
+  {
+    id: 127,
+    title: "A Case Report of Autoimmune Gastritis Associated With Polyendocrine Syndrome Type III Mimicking Refractory H. pylori Infection",
+    title_ko: "난치성 H. pylori 감염으로 오인된 자가면역성위염 동반 다선성자가면역증후군 III형 증례",
+    journal: "Cureus",
+    journal_short: "Cureus",
+    year: 2025,
+    if: 1.0,
+    authors: "Ubukata S, Mori H, Masaoka T, Matsuzaki J, Kanai T",
+    doi: "10.7759/cureus.92659",
+    source: "journal",
+    topics: ["증례", "진단", "헬리코박터", "동반질환"],
+    abstract_ko: "【증례보고】 60세 여성이 H. pylori 제균 3회 실패 후 난치성 H. pylori 감염으로 의뢰됨. 이전 병원에서는 UBT만으로 진단·평가를 시행하고 다른 검사를 시행하지 않았음. 내시경에서 위체부 우세 위축(역전 위축 패턴, Kimura-Takemoto O-p)과 다발 과형성 용종 확인. 반복 UBT 5.3‰(양성)이었으나 분변 항원 검사 음성, 생검 배양 및 위액 PCR 모두 음성으로 UBT 위양성 판정. 항벽세포항체(APCA 1:80)·항내인자항체(양성)·고가스트린혈증(1,770 pmol/L)으로 AIG 확진. 추가 선별검사에서 항GAD항체 2,000 IU/mL(잠재 자가면역 당뇨), 항갑상선항체 양성(잠재 Graves병+Hashimoto 갑상선염) 확인 → APS-III 진단.",
+    keypoints: [
+      "【증례보고】 단일 환자 사례 — 역학적 근거로 직접 인용 불가",
+      "AIG에서 UBT 위양성 기전: 위산저하증 → 장내 세균 과증식(Proteus mirabilis, Citrobacter freundii, Klebsiella pneumoniae 등) → 요소 분해 → UBT 위양성; 역전 위축 패턴 + UBT 양성 시 분변 항원 검사 병행 필수",
+      "UBT만으로 H. pylori 진단·추적한 관행 비판: 최소 2가지 이상 검사 조합 및 내시경 소견을 종합해야 AIG와 Hp 감염을 감별 가능",
+      "APS-III 분류: IIIa(갑상선+T1DM) + IIIb(갑상선+AIG/악성빈혈) 두 아형이 동시 존재 — AIG 진단 시 갑상선 자가항체·항GAD항체 일괄 선별 권고",
+      "철 전잠복기(ferritin 정상 하한, TIBC 상승) + 초기 B12 결핍(196 pg/mL): 임상 빈혈 발현 전 조기 발견 — AIG 진단 시 영양 결핍 지표의 선제적 모니터링 중요성",
+      "⚠️ 단일 증례 — UBT 위양성률·APS-III 동반 빈도 등 역학적 수치로 활용 불가; 개념 증명적 교훈 사례로 활용"
+    ],
+    meta: {
+      "연구 유형": "증례보고 (Case Report)",
+      "대상": "60세 여성 1명",
+      "핵심 진단 소견": "APCA 1:80 / AIFA 양성 / 가스트린 1,770 pmol/L / 항GAD항체 2,000 IU/mL",
+      "연구 기관": "Keio University School of Medicine, Tokyo, Japan"
     }
   }
 ];
