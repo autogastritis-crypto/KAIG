@@ -227,37 +227,7 @@
     background: rgba(255,255,255,0.2);
   }
 
-  /* ── SOURCE TOGGLE ── */
-  .source-section {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
-  .source-label {
-    font-size: 11px;
-    color: var(--ink-soft);
-    margin-right: 2px;
-  }
-  .source-chip {
-    padding: 4px 11px;
-    border-radius: 20px;
-    border: 1px solid var(--rule);
-    background: var(--white);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink-mid);
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-  }
-  .source-chip:hover { border-color: var(--green-light); color: var(--green-dark); }
-  .source-chip.active {
-    background: var(--green-pale);
-    border-color: var(--green-mid);
-    color: var(--green-dark);
-  }
+
 
   /* ── RESULTS HEADER ── */
   .results-header {
@@ -561,6 +531,28 @@
   }
   .close-btn:hover { background: var(--rule); }
 
+  /* ── FONT SIZE TOGGLE ── */
+  .panel-btn.font-size-btn {
+    flex: 0 0 auto;
+    padding: 11px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .panel-btn.font-size-btn.large {
+    background: var(--green-pale);
+    border-color: var(--green-mid);
+    color: var(--green-dark);
+  }
+
+  /* 큰 글씨 모드 */
+  .detail-panel.font-large .panel-abstract { font-size: 15px; }
+  .detail-panel.font-large .panel-keypoints li { font-size: 14px; }
+  .detail-panel.font-large .panel-title { font-size: 19px; }
+  .detail-panel.font-large .panel-authors { font-size: 13px; }
+  .detail-panel.font-large .meta-value { font-size: 13px; }
+
   .sort-wrap {
     display: flex;
     align-items: center;
@@ -635,6 +627,95 @@
     margin-left: 6px;
     vertical-align: middle;
   }
+
+
+  /* ── HIGH-IF STAR BADGE ── */
+  .star-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    margin-left: 5px;
+    vertical-align: middle;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  /* ── GUIDELINE BADGE ── */
+  .guideline-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: #E6F1FB;
+    color: #185FA5;
+    margin-left: 5px;
+    vertical-align: middle;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .guideline-badge svg {
+    flex-shrink: 0;
+  }
+
+
+  /* ── SPECIAL FILTER ROW (High IF / Guideline) ── */
+  .special-filter-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .special-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-right: 2px;
+    white-space: nowrap;
+  }
+  .special-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    white-space: nowrap;
+    box-shadow: var(--shadow-card);
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .special-chip:hover { border-color: var(--green-light); color: var(--green-dark); }
+  .special-chip.active-star {
+    background: #FAEEDA;
+    border-color: #BA7517;
+    color: #854F0B;
+  }
+  .special-chip.active-guide {
+    background: #E6F1FB;
+    border-color: #185FA5;
+    color: #0C447C;
+  }
+  .special-count {
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+    padding: 1px 5px;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .special-chip.active-star .special-count { background: rgba(186,117,23,0.15); }
+  .special-chip.active-guide .special-count { background: rgba(24,95,165,0.15); }
 
   /* ── TTS BAR ── */
   .tts-bar {
@@ -1773,13 +1854,16 @@
     <div class="topics-scroll" id="topics-container"></div>
   </section>
 
-  <!-- SOURCE FILTER -->
-  <div class="source-section" id="source-section">
-    <span class="source-label">출처</span>
-    <span class="source-chip active" data-src="all">전체</span>
-    <span class="source-chip" data-src="journal">저널 파일</span>
-    <span class="source-chip" data-src="kaig">KAIG 홈페이지</span>
-    <span class="source-chip" data-src="web">인터넷</span>
+  <!-- SPECIAL FILTER: High-IF / Guideline -->
+  <div class="special-filter-section" id="special-filter-section">
+    <span class="special-label">특별 필터</span>
+    <button class="special-chip" id="chip-highif" onclick="toggleSpecial('highif')">
+      ⭐ IF 10 이상 <span class="special-count" id="cnt-highif">0</span>
+    </button>
+    <button class="special-chip" id="chip-guide" onclick="toggleSpecial('guide')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+      가이드라인 <span class="special-count" id="cnt-guide">0</span>
+    </button>
   </div>
 
   <!-- RESULTS -->
@@ -2036,15 +2120,12 @@
 <div class="detail-overlay" id="detail-overlay" onclick="closeDetail(event)">
   <div class="detail-panel" id="detail-panel">
     <div class="panel-handle"></div>
-    <div style="position:relative;">
-      <button class="close-btn" onclick="closeDetailBtn()">✕</button>
-      <div class="panel-header">
-        <div class="panel-journal" id="p-journal"></div>
-        <div class="panel-title" id="p-title"></div>
-        <div class="panel-title-en" id="p-title-en"></div>
-        <div class="panel-authors" id="p-authors"></div>
-        <div class="panel-badges" id="p-badges"></div>
-      </div>
+    <div class="panel-header">
+      <div class="panel-journal" id="p-journal"></div>
+      <div class="panel-title" id="p-title"></div>
+      <div class="panel-title-en" id="p-title-en"></div>
+      <div class="panel-authors" id="p-authors"></div>
+      <div class="panel-badges" id="p-badges"></div>
     </div>
     <!-- BOOKMARK LINE -->
     <div class="bookmark-line" id="bookmark-line">
@@ -2085,6 +2166,14 @@
     <div class="panel-actions">
       <button class="panel-btn primary" id="p-link-btn">원문 보기 →</button>
       <button class="panel-btn" id="p-done-btn" onclick="clearBookmark()" style="display:none">✓ 다 읽었어요</button>
+      <button class="panel-btn font-size-btn" id="font-size-btn" onclick="toggleFontSize()" title="글씨 크기 변경">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block">
+          <circle cx="11" cy="11" r="7"/>
+          <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          <line x1="8" y1="11" x2="14" y2="11"/>
+          <line x1="11" y1="8" x2="11" y2="14"/>
+        </svg>
+      </button>
       <button class="panel-btn" onclick="closeDetailBtn()">닫기</button>
     </div>
   </div>
@@ -3301,6 +3390,7 @@ const PAPERS = [
 },
 {
   id: 35,
+  is_guideline: true,
   title: "ACG Clinical Guideline: Diagnosis and Management of Gastric Premalignant Conditions",
   title_ko: "ACG 임상 가이드라인: 위 전암성 병변의 진단과 관리 (자가면역성위염 포함)",
   journal: "American Journal of Gastroenterology",
@@ -3699,6 +3789,7 @@ const PAPERS = [
 },
 {
   id: 49,
+    is_guideline: true,
   title: "Autoimmune gastritis: Diagnosis, clinical management and natural history. A position paper by the Autoimmune gastRitis Italian netwOrk Study grOup (ARIOSO)",
   title_ko: "자가면역성위염 진단·임상 관리·자연 경과: ARIOSO 포지션 페이퍼",
   journal: "Digestive and Liver Disease",
@@ -3868,6 +3959,7 @@ const PAPERS = [
 },
 {
   id: 55,
+    is_guideline: true,
   title: "Management of epithelial precancerous conditions and early neoplasia of the stomach (MAPS III): ESGE, EHMSG and ESP Guideline update 2025",
   title_ko: "MAPS III: 위 상피성 전암성 병변 및 조기 신생물 관리 — ESGE·EHMSG·ESP 가이드라인 2025년 개정",
   journal: "Endoscopy",
@@ -5261,6 +5353,7 @@ const PAPERS = [
 },
 {
   id: 109,
+    is_guideline: true,
   title: "European Consensus on Malabsorption—UEG & SIGE, LGA, SPG, SRGH, CGS, ESPCG, EAGEN, ESPEN, and ESPGHAN. Part 1: Definitions, Clinical Phenotypes, and Diagnostic Testing for Malabsorption",
   title_ko: "흡수장애 유럽 합의문 Part 1: 흡수장애의 정의, 임상 표현형 및 진단 검사",
   journal: "United European Gastroenterology Journal",
@@ -5291,6 +5384,7 @@ const PAPERS = [
 },
 {
   id: 110,
+    is_guideline: true,
   title: "European Consensus on Malabsorption—UEG & SIGE, LGA, SPG, SRGH, CGS, ESPCG, EAGEN, ESPEN, and ESPGHAN. Part 2: Screening, Special Populations, Nutritional Goals, Supportive Care, Primary Care Perspective",
   title_ko: "흡수장애 유럽 합의문 Part 2: 선별, 특수 집단, 영양 목표, 지지 치료, 1차의료 관점",
   journal: "United European Gastroenterology Journal",
@@ -6121,6 +6215,7 @@ const PAPERS = [
   },
   {
     id: 137,
+    is_guideline: true,
     title: "AGA Clinical Practice Update on Screening and Surveillance in Individuals at Increased Risk for Gastric Cancer in the United States: Expert Review",
     title_ko: "미국 내 위암 고위험군 선별검사 및 감시에 관한 AGA 임상진료 업데이트: 전문가 검토",
     journal: "Gastroenterology",
@@ -6280,6 +6375,67 @@ const PAPERS = [
       "연구 기관": "시마네 환경건강공사 / 시마네대학 의학부 (일본)"
     },
     related_ids: []
+  },
+  {
+    id: 143,
+    title: "Solitary Fibrous Tumor of the Stomach in a Patient With Autoimmune Atrophic Gastritis: A Case Report",
+    title_ko: "자가면역성위축위염 환자에서 발생한 위장 고립성 섬유성 종양: 증례보고",
+    journal: "International Journal of Surgical Pathology",
+    journal_short: "Int J Surg Pathol",
+    year: 2025,
+    if: null,
+    authors: "Aslam S, Chandan A, Shah SS",
+    doi: "10.1177/10668969241283492",
+    source: "journal",
+    topics: ["증례", "병리", "종양·용종"],
+    abstract_ko: "자가면역성위축위염(AAG) 기왕력이 있는 85세 여성에서 위장 고립성 섬유성 종양(SFT)이 발생한 세계 최초 증례보고입니다. 연하곤란과 복부 불쾌감을 주소로 내원하여 상부위장관 내시경에서 위체부 대만에 1 cm 점막하 병변이 발견되었고, 내시경 점막절제술로 완전 절제되었습니다. 조직학적으로 교원질 기질 내 방추세포 증식이 관찰되었으며, 면역조직화학 검사에서 STAT6 및 CD34 양성, CD117·DOG1·desmin·SMA·S100·SOX10 음성으로 SFT 확진되었습니다. 위체부 무작위 생검에서는 산분비선 위축·유문선화생·신경내분비세포 과증식·광범위 장상피화생 등 AAG의 전형적 소견이 확인되었습니다. 종양 크기 1 cm, 유사분열 없음, 괴사 없음으로 저위험 SFT로 분류되었으며, 18개월 추적 관찰 시 재발 없이 경과 양호합니다. 위장 SFT와 AAG의 동반은 우연한 것으로 판단되나, 희귀 병변에 대한 인식 제고가 필요함을 강조합니다.",
+    keypoints: [
+      "【세계 최초】 AAG 배경에서 발생한 위장 고립성 섬유성 종양(SFT) 증례 — 기존 보고된 위장 SFT <10례 중 AAG 동반 사례 없음",
+      "85세 여성, 위체부 1 cm 점막하 병변 → 내시경 점막절제술(cap EMR) 완전 절제; 절제연 양성이나 저위험 분류로 추가 치료 없이 경과 관찰",
+      "면역조직화학: STAT6(+)·CD34(+) / CD117·DOG1·desmin·SMA·S100·SOX10 모두 음성 → 평활근종·위장관기질종양·신경초종과의 감별 확정",
+      "SFT 진단 핵심: NAB2::STAT6 유전자 융합에 의한 STAT6 핵내 발현 — 감별진단 병변 모두 STAT6 음성으로 확진 가능",
+      "위험도 분류(Demicco 모델): 크기 1 cm + 유사분열 0 + 괴사 없음 → 저위험; 18개월 무재발 생존",
+      "AAG와 위장 SFT의 연관성은 우연적 가능성 높음 — SFT는 중간엽 기원, AAG의 신생물 위험(선암·신경내분비종양)과 발생 기전 상이",
+      "⚠️ 단일 증례 보고; AAG 배경이 SFT 발생에 미치는 병인론적 역할은 현재로서 불명확"
+    ],
+    meta: {
+      "연구 유형": "증례보고 (Brief Report)",
+      "대상 환자": "85세 여성 1명 (AAG 기왕력)",
+      "시술": "Cap 내시경 점막절제술(EMR)",
+      "추적 기간": "18개월 (재발 없음)",
+      "연구 기관": "University of California-Irvine, 병리학·검사의학과 (CA, USA)"
+    },
+    related_ids: []
+  },
+  {
+    id: 144,
+    title: "Mechanistic and therapeutic advances in immune-mediated gastrointestinal disorders",
+    title_ko: "면역매개 위장관 질환의 기전 및 치료적 발전",
+    journal: "Journal of Allergy and Clinical Immunology",
+    journal_short: "J Allergy Clin Immunol",
+    year: 2025,
+    if: 14.0,
+    authors: "Garabatos N, Angelats E, Santamaria P",
+    doi: "10.1016/j.jaci.2025.07.024",
+    source: "journal",
+    topics: ["병인기전", "치료", "동반질환"],
+    abstract_ko: "자가면역성위염(AIG), 자가면역성장병증(AIE), 아칼라시아, 셀리악병, 염증성장질환(IBD), 위장관 사르코이드증, 위장관 혈관염, 호산구성 위장관 질환 등 면역매개 위장관 질환 전반의 면역병인과 치료적 발전을 종합적으로 검토한 대형 종설입니다. AIG 부분에서는 H+/K+-ATPase를 표적으로 하는 CD4+ TH1 세포 주도 자가면역 반응, IL-17·IL-13·IL-19·IL-27의 역할, Treg 기능 이상, B세포·비만세포·호산구의 참여, 위내 마이크로바이옴 변화(Streptococcus 우세, Sphingomonas·Ralstonia 증가)를 최신 연구 결과와 함께 정리합니다. 치료 전망으로는 비타민 B12·철분 보충 외에 secukinumab(항IL-17A), emapalumab(항IFN-γ), 중간엽줄기세포 치료가 전임상 단계에서 유망한 결과를 보이고 있음을 소개합니다. 전체 질환군을 관통하는 공통 주제로 장내 미생물 다양성 감소·SCFA 생산 저하·장벽 기능 장애·만성 섬유화를 제시하며, 항원 특이적 나노의약, 줄기세포 치료, 마이크로바이옴 기반 중재 등 차세대 치료 전략을 조망합니다.",
+    keypoints: [
+      "AIG 면역병인 최신 정리: CD4+ TH1(IFN-γ) + TH17(IL-17A/E/F) 세포 공동 주도; IL-13(비만세포)→위화생, IL-19(대식세포)→섬유화, IL-27(대식세포·DC)→위축·화생 억제",
+      "AIG 마이크로바이옴: 저산증으로 인한 세균 다양성 증가, Streptococcus 우세·Sphingomonas·Ralstonia 증가; SCFA(아세테이트·부티레이트) 감소 → Treg/TH1 불균형 악화",
+      "AIG 치료 전망: secukinumab(항IL-17A)·emapalumab(항IFN-γ) 전임상 유망; 중간엽줄기세포(MSC) 위 기능 회복 가능성; 마이코페놀레이트 모페틸 T·B세포 억제",
+      "면역매개 위장관 질환 공통 기전: 장내 미생물 다양성 감소 + SCFA 생산 저하 → Treg/TH17 불균형 → 장벽 손상 → 만성 염증 → 섬유화(TGF-β·IL-13·PDGF 경로)",
+      "차세대 치료 전략: 펩타이드-MHC 기반 나노의약(항원 특이적 Treg 유도), 조혈모세포이식(AIE·IPEX), 장내 미생물 이식(FMT), 줄기세포 치료(AIG·IBD)",
+      "셀리악병·IBD 분야 최신: TTG2 억제제(ZED1227), 항조눌린(AT-1001), dupilumab(EoE 승인), risankizumab·mirikizumab(IL-23 단독 표적), tulisokibart(TL1A 표적, UC 2상)",
+      "주의: 종설 논문 — AIG 관련 섹션은 전체 27페이지 중 일부(pp.1134-1137)이며, 주로 기존 연구를 종합·정리한 내용; AIG 단독 연구가 아닌 점 감안 필요"
+    ],
+    meta: {
+      "논문 유형": "종설 (Review Article) — Open Access (CC BY)",
+      "다루는 질환": "AIG, AIE, 아칼라시아, 셀리악병, IBD, ICI 대장염, 현미경 대장염, 위장관 사르코이드증, 호산구성 위장관 질환, 위장관 혈관염",
+      "투고·게재": "2025년 3월 6일 투고 → 7월 24일 수락 → 8월 7일 온라인 게재",
+      "연구 기관": "Institut d'Investigacions Biomediques August Pi i Sunyer, Barcelona / University of Calgary, Canada"
+    },
+    related_ids: []
   }
 ];
 
@@ -6326,6 +6482,7 @@ const SOURCE_LABELS = { journal: "저널 파일", kaig: "KAIG", web: "인터넷"
 let activeTopic  = "all";
 let activeSource = "all";
 let activeYear   = "all";
+let activeSpecial = "all"; // "all" | "highif" | "guide"
 let searchQuery  = "";
 let activeSort   = "default";
 let currentPage  = 1;
@@ -6371,6 +6528,43 @@ function getSorted(list) {
 // ═══════════════════════════════════════════════
 // RENDER YEARS
 // ═══════════════════════════════════════════════
+// ── SPECIAL FILTER ──
+function initSpecialCounts() {
+  const highifCount = PAPERS.filter(p => p.if && p.if >= 10).length;
+  const guideCount  = PAPERS.filter(p => p.is_guideline).length;
+  document.getElementById('cnt-highif').textContent = highifCount;
+  document.getElementById('cnt-guide').textContent  = guideCount;
+}
+
+function toggleSpecial(type) {
+  if (activeSpecial === type) {
+    activeSpecial = 'all';
+  } else {
+    activeSpecial = type;
+  }
+  currentPage = 1;
+
+  // Update chip styles
+  const chipHi = document.getElementById('chip-highif');
+  const chipGu = document.getElementById('chip-guide');
+  chipHi.className = 'special-chip' + (activeSpecial === 'highif' ? ' active-star' : '');
+  chipGu.className = 'special-chip' + (activeSpecial === 'guide'  ? ' active-guide' : '');
+
+  renderPapers();
+}
+
+// ── BADGE HELPERS ──
+function starBadge(p) {
+  if (!p.if) return '';
+  if (p.if >= 20) return '<span class="star-badge" title="Impact Factor ' + p.if + '">⭐⭐</span>';
+  if (p.if >= 10) return '<span class="star-badge" title="Impact Factor ' + p.if + '">⭐</span>';
+  return '';
+}
+function guidelineBadge(p) {
+  if (!p.is_guideline) return '';
+  return '<span class="guideline-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>가이드라인</span>';
+}
+
 function renderYears() {
   const container = document.getElementById("year-container");
   // 고유 연도 목록 (내림차순)
@@ -6422,9 +6616,12 @@ function renderTopics() {
 // ═══════════════════════════════════════════════
 function getFiltered() {
   return PAPERS.filter(p => {
-    const topicOk  = activeTopic === "all" || p.topics.includes(activeTopic);
-    const sourceOk = activeSource === "all" || p.source === activeSource;
-    const yearOk   = activeYear === "all" || p.year === activeYear;
+    const topicOk   = activeTopic === "all" || p.topics.includes(activeTopic);
+    const sourceOk  = activeSource === "all" || p.source === activeSource;
+    const yearOk    = activeYear === "all" || p.year === activeYear;
+    const specialOk = activeSpecial === "all"
+      || (activeSpecial === "highif" && p.if && p.if >= 10)
+      || (activeSpecial === "guide"  && p.is_guideline);
     const q = searchQuery.toLowerCase();
     const searchOk = !q
       || p.title.toLowerCase().includes(q)
@@ -6432,7 +6629,7 @@ function getFiltered() {
       || p.authors.toLowerCase().includes(q)
       || p.abstract_ko.includes(q)
       || p.topics.some(t => t.includes(q));
-    return topicOk && sourceOk && yearOk && searchOk;
+    return topicOk && sourceOk && yearOk && specialOk && searchOk;
   });
 }
 
@@ -6453,9 +6650,12 @@ function renderPapers() {
 
   const topicLabel = activeTopic === "all" ? "전체 논문" :
     TOPICS.find(t => t.id === activeTopic)?.label + " 논문";
-  const yearSuffix = activeYear !== "all" ? ` (${activeYear}년)` : "";
+  const yearSuffix    = activeYear !== "all" ? ` (${activeYear}년)` : "";
+  const specialSuffix = activeSpecial === "highif" ? " — ⭐ IF 10 이상"
+                      : activeSpecial === "guide"  ? " — 가이드라인"
+                      : "";
   document.getElementById("results-title").textContent =
-    searchQuery ? `"${searchQuery}" 검색 결과` : topicLabel + yearSuffix;
+    searchQuery ? `"${searchQuery}" 검색 결과` : topicLabel + yearSuffix + specialSuffix;
 
   if (!pageItems.length) {
     list.innerHTML = `<div class="empty-state">
@@ -6483,7 +6683,7 @@ function renderPapers() {
       onclick="openDetail(${p.id})">
       ${ribbonHtml}
       <div class="card-top">
-        <div class="card-journal">${p.journal_short}${p.if ? `<span class="if-badge">IF ${p.if}</span>` : ''}</div>
+        <div class="card-journal">${p.journal_short}${p.if ? `<span class="if-badge">IF ${p.if}</span>` : ''}${starBadge(p)}${guidelineBadge(p)}</div>
         <div class="card-year">${p.year}</div>
       </div>
       <div class="card-title">${p.title_ko}</div>
@@ -6684,7 +6884,8 @@ function openDetail(id) {
 
   document.getElementById("p-journal").innerHTML =
     p.journal + " · " + p.year +
-    (p.if ? ` <span class="if-badge">IF ${p.if}</span>` : "");
+    (p.if ? ` <span class="if-badge">IF ${p.if}</span>` : "") +
+    starBadge(p) + guidelineBadge(p);
   document.getElementById("p-title").textContent = p.title_ko;
   document.getElementById("p-title-en").textContent = p.title;
   document.getElementById("p-authors").textContent = p.authors;
@@ -6774,6 +6975,20 @@ function closeDetailBtn() {
   document.body.style.overflow = "";
 }
 
+// ── FONT SIZE TOGGLE ──
+let _fontLarge = false;
+function toggleFontSize() {
+  _fontLarge = !_fontLarge;
+  const panel = document.getElementById('detail-panel');
+  const btn   = document.getElementById('font-size-btn');
+  panel.classList.toggle('font-large', _fontLarge);
+  btn.classList.toggle('large', _fontLarge);
+  btn.title = _fontLarge ? '기본 글씨로 변경' : '큰 글씨로 변경';
+  btn.querySelector('svg').innerHTML = _fontLarge
+    ? `<circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="11" x2="14" y2="11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>`
+    : `<circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="11" x2="14" y2="11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="11" y1="8" x2="11" y2="14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>`;
+}
+
 // ═══════════════════════════════════════════════
 // FILTERS
 // ═══════════════════════════════════════════════
@@ -6784,15 +6999,7 @@ function setTopic(id) {
   renderPapers();
 }
 
-document.querySelectorAll(".source-chip").forEach(chip => {
-  chip.addEventListener("click", () => {
-    document.querySelectorAll(".source-chip").forEach(c => c.classList.remove("active"));
-    chip.classList.add("active");
-    activeSource = chip.dataset.src;
-    currentPage = 1;
-    renderPapers();
-  });
-});
+
 
 document.getElementById("search-input").addEventListener("input", e => {
   searchQuery = e.target.value.trim();
@@ -7744,6 +7951,7 @@ document.getElementById("stat-year").textContent = Math.max(...PAPERS.map(p => p
 document.getElementById("stat-topics").textContent = TOPICS.length - 1;
 loadBookmark();
 initPanelScroll();
+initSpecialCounts();
 
 // ── EVENTS INIT ──
 evLoad();
