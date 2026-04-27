@@ -6,8 +6,8 @@
 
   [논문 추가 규칙]
   1. 한자 사용 금지
-     - 본문·keypoints·meta·저널명 등 모든 곳에서 한자(多, 中 등) 사용 금지
-     - 한자가 포함된 경우 한글로 대체 (예: 多 → 다수)
+     - 본문·keypoints·meta·저널명 등 모든 곳에서 한자 사용 금지
+     - 한자가 포함된 경우 한글로 대체 (예: 많을 다 → 다수, 가운데 중 → 중)
      - 저널명에 포함된 한자 표기도 제거
 
   2. related_ids 양방향 설정
@@ -44,8 +44,8 @@
       출판 확정된 논문의 연도·권·호·페이지 등을 업데이트
 
   [현재 현황]
-  - 마지막 논문 ID: 158
-  - 총 논문 수: 148편 (2025-04-27 기준)
+  - 마지막 논문 ID: 159
+  - 총 논문 수: 149편 (2025-04-27 기준)
   - 다음 정기 점검 기준: 198편 도달 시
 
 ════════════════════════════════════════════════════════════
@@ -2373,7 +2373,7 @@ async function shareAsImage() {
   // 초록 최대 300자
   const abs = p.abstract_ko || '';
   document.getElementById('sc-abstract').textContent =
-    abs.length > 280 ? abs.slice(0, 280) + '…' : abs;
+    abs.length > 400 ? abs.slice(0, 400) + '…' : abs;
   document.getElementById('sc-badges').innerHTML =
     p.topics.map(t => `<span class="share-card-badge">${t}</span>`).join('');
   document.getElementById('sc-doi').textContent = 'doi: ' + p.doi;
@@ -3742,7 +3742,8 @@ const PAPERS = [
     "포함 연구": "13편 (NET 10편·위폴립 4편·위암 1편)",
     "검색 기준일": "2025년 3월 30일",
     "연구 기관": "Xuanwu Hospital, Capital Medical University, Beijing, China"
-  }
+  },
+  related_ids: [159]
 },
 {
   id: 44,
@@ -5434,7 +5435,8 @@ const PAPERS = [
     "대상 환자": "AIG 303명 (gNETs군 116명, 비gNETs군 187명)",
     "연구 기간": "2017년 1월~2025년 1월 (8년)",
     "연구 기관": "중일우호병원 소화기내과·통합종양과·병리과, Beijing, China"
-  }
+  },
+  related_ids: [159]
 },
 {
   id: 114,
@@ -5653,9 +5655,8 @@ const PAPERS = [
     journal: "The American Journal of the Medical Sciences",
     journal_short: "Am J Med Sci",
     year: 2025,
+    volume: "369",
     if: 2.5,
-    authors: "Li B, Jiang H, Cai C, Chen H",
-    doi: "10.1016/j.amjms.2024.08.009",
     source: "journal",
     topics: ["진단", "암위험", "동반질환", "바이오마커"],
     abstract_ko: "자가면역성위염(AIG) 91명을 대상으로 한 단일기관 후향적 연구. AIG 환자의 혈청학적 지표와 합병증 발생의 연관성을 분석하고, NET 조기 예측을 위한 바이오마커를 탐색하였다. 평균 연령 58.12±11.68세, 여성 60명(65.9%). 위 신경내분비종양(NET)이 27/91(29.7%)로 가장 흔한 합병증이었고, 과형성 폴립 14/91, 위 점막 신생물 9/91 순이었다. G17·PGI·PGII·PGI/II·VB12는 병변 유형 간 유의한 차이가 없었으나, TPOAb 양성 AIG 환자에서 NET 동반 위험이 유의하게 높았다(P=0.0212). TPOAb 수치는 NET 동반군에서 비동반군보다 유의하게 높았으며(P=0.0078), ROC 분석에서 AUC=0.7410(95% CI 0.5830–0.8991, P=0.0110)으로 NET 예측 능력을 확인하였다.",
@@ -5671,6 +5672,7 @@ const PAPERS = [
     ],
     meta: {
       "연구 설계": "단일기관 후향적 코호트",
+      "게재": "Am J Med Sci 2025;369(2):183-188 (Epub 2024 Aug 21)",
       "대상 환자": "91명 (2021.2~2023.10, 절강대학교 제1부속병원)",
       "AIG 진단 기준": "체부 위축 내시경 소견 + 항위벽세포항체 또는 항내인자항체 양성, 또는 ECL 세포 과증식·ECM 양성",
       "주요 결과": "TPOAb AUC 0.7410 (NET 예측), NET 동반률 29.7%",
@@ -6774,6 +6776,38 @@ const PAPERS = [
       "통계": "Cox 회귀, Kaplan-Meier, Fisher's exact test; Harrell's C=0.82"
     },
     related_ids: [1, 2, 21, 49]
+  },
+  {
+    id: 159,
+    title: "Serum Gastrin Levels Are Associated With Prevalent Neuroendocrine Tumors in Autoimmune Metaplastic Atrophic Gastritis",
+    title_ko: "자가면역성위축위염에서 혈청 가스트린 수치와 신경내분비종양의 연관성",
+    journal: "American Journal of Gastroenterology",
+    journal_short: "Am J Gastroenterol",
+    year: 2025,
+    volume: "120",
+    if: 10.4,
+    authors: "Jove A, Lin C, Hwang JH, Balasubramanian V, Fernandez-Becker NQ, Huang RJ",
+    doi: "10.14309/ajg.0000000000003235",
+    source: "journal",
+    topics: ["바이오마커", "종양·용종", "암위험", "진단"],
+    abstract_ko: "스탠퍼드 헬스케어 단일기관 후향적 코호트 연구입니다. 조직병리학적·혈청학적 기준으로 확인된 자가면역성위축위염(AMAG) 환자 181명을 대상으로 위 신경내분비종양(gNET) 유병 예측인자를 분석하였습니다. 전체 181명 중 41명(22.7%)에서 gNET이 확인되었습니다. gNET 동반군에서 혈청 가스트린이 비동반군보다 유의하게 높았으며(1,859.8 vs 679.5 pg/mL, p<0.001), 가스트린의 gNET 판별력은 양호한 수준이었습니다(AUC 0.799, 95% CI 0.707-0.892). OLGA/OLGIM 병기, 항벽세포항체(PCA), 내인자항체(IFA), 크로모그라닌 A 등 다른 혈청·조직학적 지표는 gNET 유무에 따른 유의한 차이를 보이지 않았습니다.",
+    keypoints: [
+      "AMAG 181명 중 gNET 유병률 22.7% — 스탠퍼드 단일기관 다민족 코호트(비히스패닉계 백인 46.4%, 히스패닉 25.4%, 아시아계 21.0%)",
+      "혈청 가스트린만이 gNET 유병의 유일한 유의한 예측인자(1,859.8 vs 679.5 pg/mL, p<0.001) — AUC 0.799로 양호한 판별력",
+      "가스트린 500 pg/mL 기준: 민감도 88%, 특이도 45% / 1,200 pg/mL 기준: 민감도 64%, 특이도 83% — 임상 목적에 따라 기준치 선택 가능",
+      "OLGA/OLGIM 병기는 gNET 위험도 층화에 불충분 — AMAG 진단 후 조직학적 중증도가 아닌 가스트린 수치가 핵심 바이오마커",
+      "PCA·IFA는 질환 존재의 마커이지 중증도·진행의 마커가 아님 — PCA 양성은 gNET 동반과 경향성만 있으나 다중비교 보정 후 비유의",
+      "북미 다민족 집단 대상 최초 연구 — 기존 유럽 중심 연구 결과를 다른 인종 배경에서도 확인 시도",
+      "⚠️ 단일기관 후향적 연구; 가스트린 측정치 103명에만 가용(전체의 57%); 횡단면 설계로 gNET 발생 예측이 아닌 유병 상관관계만 확인; 전향적 대규모 연구 필요"
+    ],
+    meta: {
+      "논문 유형": "Brief Report (단일기관 후향적 코호트)",
+      "게재": "Am J Gastroenterol 2025;120(5):1140-1143 (Epub 2024 Nov 26)",
+      "대상 환자": "AMAG 181명 (gNET군 41명, 비gNET군 140명)",
+      "연구 기관": "Stanford Health Care / Stanford University, California, USA",
+      "연구비": "NCI K08CA252635, P01CA265772"
+    },
+    related_ids: [43, 113]
   }
 ];
 
@@ -7000,6 +7034,11 @@ function getFiltered() {
   });
 }
 
+// HTML 특수문자 이스케이프 유틸리티
+function escHtml(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 function renderPapers() {
   const list = document.getElementById("papers-list");
   const filtered = getSorted(getFiltered());
@@ -7053,10 +7092,10 @@ function renderPapers() {
         <div class="card-journal">${p.journal_short}${p.if ? `<span class="if-badge">IF ${p.if}</span>` : ''}${starBadge(p)}${guidelineBadge(p)}</div>
         <div class="card-year">${p.year}</div>
       </div>
-      <div class="card-title">${p.title_ko}</div>
-      <div class="card-title-en">${p.title}</div>
-      <div class="card-authors">${p.authors}</div>
-      <div class="card-abstract">${p.abstract_ko}</div>
+      <div class="card-title">${escHtml(p.title_ko)}</div>
+      <div class="card-title-en">${escHtml(p.title)}</div>
+      <div class="card-authors">${escHtml(p.authors)}</div>
+      <div class="card-abstract">${escHtml(p.abstract_ko)}</div>
       <div class="card-footer">
         <div class="badge-row">${badgeHtml}</div>
         <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
