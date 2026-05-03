@@ -51,8 +51,8 @@
       출판 확정된 논문의 연도·권·호·페이지 등을 업데이트
 
   [현재 현황]
-  - 마지막 논문 ID: 235
-  - 총 논문 수: 221편 (2026-05-03 기준)
+  - 마지막 논문 ID: 244
+  - 총 논문 수: 230편 (2026-05-03 기준)
   - 다음 정기 점검 기준: 250편 도달 시 → 정기 점검 실시
 
 ════════════════════════════════════════════════════════════
@@ -4065,7 +4065,7 @@ const PAPERS = [
     "AIG 관련 권고": "Rec 47 (자가면역성위염 3년 추적), Rec 48 (CVID 추적), Rec 46 (유전성 증후군)",
     "연구 기관": "Portuguese Institute of Oncology of Porto 외 유럽 다기관"
   },
-  related_ids: [1, 49, 156]
+  related_ids: [1, 49, 156, 244]
 }    ,{
   id: 57,
   title: "Autoimmune gastritis: an organ-specific disease or a model of systemic autoimmunity? Parallels, divergences, and emerging insights",
@@ -8872,7 +8872,7 @@ const PAPERS = [
     "추적 프로토콜": "4년 간격 위내시경·생검 (H. pylori 제균 후, 신생물 발생 시 6·12개월 간격)",
     "연구 기관": "산탄드레아 병원·사피엔차대학교 로마, 이탈리아"
   },
-  related_ids: []
+  related_ids: [238]
 },
 {
   id: 226,
@@ -9233,7 +9233,300 @@ const PAPERS = [
     "검색 기간": "최초~2017년 4월",
     "핵심 결과": "혈액 악성종양·담도암 위험 증가; 대부분의 고형암 위험 감소"
   },
+  related_ids: [236]
+},
+{
+  id: 236,
+  title: "Cancer Risk After Pernicious Anemia in the US Elderly Population",
+  title_ko: "미국 노인 인구에서 악성빈혈 이후 암 위험도",
+  journal: "Clinical Gastroenterology and Hepatology",
+  journal_short: "Clin Gastroenterol Hepatol",
+  year: 2015,
+  volume: "13",
+  issue: "13",
+  pages: "2282-2289",
+  if: 11.4,
+  authors: "Murphy G, Dawsey SM, Engels EA, Ricker W, Parsons R, Etemadi A, Lin SW, Abnet CC, Freedman ND",
+  doi: "10.1016/j.cgh.2015.05.040",
+  source: "journal",
+  topics: ["암위험", "역학", "종양·용종"],
+  abstract_ko: "SEER-Medicare 데이터베이스를 이용한 대규모 인구기반 환자-대조군 연구입니다. 66~99세 암 환자 1,138,390명과 대조군 100,000명을 비교하였으며, 악성빈혈(PA)은 진단 12개월 이상 전 청구 기록으로 정의하였습니다. PA는 전체 암 환자 및 대조군 모두 1.5%에서 확인되었습니다. PA 보유자는 위 카르시노이드(OR 11.43, 95% CI 8.90–14.69), 비분문부 위선암(OR 2.18, 95% CI 1.94–2.45), 식도편평세포암(OR 2.12), 골수이형성증후군(OR 2.87), 편도암(OR 2.00), 하인두암(OR 1.92), 소장암(OR 1.63), 간암(OR 1.49), 다발골수종(OR 1.55), 급성골수성백혈병(OR 1.68)에서 유의하게 높은 위험도를 보였습니다. 반면 직장암은 유의하게 낮은 위험도(OR 0.82)를 나타냈습니다. 대부분의 연관성은 PA 첫 기록 72개월 이후 진단된 암에서 더 강하게 관찰되었습니다.",
+  keypoints: [
+    "위 카르시노이드 위험 11.43배 — PA에서 가장 강력한 연관성; 장크롬친화세포 유사세포(ECL cell) 과증식이 고가스트린혈증에 의해 촉진되는 기전; 72개월 이후 OR 21.49로 더욱 증가",
+    "비분문부 위선암 OR 2.18, 분문부 위선암 OR 1.25 — 위체부·저부·전정부·유문부 각 부위에서 모두 유의한 위험 증가; 저산증에 의한 니트로사민 생성균 과증식 및 고가스트린혈증이 주요 기전",
+    "혈액 악성종양 위험 증가 — 골수이형성증후군 OR 2.87, 급성골수성백혈병 OR 1.68, 다발골수종 OR 1.55; 급성골수성백혈병은 시간 경과에 따라 위험도가 감소(OR 2.00→1.38)하는 특이 패턴",
+    "식도편평세포암 OR 2.12, 식도선암 OR 1.00 — 위 산 역류 감소로 인해 선암은 보호되는 반면, 편평세포암과의 연관성은 별도 기전(비타민 B12 결핍, HPV 지속 등) 관여 가능",
+    "직장암 역위험 OR 0.82 — 근위 결장(OR 1.06)→원위 결장(OR 0.89)→직장(OR 0.82)으로 이어지는 단계적 감소 패턴; 남성에서만 유의; 대장 부위별 조직학적 차이가 발암 감수성 결정 가능성",
+    "⚠️ 65세 이상 노인에 국한; 흡연·음주·식이 등 주요 교란변수 보정 불가; PA 유병률 1.5%(생화학적 정의 기준 4~5%보다 낮음)로 민감도 제한; Medicare 청구 기반 PA 정의로 일부 환자 누락 가능"
+  ],
+  meta: {
+    "연구 설계": "인구기반 환자-대조군 연구 (SEER-Medicare)",
+    "대상 인구": "암 환자 1,138,390명, 대조군 100,000명 (66~99세)",
+    "연구 기간": "1992~2005년",
+    "연구 기관": "미국 국립암연구소(NCI), 베데스다",
+    "핵심 결과": "PA → 위 카르시노이드 11.43배, 골수이형성증후군 2.87배, 비분문부 위선암 2.18배 위험 증가"
+  },
+  related_ids: [235]
+},
+{
+  id: 237,
+  title: "Systematic review: gastric cancer incidence in pernicious anaemia",
+  title_ko: "체계적 문헌고찰: 악성빈혈에서 위암 발생률",
+  journal: "Alimentary Pharmacology and Therapeutics",
+  journal_short: "Aliment Pharmacol Ther",
+  year: 2013,
+  volume: "37",
+  issue: "4",
+  pages: "375-382",
+  if: 7.6,
+  authors: "Vannella L, Lahner E, Osborn J, Annibale B",
+  doi: "10.1111/apt.12177",
+  source: "journal",
+  topics: ["암위험", "역학"],
+  abstract_ko: "PubMed 검색(최초~2011년 9월)을 통해 PA 환자의 위암 발생을 보고한 27개 연구(PA 환자 22,417명, 157,319.8인년, 위암 417건)를 체계적으로 검토하였습니다. Newcastle-Ottawa 척도로 품질 평가 시 고품질 7개, 중품질 6개, 저품질 10개, 매우 저품질 4개였습니다. 위암 발생률은 미국 연구 0~0.2%/인년, 아시아 0~0.5%, 북유럽 0~1.2%, 기타 유럽 0~0.9%/인년으로 지역별 차이가 있었습니다. 전체 통합 위암 발생률은 0.26%/인년이었으며, 내시경·조직학적 능동 추적을 시행한 6개 연구만 대상으로 한 통합 발생률도 동일하게 0.27%/인년(95% CI 0.25–0.29)이었습니다. GLOBOCAN 일반 인구 데이터와 비교한 메타분석에서 PA 환자의 위암 상대위험도는 6.8배(95% CI 2.6–18.1, 무작위효과모델)로 산출되었습니다.",
+  keypoints: [
+    "PA 환자의 통합 위암 발생률 0.27%/인년 — 내시경·조직학적 능동 추적 6개 연구 기반; 연구 설계·출처·추적 방법이 상이함에도 발생률이 일관되게 유사한 것이 주요 발견",
+    "위암 상대위험도 6.8배(95% CI 2.6–18.1) — 무작위효과모델 적용; PA가 위암의 전암 상태임을 지지하며, PA 환자의 내시경 감시 필요성의 역학적 근거 제공",
+    "지역별 발생률 차이 — 북유럽(0~1.2%)이 미국(0~0.2%)보다 높고, 아시아 데이터는 중국 2개 연구에 국한되어 대표성 부족; 지역별 H. pylori 유병률·위암 배경 발생률 차이 반영",
+    "위암 진단 방법에 따른 발생률 차이 — 내시경(0~1.2%) > 사망진단서(0.2~0.9%) > ICD 코드(0.1~0.4%) 순; 오래된 연구에서 카르시노이드와 선암의 혼동 가능성 존재",
+    "⚠️ 포함 연구의 절반이 저·매우 저품질; 아시아 데이터 부족; H. pylori 정보 미보정(발견 이전 연구 포함); 위암 발생률 감소 추세를 감안하지 않은 GLOBOCAN 비교; 카르시노이드·선암 혼재 가능성"
+  ],
+  meta: {
+    "연구 설계": "체계적 문헌고찰 및 메타분석 (PRISMA)",
+    "포함 연구": "27개 연구, PA 환자 22,417명, 157,319.8인년",
+    "검색 기간": "최초~2011년 9월",
+    "연구 기관": "사피엔차대학교 산탄드레아 병원, 로마, 이탈리아",
+    "핵심 결과": "PA 환자 위암 통합 발생률 0.27%/인년; 일반 인구 대비 6.8배 위험 증가"
+  },
   related_ids: []
+},
+{
+  id: 238,
+  title: "Development of type I gastric carcinoid in patients with chronic atrophic gastritis",
+  title_ko: "만성 위축성위염 환자에서 1형 위 카르시노이드 발생",
+  journal: "Alimentary Pharmacology and Therapeutics",
+  journal_short: "Aliment Pharmacol Ther",
+  year: 2011,
+  volume: "33",
+  issue: "12",
+  pages: "1361-1369",
+  if: 7.6,
+  authors: "Vannella L, Sbrozzi-Vanni A, Lahner E, Bordi C, Pilozzi E, Corleto VD, Osborn JF, Delle Fave G, Annibale B",
+  doi: "10.1111/j.1365-2036.2011.04659.x",
+  source: "journal",
+  topics: ["종양·용종", "암위험", "역학"],
+  abstract_ko: "1992~2008년 산탄드레아 병원에서 위축성위염(CAG)으로 진단된 367명(여성 245명, 중앙 연령 54세)을 대상으로 한 전향적 코호트 연구입니다. 추적 탈락자 102명을 제외한 265명 중 2년 이상 추적된 214명(1,463인년)을 대상으로 1형 위 카르시노이드(typeIGC) 발생률을 분석하였습니다. CAG 진단 시점에 9명(2.4%)에서 typeIGC가 유병 진단되었습니다. 추적 중 6명에서 typeIGC가 새로 발생하여 연간 발생률 0.4%/인년이었습니다. TypeIGC 환자는 그렇지 않은 환자에 비해 가스트린과 크로모그라닌 A 수치가 유의하게 높았고(각각 p=0.01, p=0.0001), ECL-이형성이 46.6% vs 0%로 현저히 많았습니다(p<0.000001). 위체부 용종 존재도 typeIGC와 강하게 연관되었습니다(p=0.000001). 15명 중 6명(40%)에서 재발이 있었으나, 내시경 절제술로 모두 관리되었고 추적 종료 시 전원 생존 상태였습니다.",
+  keypoints: [
+    "1형 위 카르시노이드 연간 발생률 0.4%/인년 — CAG 진단 시 유병률 2.4%; 대부분 내시경 절제로 관리 가능하며, 40% 재발에도 추적 종료 시 100% 생존",
+    "ECL-이형성이 typeIGC의 가장 강력한 연관 인자 — typeIGC 환자 46.6% vs 비typeIGC 환자 0% (p<0.000001); ECL-이형성은 카르시노이드 전구 병변으로, 이 소견 발견 시 추적 간격 단축 권고",
+    "위체부 용종 존재가 typeIGC와 강하게 연관 (p=0.000001) — 위치·크기·형태 등 내시경 소견은 typeIGC 유무를 감별하지 못하므로 위체부 용종은 조직학적 확인이 필수",
+    "가스트린·크로모그라닌 A 수치: typeIGC 환자에서 유의하게 높으나 두 그룹 간 범위가 광범위하게 겹쳐 — 개별 환자 수준에서 typeIGC 유무를 예측하는 바이오마커로서 한계 확인",
+    "PA 유무는 typeIGC 발생과 유의한 연관 없음 (46.6% vs 49.2%, p=1.0) — PA가 아닌 다른 원인의 CAG 환자도 동등한 typeIGC 위험을 가지며, 고가스트린혈증 자체가 핵심 기전임을 지지",
+    "⚠️ 추적 탈락률 27.8%로 발생률 과소평가 가능; 단일기관·소규모(n=214) 코호트; typeIGC 환자 수 소수(15명)로 다변량 분석 불가; 일부 이전 연구와 같은 코호트 중첩 가능성"
+  ],
+  meta: {
+    "연구 설계": "전향적 단일기관 코호트 연구",
+    "대상": "CAG 214명 (2년 이상 추적), 1,463인년",
+    "추적 기간": "중앙 6.3년 (2~17년)",
+    "연구 기관": "산탄드레아 병원·사피엔차대학교 로마, 이탈리아",
+    "핵심 결과": "1형 위 카르시노이드 연간 발생률 0.4%/인년; ECL-이형성·위체부 용종이 주요 연관 인자"
+  },
+  related_ids: [224]
+},
+{
+  id: 239,
+  title: "Distinct Features of Autoimmune Gastritis in Patients with Open-Type Chronic Gastritis in Japan",
+  title_ko: "일본 개방형 만성위염 환자에서 자가면역성위염의 특징적 임상양상",
+  journal: "Biomedicines",
+  journal_short: "Biomedicines",
+  year: 2020,
+  volume: "8",
+  issue: "10",
+  pages: "419",
+  if: 4.1,
+  authors: "Tsuboi M, Niikura R, Hayakawa Y, Hirata Y, Ushiku T, Koike K",
+  doi: "10.3390/biomedicines8100419",
+  source: "journal",
+  topics: ["역학", "암위험", "병인기전"],
+  abstract_ko: "2005~2017년 도쿄대학 위암 내시경 데이터베이스 및 아사히생명성인병연구소에서 내시경으로 진단된 개방형(O-I~III) 만성위염 환자 131명(AIG 60명, 비AIG 71명)을 대상으로 한 후향적 단일기관 코호트 연구입니다. AIG는 항벽세포항체(APCA) 양성(역가 1:10 이상)으로 정의하였습니다. AIG군은 비AIG군에 비해 갑상선질환 동반 비율이 유의하게 높았고(25% vs 8.3%, p=0.009), 혈청 가스트린이 유의하게 높았습니다(1412 vs 353 pg/mL, p<0.001). 내시경 소견에서 체부 우세 위축은 AIG군 31.67%, 비AIG군 7.04%로 유의한 차이가 있었습니다(p<0.001). ECL세포 집락은 AIG군 27.6%, 비AIG군 6.7%에서 관찰되었습니다(p=0.032). 16S rRNA 위내 미생물군 분석(H. pylori 비감염자 29명 대상)에서 AIG군은 Streptococcus, Selenomonas, Granulicatella, Bacillus가 유의하게 높게 검출되었으며, 미생물군 조성이 두 군 간 유의하게 달랐습니다(R²=0.858, p<0.001). 10년 위암 누적 발생률은 AIG군 0.03%, 비AIG군 0.05%로 유의한 차이가 없었습니다(p=0.457).",
+  keypoints: [
+    "위암 누적 발생률 AIG vs 비AIG 간 차이 없음(10년 0.03% vs 0.05%, p=0.457) — H. pylori 감염률 높은 일본 환경에서 AIG 자체가 위암 발생의 독립적 위험인자가 아닐 수 있음; AIG군 61.7%가 동반·과거 H. pylori 감염이 교란변수로 작용",
+    "체부 우세 위축 AIG 31.7% vs 비AIG 7.0% (p<0.001) — 내시경에서 체부 우세 위축은 AIG의 핵심 감별 소견이나, 조직학적 위축·호중구침윤·장상피화생 정도는 두 군 간 차이 없음",
+    "AIG 위내 미생물군 특이 구성 — H. pylori 비감염자 분석에서 Streptococcus·Haemophilus·Selenomonas·Granulicatella가 AIG에서만 검출; 무산증 환경에서 구강 유래균이 위내 정착하는 기전과 일치; PPI 사용 유무에 따른 미생물군 차이는 없었음",
+    "AIG에서 ECL세포 집락 증가 (27.6% vs 6.7%, p=0.032) — 고가스트린혈증이 ECL세포 증식을 촉진; 추적 기간 중 양 군 모두 NET 발생 없어 단기 ECL 증식의 임상적 의미는 제한적",
+    "⚠️ 후향적 단일기관 소규모(n=131); APCA만으로 AIG 정의(항내인자항체 미확인); AIG군 61.7%가 H. pylori 동반·과거 감염으로 순수 AIG 효과 분리 불가; 미생물군 분석은 29명의 소규모 부분집합; 추적 기간 중앙값 6~7년으로 NET 발생 평가에 불충분"
+  ],
+  meta: {
+    "연구 설계": "후향적 단일기관 코호트 연구",
+    "대상": "개방형 만성위염 131명 (AIG 60명, 비AIG 71명), 2005~2017년",
+    "연구 기간": "평균 추적 6.2년(AIG) / 7.4년(비AIG)",
+    "연구 기관": "도쿄대학교 의학부 소화기내과, 일본",
+    "핵심 결과": "AIG vs 비AIG 간 위암 발생률 차이 없음; AIG에서 고가스트린혈증·ECL증식·위내 미생물군 특이 변화 확인"
+  },
+  related_ids: []
+},
+{
+  id: 240,
+  title: "Diagnosis and classification of pernicious anemia",
+  title_ko: "악성빈혈의 진단과 분류",
+  journal: "Autoimmunity Reviews",
+  journal_short: "Autoimmun Rev",
+  year: 2014,
+  volume: "13",
+  issue: "4-5",
+  pages: "565-568",
+  if: 9.2,
+  authors: "Bizzaro N, Antico A",
+  doi: "10.1016/j.autrev.2014.01.042",
+  source: "journal",
+  topics: ["진단", "병인기전", "역학"],
+  abstract_ko: "Autoimmunity Reviews의 'Diagnosis and Classification of Autoimmune Diseases' 시리즈 리뷰 논문으로, 악성빈혈(PA)의 역사적 배경, 유전학, 임상 양상, 자가항체, 진단 기준, 자가항체 검출법, 조직병리 소견, 치료를 체계적으로 정리하였습니다. PA는 위체부 위축성위염, 거대적아구성 빈혈, 비타민 B12 결핍, 내인자항체(IFA) 및 항벽세포항체(PCA)를 특징으로 하는 복합 자가면역질환입니다. PCA는 PA의 80~90%에서 양성이나 특이도가 낮고, IFA는 민감도 40~60%이지만 PA에 특이적입니다. IFA의 경우 1형(차단항체)이 70%, 2형(결합항체)이 35~40%에서 검출됩니다. PCA는 임상 증상보다 수년 앞서 양성화될 수 있으며, 5년 추적 중 PCA 양성 자가면역 갑상선 환자의 24%가 위축성위염으로 진행합니다. HLA-DRB1*03 및 DRB1*04가 PA와 유의하게 연관됩니다. 진단 기준은 Hb<13(남)/12(여)g/dL, MCV≥120fL, 저비타민 B12, 위체부 점막 위축, PCA/IFA 양성으로 제시됩니다.",
+  keypoints: [
+    "PCA 특이도 낮음·IFA 특이도 높음 — PCA는 PA의 80~90%에서 양성이나 하시모토 갑상선염·1형 당뇨·고령에서도 비특이적 양성; IFA는 민감도 40~60%이지만 PA에 고특이적이며 질환 이환 기간과 함께 60~80%까지 상승",
+    "PCA 선행성·예측적 가치 — PCA 양성은 임상 증상보다 수년 앞서 나타남; PCA 양성 1형 당뇨 환자에서 가스트린·펩시노겐 I 함께 측정 시 빈혈 수년 전 위축성위염 조기 진단 가능; 자가면역 갑상선염 환자에서 5년 추적 중 24%가 위축성위염으로 진행",
+    "PA 진단 기준 — ① Hb<13(남)/12(여)g/dL, ② MCV≥120fL, ③ 저혈청 비타민 B12, ④ 위체부 점막 위축, ⑤ PCA 및/또는 IFA 양성; 감별 진단: 알코올·간질환·골수이형성증후군·채식·약물·감염·위수술 등",
+    "HLA 연관성 — HLA-DRB1*03 및 DRB1*04가 PA와 유의하게 연관; 1형 당뇨·자가면역 갑상선 질환과 공유하는 HLA 패턴으로 자가면역 기전 지지; Th1 세포독성 T세포가 H⁺/K⁺-ATPase를 표적으로 하여 위축 유발",
+    "전신 자가면역 동반 — 갑상선질환(Graves·점액수종·갑상선염)·1형 당뇨·부신부전·부갑상선기능저하증·IBD·백반증 등과 동반; 항갑상선항체는 PA 환자의 50% 이상에서 양성; H. pylori 연관성은 아직 논쟁 중",
+    "⚠️ 리뷰 논문으로 자체 원데이터 없음; PA 진단 기준의 국제적 표준화 미비; 진단 복잡성으로 인해 실제 유병률 과소평가 가능; IFA IgA(위액 내)가 흡수 장애에 핵심이나 임상적으로 측정 불가능한 경우 많음"
+  ],
+  meta: {
+    "논문 유형": "서술적 리뷰 (Diagnosis and Classification 시리즈)",
+    "저널": "Autoimmunity Reviews — 자가면역질환 진단·분류 시리즈",
+    "연구 기관": "산안토니오 병원·시빅 병원, 이탈리아",
+    "핵심 결과": "PA 진단 기준 5항목 제시; PCA 고민감도·저특이도, IFA 저민감도·고특이도의 상보적 역할 정리"
+  },
+  related_ids: []
+},
+{
+  id: 241,
+  title: "The Diagnostic Value of Anti-Parietal Cell and Intrinsic Factor Antibodies, Pepsinogens, and Gastrin-17 in Corpus-Restricted Atrophic Gastritis",
+  title_ko: "체부 제한성 위축성위염에서 항벽세포항체·항내인자항체·펩시노겐·가스트린-17의 진단적 가치",
+  journal: "Diagnostics",
+  journal_short: "Diagnostics",
+  year: 2022,
+  volume: "12",
+  issue: "11",
+  pages: "2784",
+  if: 3.6,
+  authors: "Krike P, Shums Z, Polaka I, Kikuste I, Vanags A, Tolmanis I, Isajevs S, Liepniece-Karele I, Santare D, Tzivian L, Rudzite D, Song M, Camargo MC, Norman GL, Leja M",
+  doi: "10.3390/diagnostics12112784",
+  source: "journal",
+  topics: ["진단", "바이오마커"],
+  abstract_ko: "라트비아 GASTRO 센터에서 소화불량으로 내시경을 시행한 1,978명 중 조직학적으로 확인된 체부 제한성 위축성위염(CRAG) 29명과 연령·성별 매칭 대조군 58명을 비교한 후향적 환자-대조군 연구입니다. ELISA(Inova, Biohit)로 항벽세포항체(anti-PCA), 항내인자항체(anti-IFA), PGI/II 비율, 가스트린-17(G-17)을 측정하였습니다. Anti-PCA는 CRAG군 65.5% vs 대조군 13.8%에서 양성(p<0.0001), anti-IFA는 13.8% vs 0%(p=0.01)였습니다. PGI/II 감소는 CRAG군 79.3%, 대조군 10.3%에서 확인되었습니다(p<0.0001). 단일 바이오마커 중 PGI/II 비율이 AUC 0.90으로 가장 우수한 판별력을 보였습니다(민감도 79%, 특이도 90%). PGI/II + anti-PCA 조합은 AUC 0.93으로 단일 마커보다 향상되었으며, G-17 및 anti-IFA 추가는 추가적인 AUC 향상을 가져오지 않았습니다.",
+  keypoints: [
+    "PGI/II 비율이 최우수 단일 바이오마커 — AUC 0.90, 민감도 79%, 특이도 90%, PPV 79%, NPV 90%; 항체 기반 마커 중 anti-PCA(AUC 0.79)가 G-17(AUC 0.85)보다 낮은 판별력; anti-IFA는 특이도 100%이나 민감도 14%로 임상적 활용 제한",
+    "최적 조합: PGI/II + anti-PCA (AUC 0.93, 민감도 97%) — G-17 및 anti-IFA 추가 시 AUC 추가 향상 없음; CRAG 스크리닝에서 두 마커 조합이 실용적이고 비침습적인 최적 선택",
+    "G-17 고민감도·저특이도 (AUC 0.85) — CRAG군 79.3%에서 G-17 상승(>5 pmol/L)이나 대조군에서도 31%에서 양성; H. pylori 감염·PPI 사용이 G-17 위상승 유발하여 특이도 제한",
+    "Anti-IFA 고특이도(100%)·저민감도(14%) — anti-IFA 양성은 PA 진단의 강력한 지표이나 이른 단계의 CRAG에서는 아직 음성일 수 있어 선별 도구로서 한계; G-17·PGI/II·anti-PCA 조합에 anti-IFA를 추가해도 AUC 0.93 유지",
+    "CRAG 환자 63.0%에서 H. pylori 조직학적 양성 — 자가면역성 CRAG에서도 H. pylori 공존 흔함; 단순 제균 후 항체 추적만으로는 CRAG 진단 놓칠 수 있어 항체+PGI/II 조합 필요",
+    "⚠️ 소규모(CRAG 29명); 단일기관; 일부 환자 PPI 사용으로 G-17 결과 영향 가능; CRAG 환자 일부에서 H. pylori 기여 가능성 배제 불가; 전향적 검증 연구 필요"
+  ],
+  meta: {
+    "연구 설계": "후향적 환자-대조군 연구",
+    "대상": "CRAG 29명 vs 연령·성별 매칭 대조군 58명",
+    "연구 기관": "라트비아대학교 임상예방의학연구소·GASTRO 소화기센터, 리가, 라트비아",
+    "핵심 결과": "CRAG 최적 비침습 바이오마커: PGI/II + anti-PCA (AUC 0.93); G-17·anti-IFA 추가는 불필요"
+  },
+  related_ids: []
+},
+{
+  id: 242,
+  title: "Gastric Th17 Cells Specific for H+/K+-ATPase and Serum IL-17 Signature in Gastric Autoimmunity",
+  title_ko: "위 자가면역에서 H⁺/K⁺-ATPase 특이 Th17 세포와 혈청 IL-17 신호",
+  journal: "Frontiers in Immunology",
+  journal_short: "Front Immunol",
+  year: 2022,
+  volume: "13",
+  pages: "952674",
+  if: 7.3,
+  authors: "Della Bella C, Antico A, Panozzo MP, Capitani N, Petrone L, Benagiano M, D'Elios S, Sparano C, Azzurri A, Pratesi S, Cianchi F, Ortiz-Princz D, Bergman M, Bizzaro N, D'Elios MM",
+  doi: "10.3389/fimmu.2022.952674",
+  source: "journal",
+  topics: ["병인기전", "바이오마커", "진단"],
+  abstract_ko: "AIG 환자의 위점막 고유판 단핵세포(LPMC)와 혈청에서 H⁺/K⁺-ATPase 특이 Th17 면역반응을 분석한 연구입니다. AIG 환자 8명과 건강대조군(HC) 4명의 위생검 유래 LPMC를 H⁺/K⁺-ATPase로 자극하여 증식 및 IL-17A·IL-17F 생성을 평가하였습니다. 또한 AIG 43명, HC 47명, 철결핍빈혈(IDA) 환자 20명의 혈청에서 IL-17A·IL-17F·IL-21·IL-17E·IL-22·IL-23을 Luminex로 측정하였습니다. AIG 환자의 위 LPMC는 H⁺/K⁺-ATPase에 의해 활성화되어 증식하고 IL-17A·IL-17F를 고수준으로 생성하였으며, HC의 LPMC는 반응이 없었습니다. 혈청 IL-17A(p=0.004), IL-17F(p=0.016), IL-21(p=0.039), IL-17E(p=0.047)는 AIG군에서 HC 및 IDA군보다 유의하게 높았으나, IL-22 및 IL-23은 차이가 없었습니다.",
+  keypoints: [
+    "위 LPMC에서 H⁺/K⁺-ATPase 특이 Th17 반응 최초 규명 — AIG 환자 8명 모두에서 H⁺/K⁺-ATPase 자극 시 CD4+ T세포 증식(49~77%) 및 IL-17A·IL-17F 생성 확인; HC 4명에서는 무반응(증식률 8~13%) — 기존 Th1 중심 패러다임에 Th17 경로 추가",
+    "혈청 IL-17A·IL-17F·IL-21·IL-17E AIG에서 유의하게 상승 — IL-17E는 AIG(34.9 pg/mL) vs HC(8.7 pg/mL) vs IDA(10.6 pg/mL)로 IDA 대비도 유의하게 높아(p=0.008) AIG 특이 마커 가능성; IL-22·IL-23은 세 군 간 차이 없음",
+    "Luminex ROC 분석: IL-21 최고 AUC 0.730 — IL-21(민감도 88%, 특이도 53%), IL-17E(민감도 65%, 특이도 85%); 단독 마커로서 진단적 정확도는 중등도이나 조합 활용 가능성 시사",
+    "Th17 지속 활성화와 위암 발생 연결 — AIG 후기 장상피화생·이형성·ECL 과형성이 위암 전구병변이며, Th17 반응이 H. pylori 관련 위암에서도 발암 촉진 역할; 장기 Th17 활성화가 위암 발생에 선행 가능성 제시",
+    "H⁺/K⁺-ATPase vs 내인자 특이 T세포 비교 — 이전 연구에서 내인자 특이 T세포가 Th17/Th1 반응을 유도함이 보고된 바 있으며, 본 연구는 proton pump autoantigen이 Th17 경로를 직접 구동함을 추가로 확인",
+    "⚠️ 위 LPMC 연구는 AIG 8명·HC 4명의 소규모; 혈청 연구도 단일기관; IDA 대조군 설정은 적절하나 H. pylori 위염·다른 자가면역질환 대조군 부재; 장기 추적 데이터 없어 Th17 → 위암 인과관계 확립 불가"
+  ],
+  meta: {
+    "연구 설계": "전향적 기전 연구 (위 LPMC + 혈청 사이토카인)",
+    "대상": "AIG 43명, 건강대조군 47명, IDA 20명; 위 LPMC 분석 AIG 8명·HC 4명",
+    "연구 기관": "피렌체대학교 실험임상의학과, 이탈리아",
+    "핵심 결과": "H⁺/K⁺-ATPase 특이 위 Th17 반응 규명; AIG 혈청 IL-17A·IL-17F·IL-21·IL-17E 유의하게 상승"
+  },
+  related_ids: []
+},
+{
+  id: 243,
+  title: "AGA Clinical Practice Update on the Diagnosis and Management of Atrophic Gastritis: Expert Review",
+  title_ko: "위축성위염 진단 및 관리에 관한 AGA 임상 실무 업데이트: 전문가 검토",
+  journal: "Gastroenterology",
+  journal_short: "Gastroenterology",
+  year: 2021,
+  volume: "161",
+  issue: "4",
+  pages: "1325-1332",
+  if: 29.4,
+  authors: "Shah SC, Piazuelo MB, Kuipers EJ, Li D",
+  doi: "10.1053/j.gastro.2021.06.078",
+  source: "journal",
+  is_guideline: true,
+  topics: ["진단", "내시경", "암위험", "종양·용종"],
+  abstract_ko: "미국소화기학회(AGA)가 위축성위염(AG)의 진단 및 관리에 관한 12개 최선 진료 권고(Best Practice Advice, BPA)를 제시한 임상 실무 업데이트입니다. 대상은 H. pylori 감염 또는 자가면역에 의한 AG로, 2020년 AGA 위장상피화생 가이드라인을 보완합니다. 주요 권고 사항은 다음과 같습니다: AG 진단은 조직병리로 확인(BPA 1–2), 내시경 소견 인식(창백한 점막, 혈관 가시성 증가, 위주름 소실; BPA 3), 업데이트 Sydney 프로토콜에 따른 5개 생검(BPA 4), AIG 의심 시 항벽세포항체·항내인자항체 검사 및 비타민 B12·철분 결핍 평가(BPA 5), H. pylori 검사 및 제균(BPA 6), 진행성 AG에서 3년 간격 감시 내시경(BPA 7), AIG에서 개인화된 감시 내시경(BPA 8), PA 신규 진단 시 내시경(BPA 9), 1형 NET 내시경 절제 및 1~2년 추적(BPA 10), 철분·비타민 B12 결핍 평가(BPA 11), 자가면역 갑상선질환 선별(BPA 12).",
+  keypoints: [
+    "AG 진단 기준 및 병리 확인 원칙 — AG는 선와 소실(비화생성 위축) 또는 이소성 상피 치환(화생성 위축)으로 정의; 장상피화생 발견 시 AG 진단을 내포하므로 병리의사-내시경의사 간 일치된 기록 필요(BPA 1–2); OLGA/OLGIM III–IV 단계가 고위험군",
+    "AIG 내시경 및 혈청 진단 — 초기 AIG는 미묘한 내시경 소견으로 놓치기 쉬움; 진행 시 체부 우세 위축·전정부 보존이 특징; AIG 의심 시 PCA(민감도 높음, 특이도 낮음)·IFA(민감도 낮음, 특이도 높음) 검사 권고; 비타민 B12·철분 결핍도 동시 평가(BPA 5)",
+    "감시 내시경 권고 — 진행성 AG(해부학적 범위+조직학적 등급 기반): 3년 간격(BPA 7); AIG: 개인화된 간격(BPA 8); PA 신규 진단: 내시경으로 전암 병변·NET 배제(BPA 9); 소 NET(<1cm): 내시경 절제 후 1~2년 감시(BPA 10)",
+    "H. pylori 관리 — AG 원인과 무관하게 모든 AG 환자에서 H. pylori 검사 필수; 양성 시 제균 및 비혈청 검사로 제균 확인(BPA 6); AG에서도 H. pylori 제균이 위암 위험을 줄이나 '포인트-오브-노-리턴' 이후에는 위험 지속",
+    "동반 질환 관리 — 체부 우세 AG에서 철분·비타민 B12 결핍 평가 필수; 설명 불가한 결핍 시 AG를 감별 진단에 포함(BPA 11); AIG와 자가면역 갑상선질환 동반 흔함(최대 1/3) — 갑상선 선별 권고; 1형 당뇨·에디슨병도 고려(BPA 12)",
+    "미국 실정에 특화된 실무 권고 — 혈청 펩시노겐 검사가 미국에서 임상적으로 이용 불가; OLGA/OLGIM 병기 보고가 미국에 정착되지 않음; 근거 수준 등급 없이 전문가 합의 기반으로 발표; 2020년 AGA 위장상피화생 가이드라인과 상호 보완"
+  ],
+  meta: {
+    "논문 유형": "AGA 임상 실무 업데이트 (전문가 검토, 가이드라인)",
+    "권고 수": "12개 Best Practice Advice(BPA)",
+    "발행 학회": "미국소화기학회(AGA)",
+    "대상 질환": "위축성위염(H. pylori 연관 및 자가면역성)",
+    "핵심 내용": "AG 진단·감시·관리의 12개 BPA; 진행성 AG 3년 감시; AIG PCA·IFA 검사; PA 내시경 적응증"
+  },
+  related_ids: []
+},
+{
+  id: 244,
+  is_guideline: true,
+  title: "Management of epithelial precancerous conditions and lesions in the stomach (MAPS II): ESGE, EHMSG, ESP, and SPED guideline update 2019",
+  title_ko: "MAPS II: 위 상피성 전암성 병변 관리 — ESGE·EHMSG·ESP·SPED 가이드라인 2019년 개정",
+  journal: "Endoscopy",
+  journal_short: "Endoscopy",
+  year: 2019,
+  volume: "51",
+  issue: "4",
+  pages: "365-388",
+  if: 10.9,
+  authors: "Pimentel-Nunes P, Libânio D, Marcos-Pinto R, Areia M, Leja M, Esposito G, Garrido M, Kikuste I, Megraud F, Matysiak-Budnik T, Annibale B, Dumonceau JM, Barros R, Fléjou JF, Carneiro F, van Hooft JE, Kuipers EJ, Dinis-Ribeiro M",
+  doi: "10.1055/a-0859-1883",
+  source: "journal",
+  topics: ["진단", "내시경", "암위험", "헬리코박터", "병리", "치료"],
+  abstract_ko: "ESGE·EHMSG·ESP·SPED가 2012년 MAPS I을 개정한 국제 가이드라인으로, 위 전암성 병변(만성 위축성위염·장상피화생·이형성)의 진단·관리·추적·치료에 관한 25개 권고안을 제시합니다. 주요 권고 사항은 다음과 같습니다: 고해상도 색소내시경(CE)이 고해상도 백색광 내시경보다 전암 병변 진단에 우수(권고 6); 가상 CE(NBI 등) 유도 생검 사용 권고(권고 7); 최소 전정부·체부 각 2개소 생검(별도 바이알 보관, 권고 9); OLGA/OLGIM 병기 활용 가능(권고 10); 혈청 펩시노겐 저하 시 내시경 권고(권고 11); 이형성 발견 시 고품질 내시경 즉시 재평가(권고 13); 전정부 국한 경등도~중등도 위축에는 감시 불필요(권고 14); 국소 GIM에서 고위험 인자(가족력·불완전형 GIM·H. pylori 지속) 동반 시 3년 후 CE 내시경 고려(권고 16); 진행성 위축(OLGA/OLGIM III/IV)은 3년마다 고품질 내시경(권고 17); H. pylori 제균은 비위축 및 위축 위염에서 강력 권고(권고 20); 내시경 치료 후 제균 권고(권고 22); 중간~고위험 지역에서 전암 병변 추적은 비용효과적(권고 25).",
+  keypoints: [
+    "내시경 진단 원칙 — 고해상도 CE(고해상도 WLE+색소 또는 가상 CE)가 전암 병변 및 조기 신생물 진단에 고해상도 WLE 단독보다 우수(고질 근거, Rec 6); 가상 CE(NBI 등) 훈련 후 사용 시 장상피화생 민감도 87%, 특이도 97%; 이형성 민감도 92%, 특이도 99%(다기관 전향 연구); NBI가 HD-WLE보다 GIM 민감도 유의하게 높음(87% vs 53%)",
+    "생검 프로토콜 — 최소 전정부 2개소·체부 2개소를 별도 바이알에 채취(Moderate/Strong, Rec 9); OLGA/OLGIM 병기 활용 시 절흔부 추가 생검 고려(Weak, Rec 10); 임상 초진 내시경에서 H. pylori 진단 및 진행성 위축 확인을 위한 생검 필수(Rec 8); 절흔부 생검은 고위험 병기 분류 민감도를 약 1.2~1.3% 추가 향상",
+    "추적 전략 체계화 — 전정부 국한 경~중등도 위축: 감시 불필요(Moderate/Strong, Rec 14); 국소 GIM(단일 부위): 위험 인자 없으면 감시 불필요(Moderate/Strong, Rec 15); 국소 GIM + 가족력·불완전형 GIM·H. pylori 지속 중 하나 동반: 3년 후 CE 내시경 고려(Low/Weak, Rec 16); 진행성 위축(OLGA/OLGIM III/IV): 3년마다 고품질 내시경(Low/Strong, Rec 17); 가족력 동반 진행성 위축: 1~2년 간격 강화 추적 고려(Rec 18)",
+    "이형성 관리 — 내시경적으로 명확한 병변 없는 이형성 발견 시 즉각 고품질 CE 내시경 재평가 필수(Low/Strong, Rec 13); 고도이형성: 6개월 이내, 저도이형성: 12개월 이내 감시; 내시경 조직검사의 병변 저진단 문제 — ESD 절제 후 LGD의 25%에서 조직학적 상향 조정(7%는 악성); 내시경 가시 병변에서 LGD/HGD/암 동반 시 병기 판정 및 치료 필수(High/Strong, Rec 5)",
+    "H. pylori 및 기타 치료 — 비위축·위축 위염에서 H. pylori 제균은 위암 위험 감소(통합 RR 0.64; Rec 20, High/Strong); 확립된 GIM에서 제균은 단기적으로 위암 위험 감소 효과 불분명하나 염증·위축 개선으로 고려 권고(Low/Weak, Rec 21); 내시경 치료 후 제균 필수(High/Strong, Rec 22); COX 억제제는 위암 예방 목적 일상 투여 불가(Rec 23); 저용량 아스피린은 심혈관 고위험 선택 환자에서 고려 가능(Moderate/Weak, Rec 24)",
+    "혈청 비침습적 평가 및 비용효과 — 혈청 펩시노겐 I 저하 및/또는 PGI/II비 저하는 진행성 위축의 신뢰할 수 있는 비침습적 지표; H. pylori 혈청 음성 동반 시 내시경 권고(Moderate/Strong, Rec 11); 중간~고위험 지역에서 3년 간격 내시경 추적은 비용효과 우수 — 포르투갈·싱가포르 마르코프 모델 연구에서 감시 비용효과 일관성 확인(Moderate, Rec 25)"
+  ],
+  meta: {
+    "가이드라인 유형": "ESGE·EHMSG·ESP·SPED 공동 가이드라인 (MAPS I 2012 개정판)",
+    "출판일": "2019년 3월 6일 온라인 (Endoscopy 2019;51:365-388)",
+    "권고안 수": "총 25개 (GRADE 기반)",
+    "방법론": "AGREE 프로세스 + GRADE 근거 평가 + Delphi 합의 투표",
+    "핵심 변경": "MAPS I 대비 — LGD 가시 병변 치료 추가, OLGIM 선호, 이형성 즉각 재평가, 국소 GIM 위험층화 신설, H. pylori 제균 근거 강화"
+  },
+  related_ids: [55]
 }
 ];
 
