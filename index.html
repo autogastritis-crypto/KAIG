@@ -114,10 +114,10 @@
       출판 확정된 논문의 연도·권·호·페이지 등을 업데이트
 
   [현재 현황]
-  - 마지막 논문 ID: 258
-  - 총 논문 수: 245편 (2026-05-04 기준)
-  - 마지막 점검: 2026-05-04 (ID 결번 확인, related_ids 양방향 수정 완료)
-  - 다음 정기 점검 기준: 250편 도달 시 → 정기 점검 실시
+  - 마지막 논문 ID: 263
+  - 총 논문 수: 246편 (2026-05-04 기준)
+  - 마지막 점검: 2026-05-04 (ID 결번 확인, related_ids 양방향 수정 완료, 중복 DOI 5건 제거)
+  - 다음 정기 점검 기준: 260편 도달 시 → 정기 점검 실시
 
 ════════════════════════════════════════════════════════════
 -->
@@ -2608,7 +2608,7 @@ function copyToClipboard(text) {
 // DATA — 논문 데이터베이스 (여기에 논문을 추가하세요)
 // ═══════════════════════════════════════════════
 const PAPERS = [
-  {
+{
     id: 1,
     title: "Autoimmune gastritis: emerging insights and clinical management",
     title_ko: "자가면역성위염: 새로운 통찰과 임상 관리",
@@ -2636,7 +2636,7 @@ const PAPERS = [
     },
     related_ids: [2, 44, 49, 50, 55, 156, 157, 158, 192, 194]
   },
-  {
+{
     id: 2,
     title: "Novel insights into autoimmune gastritis: clinical profile and gastric neoplastic risk from an international multicentre study",
     title_ko: "자가면역성위염 국제 다기관 연구: 임상 특성과 위 신생물 위험도",
@@ -2665,7 +2665,7 @@ const PAPERS = [
     },
     related_ids: [1, 49, 158]
   },
-  {
+{
     id: 3,
     title: "Artificial Intelligence for Single-Image Diagnosis of Autoimmune Gastritis Using Gastric Corpus Atrophy Images: A Multicenter Retrospective Diagnostic Study",
     title_ko: "인공지능을 이용한 자가면역성위염 단일 이미지 진단: 다기관 후향적 연구",
@@ -2693,7 +2693,7 @@ const PAPERS = [
       "비교 대상": "내시경의사 15명 (전문·중급·초급)"
     }
   },
-  {
+{
     id: 4,
     title: "Endoscopic Surveillance in Autoimmune Gastritis: Prevalence of Gastric Cancer and Premalignant Lesions",
     title_ko: "자가면역성위염의 내시경 감시: 위선암 및 전암성 병변 유병률",
@@ -2721,7 +2721,7 @@ const PAPERS = [
       "연구 기관": "Hospital Clínic de Barcelona"
     }
   },
-  {
+{
     id: 5,
     title: "Research progress on animal models of autoimmune gastritis",
     title_ko: "자가면역성위염 동물 모델 연구 현황",
@@ -2748,7 +2748,7 @@ const PAPERS = [
       "특이사항": "기초과학 논문 — 직접 임상 적용 주의"
     }
   },
-  {
+{
     id: 6,
     title: "The role of autoimmune gastritis in gastric cancer risk: a systematic review and meta-analysis",
     title_ko: "자가면역성위염과 위암 위험: 체계적 문헌고찰 및 메타분석",
@@ -2776,7 +2776,7 @@ const PAPERS = [
       "연구 기관": "북경대학교 인민병원"
     }
   },
-  {
+{
     id: 7,
     title: "Autoimmune Metaplastic Atrophic Gastritis Reporting: Are Pathologists and Endoscopists on the Same Page?",
     title_ko: "AMAG 보고: 병리의와 내시경의는 같은 페이지에 있는가?",
@@ -2805,7 +2805,7 @@ const PAPERS = [
     },
   related_ids: [124, 125, 126]
 },
-  {
+{
     id: 8,
     title: "Beyond Type 1 Diabetes: Autoimmune Gastritis-Driven Multisystem Disease in Autoimmune Polyglandular Syndrome Type 3",
     title_ko: "제1형 당뇨를 넘어: APS-3에서 자가면역성위염이 주도하는 다계통 질환",
@@ -2832,7 +2832,7 @@ const PAPERS = [
       "연구 기관": "Burjeel Hospital, Abu Dhabi, UAE"
     }
   },
-  {
+{
     id: 9,
     title: "Helicobacter pylori multiplex serology in patients with autoimmune atrophic gastritis negative for Helicobacter pylori at histology: A case-control study",
     title_ko: "조직학적 H. pylori 음성 자가면역성위축위염에서 H. pylori 멀티플렉스 혈청학: 환자-대조군 연구",
@@ -2860,7 +2860,7 @@ const PAPERS = [
       "연구 기관": "Sapienza University of Rome (Sant'Andrea Hospital) & DKFZ Heidelberg"
     }
   },
-  {
+{
     id: 10,
     title: "Sex-Related Differences in the Diagnosis and Evolution of Parietal Cell Antibody-Positive Autoimmune Gastritis: A Large Single-Center Retrospective Cohort Study",
     title_ko: "자가면역성위염의 성별 차이: 진단 및 경과에서의 차이 — 대규모 단일기관 후향적 코호트 연구",
@@ -2888,7 +2888,7 @@ const PAPERS = [
       "연구 기관": "Hospital Universitario Infanta Elena, Valdemoro, Spain"
     }
   },
-  {
+{
     id: 11,
     title: "Characteristics and Incidence of Gastric Cancer Among Patients with Autoimmune and Non-autoimmune Atrophic Gastritis in a U.S. Population",
     title_ko: "미국 다민족 집단에서 자가면역성 vs 비자가면역성 위축위염의 특성 및 위암 발생률 비교",
@@ -2916,7 +2916,7 @@ const PAPERS = [
       "연구 기관": "Baylor College of Medicine / Harris Health System, Houston TX"
     }
   },
-  {
+{
     id: 12,
     title: "Beyond Helicobacter pylori: Current Insights into H. pylori-Naive Gastric Cancer",
     title_ko: "헬리코박터 파일로리를 넘어서: H. pylori 비감염 위암의 최신 지견",
@@ -2943,7 +2943,7 @@ const PAPERS = [
       "특이사항": "AIG를 HPnGC의 독립 아형으로 분류한 최초 진단 프레임워크 제안"
     }
   },
-  {
+{
     id: 13,
     title: "Gastric Cancer in the Post-Helicobacter pylori Era: Non-H. pylori-Related Gastric Microbiota, Non-H. pylori-Related and Post-H. pylori Eradication Gastric Cancer",
     title_ko: "포스트-헬리코박터 시대의 위암: 비Hp 위내 미생물, 비Hp 관련 위암 및 Hp 제균 후 위암",
@@ -2970,7 +2970,7 @@ const PAPERS = [
       "특이사항": "위내 미생물·진균총·유전성 증후군·AAG·Hp 제균 후 위암을 통합 정리"
     }
   },
-  {
+{
     id: 14,
     title: "Autoimmune gastritis masquerading as subepithelial squamous infiltration: a case report",
     title_ko: "점막하 편평상피 침윤으로 위장한 자가면역성위염: 증례보고 및 새로운 내시경 소견",
@@ -2997,7 +2997,7 @@ const PAPERS = [
       "연구 기관": "Sichuan Provincial People's Hospital, Chengdu, China"
     }
   },
-  {
+{
     id: 15,
     title: "Case Report: Concurrent autoimmune gastritis and high-grade dysplasia in a gastric hyperplastic polyp",
     title_ko: "자가면역성위염 동반 위 과형성 폴립의 고도 이형성: 증례보고",
@@ -3024,7 +3024,7 @@ const PAPERS = [
       "연구 기관": "Shenzhen People's Hospital / Peking University Third Hospital, China"
     }
   },
-  {
+{
     id: 16,
     title: "Pulmonary immunohistochemical markers may be positive in gastric adenocarcinomas associated with autoimmune metaplastic atrophic gastritis",
     title_ko: "자가면역성위축위염 동반 위선암에서 폐 면역조직화학 표지자(TTF-1, Napsin A) 양성 발현",
@@ -3051,7 +3051,7 @@ const PAPERS = [
       "연구 기관": "Cedars-Sinai Medical Center, Los Angeles, CA, USA"
     }
   },
-  {
+{
     id: 17,
     title: "Association of different autoimmune diseases with gastric cancer incidence and risk: a global population-based analysis",
     title_ko: "다양한 자가면역질환과 위암 발생률·위험도의 연관성: 글로벌 인구 기반 메타분석",
@@ -3078,7 +3078,7 @@ const PAPERS = [
       "검색 범위": "창간~2025년 1월 (PubMed·WoS·Embase)",
       "연구 기관": "Huazhong University of Science and Technology, Wuhan, China"
     }
-  }, 
+  },
 {
   id: 18,
   title: "Helicobacter pylori Gastritis as an Initial Presentation of Evolving Autoimmune Gastritis: A Report of Two Cases",
@@ -3589,30 +3589,35 @@ const PAPERS = [
 {
   id: 36,
   title: "Effective endoscopic management of gastric neoplastic complications in patients with autoimmune gastritis: results of a monocentric study of 88 patients",
-  title_ko: "자가면역성위염 환자에서 위 신생물 합병증의 효과적인 내시경 치료: 88명 단일기관 연구",
+  title_ko: "자가면역성위염 환자의 위 종양성 합병증에 대한 효과적인 내시경 치료: 88명 단일기관 연구 결과",
   journal: "Annals of Gastroenterology",
   journal_short: "Ann Gastroenterol",
   year: 2025,
-  if: 2.1,
+  volume: "38",
+  issue: "2",
+  pages: "163-173",
+  if: 3.2,
   authors: "Hoibian S, Ratone JP, Solovyev A, Dahel Y, Mitry E, Poizat F, Guiramand J, Caillol F, Giovannini M",
   doi: "10.20524/aog.2025.0947",
   source: "journal",
-  topics: ["암위험", "진단", "치료"],
-  abstract_ko: "프랑스 Paoli-Calmettes Institute(1987~2019년) 후향적 단일기관 연구. AIG 88명(여성 68.2%, 중앙 추적 5년)에서 위 신생물 합병증의 내시경 치료 효과와 안전성을 평가했습니다. 132개 NET가 39명(44.3%)에서 발견되었으며 86.3%가 내시경으로 절제되었고 합병증은 없었습니다. 위선암(GA)은 12명(13.6%)에서 발생했으며 60%에서 AIG 진단과 동시에 발견되었고 66.7%는 수술이 필요했습니다. NET 발생 환자는 GA 환자보다 AIG 진단 시 유의하게 젊었습니다(52.0 vs 67.0세, p=0.0087).",
+  topics: ["종양·용종", "내시경", "암위험"],
+  abstract_ko: "프랑스 마르세유 파올리-칼메트 암센터(3차 내시경 의뢰 기관)에서 1987년부터 2019년까지 자가면역성위염(AIG)으로 진단된 88명(여성 68.2%, 중앙 추적기간 5년)을 대상으로 한 후향적 단일기관 관찰 연구입니다. 신경내분비종양(NET)은 39명(44.3%)에서 총 132개가 진단되었으며, 중앙 크기 5.75mm(평균 7.1mm), G1 60.6%·G2 39.3%였습니다. 132개 병변 중 86.3%(114개)가 내시경 절제되었으며, 이 중 92.1%가 내시경 점막 절제술(EMR)로 처리되었고 합병증은 없었습니다. R1 절제율은 35%(40/114)였으나 추적 기간 중 재발 없이 질환 특이 생존율 100%를 달성하였습니다. 위선암(GA)은 12명(13.6%, 중앙 연령 76세)에서 발생하였으며, 이 중 66.7%(8명)가 수술이 필요하였고 4명만이 단독 내시경 절제가 가능하였습니다. GA의 60%는 AIG 진단과 동시에 발견되어 사전 내시경 감시의 혜택을 받지 못하였습니다. 다변량 분석에서 NET의 독립적 위험인자는 남성(OR=0.23, 여성 대비, p=0.032)과 AIG 진단 연령(OR=0.96, p=0.025)이었으며, GA의 독립적 위험인자는 나이(OR=1.08, p=0.033)였습니다. NET 환자는 GA 환자보다 AIG 진단 연령이 유의하게 낮았습니다(52.0세 vs 67.0세, p=0.009).",
   keypoints: [
-    "NET 내시경 치료: 132개 중 86.3%(114/132) 내시경 절제 — 주로 EMR(92.1%), 합병증 0%, NET 관련 사망 0%, 전이 0% — 이시성 NET 발생 46.1%이나 전례 내시경으로 재치료 성공",
-    "NET 등급 분포: G1 60.6%(80개), G2 39.3%(52개) — G2 비율이 높은 것은 3차 내시경 센터 선택 편향 반영; G2 NET도 종양 행동과 무관하게 내시경 치료로 양호한 경과",
-    "GA 특성: 12명(13.6%), 중앙 연령 76세 — 60%(6/10)에서 GA와 AIG 동시 진단(선행 감시 미실시); 66.7%에서 수술 필요, 50%에서 선행 항암치료; GA 환자 중 Hp 양성은 1명뿐",
-    "NET vs GA 위험인자(다변량): NET — 남성(OR 0.23, p=0.032) + 진단 시 낮은 연령(p=0.025); GA — 고령(OR 1.08/년, p=0.033); Hp 상태는 두 군 모두 유의한 위험인자 아님",
-    "임상 메시지: AIG에서 NET는 내시경 치료가 우선(수술보다 안전하고 효과적), GA는 여전히 수술이 주 치료 — 조기 발견을 위해 내시경 감시 및 AIG 진단 인식 향상이 필수",
-    "⚠️ 후향적 단일기관(항암 3차 센터) 연구 — G2 NET 비율 과대, Hp 검사 결측 다수; 32년 추적으로 ESD 등 최신 기술 미적용 비율 높음; 일반 AIG 집단으로의 외삽 주의"
+    "AIG 환자의 44.3%에서 NET 발생 — EMR 중심 내시경 치료로 합병증 없이 86.3%가 절제 가능하며, 다발성·G2 NET 환자에서도 안전하게 시행 가능합니다. NET 관련 사망 및 전이 없이 질환 특이 생존율 100% 달성.",
+    "GA는 13.6%(12명)에서 발생, 중앙 연령 76세 — 66.7%가 수술 필요(6명 전위절제술 포함)하였으며, 60%는 AIG 진단과 동시 발견되어 감시 내시경의 조기 시행 필요성을 강조합니다.",
+    "NET는 GA보다 유의하게 젊은 연령에 발생(중앙 50세 vs 76세, p<0.001) — AIG에서 NET이 GA보다 선행하는 경향을 시사하며, 두 종양이 동시 발생한 경우는 2.8%에 불과합니다.",
+    "다변량 분석: NET 위험인자는 남성 및 낮은 AIG 진단 연령; GA 위험인자는 고령(OR=1.08/세, p=0.033) — H. pylori 감염은 두 종양 모두에서 유의한 위험인자가 아니었습니다.",
+    "AIG 환자 7.9%에서 과형성 용종 발견, 이형성 없음 — 그러나 ESD 완전 절제 후에도 재발이 관찰되어 지속적 추적 필요성이 제기됩니다.",
+    "⚠️ 후향적 설계로 결측치 다수; 암센터 3차 기관 의뢰 편향(G2 NET 비율 높음); H. pylori 생검 자료 불완전; 소규모(88명)로 일반화 제한"
   ],
   meta: {
     "연구 설계": "후향적 단일기관 관찰 연구",
-    "대상 환자": "88명 (NET 39명, GA 12명, 추적 중앙값 5년)",
-    "연구 기간": "1987~2019년",
-    "연구 기관": "Paoli-Calmettes Institute, Marseille, France"
-  }
+    "대상": "AIG 88명 (NET 39명, GA 12명)",
+    "연구 기관": "파올리-칼메트 암센터, 마르세유, 프랑스",
+    "연구 기간": "1987년 – 2019년",
+    "중앙 추적기간": "5년 (범위 1–28년)"
+  },
+  related_ids: []
 },
 {
   id: 37,
@@ -3641,7 +3646,7 @@ const PAPERS = [
     "연구 기간": "2019~2024년",
     "연구 기관": "페루 2개 기관"
   }
-}, 
+},
 {
   id: 38,
   title: "Clinicopathological characteristics of 30 cases of pyloric gland adenoma: a single center case series",
@@ -3762,30 +3767,34 @@ const PAPERS = [
 {
   id: 42,
   title: "Enhanced activity of autoimmune gastritis following Helicobacter pylori eradication therapy",
-  title_ko: "H. pylori 제균 치료 후 자가면역성위염의 활성 증강: 증례보고",
+  title_ko: "헬리코박터 파일로리 제균 치료 후 자가면역성위염 활성도 증가",
   journal: "Clinical Journal of Gastroenterology",
   journal_short: "Clin J Gastroenterol",
   year: 2025,
-  if: 1.7,
+  volume: "18",
+  issue: "2",
+  pages: "319-327",
+  if: 1.4,
   authors: "Ihara T, Kushima R, Haruma K",
   doi: "10.1007/s12328-024-02092-w",
   source: "journal",
-  topics: ["헬리코박터", "증례", "병인기전", "진단"],
-  abstract_ko: "83세 남성에서 고활성 H. pylori 위염 배경에서 진단된 조기 AIG 증례. 제균 전 5년 3개월 동안 5회 내시경(4회 조직검사)을 시행하며 AIG의 제균 전·후 변화를 상세히 추적했습니다. 제균 직전까지 AIG는 약약성 내지 잠재성으로 위체부 위축 진행이 완만하였고, 조직학적으로도 분문샘 주위 림프구 침윤이 경미했습니다. 그러나 제균 후 10개월 만에 위체부 전반에 걸쳐 급격한 위축 진행이 확인되었고, APCA 역가도 1:320에서 1:1280으로 지속 상승했습니다. 두 가지 가설을 제시: ① AIG가 H. pylori 감염 상태와 무관하게 자연 진행한 것이 제균 후 가시화된 것, ② H. pylori 위염(특히 Treg 증가)이 제균 전 AIG 활성을 억제하다가 제균 후 억제가 해제된 것.",
+  topics: ["증례", "헬리코박터", "병인기전"],
+  abstract_ko: "교토 이하라내과의원·시가의과대학 병리학과·가와사키의과대학 종합의료센터(일본)에서 보고한 증례 보고입니다. 고활성 H. pylori 위염을 동반한 조기 AIG 환자에서 제균 치료 전후 5년 5개월에 걸쳐 두 위염의 변화를 추적 관찰한 사례입니다. 제균 후 위체부 위축이 급속히 악화되고 항벽세포항체(APCA) 역가가 1:320에서 1:1280으로 지속 상승하여, AIG 활성도가 제균 전보다 현저히 증가하였음을 보고합니다.",
   keypoints: [
-    "H. pylori 고활성 위염 동반 시 AIG 조기 진단 극히 어려움 — 전체 위가 type B 위염 양상을 보일 때 AIG의 조기 내시경·조직학 소견이 H. pylori 위염에 가려짐",
-    "AIG 조기 내시경 단서: 위체부 대만 종주형 변색 위축대 — 2020년부터 관찰된 이 소견이 AIG의 조기 발현이었을 가능성",
-    "제균 후 AIG 악화: 제균 10개월 후 위체부 전반에 급격한 위축 진행 + APCA 1:320 → 1:1280 — 반면 제균 전 3년간 위축 진행 완만",
-    "항갑상선과산화효소항체(anti-TPO Ab) 182 IU/mL 이상(정상 <16): AIG와 자가면역갑상선질환의 동반을 시사 — 자가면역 다발성 질환 배경 확인 필요",
-    "두 가지 기전 가설: ① H. pylori 독립적 AIG 자연 진행(제균으로 가시화) vs ② H. pylori 감염 Treg 증가에 의한 AIG 억제 → 제균 후 억제 해제 — 두 가설 중 어느 것이 맞는지 현재 결론 불가",
-    "⚠️ 단일 증례 보고, 위산 억제제(PPI) 미복용 배경이 중요한 특수 조건; H. pylori AIG 상호작용에 대한 결론을 내리기 위해 유사 증례 축적 필요"
+    "증례 개요 — 83세 남성; 2018년 11월 첫 내시경에서 경도 위체부 위축(기무라-다케모토 분류 O1형)과 H. pylori 양성(호기검사 55.3‰) 확인, 초기에는 제균 거부; 2022년 1월 세 번째 내시경에서 위체부 생검으로 조기 AIG 진단(ECL 세포 과증식, 벽세포 변성, APCA 1:320); 갑상선과산화효소항체 182 IU/mL로 자가면역갑상선염 동반; 2022년 2월 제균 시행 후 4월 음성 전환 확인",
+    "제균 후 내시경·조직학적 급속 악화 — 제균 10개월 후(2022년 12월) 네 번째 내시경에서 위체부 전반에 급속한 위축 진행; 제균 전 3년간의 완만한 진행에 비해 제균 후 1년 이내에 현저히 빠른 위축 악화; 대만측 세로 위축대 확산 뚜렷; 조직학에서 위유문선 화생, 심층 림프구 침윤, ECL 선형 과증식 확인; 2024년 4월 다섯 번째 내시경에서 더욱 광범위한 위축 및 림프구 침윤 확인",
+    "APCA 역가 지속 상승 — 제균 전·직후 3회 연속 1:320 유지; 2023년 11월 이후 세 차례 연속 1:1280; PG I은 제균 후 2회 이상 고값 관찰(AIG 염증 급성악화 시사); H. pylori 재감염 없음(요소호기검사·대변항원 음성 확인); 혈청 면역글로불린 IgG·M·A 정상",
+    "두 가지 가설 제시 — ①AIG가 H. pylori 위염 상태와 무관하게 꾸준히 진행하였으나 H. pylori 위염에 가려져 있다가 제균 후 표면화된 것; ②H. pylori 감염이 조절 T세포(Treg) 증가를 통해 AIG 활성도를 억제하고 있었으며, 제균 후 억제 해제로 AIG 활성화; 항원 모방(antigenic mimicry) 기전은 APCA 제균 후 상승으로 부정",
+    "임상적 의의 — AIG에 동반된 H. pylori 위염 제균 시 이후 위염 변화에 세심한 추적 관찰 필요; 제균 후 AIG가 반드시 호전되지 않으며 오히려 활성화될 수 있음; 고령 AIG 환자에서 제균 후 위체부 위축 급속 진행 시 AIG 악화 가능성 고려"
   ],
   meta: {
-    "연구 유형": "증례보고 (Case Report)",
-    "대상": "83세 남성 1명",
-    "추적 기간": "5년 5개월 (2018년 11월~2024년 4월), 내시경 5회",
-    "연구 기관": "Ihara Clinic of Internal Medicine, Kyoto / Shiga Univ. of Medical Science / Kawasaki Medical School, Japan"
-  }
+    "논문 유형": "증례보고",
+    "대상": "83세 남성, 조기 AIG + H. pylori 위염 동반",
+    "추적 기간": "5년 5개월(내시경 5회, 조직검사 4회)",
+    "연구 기관": "이하라내과의원(교토), 시가의과대학 병리학과, 가와사키의과대학 종합의료센터, 일본",
+    "핵심 메시지": "H. pylori 제균 후 AIG 활성도가 오히려 증가할 수 있으며, 제균 전 H. pylori 위염이 AIG를 억제하고 있었을 가능성 시사"
+  },
+  related_ids: []
 },
 {
   id: 43,
@@ -4130,7 +4139,8 @@ const PAPERS = [
     "연구 기관": "Portuguese Institute of Oncology of Porto 외 유럽 다기관"
   },
   related_ids: [1, 49, 156, 244]
-}    ,{
+},
+{
   id: 57,
   title: "Autoimmune gastritis: an organ-specific disease or a model of systemic autoimmunity? Parallels, divergences, and emerging insights",
   title_ko: "자가면역성위염: 장기특이적 질환인가, 전신 자가면역의 모델인가? 유사점, 차이점, 그리고 새로운 통찰",
@@ -4159,7 +4169,8 @@ const PAPERS = [
     "이해충돌": "없음(재정 지원 없음)",
     "게재일": "2025년 7월 7일 온라인"
   }
-}  ,{
+},
+{
   id: 58,
   title: "Management of type I gastric-neuroendocrine tumors: the less the better?",
   title_ko: "1형 위 신경내분비종양의 관리: 최소 치료가 최선인가?",
@@ -4186,7 +4197,8 @@ const PAPERS = [
     "대상": "1형 gNET 환자 23명, 병변 36개",
     "한계점": "제한적 표본 크기, 후향적 설계, 추적 기간 중앙값 14개월"
   }
-}  ,{
+},
+{
   id: 59,
   title: "Differential target of oxidative damage in Helicobacter pylori-related and autoimmune atrophic gastritis: a single-center study",
   title_ko: "헬리코박터 파일로리 관련 위염과 자가면역성위축성위염에서 산화적 손상의 차별적 표적: 단일기관 연구",
@@ -4213,8 +4225,8 @@ const PAPERS = [
     "대상": "AAG 70명, MAG 50명 (총 120명)",
     "측정 지표": "dROM, AOPP, NO, IL-10, TNFα, 8-OHdG"
   }
-}
-  ,{
+},
+{
   id: 60,
   title: "Immunological and clinical overlap between autoimmune gastritis and autoimmune liver diseases: a prospective cohort study",
   title_ko: "자가면역성위염과 자가면역성간질환의 면역학적·임상적 중첩: 전향적 코호트 연구",
@@ -4241,8 +4253,8 @@ const PAPERS = [
     "대상": "AILD 환자 104명 (AIH 33명, PBC 41명, PSC 14명 등)",
     "선별 방법": "전체 AILD 코호트 APCA 검사 → 양성자 상부내시경+조직검사"
   }
-}  
-  ,{
+},
+{
   id: 62,
   title: "Autoimmune gastritis diagnosed due to recurrent gastric neuroendocrine tumor: a case report",
   title_ko: "재발성 위 신경내분비종양으로 진단된 자가면역성위염: 증례 보고",
@@ -4268,7 +4280,8 @@ const PAPERS = [
     "연구 기관": "중국 저장성 둥양인민병원 소화기내과",
     "핵심 메시지": "재발성 GNET는 AIG 진단의 중요 단서 — 내시경의가 AIG-GNET 연관성 인지해야"
   }
-}  ,{
+},
+{
   id: 63,
   title: "Comparison of clinicopathological features of gastric carcinoma in autoimmune gastritis with and without Helicobacter pylori infection",
   title_ko: "자가면역성위염에서 헬리코박터 파일로리 감염 유무에 따른 위암의 임상병리학적 특징 비교",
@@ -4295,8 +4308,8 @@ const PAPERS = [
     "대상": "GC-AIG 65증례(97병변) — H. pylori 음성 18증례, H. pylori 감염 47증례",
     "한계": "후향적 단일기관, 소표본, H. pylori 음성 정의의 자발적 제균 배제 불완전"
   }
-}
-  ,{
+},
+{
   id: 64,
   title: "Exploring the potential of artificial intelligence in assessing the risk of gastric neoplastic lesions in patients with corpus atrophic gastritis",
   title_ko: "위체부 위축성위염 환자에서 위 신생물성 병변 위험 평가를 위한 인공지능의 가능성 탐색",
@@ -4323,7 +4336,8 @@ const PAPERS = [
     "대상": "CAG 355명 → 최종 분석 103명(GNL 발생 22명)",
     "AI 방법": "Fisher 점수 변수 선택 + One-Class SVM(선형 커널) + CTGAN 합성데이터 검증"
   }
-}  ,{
+},
+{
   id: 65,
   title: "Multiple gastric adenocarcinoma of the fundic gland type with various endoscopic features in autoimmune gastritis: a case report and literature review",
   title_ko: "자가면역성위염에서 다양한 내시경 소견을 보이는 다발성 위저선형 위선암: 증례 보고 및 문헌 고찰",
@@ -4349,8 +4363,8 @@ const PAPERS = [
     "연구 기관": "중국 광저우 광저우중의약대학교 제2부속병원 소화기내과",
     "희귀성": "AIG에서 GA-FG는 극히 드물며, 9개 다발 병변은 매우 드문 경우"
   }
-}
-  ,{
+},
+{
   id: 66,
   title: "Real-time gastric juice analysis to rule out the presence of autoimmune gastritis: a case-control study",
   title_ko: "자가면역성위염 배제를 위한 실시간 위액 분석: 증례-대조 연구",
@@ -4544,9 +4558,6 @@ const PAPERS = [
     "연구 기관": "오카야마 대학교 의치약학총합연구과 소화기·간장내과학, 일본"
   }
 },
-
-
-
 {
   id: 80,
   title: "Autoimmune Metaplastic Atrophic Gastritis (AMAG): Regional Demographics and Their Effect on Prevalence",
@@ -4888,8 +4899,8 @@ const PAPERS = [
     "AI 아키텍처": "RepLKNet-31B (대형 커널 합성곱) + SIFT 이미지 그룹화",
     "연구 기관": "저장대학교 제어과학공학부 / 저장대학교 의학부 제2부속병원, 항저우, 중국"
   }
-}
-,{
+},
+{
   id: 93,
   title: "Helicobacter pylori VacA-induced gastric mucosal atrophy: a comparative analysis with other forms of atrophic gastritis",
   title_ko: "H. pylori VacA 유발 위 점막 위축: 다른 형태의 위축성위염과의 비교 분석",
@@ -4917,8 +4928,8 @@ const PAPERS = [
     "면역조직화학": "VacA(5E4), CDX2, p53, Ki-67, CgA, Syn, CD56, MUC5AC, MUC6 등 13종",
     "연구 기관": "선전 롱강구 제4인민병원 / 정저우대학교 제3부속병원 / 허창중심병원, 중국"
   }
-}
-,{
+},
+{
   id: 94,
   title: "Pediatric autoimmune gastritis: An international, multicentric study",
   title_ko: "소아 자가면역성위염: 국제 다기관 연구",
@@ -4946,8 +4957,8 @@ const PAPERS = [
     "참여 기관": "이탈리아 13개 기관 + 이스라엘 1개 기관",
     "연구 기관": "파비아대학교 IRCCS 폴리클리니코 산마테오 / 로마 사피엔자대학교 산탄드레아병원 외"
   }
-}
-,{
+},
+{
   id: 95,
   title: "Altered serum metabolic profile in patients with autoimmune gastritis compared to other chronic gastritis",
   title_ko: "자가면역성위염 환자의 혈청 대사체 프로파일 변화: 다른 만성위염과의 비교",
@@ -4975,8 +4986,8 @@ const PAPERS = [
     "추가 검증": "위 점막 전사체(AIG 9명·비AIG 3명) + qPCR + 단백체 분석",
     "연구 기관": "베이징병원 국가노년의학센터 / 베이징대학교 약학부, 중국"
   }
-}
-,{
+},
+{
   id: 96,
   title: "Monitoring the follow-up of autoimmune chronic atrophic gastritis using parietal cell antibodies and markers of gastric function",
   title_ko: "항벽세포항체와 위기능 표지자를 이용한 자가면역성 만성 위축성위염의 추적 모니터링",
@@ -5003,8 +5014,8 @@ const PAPERS = [
     "참조 코호트": "Miceli et al. 498명 18년 추적 코호트 포함 최신 근거 종합",
     "연구 기관": "AULSS7 Pedemontana / AULSS2 Marca Trevigiana / Udine 대학통합병원 임상병리검사실, 이탈리아"
   }
-}
-,{
+},
+{
   id: 97,
   title: "Differences in Endoscopic Features of Gastric Neuroendocrine Tumor and Neuroendocrine Carcinoma From a Clinicopathological Perspective",
   title_ko: "위 신경내분비종양과 신경내분비암종의 내시경 소견 차이: 임상병리학적 관점",
@@ -5032,8 +5043,8 @@ const PAPERS = [
     "핵심 도구": "WLI + M-NBI (vessel plus surface 분류체계)",
     "임상 중요성": "AIG 관련 G-NET 감시 및 G-NEC 조기 발견 전략 제시"
   }
-}
-,{
+},
+{
   id: 98,
   title: "Anti–parietal cell antibodies in patients with Graves disease",
   title_ko: "그레이브스병 환자에서의 항벽세포항체",
@@ -5061,8 +5072,8 @@ const PAPERS = [
     "APCA 검출법": "간접 면역형광법 (비고정 rat stomach 기질)",
     "연구 기관": "파르하트 하체드 병원 면역학실 / 모나스티르 대학교 약학부, 튀니지"
   }
-}
-,{
+},
+{
   id: 99,
   title: "Potential relationship between Helicobacter pylori infection and autoimmune disorders: A narrative review",
   title_ko: "헬리코박터 파일로리 감염과 자가면역질환의 잠재적 연관성: 서술적 고찰",
@@ -5090,8 +5101,8 @@ const PAPERS = [
     "핵심 기전": "분자 모방, 만성 염증, 에피토프 확산, 사이토카인 조절 이상",
     "연구 기관": "호람아바드 이슬람 아자드 대학교 / 쿰 의과대학교 세포분자연구센터, 이란"
   }
-}
-,{
+},
+{
   id: 100,
   title: "Arising of autoimmune gastritis after helicobacter pylori eradication in an elderly female patient",
   title_ko: "고령 여성 환자에서 헬리코박터 파일로리 제균 후 발생한 자가면역성위염: 증례 보고",
@@ -5119,8 +5130,8 @@ const PAPERS = [
     "경과 기간": "제균 후 약 1.5년에 AIG 진단",
     "연구 기관": "사이세이카이 키비병원 내과 / 오카야마 사이세이카이종합병원 병리과, 일본"
   }
-}
-,{
+},
+{
   id: 101,
   title: "Gastric Neuroendocrine Tumor With Pancreatic Acinar Cell Differentiation in the Background of Atrophic Gastritis: A Possible Variant of Type 1 ECL-Cell NET",
   title_ko: "위축성위염 배경에서 발생한 췌장 선방세포 분화를 동반한 위 신경내분비종양: Type 1 ECL 세포 NET의 가능한 변이형",
@@ -5149,8 +5160,8 @@ const PAPERS = [
     "Ki-67 지수": "11.2% (G2)",
     "연구 기관": "성 마리안나 의과대학교 병리학교실·소화기내과·소화기외과, 가와사키, 일본"
   }
-}
-,{
+},
+{
   id: 102,
   title: "Beyond metaplasia: unraveling the complex pathogenesis of autoimmune atrophic gastritis and its implications for gastric cancer risk",
   title_ko: "화생을 넘어서: 자가면역성 위축성위염의 복잡한 병인 규명과 위암 위험에 대한 함의",
@@ -5178,8 +5189,8 @@ const PAPERS = [
     "핵심 메시지": "AIG의 신생물 위험은 선암보다 NET — 면역 미세환경이 암화 경로를 결정",
     "연구 기관": "베이징대학교 전통의학임상의학원 / 중국중의과학원 시위안병원 소화기병연구소, 베이징, 중국"
   }
-}
-,{
+},
+{
   id: 103,
   title: "Prevalence and evolution of newly diagnosed autoimmune gastritis in a large Spanish retrospective cohort",
   title_ko: "스페인 대규모 후향적 코호트에서 새로 진단된 자가면역성위염의 유병률과 경과",
@@ -5543,33 +5554,37 @@ const PAPERS = [
 {
   id: 115,
   title: "Association between autoimmune gastritis and gastric polyps: Clinical characteristics and risk factors",
-  title_ko: "자가면역성위염과 위용종의 연관성: 임상 특성 및 위험인자",
+  title_ko: "자가면역성위염과 위용종의 연관성: 임상적 특성 및 위험인자",
   journal: "World Journal of Gastrointestinal Oncology",
   journal_short: "World J Gastrointest Oncol",
   year: 2025,
-  if: 2.7,
+  volume: "17",
+  issue: "1",
+  pages: "92908",
+  if: 4.2,
   authors: "Jin JZ, Liang X, Liu SP, Wang RL, Zhang QW, Shen YF, Li XB",
   doi: "10.4251/wjgo.v17.i1.92908",
   source: "journal",
-  topics: ["종양·용종", "암위험", "역학", "진단"],
-  abstract_ko: "자가면역성위염(AIG) 환자 530명을 대상으로 한 이중기관 후향적 연구. AIG 환자의 31.3%(166명)에서 총 433개의 용종이 확인되었습니다. 위과형성 용종(HP)이 가장 흔했고(68.1%), 위저선 용종(12.5%), 위신경내분비종양(gNET, 11.6%), 위선암(5.3%), 위선종(2.5%) 순이었습니다. 다변량 분석 결과 PCA 양성(OR=2.003), 펩시노겐 II 상승(OR=1.053), ECL 세포 과증식(OR=3.116)이 독립적 위험인자였으며, 펩시노겐 I은 보호인자로 확인되었습니다. AIG에서 위용종 발생 예측을 위한 노모그램을 개발하였고, ROC AUC 0.729(95% CI: 0.683-0.775)의 양호한 성능을 보였습니다.",
+  topics: ["종양·용종", "바이오마커", "병인기전", "역학"],
+  abstract_ko: "중국 2개 기관(Renji 병원, 쓰촨 무장경찰 병원)에서 2019년 7월~2023년 7월 사이에 자가면역성위염(AIG)으로 진단된 530명을 대상으로 한 후향적 다기관 연구입니다. 이 중 114명이 제외되어 최종 위용종(GP) 동반군 166명(31.3%)과 비동반군 364명(68.7%)을 비교 분석하였습니다. GP 동반군은 비동반군에 비해 중앙 연령이 유의하게 높았으며(61세 vs 58세, p=0.006), 가스트린 17 수치가 의미 있게 상승해 있었고(91.9 vs 60.9 pmol/L, p<0.001), 항벽세포항체(PCA) 양성률도 높았습니다(88.6% vs 73.6%, p<0.001). OLGA/OLGIM 고병기 및 장크롬친화성 유사세포(ECL) 과증식도 GP군에서 유의하게 더 많이 관찰되었습니다. 다변량 로지스틱 회귀분석에서 PCA 양성(OR=2.003, p=0.017), 펩시노겐 II 상승(OR=1.053, p=0.015), ECL 과증식(OR=3.116, p<0.001)이 독립적 위험인자로 확인되었으며, 펩시노겐 I은 보호 인자로 작용하였습니다(OR=0.992, p=0.031). 용종 유형은 과형성 용종이 68.1%로 가장 많았고, 기저샘 용종 12.5%, 위 신경내분비종양(gNET) 11.6%, 위선암 5.3%, 위선종 2.5% 순이었습니다. 개발된 예측 노모그램의 ROC 곡선하 면적은 0.729(95% CI 0.683–0.775)였습니다.",
   keypoints: [
-    "AIG 환자의 31.3%에서 위용종 동반 — 위과형성 용종(68.1%)이 가장 흔하고, gNET(11.6%), 위선암(5.3%) 순",
-    "독립적 위험인자: PCA 양성(OR=2.003), 펩시노겐 II 상승(OR=1.053), ECL 세포 과증식(OR=3.116)",
-    "펩시노겐 I은 위용종에 대한 보호인자(OR=0.992, p=0.031)",
-    "용종군에서 가스트린 17 수치 유의하게 높음(91.9 vs 60.9 pmol/mL, p<0.001) — ECL 세포 증식 및 신경내분비 병변 발생에 역할",
-    "gNET 환자에서 가스트린 17 수치 가장 높음(중앙값 137.7 pmol/mL)",
-    "노모그램(나이, OLGA 병기, PCA, PG-I/PG-II 비, ECL 과증식) — AUC 0.729, 임상 적용 가능성 제시",
-    "OLGA/OLGIM 병기는 AIG 용종 예측에 완전히 신뢰할 수 없음 — AIG 위축이 체부·저부 우세로 전정부 기반 병기체계의 한계"
+    "AIG 환자의 31.3%(166/530명)에서 위용종이 동반 — 과형성 용종이 68.1%로 가장 흔하며, gNET(11.6%)과 위선암(5.3%)도 관찰되어 악성 변환 가능성에 주의가 필요합니다.",
+    "PCA 양성(OR=2.003)과 ECL 과증식(OR=3.116)이 위용종의 독립적 위험인자 — 반면 펩시노겐 I은 보호 인자(OR=0.992)로 작용하였습니다.",
+    "가스트린 17 수치가 GP군에서 유의하게 높아(91.9 vs 60.9 pmol/L) — ECL 세포 증식 및 점막 과증식을 통해 용종 형성에 기여하는 것으로 추정됩니다.",
+    "OLGA/OLGIM 고병기(3–4기)와 ECL 과증식이 GP군에서 더 뚜렷 — 그러나 AIG의 조직 변화는 주로 체부·기저부에 국한되므로 OLGA 병기와 무관하게 모든 AIG 환자에서 적극적 내시경 추적이 권고됩니다.",
+    "예측 노모그램(연령·OLGA 병기·PCA 양성·PG-I/II 비·ECL 과증식 포함) AUC 0.729 — 임상에서 위용종 발생 위험도 예측에 활용 가능하나 다양한 코호트에서의 외부 검증이 필요합니다.",
+    "⚠️ 후향적 단면 설계로 인과 추론 제한; 단일 국가(중국) 2개 기관 데이터로 일반화 제한; 악성 용종 수가 적어 양성·악성 간 OLGA/ECL 차이 분석에 통계적 한계 존재"
   ],
   meta: {
-    "연구 유형": "이중기관 후향적 연구",
-    "대상 환자": "530명 (용종군 166명, 비용종군 364명)",
-    "연구 기간": "2019년 7월~2023년 7월",
-    "연구 기관": "Renji Hospital, Shanghai Jiao Tong University / Sichuan Armed Police Corps Hospital"
-  }
+    "연구 설계": "후향적 다기관 코호트 연구",
+    "대상": "AIG 530명 (용종군 166명, 비용종군 364명)",
+    "연구 기관": "Renji 병원(상하이 교통대학) 및 쓰촨 무장경찰 병원, 중국",
+    "연구 기간": "2019년 7월 – 2023년 7월",
+    "분석 방법": "단변량·다변량 로지스틱 회귀, ROC 곡선, 노모그램"
+  },
+  related_ids: []
 },
-  {
+{
     id: 120,
     title: "Listening to the Past, Shaping the Future: A Data-mining Based and Visual Analysis of Five Decades of Gastric Carcinogenesis Research",
     title_ko: "과거에서 배우고 미래를 설계하다: 위 발암 연구 50년의 데이터 마이닝 및 시각적 분석",
@@ -5600,7 +5615,7 @@ const PAPERS = [
     },
   related_ids: [157]
 },
-  {
+{
     id: 119,
     title: "Clinical Manifestations of Helicobacter pylori–Negative Gastritis",
     title_ko: "헬리코박터 음성 위염의 임상 양상",
@@ -5630,7 +5645,7 @@ const PAPERS = [
       "연구 기관": "Michael E. DeBakey VA Medical Center / Baylor College of Medicine, Houston, TX"
     }
   },
-  {
+{
     id: 118,
     title: "Common Features of Patients With Autoimmune Atrophic Gastritis",
     title_ko: "자가면역성위축위염 환자의 공통 임상 특징",
@@ -5660,7 +5675,7 @@ const PAPERS = [
       "연구 기관": "Fondazione IRCCS Policlinico San Matteo, University of Pavia, Italy"
     }
   },
-  {
+{
     id: 117,
     title: "Two genetic loci independently confer susceptibility to autoimmune gastritis",
     title_ko: "두 개의 독립적 유전자좌가 자가면역성위염 감수성을 부여한다",
@@ -5690,7 +5705,7 @@ const PAPERS = [
       "모델": "BALB.B6 콘제닉 마우스, NOD/Lt, NOD.B6-Chr4 (NTx 유도 EAG)"
     }
   },
-  {
+{
     id: 116,
     title: "Genetic control of susceptibility to autoimmune gastritis",
     title_ko: "자가면역성위염 감수성의 유전적 조절",
@@ -5720,7 +5735,7 @@ const PAPERS = [
       "모델": "BALB/c NTx 마우스 (실험적 자가면역성위염)"
     }
   },
-  {
+{
     id: 139,
     title: "TPOAb indicates neuroendocrine tumor in autoimmune gastritis: A retrospective study of 91 patients",
     title_ko: "자가면역성위염에서 TPOAb는 신경내분비종양을 예측한다: 91명 후향적 연구",
@@ -5752,7 +5767,7 @@ const PAPERS = [
       "연구 기관": "Zhejiang University First Affiliated Hospital / Ningbo Municipal Hospital of TCM / Ningbo Yinzhou No.2 Hospital"
     }
   },
-  {
+{
     id: 121,
     title: "Behçet's Disease and Autoimmune Atrophic Gastritis: An Incidental Finding",
     title_ko: "베체트병과 자가면역성위축위염: 우연한 발견",
@@ -5780,7 +5795,7 @@ const PAPERS = [
       "연구 기관": "University of Balamand, Beirut, Lebanon"
     }
   },
-  {
+{
     id: 122,
     title: "Serological Diagnostic Strategies for Autoimmune Metaplastic Atrophic Gastritis",
     title_ko: "자가면역성위축위염의 혈청학적 진단 전략",
@@ -5808,7 +5823,7 @@ const PAPERS = [
       "연구 기관": "Shengjing Hospital of China Medical University, Shenyang, China"
     }
   },
-  {
+{
     id: 123,
     title: "Clinical and Endoscopic-Histological Features of Multifocal and Corpus-Restricted Atrophic Gastritis Patients with Non-Cardia Gastric Cancer or Dysplasia: A Multicenter, Cross-Sectional Study",
     title_ko: "다병소성 및 체부제한성 위축위염 환자의 비분문부 위암·이형성 임상·내시경-조직학적 특성: 다기관 횡단면 연구",
@@ -5837,7 +5852,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 124,
     title: "Endogenous glucocorticoids moderate the gastric inflammatory response to Helicobacter infection and protect from autoimmunity",
     title_ko: "내인성 글루코코르티코이드는 헬리코박터 감염에 대한 위 염증 반응을 조절하고 자가면역으로부터 보호한다",
@@ -5865,7 +5880,7 @@ const PAPERS = [
       "연구 기관": "West Virginia University / Vanderbilt University Medical Center / Saint Louis University School of Medicine, USA"
     }
   },
-  {
+{
     id: 125,
     title: "Autoimmune Gastritis Diagnosis: Encompassing Pessimism, Realism, and Wish for the Future. Comment on Vienneau et al. Diagnostics 2025, 15, 2906",
     title_ko: "자가면역성위염 진단: 비관론·현실주의·미래에 대한 기대 — Vienneau et al.에 대한 논평",
@@ -5894,7 +5909,7 @@ const PAPERS = [
     },
   related_ids: [3, 7, 126]
 },
-  {
+{
     id: 126,
     title: "Reply to Rugge, M. Autoimmune Gastritis Diagnosis: Encompassing Pessimism, Realism, and Wish for the Future. Comment on Vienneau et al. Diagnostics 2025, 15, 2906",
     title_ko: "Rugge M.의 논평에 대한 저자 답신 — AMAG 보고: 병리의와 내시경의는 같은 페이지에 있는가?",
@@ -5921,7 +5936,7 @@ const PAPERS = [
     },
     related_ids: [3, 7, 124, 125]
   },
-  {
+{
     id: 127,
     title: "A Case Report of Autoimmune Gastritis Associated With Polyendocrine Syndrome Type III Mimicking Refractory H. pylori Infection",
     title_ko: "난치성 H. pylori 감염으로 오인된 자가면역성위염 동반 다선성자가면역증후군 III형 증례",
@@ -5949,7 +5964,7 @@ const PAPERS = [
       "연구 기관": "Keio University School of Medicine, Tokyo, Japan"
     }
   },
-  {
+{
     id: 128,
     title: "Autoimmune chronic atrophic gastritis: association between chronic proton pump inhibitors use and more severe atrophy and gastric intestinal metaplasia",
     title_ko: "자가면역성 만성 위축성위염: 장기 PPI 사용과 중증 위축·장상피화생의 연관성",
@@ -5979,7 +5994,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 129,
     title: "Gastrointestinal Manifestations of Common Variable Immunodeficiency: A Mentored Review",
     title_ko: "일반변수면역결핍증의 위장관 발현: 교육적 종설",
@@ -6009,7 +6024,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 130,
     title: "Clinical Heterogeneity of Early-Onset Autoimmune Gastritis: From the Evidence to a Pediatric Tailored Algorithm",
     title_ko: "소아 자가면역성위염의 임상적 이질성: 근거에서 소아 맞춤형 알고리즘까지",
@@ -6040,7 +6055,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 132,
     title: "Case Report: Novel endoscopic characteristics of early-stage autoimmune gastritis from two cases: the fog is lifting",
     title_ko: "초기 자가면역성위염의 새로운 내시경 특징 2증례: 안개가 걷히다",
@@ -6070,7 +6085,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 133,
     title: "Multiple gastric tumors in patients with combined autoimmune and helicobacter pylori-associated gastritis: a case report and literature review",
     title_ko: "자가면역성위염과 H. pylori 연관 위염 공존 환자에서 다발성 위종양: 증례보고 및 문헌 고찰",
@@ -6100,7 +6115,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 134,
     title: "Malignant transformation of gastric hyperplastic polyps in an autoimmune gastritis patient—a case report and literature review",
     title_ko: "자가면역성위염 환자에서 위과형성용종의 악성 변환: 증례보고 및 문헌 고찰",
@@ -6130,7 +6145,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 135,
     title: "Case Report: Reversible chorea arising from severe vitamin B12 deficiency due to autoimmune gastritis: a comprehensive case study",
     title_ko: "자가면역성위염으로 인한 중증 비타민 B12 결핍에 의한 가역적 무도병: 포괄적 증례 연구",
@@ -6161,7 +6176,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 136,
     title: "Age-Related Differences in Clinical Presentation of Autoimmune Gastritis: A Retrospective Comparative Study",
     title_ko: "자가면역성위염의 연령별 임상 특징 차이: 후향적 비교 연구",
@@ -6192,7 +6207,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 137,
     is_guideline: true,
     title: "AGA Clinical Practice Update on Screening and Surveillance in Individuals at Increased Risk for Gastric Cancer in the United States: Expert Review",
@@ -6224,7 +6239,7 @@ const PAPERS = [
     },
     related_ids: [22, 35]
   },
-  {
+{
     id: 138,
     title: "Anti-Parietal Cell Antibodies Show Differential Associations With Stomach Cancer by Site and Helicobacter pylori Status",
     title_ko: "항벽세포항체는 위암 발생 부위 및 H. pylori 상태에 따라 차별적 연관성을 보인다",
@@ -6255,7 +6270,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 140,
     title: "Parietal Cell Antibody Levels Among Chronic Gastritis Patients in a Country With Low Helicobacter pylori Infection: Epidemiology, Histopathological Features, and H. pylori Infection",
     title_ko: "H. pylori 저감염 국가 만성위염 환자의 벽세포항체 수준: 역학, 조직병리 특성 및 H. pylori 감염",
@@ -6288,7 +6303,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 141,
     title: "STAT3 inhibition mitigates experimental autoimmune gastritis by restoring Th17/Treg immune balance",
     title_ko: "STAT3 억제는 Th17/Treg 면역 균형 회복을 통해 실험적 자가면역성위염을 완화한다",
@@ -6320,7 +6335,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 142,
     title: "Mucosal Atrophy of the Fornix as an Important Endoscopic Finding for an Autoimmune Gastritis Diagnosis",
     title_ko: "자가면역성위염 진단에서 위저부 점막 위축의 중요한 내시경 소견",
@@ -6355,7 +6370,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 143,
     title: "Solitary Fibrous Tumor of the Stomach in a Patient With Autoimmune Atrophic Gastritis: A Case Report",
     title_ko: "자가면역성위축위염 환자에서 발생한 위장 고립성 섬유성 종양: 증례보고",
@@ -6386,7 +6401,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 144,
     title: "Mechanistic and therapeutic advances in immune-mediated gastrointestinal disorders",
     title_ko: "면역매개 위장관 질환의 기전 및 치료적 발전",
@@ -6416,7 +6431,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 145,
     title: "Unraveling the Enigma: Food Cobalamin Malabsorption and the Persistent Shadow of Cobalamin Deficiency",
     title_ko: "식품 코발라민 흡수장애와 코발라민 결핍의 지속적 그림자",
@@ -6446,7 +6461,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 146,
     title: "Hyperhomocysteinemia-associated Thrombosis in Patients With Pernicious Anemia",
     title_ko: "악성빈혈 환자에서 고호모시스테인혈증 관련 혈전증",
@@ -6476,7 +6491,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 147,
     title: "Controversy regarding the risk of autoimmune gastritis on gastric adenocarcinoma",
     title_ko: "자가면역성위염과 위선암 위험에 관한 논쟁",
@@ -6506,7 +6521,7 @@ const PAPERS = [
     },
     related_ids: [8, 21]
   },
-  {
+{
     id: 148,
     title: "Incidence and Risk of Gastric Neuroendocrine Tumors (gNET) and Adenocarcinoma in Patients with Atrophic Gastritis/Pernicious Anemia",
     title_ko: "위축성위염/악성빈혈 환자에서 위 신경내분비종양 및 선암의 발생률과 위험인자",
@@ -6536,7 +6551,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 149,
     title: "Double filtration plasmapheresis in autoimmune gastritis with subacute combined degeneration of the spinal cord: A case report",
     title_ko: "자가면역성위염에 동반된 척수의 아급성 연합변성에 대한 이중여과 혈장분리교환술: 증례 보고",
@@ -6566,7 +6581,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 150,
     title: "A comparative study of different assays for autoantibodies detection in patients with autoimmune gastritis",
     title_ko: "자가면역성위염 환자에서 자가항체 검출을 위한 다양한 검사법 비교 연구",
@@ -6597,7 +6612,7 @@ const PAPERS = [
     },
     related_ids: [178, 180]
   },
-  {
+{
     id: 151,
     title: "Healing of Active, Non-Atrophic Autoimmune Gastritis by H. pylori Eradication",
     title_ko: "H. pylori 제균에 의한 활성 비위축성 자가면역성위염의 치유",
@@ -6627,38 +6642,40 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
-    id: 152,
-    title: "Cancer Risk Following Pernicious Anemia in the US Elderly Population",
-    title_ko: "미국 고령 인구에서 악성빈혈 이후 암 발생 위험",
-    journal: "Clinical Gastroenterology and Hepatology",
-    journal_short: "Clin Gastroenterol Hepatol",
-    year: 2015,
-    if: 11.1,
-    authors: "Murphy G, Dawsey SM, Engels EA, Ricker W, Parsons R, Etemadi A, Lin SW, Abnet CC, Freedman ND",
-    doi: "10.1016/j.cgh.2015.05.040",
-    source: "journal",
-    topics: ["암위험", "역학", "동반질환", "바이오마커"],
-    abstract_ko: "SEER-Medicare 데이터베이스를 이용한 대규모 인구 기반 환자-대조군 연구(암 환자 1,138,390명 vs 대조군 100,000명, 66~99세). 악성빈혈(PA) 진단 후 암 발생 위험을 분석한 결과, 비분문부 위선암(OR 2.18), 위 카르시노이드(OR 11.43), 식도 편평세포암(OR 2.12), 골수이형성증후군(OR 2.87) 등 다수의 암종에서 위험이 유의하게 증가했습니다. 위 카르시노이드 위험은 악성빈혈 진단 후 6년 이상 경과 시 OR 21.49로 더욱 상승하는 시간 의존적 양상을 보였습니다.",
-    keypoints: [
-      "위 카르시노이드: OR 11.43 (95% CI 8.90–14.69) — 가장 강력한 연관성; 진단 72개월 이후 OR 21.49로 더욱 상승 (시간 의존적)",
-      "비분문부 위선암: OR 2.18 (95% CI 1.94–2.45); 체부(OR 2.54)·저부(OR 2.99)·전정부(OR 1.84)·유문부(OR 2.11) 모두 유의하게 증가",
-      "골수이형성증후군: OR 2.87 (95% CI 2.53–3.26) — 비타민 B12 결핍의 조혈계 영향 반영 가능",
-      "식도 편평세포암: OR 2.12 (95% CI 1.76–2.55); 식도 선암: OR 1.00 — 저산증으로 인한 역류 감소 반영",
-      "급성골수성백혈병(OR 1.68)·다발성골수종(OR 1.55)·소장암(OR 1.63)·간암(OR 1.49) 등도 유의하게 증가",
-      "직장암은 오히려 위험 감소 (OR 0.82, 남성에서만 유의) — 근위부→원위부 대장→직장 순 위험 감소 경향",
-      "⚠️ 고령(66세+) 제한, 흡연·음주·식이 등 교란변수 미보정, PA 정의의 민감도 한계(유병률 1.5% — 실제보다 낮음)"
-    ],
-    meta: {
-      "논문 유형": "인구 기반 환자-대조군 연구",
-      "게재": "Clin Gastroenterol Hepatol 2015;13(13):2282–2289",
-      "데이터베이스": "SEER-Medicare (1992–2005, 66~99세)",
-      "연구 규모": "암 환자 1,138,390명 / 대조군 100,000명 (PA 동반 17,076명)",
-      "연구 기관": "National Cancer Institute, NIH, Bethesda, MD"
-    },
-    related_ids: []
+{
+  id: 152,
+  title: "Cancer Risk After Pernicious Anemia in the US Elderly Population",
+  title_ko: "미국 노인 인구에서 악성빈혈 이후 암 위험도",
+  journal: "Clinical Gastroenterology and Hepatology",
+  journal_short: "Clin Gastroenterol Hepatol",
+  year: 2015,
+  volume: "13",
+  issue: "13",
+  pages: "2282-2289",
+  if: 11.4,
+  authors: "Murphy G, Dawsey SM, Engels EA, Ricker W, Parsons R, Etemadi A, Lin SW, Abnet CC, Freedman ND",
+  doi: "10.1016/j.cgh.2015.05.040",
+  source: "journal",
+  topics: ["암위험", "역학", "종양·용종"],
+  abstract_ko: "SEER-Medicare 데이터베이스를 이용한 대규모 인구기반 환자-대조군 연구입니다. 66~99세 암 환자 1,138,390명과 대조군 100,000명을 비교하였으며, 악성빈혈(PA)은 진단 12개월 이상 전 청구 기록으로 정의하였습니다. PA는 전체 암 환자 및 대조군 모두 1.5%에서 확인되었습니다. PA 보유자는 위 카르시노이드(OR 11.43, 95% CI 8.90–14.69), 비분문부 위선암(OR 2.18, 95% CI 1.94–2.45), 식도편평세포암(OR 2.12), 골수이형성증후군(OR 2.87), 편도암(OR 2.00), 하인두암(OR 1.92), 소장암(OR 1.63), 간암(OR 1.49), 다발골수종(OR 1.55), 급성골수성백혈병(OR 1.68)에서 유의하게 높은 위험도를 보였습니다. 반면 직장암은 유의하게 낮은 위험도(OR 0.82)를 나타냈습니다. 대부분의 연관성은 PA 첫 기록 72개월 이후 진단된 암에서 더 강하게 관찰되었습니다.",
+  keypoints: [
+    "위 카르시노이드 위험 11.43배 — PA에서 가장 강력한 연관성; 장크롬친화세포 유사세포(ECL cell) 과증식이 고가스트린혈증에 의해 촉진되는 기전; 72개월 이후 OR 21.49로 더욱 증가",
+    "비분문부 위선암 OR 2.18, 분문부 위선암 OR 1.25 — 위체부·저부·전정부·유문부 각 부위에서 모두 유의한 위험 증가; 저산증에 의한 니트로사민 생성균 과증식 및 고가스트린혈증이 주요 기전",
+    "혈액 악성종양 위험 증가 — 골수이형성증후군 OR 2.87, 급성골수성백혈병 OR 1.68, 다발골수종 OR 1.55; 급성골수성백혈병은 시간 경과에 따라 위험도가 감소(OR 2.00→1.38)하는 특이 패턴",
+    "식도편평세포암 OR 2.12, 식도선암 OR 1.00 — 위 산 역류 감소로 인해 선암은 보호되는 반면, 편평세포암과의 연관성은 별도 기전(비타민 B12 결핍, HPV 지속 등) 관여 가능",
+    "직장암 역위험 OR 0.82 — 근위 결장(OR 1.06)→원위 결장(OR 0.89)→직장(OR 0.82)으로 이어지는 단계적 감소 패턴; 남성에서만 유의; 대장 부위별 조직학적 차이가 발암 감수성 결정 가능성",
+    "⚠️ 65세 이상 노인에 국한; 흡연·음주·식이 등 주요 교란변수 보정 불가; PA 유병률 1.5%(생화학적 정의 기준 4~5%보다 낮음)로 민감도 제한; Medicare 청구 기반 PA 정의로 일부 환자 누락 가능"
+  ],
+  meta: {
+    "연구 설계": "인구기반 환자-대조군 연구 (SEER-Medicare)",
+    "대상 인구": "암 환자 1,138,390명, 대조군 100,000명 (66~99세)",
+    "연구 기간": "1992~2005년",
+    "연구 기관": "미국 국립암연구소(NCI), 베데스다",
+    "핵심 결과": "PA → 위 카르시노이드 11.43배, 골수이형성증후군 2.87배, 비분문부 위선암 2.18배 위험 증가"
   },
-  {
+  related_ids: [235]
+},
+{
     id: 153,
     title: "Hashimoto's Thyroiditis and Autoimmune Gastritis",
     title_ko: "하시모토 갑상선염과 자가면역성위염 — 갑상위장 증후군 미니리뷰",
@@ -6688,7 +6705,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 154,
     title: "Endoscopic features and clinical importance of autoimmune gastritis",
     title_ko: "자가면역성위염의 내시경 소견과 임상적 중요성",
@@ -6718,7 +6735,7 @@ const PAPERS = [
     },
     related_ids: [193]
   },
-  {
+{
     id: 155,
     title: "Evolving Autoimmune Gastritis Initially Hidden by Active Helicobacter pylori Gastritis",
     title_ko: "활성 H. pylori 위염에 가려진 초기 자가면역성위염의 진행: 증례보고",
@@ -6747,7 +6764,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 156,
     title: "Autoimmune Gastritis: Update and New Perspectives in Therapeutic Management",
     title_ko: "자가면역성위염: 치료 관리의 업데이트와 새로운 관점",
@@ -6781,7 +6798,7 @@ const PAPERS = [
     },
     related_ids: [1, 44, 49, 50, 55]
   },
-  {
+{
     id: 157,
     title: "Research status and hotspots of autoimmune gastritis: A bibliometric analysis",
     title_ko: "자가면역성위염의 연구 현황과 핵심 주제: 계량서지학적 분석",
@@ -6814,7 +6831,7 @@ const PAPERS = [
     },
     related_ids: [1, 114, 120, 200]
   },
-  {
+{
     id: 158,
     title: "Distinguishing features of autoimmune gastritis depending on previous H. pylori infection or positivity to anti-parietal cell antibodies: results from the ARIOSO",
     title_ko: "H. pylori 감염력 및 항벽세포항체 양성 여부에 따른 자가면역성위염의 구별되는 특성: ARIOSO 다기관 연구",
@@ -6850,7 +6867,7 @@ const PAPERS = [
     },
     related_ids: [1, 2, 8, 21, 44, 49]
   },
-  {
+{
     id: 159,
     title: "Serum Gastrin Levels Are Associated With Prevalent Neuroendocrine Tumors in Autoimmune Metaplastic Atrophic Gastritis",
     title_ko: "자가면역성위축위염에서 혈청 가스트린 수치와 신경내분비종양의 연관성",
@@ -6882,7 +6899,7 @@ const PAPERS = [
     },
     related_ids: [36, 43, 90, 113]
   },
-  {
+{
     id: 160,
     title: "Management of Gastric Neuroendocrine Tumors: A Review",
     title_ko: "위 신경내분비종양의 관리: 리뷰",
@@ -6917,7 +6934,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 161,
     title: "Gastric Neuroendocrine Neoplasms",
     title_ko: "위 신경내분비신생물: 질환 개론",
@@ -6952,7 +6969,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 162,
     title: "Long-term Natural History of Autoimmune Gastritis: Results from a Prospective, Monocentric Series",
     title_ko: "자가면역성위염의 장기 자연경과: 전향적 단일기관 코호트 연구",
@@ -6990,7 +7007,7 @@ const PAPERS = [
     },
     related_ids: [163, 164]
   },
-  {
+{
     id: 163,
     title: "Multidisciplinary Collaborative Team for Screening of Autoimmune Gastritis",
     title_ko: "자가면역성위염 선별을 위한 다학제 협력팀의 필요성",
@@ -7019,7 +7036,7 @@ const PAPERS = [
     },
     related_ids: [162, 164]
   },
-  {
+{
     id: 164,
     title: "Response to Huang et al",
     title_ko: "Huang 등에 대한 답신: AIG의 다학제적 접근에 동의하며",
@@ -7046,7 +7063,7 @@ const PAPERS = [
     },
     related_ids: [162, 163]
   },
-  {
+{
     id: 165,
     title: "Autoimmune Atrophic Gastritis Complicated With Oxyntic Gland Adenoma and Low-Grade Intraepithelial Neoplasia",
     title_ko: "자가면역성위축위염에 동반된 위저선 선종 및 저등급 상피내신생물: 증례보고",
@@ -7075,7 +7092,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 166,
     title: "A Superficial Spreading Type of Early Gastric Cancer Arising in Autoimmune Gastritis",
     title_ko: "자가면역성위염에서 발생한 표재 확산형 조기위암: 증례 이미지",
@@ -7105,7 +7122,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 167,
     title: "Autoimmune Atrophic Gastritis: A Clinical Review",
     title_ko: "자가면역성위축위염: 임상 종합 리뷰",
@@ -7138,7 +7155,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 168,
     title: "The Importance of Th2 Immune Responses in Mediating the Progression of Gastritis-Associated Metaplasia to Gastric Cancer",
     title_ko: "위염 관련 화생에서 위암으로의 진행에서 Th2 면역반응의 역할",
@@ -7171,7 +7188,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 169,
     title: "Gastric Adenocarcinoma in Helicobacter pylori-Negative Autoimmune Gastritis: A Case Report and Literature Review",
     title_ko: "헬리코박터 음성 자가면역성위염에서 발생한 위선암: 증례보고 및 문헌고찰",
@@ -7203,7 +7220,7 @@ const PAPERS = [
     },
     related_ids: [170]
   },
-  {
+{
     id: 170,
     title: "Clinical Characteristics of Patients With Previous Helicobacter pylori Infection-Induced Atrophic Gastritis",
     title_ko: "과거 헬리코박터 감염 유발 위축위염(PHIG)의 임상적 특성",
@@ -7237,7 +7254,7 @@ const PAPERS = [
     },
     related_ids: [169]
   },
-  {
+{
     id: 171,
     title: "Causal Inference Between Pernicious Anemia and Cancers: A Bidirectional Two-Sample Mendelian Randomization Analysis",
     title_ko: "악성빈혈과 암 발생의 인과관계: 양방향 이표본 멘델리안 무작위화 분석",
@@ -7272,7 +7289,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 172,
     title: "A Case of Nodular Gastritis Progression to Autoimmune Gastritis After 10 Years of Helicobacter pylori Eradication",
     title_ko: "헬리코박터 제균 10년 후 결절위염에서 자가면역성위염으로 진행한 증례",
@@ -7303,7 +7320,7 @@ const PAPERS = [
     },
     related_ids: []
   },
-  {
+{
     id: 173,
     title: "Autoimmune Gastritis: Unveiling the Mystery",
     title_ko: "자가면역성위염: 미스터리를 밝히다",
@@ -7336,7 +7353,7 @@ const PAPERS = [
     },
     related_ids: [174, 175]
   },
-  {
+{
     id: 174,
     title: "A Graves' Disease Patient Diagnosed as Autoimmune Gastritis with Helicobacter pylori Infection",
     title_ko: "그레이브스병 환자에서 헬리코박터 감염을 동반한 자가면역성위염 진단 1예",
@@ -7369,7 +7386,7 @@ const PAPERS = [
     },
     related_ids: [173, 175]
   },
-  {
+{
     id: 175,
     title: "Autoimmune Gastritis Accompanied by a Schwannoma Presenting as a Subepithelial Tumor",
     title_ko: "점막하종양으로 발현된 신경초종을 동반한 자가면역성위염 1예",
@@ -7403,7 +7420,7 @@ const PAPERS = [
     },
     related_ids: [173, 174]
   },
-  {
+{
     id: 176,
     title: "Autoimmune Gastritis Associated With a Gastric Hyperplastic Polyp: Two Case Reports and Review of its Neoplastic Potential",
     title_ko: "위 과형성 용종을 동반한 자가면역성위염: 증례 2례 및 신생물 잠재성 고찰",
@@ -7436,7 +7453,7 @@ const PAPERS = [
     },
     related_ids: [177]
   },
-  {
+{
     id: 177,
     title: "Five Autoimmune Gastritis Patients with Positive Findings of Serum Anti-parietal Cell Antibodies",
     title_ko: "혈청 항벽세포 항체 양성 소견을 보인 자가면역성위염 환자 5명에 대한 보고",
@@ -7469,8 +7486,8 @@ const PAPERS = [
       "언어": "국문(한국어) 원문, 영문 초록 포함"
     },
     related_ids: [176]
-  }
-,{
+  },
+{
   id: 178,
   title: "Improving the Diagnosis of Autoimmune Gastritis: From Parietal Cell Antibodies to H+/K+ ATPase Antibodies",
   title_ko: "자가면역성위염의 진단 개선: 항벽세포항체에서 H+/K+-ATPase 항체로",
@@ -7500,8 +7517,8 @@ const PAPERS = [
     "핵심 권고": "ELISA/FEIA를 자가면역 위축성위염 선별 1차 검사로 사용",
     "연구 기관": "AULSS2 Marca Trevigiana 검사의학과 / AULSS7 Pedemontana 검사의학과 / Udine 대학통합병원 임상병리검사실, 이탈리아"
   }
-}
-,{
+},
+{
   id: 179,
   title: "Clinicopathological Features of Early Gastric Cancer Complicated by Autoimmune Gastritis",
   title_ko: "자가면역성위염에 동반된 조기위암의 임상병리학적 특징",
@@ -7534,8 +7551,8 @@ const PAPERS = [
     "AIG 진단 기준": "체부 우세형 진행 위축 + PCA 또는 내인인자항체 양성",
     "연구 기관": "도라노몬병원 소화기내과, 도쿄, 일본"
   }
-}
-,{
+},
+{
   id: 180,
   title: "Iron and Vitamin B12 Deficiency in Patients with Autoimmune Gastritis and Helicobacter pylori Gastritis: Results from a Prospective Multicenter Study",
   title_ko: "자가면역성위염 및 헬리코박터 파일로리 위염 환자에서의 철분·비타민 B12 결핍: 전향적 다기관 연구 결과",
@@ -7570,8 +7587,8 @@ const PAPERS = [
     "연구 기관": "낭트 대학병원 IMAD 소화기·종양내과 / 낭트 대학교 INSERM U1064, 프랑스"
   },
   related_ids: [150]
-}
-,{
+},
+{
   id: 181,
   title: "Antral mucosa healing at long-term follow-up in patients with corpus atrophic gastritis and concomitant antral gastritis may mimic autoimmune gastritis",
   title_ko: "체부 위축성위염과 동반 전정부 위염 환자에서 장기 추적 시 전정부 점막 회복은 자가면역성위염을 모방할 수 있다",
@@ -7605,8 +7622,8 @@ const PAPERS = [
     "연구 기관": "산탄드레아 병원 의외과학·중개의학과 / 임상분자의학과, 사피엔자 로마대학교, 이탈리아"
   },
   related_ids: []
-}
-,{
+},
+{
   id: 182,
   title: "Occurrence and characteristics of endoscopic gastric polyps in patients with autoimmune gastritis (AGAPE study): A multicentric cross-sectional study",
   title_ko: "자가면역성위염 환자에서의 내시경적 위 용종 발생과 특성 (AGAPE 연구): 다기관 단면 연구",
@@ -8674,7 +8691,8 @@ const PAPERS = [
     "연구 기관": "해머스미스 메디슨 리서치(영국), 리버풀대학교, 노르웨이 과학기술대학교 성올라프병원"
   },
   related_ids: []
-},{
+},
+{
   id: 217,
   title: "The Relations Among Serum Ghrelin, Motilin and Gastric Emptying and Autonomic Function in Autoimmune Gastritis",
   title_ko: "자가면역성위염에서 혈청 그렐린, 모틸린, 위배출 및 자율신경 기능의 연관성",
@@ -8938,72 +8956,6 @@ const PAPERS = [
     "연구 기관": "산탄드레아 병원·사피엔차대학교 로마, 이탈리아"
   },
   related_ids: [238]
-},
-{
-  id: 226,
-  title: "Effective endoscopic management of gastric neoplastic complications in patients with autoimmune gastritis: results of a monocentric study of 88 patients",
-  title_ko: "자가면역성위염 환자의 위 종양성 합병증에 대한 효과적인 내시경 치료: 88명 단일기관 연구 결과",
-  journal: "Annals of Gastroenterology",
-  journal_short: "Ann Gastroenterol",
-  year: 2025,
-  volume: "38",
-  issue: "2",
-  pages: "163-173",
-  if: 3.2,
-  authors: "Hoibian S, Ratone JP, Solovyev A, Dahel Y, Mitry E, Poizat F, Guiramand J, Caillol F, Giovannini M",
-  doi: "10.20524/aog.2025.0947",
-  source: "journal",
-  topics: ["종양·용종", "내시경", "암위험"],
-  abstract_ko: "프랑스 마르세유 파올리-칼메트 암센터(3차 내시경 의뢰 기관)에서 1987년부터 2019년까지 자가면역성위염(AIG)으로 진단된 88명(여성 68.2%, 중앙 추적기간 5년)을 대상으로 한 후향적 단일기관 관찰 연구입니다. 신경내분비종양(NET)은 39명(44.3%)에서 총 132개가 진단되었으며, 중앙 크기 5.75mm(평균 7.1mm), G1 60.6%·G2 39.3%였습니다. 132개 병변 중 86.3%(114개)가 내시경 절제되었으며, 이 중 92.1%가 내시경 점막 절제술(EMR)로 처리되었고 합병증은 없었습니다. R1 절제율은 35%(40/114)였으나 추적 기간 중 재발 없이 질환 특이 생존율 100%를 달성하였습니다. 위선암(GA)은 12명(13.6%, 중앙 연령 76세)에서 발생하였으며, 이 중 66.7%(8명)가 수술이 필요하였고 4명만이 단독 내시경 절제가 가능하였습니다. GA의 60%는 AIG 진단과 동시에 발견되어 사전 내시경 감시의 혜택을 받지 못하였습니다. 다변량 분석에서 NET의 독립적 위험인자는 남성(OR=0.23, 여성 대비, p=0.032)과 AIG 진단 연령(OR=0.96, p=0.025)이었으며, GA의 독립적 위험인자는 나이(OR=1.08, p=0.033)였습니다. NET 환자는 GA 환자보다 AIG 진단 연령이 유의하게 낮았습니다(52.0세 vs 67.0세, p=0.009).",
-  keypoints: [
-    "AIG 환자의 44.3%에서 NET 발생 — EMR 중심 내시경 치료로 합병증 없이 86.3%가 절제 가능하며, 다발성·G2 NET 환자에서도 안전하게 시행 가능합니다. NET 관련 사망 및 전이 없이 질환 특이 생존율 100% 달성.",
-    "GA는 13.6%(12명)에서 발생, 중앙 연령 76세 — 66.7%가 수술 필요(6명 전위절제술 포함)하였으며, 60%는 AIG 진단과 동시 발견되어 감시 내시경의 조기 시행 필요성을 강조합니다.",
-    "NET는 GA보다 유의하게 젊은 연령에 발생(중앙 50세 vs 76세, p<0.001) — AIG에서 NET이 GA보다 선행하는 경향을 시사하며, 두 종양이 동시 발생한 경우는 2.8%에 불과합니다.",
-    "다변량 분석: NET 위험인자는 남성 및 낮은 AIG 진단 연령; GA 위험인자는 고령(OR=1.08/세, p=0.033) — H. pylori 감염은 두 종양 모두에서 유의한 위험인자가 아니었습니다.",
-    "AIG 환자 7.9%에서 과형성 용종 발견, 이형성 없음 — 그러나 ESD 완전 절제 후에도 재발이 관찰되어 지속적 추적 필요성이 제기됩니다.",
-    "⚠️ 후향적 설계로 결측치 다수; 암센터 3차 기관 의뢰 편향(G2 NET 비율 높음); H. pylori 생검 자료 불완전; 소규모(88명)로 일반화 제한"
-  ],
-  meta: {
-    "연구 설계": "후향적 단일기관 관찰 연구",
-    "대상": "AIG 88명 (NET 39명, GA 12명)",
-    "연구 기관": "파올리-칼메트 암센터, 마르세유, 프랑스",
-    "연구 기간": "1987년 – 2019년",
-    "중앙 추적기간": "5년 (범위 1–28년)"
-  },
-  related_ids: []
-},
-{
-  id: 225,
-  title: "Association between autoimmune gastritis and gastric polyps: Clinical characteristics and risk factors",
-  title_ko: "자가면역성위염과 위용종의 연관성: 임상적 특성 및 위험인자",
-  journal: "World Journal of Gastrointestinal Oncology",
-  journal_short: "World J Gastrointest Oncol",
-  year: 2025,
-  volume: "17",
-  issue: "1",
-  pages: "92908",
-  if: 4.2,
-  authors: "Jin JZ, Liang X, Liu SP, Wang RL, Zhang QW, Shen YF, Li XB",
-  doi: "10.4251/wjgo.v17.i1.92908",
-  source: "journal",
-  topics: ["종양·용종", "바이오마커", "병인기전", "역학"],
-  abstract_ko: "중국 2개 기관(Renji 병원, 쓰촨 무장경찰 병원)에서 2019년 7월~2023년 7월 사이에 자가면역성위염(AIG)으로 진단된 530명을 대상으로 한 후향적 다기관 연구입니다. 이 중 114명이 제외되어 최종 위용종(GP) 동반군 166명(31.3%)과 비동반군 364명(68.7%)을 비교 분석하였습니다. GP 동반군은 비동반군에 비해 중앙 연령이 유의하게 높았으며(61세 vs 58세, p=0.006), 가스트린 17 수치가 의미 있게 상승해 있었고(91.9 vs 60.9 pmol/L, p<0.001), 항벽세포항체(PCA) 양성률도 높았습니다(88.6% vs 73.6%, p<0.001). OLGA/OLGIM 고병기 및 장크롬친화성 유사세포(ECL) 과증식도 GP군에서 유의하게 더 많이 관찰되었습니다. 다변량 로지스틱 회귀분석에서 PCA 양성(OR=2.003, p=0.017), 펩시노겐 II 상승(OR=1.053, p=0.015), ECL 과증식(OR=3.116, p<0.001)이 독립적 위험인자로 확인되었으며, 펩시노겐 I은 보호 인자로 작용하였습니다(OR=0.992, p=0.031). 용종 유형은 과형성 용종이 68.1%로 가장 많았고, 기저샘 용종 12.5%, 위 신경내분비종양(gNET) 11.6%, 위선암 5.3%, 위선종 2.5% 순이었습니다. 개발된 예측 노모그램의 ROC 곡선하 면적은 0.729(95% CI 0.683–0.775)였습니다.",
-  keypoints: [
-    "AIG 환자의 31.3%(166/530명)에서 위용종이 동반 — 과형성 용종이 68.1%로 가장 흔하며, gNET(11.6%)과 위선암(5.3%)도 관찰되어 악성 변환 가능성에 주의가 필요합니다.",
-    "PCA 양성(OR=2.003)과 ECL 과증식(OR=3.116)이 위용종의 독립적 위험인자 — 반면 펩시노겐 I은 보호 인자(OR=0.992)로 작용하였습니다.",
-    "가스트린 17 수치가 GP군에서 유의하게 높아(91.9 vs 60.9 pmol/L) — ECL 세포 증식 및 점막 과증식을 통해 용종 형성에 기여하는 것으로 추정됩니다.",
-    "OLGA/OLGIM 고병기(3–4기)와 ECL 과증식이 GP군에서 더 뚜렷 — 그러나 AIG의 조직 변화는 주로 체부·기저부에 국한되므로 OLGA 병기와 무관하게 모든 AIG 환자에서 적극적 내시경 추적이 권고됩니다.",
-    "예측 노모그램(연령·OLGA 병기·PCA 양성·PG-I/II 비·ECL 과증식 포함) AUC 0.729 — 임상에서 위용종 발생 위험도 예측에 활용 가능하나 다양한 코호트에서의 외부 검증이 필요합니다.",
-    "⚠️ 후향적 단면 설계로 인과 추론 제한; 단일 국가(중국) 2개 기관 데이터로 일반화 제한; 악성 용종 수가 적어 양성·악성 간 OLGA/ECL 차이 분석에 통계적 한계 존재"
-  ],
-  meta: {
-    "연구 설계": "후향적 다기관 코호트 연구",
-    "대상": "AIG 530명 (용종군 166명, 비용종군 364명)",
-    "연구 기관": "Renji 병원(상하이 교통대학) 및 쓰촨 무장경찰 병원, 중국",
-    "연구 기간": "2019년 7월 – 2023년 7월",
-    "분석 방법": "단변량·다변량 로지스틱 회귀, ROC 곡선, 노모그램"
-  },
-  related_ids: []
 },
 {
   id: 227,
@@ -9298,40 +9250,7 @@ const PAPERS = [
     "검색 기간": "최초~2017년 4월",
     "핵심 결과": "혈액 악성종양·담도암 위험 증가; 대부분의 고형암 위험 감소"
   },
-  related_ids: [236]
-},
-{
-  id: 236,
-  title: "Cancer Risk After Pernicious Anemia in the US Elderly Population",
-  title_ko: "미국 노인 인구에서 악성빈혈 이후 암 위험도",
-  journal: "Clinical Gastroenterology and Hepatology",
-  journal_short: "Clin Gastroenterol Hepatol",
-  year: 2015,
-  volume: "13",
-  issue: "13",
-  pages: "2282-2289",
-  if: 11.4,
-  authors: "Murphy G, Dawsey SM, Engels EA, Ricker W, Parsons R, Etemadi A, Lin SW, Abnet CC, Freedman ND",
-  doi: "10.1016/j.cgh.2015.05.040",
-  source: "journal",
-  topics: ["암위험", "역학", "종양·용종"],
-  abstract_ko: "SEER-Medicare 데이터베이스를 이용한 대규모 인구기반 환자-대조군 연구입니다. 66~99세 암 환자 1,138,390명과 대조군 100,000명을 비교하였으며, 악성빈혈(PA)은 진단 12개월 이상 전 청구 기록으로 정의하였습니다. PA는 전체 암 환자 및 대조군 모두 1.5%에서 확인되었습니다. PA 보유자는 위 카르시노이드(OR 11.43, 95% CI 8.90–14.69), 비분문부 위선암(OR 2.18, 95% CI 1.94–2.45), 식도편평세포암(OR 2.12), 골수이형성증후군(OR 2.87), 편도암(OR 2.00), 하인두암(OR 1.92), 소장암(OR 1.63), 간암(OR 1.49), 다발골수종(OR 1.55), 급성골수성백혈병(OR 1.68)에서 유의하게 높은 위험도를 보였습니다. 반면 직장암은 유의하게 낮은 위험도(OR 0.82)를 나타냈습니다. 대부분의 연관성은 PA 첫 기록 72개월 이후 진단된 암에서 더 강하게 관찰되었습니다.",
-  keypoints: [
-    "위 카르시노이드 위험 11.43배 — PA에서 가장 강력한 연관성; 장크롬친화세포 유사세포(ECL cell) 과증식이 고가스트린혈증에 의해 촉진되는 기전; 72개월 이후 OR 21.49로 더욱 증가",
-    "비분문부 위선암 OR 2.18, 분문부 위선암 OR 1.25 — 위체부·저부·전정부·유문부 각 부위에서 모두 유의한 위험 증가; 저산증에 의한 니트로사민 생성균 과증식 및 고가스트린혈증이 주요 기전",
-    "혈액 악성종양 위험 증가 — 골수이형성증후군 OR 2.87, 급성골수성백혈병 OR 1.68, 다발골수종 OR 1.55; 급성골수성백혈병은 시간 경과에 따라 위험도가 감소(OR 2.00→1.38)하는 특이 패턴",
-    "식도편평세포암 OR 2.12, 식도선암 OR 1.00 — 위 산 역류 감소로 인해 선암은 보호되는 반면, 편평세포암과의 연관성은 별도 기전(비타민 B12 결핍, HPV 지속 등) 관여 가능",
-    "직장암 역위험 OR 0.82 — 근위 결장(OR 1.06)→원위 결장(OR 0.89)→직장(OR 0.82)으로 이어지는 단계적 감소 패턴; 남성에서만 유의; 대장 부위별 조직학적 차이가 발암 감수성 결정 가능성",
-    "⚠️ 65세 이상 노인에 국한; 흡연·음주·식이 등 주요 교란변수 보정 불가; PA 유병률 1.5%(생화학적 정의 기준 4~5%보다 낮음)로 민감도 제한; Medicare 청구 기반 PA 정의로 일부 환자 누락 가능"
-  ],
-  meta: {
-    "연구 설계": "인구기반 환자-대조군 연구 (SEER-Medicare)",
-    "대상 인구": "암 환자 1,138,390명, 대조군 100,000명 (66~99세)",
-    "연구 기간": "1992~2005년",
-    "연구 기관": "미국 국립암연구소(NCI), 베데스다",
-    "핵심 결과": "PA → 위 카르시노이드 11.43배, 골수이형성증후군 2.87배, 비분문부 위선암 2.18배 위험 증가"
-  },
-  related_ids: [235]
+  related_ids: [152]
 },
 {
   id: 237,
@@ -10033,6 +9952,101 @@ const PAPERS = [
     "연구 기관": "가코가와 중앙시립병원 소화기내과(일본 효고현), 시가의과대학 병리학과",
     "핵심 소견": "제2층(벽세포 구획) 단축 단독 — 초초기 AIG의 특이 병리 지표",
     "윤리": "가코가와 중앙시립병원 임상연구윤리위원회 승인(28-12호), 헬싱키선언 준수"
+  },
+  related_ids: []
+},
+{
+  id: 259,
+  title: "Seronegative autoimmune atrophic gastritis is more common in elderly patients",
+  title_ko: "혈청음성 자가면역성위축위염은 고령 환자에서 더 흔하다",
+  journal: "Digestive and Liver Disease",
+  journal_short: "Dig Liver Dis",
+  year: 2020,
+  volume: "52",
+  issue: "10",
+  pages: "1086-1092",
+  if: 4.0,
+  authors: "Conti L, Lenti MV, Di Sabatino A, Miceli E, Galli G, Cazzato M, Falangone F, Annibale B, Lahner E",
+  doi: "10.1016/j.dld.2020.04.015",
+  source: "journal",
+  topics: ["진단", "역학", "바이오마커"],
+  abstract_ko: "로마 산탄드레아 병원·파비아 산마테오 병원(이탈리아) 2개 3차 의뢰 센터의 AAG 코호트(2009~2019년)를 이용한 횡단면 연구입니다. 총 516명의 조직학적으로 확진된 AAG 환자를 대상으로 항벽세포항체(PCA) 음성(혈청음성) 그룹의 빈도와 임상적 특징을 분석하였습니다. AAG 진단 시 PCA를 측정하여 혈청음성 환자의 발생률, 연령과의 관련성, 기타 임상·조직학적 변수와의 연관성을 분석하였습니다.",
+  keypoints: [
+    "혈청음성 비율 약 20% — 전체 516명 중 109명(21.1%)이 PCA 음성; PCA 검출은 IIF 436명(84.4%), ELISA 101명(21.5%)에서 시행; 두 기관 코호트 간 혈청음성 비율 유의한 차이 없음(파비아 59/268 vs 로마 50/248, p=0.68)",
+    "혈청음성 환자는 유의하게 고령 — 혈청음성군 평균 연령 65.9±14.1세 vs 혈청양성군 57.9±15.1세(p<0.0001); 70~79세 비율: 혈청음성 12.8% vs 혈청양성 5.1%(p<0.0004); 80세 이상 비율: 혈청음성 38.5% vs 혈청양성 21.3%(p<0.0088); 40~49세 비율: 혈청양성군 더 높음(19.6% vs 3.7%, p=0.0001)",
+    "50세 이상에서 혈청음성 교차비 2.4배 — 로지스틱 회귀분석 결과 연령 50세 이상이 혈청음성의 독립 위험인자(OR 2.4, 95% CI 1.13~5.25); 성별·동반질환·빈혈·위축 중증도는 혈청음성과 유의한 관련 없음; 내분비계 임상 발현은 혈청양성군에서 유의하게 높음(5.2% vs 0%, p=0.03)",
+    "ELISA PCA 수치는 연령과 역상관 — 101명 소집단에서 ELISA PCA 수치가 진단 연령 증가에 따라 유의하게 감소(Spearman rho=-0.250, p=0.0118); 자가항원(H+/K+-ATPase) 소실로 인한 혈청전환(seroconversion) 가능성 시사; 위체부 위축 중증도는 두 군 간 유의한 차이 없음",
+    "임상적 함의 — 고령 환자에서 PCA 음성이더라도 AAG 배제 불가; PCA 단독 선별검사는 고령에서 신뢰도 저하; 대안적 실험실 지표 및 위내시경 시행 중요성 강조; AAG는 제1형 신경내분비종양·위선암의 전암 상태이므로 진단 지연·오진은 위험"
+  ],
+  meta: {
+    "논문 유형": "다기관 횡단면 연구",
+    "대상": "조직학적 확진 AAG 환자 516명(평균 59.6±12.8세, 여:남=2.2:1)",
+    "연구 기관": "산탄드레아 병원·로마 사피엔자 대학교 / 산마테오 병원·파비아 대학교, 이탈리아",
+    "핵심 메시지": "혈청음성 AAG는 약 20%이며 고령일수록 빈도 증가 — AAG 진단은 혈청검사만으로 불충분, 조직학적 평가 필수"
+  },
+  related_ids: [261]
+},
+{
+  id: 261,
+  title: "Seronegative autoimmune diseases: A challenging diagnosis",
+  title_ko: "혈청음성 자가면역질환: 도전적인 진단",
+  journal: "Autoimmunity Reviews",
+  journal_short: "Autoimmun Rev",
+  year: 2022,
+  volume: "21",
+  issue: "10",
+  pages: "103143",
+  if: 9.2,
+  authors: "Lenti MV, Rossi CM, Melazzini F, Gastaldi M, Bugatti S, Rotondi M, Bianchi PI, Gentile A, Chiovato L, Montecucco C, Corazza GR, Di Sabatino A",
+  doi: "10.1016/j.autrev.2022.103143",
+  source: "journal",
+  topics: ["진단", "바이오마커", "병인기전", "동반질환"],
+  abstract_ko: "파비아 대학교·산마테오 병원(이탈리아) 내과 연구진이 발표한 서술적 종설로, 100가지 이상의 자가면역질환(AID) 중 자가면역성위염·복강병·자가면역간질환·류마티스관절염·자가면역뇌염·중증근무력증·쇼그렌증후군·항인지질증후군·자가면역갑상선질환 등 9가지 대표적 AID에서 혈청음성 발생 원인과 진단·관리상 함의를 체계적으로 검토합니다. 혈청음성의 공통 원인으로 ①검사법 민감도 한계 ②자가항체 흡수 ③면역억제 치료 ④면역결핍(공통변수성면역결핍) ⑤자가항원 소진 ⑥면역노화(immunosenescence)를 제시하며, 각 AID별 혈청음성 빈도·위험인자·대체 진단 전략을 정리합니다.",
+  keypoints: [
+    "혈청음성 AID 공통 발생 원인 6가지 — ①검사법 민감도·특이도 한계(방법 간 불일치) ②자가항체의 세포·조직 흡수(보체 활성화 경로) ③면역억제 치료(타 AID 또는 장기이식 병행 치료 포함) ④면역결핍(특히 공통변수성면역결핍·CVID — 위축위염·복강병 동반 시 혈청 PCA 전례 없음) ⑤자가항원 소진(장기 완전 파괴 후 또는 갑상선·흉선 제거 후) ⑥면역노화(고령에 따른 적응면역 저하); AAG에서는 PCA 혈청음성이 고령·CVID에서 특히 두드러짐",
+    "AIG 혈청음성 파트 요약 — 혈청음성 AAG 빈도 약 20%; ELISA가 IIF보다 민감도 약 30% 높음; IFA+PCA 병용 시 민감도 61%, 특이도 100%; 17-가스트린·펩시노겐 I·II는 대체 비침습 지표(민감도 75%, 특이도 95.6%); CVID 환자 72명 위내시경에서 13명 위체부 위축 확인, 전원 PCA 음성; 임상적으로 강하게 의심될 경우 혈청 결과와 무관하게 위내시경 시행 권고",
+    "9가지 AID별 혈청음성 빈도 정리(표 2) — AAG 20~30%, 복강병 1.5~5%, 자가면역간염 20%, 원발경화담관염 20~40%, 원발담즙성담관염 5~10%, 자가면역갑상선질환 약 20%, 류마티스관절염 20~45%(RF)/30~50%(ACPA), 쇼그렌증후군 30~50%, 항인지질증후군 약 30%, 자가면역뇌염 약 30%; 중증근무력증 10%(전신형), 최대 50%(안구형)",
+    "혈청음성 진단 전략 원칙 — 조직학적 손상 증거(면역세포 침윤) 확인이 핵심; 영상·전기생리학·뇌척수액 검사 등 보조 검사 활용; 일부 AID(세로네거티브 항인지질증후군, 자가면역뇌염)는 비기준 항체(non-criteria antibodies) 추가 검사 권고; 혈청 결과가 없어도 강한 임상 의심 시 내시경·생검 선행 원칙",
+    "면역노화와 자가항체 소실 — 고령에서 일부 AID(예: AAG)의 자가항체 음성화가 관찰되는 반면, 염증성장질환·류마티스관절염은 오히려 고령에서 증가; 항핵항체·항카르디올리핀항체·항갑상선항체는 고령에서 오히려 증가하나 임상 발현은 경미; 면역노화의 기전 및 자가면역에 대한 역할은 아직 논쟁 중"
+  ],
+  meta: {
+    "논문 유형": "서술적 종설 (Narrative Review)",
+    "포함 AID": "AAG, 복강병, 자가면역간질환(AIH·PBC·PSC), 자가면역갑상선질환, 류마티스관절염, 쇼그렌증후군, 항인지질증후군, 자가면역뇌염, 중증근무력증",
+    "연구 기관": "파비아 대학교·산마테오 병원 IRCCS, 이탈리아",
+    "핵심 메시지": "혈청음성 AID는 드물지 않으며, 진단은 조직학·임상 증거 기반으로 이루어져야 함 — 특히 AAG에서 고령·CVID 시 PCA 음성이더라도 내시경 필요"
+  },
+  related_ids: [259]
+},
+{
+  id: 263,
+  title: "Diagnostic criteria and endoscopic and histological findings of autoimmune gastritis in Japan",
+  title_ko: "일본의 자가면역성위염 진단기준 및 내시경·조직학적 소견",
+  journal: "Journal of Gastroenterology",
+  journal_short: "J Gastroenterol",
+  year: 2023,
+  volume: "58",
+  issue: "5",
+  pages: "409-426",
+  if: 6.9,
+  authors: "Kamada T, Watanabe H, Furuta T, Terao S, Maruyama Y, Kawachi H, Kushima R, Chiba T, Haruma K",
+  doi: "10.1007/s00535-022-01954-9",
+  source: "journal",
+  is_guideline: true,
+  topics: ["진단", "내시경", "병리"],
+  abstract_ko: "일본소화기내시경학회(JGES) 산하 'A형 위염 진단기준 제정 연구반(CARP)'이 제정한 일본 최초의 자가면역성위염(AIG) 공식 진단기준을 제시하는 종설입니다. 서구의 진단기준이 조직병리 중심인 데 반해, 이 일본 기준은 내시경 소견·조직 소견·위 자가항체(PCA·IFA) 양성을 통합한 구조로 구성되어 있습니다. 확진 기준(내시경 및/또는 조직 기준 충족 + 위 자가항체 양성)과 의심 기준(내시경 및/또는 조직 기준만 충족)으로 나뉘며, 조기 AIG의 조직학적 기준은 포함하되 내시경 기준은 추가 데이터 축적 후 확정 예정으로 제외하였습니다.",
+  keypoints: [
+    "일본판 AIG 진단기준 구조 — 확진: (A) 내시경 및/또는 조직 기준 충족 + (B) 위 자가항체 양성(PCA 10배 이상 또는 IFA 양성); 의심: (A)만 충족(자가항체 미확인); 조기 AIG 확진: 조직 기준 충족 + 자가항체 양성(내시경 기준은 추가 축적 후 제정 예정); 조기 AIG 의심: 조직 소견만 충족, 자가항체 음성; 서구 기준과 달리 내시경 소견을 주요 진단 항목으로 포함한 점이 특징적",
+    "진행기(advanced stage) 내시경 주소견 및 부소견 — 주소견: 위체부~위저부 우세의 고도 점막 위축(균일한 혈관 투시상), 위축 경계 불명확; 부소견: ①끈적끈적한 점착성 짙은 점액(황백색, 수세 제거 불가, 32.4%에서 관찰) ②잔류 산분비 점막(oxyntic mucosa pseudopolyps, 31.5%에서 관찰, 5가지 형태) ③과형성성 폴립(foveolar형, 비AIG 대비 유의하게 많음); 전정부 정상 색조가 아닌 경우도 있음(점상 발적, 적색선, 원형 주름 형태도 보조 진단 지표)",
+    "조직학적 3단계 분류(와타나베 분류) — ①조기 단계: 정상에 가까운 위선 구조 보존, 위소와 대 위선 비율 1:2~4, 잔류 벽세포 다수(팽윤·내강 돌출·탈락), ECL 세포 과증식 없음~경미, 림프구·형질세포 침윤 경도~중등도; ②진행 화성기: 점액경부세포선·유문선이 위저선 대부분 점유, 벽세포 현저 감소~소실, 위소와 연장, ECL 선형 과증식; ③진행 말기: 중등~고도 장형화생 우세, 위소와 고도 연장, 소수 유문선 잔류, ECL 과증식 지속; 서구 기준의 '조기 AIG'는 일본 기준의 '진행 화성기'에 해당",
+    "조직 면역염색 권장 패널 및 생검 부위 — 권장 면역염색: 크로모그라닌 A(ECL 세포), H+/K+ ATPase(벽세포), 펩시노겐 I(주세포), MUC6(점액경부세포), 가스트린(G세포); 권장 생검 부위: 전정부 대만(유문 근위 2cm) + 위체부 상부 대만이 기본; 보조적으로 위각부·위체부 소만 중앙 추가(위축·H. pylori 감염 여부 판정); 장형화생 부위 생검은 G·ECL 세포 정확 검출을 위해 가급적 회피",
+    "일본 현황 및 과제 — AIG 빈도 증가 배경: 내시경 검진 보급, 위암 위험 층화(D군: H. pylori 음성·펩시노겐 양성) 발견, 거적아구성 빈혈·철결핍빈혈·갑상선질환 평가, 위 신경내분비종양 정밀 검사, 반복 제균 실패 사례; PCA는 형광항체법 10배 희석 양성 기준 사용(보험 미적용 문제 존재); 이 진단기준을 통해 AIG의 조기 진단율 향상 및 위종양·악성빈혈 고위험군 분류 체계 구축 기대"
+  ],
+  meta: {
+    "논문 유형": "진단기준 제안 종설 (공식 가이드라인)",
+    "제정 주체": "일본소화기내시경학회(JGES) 산하 'A형 위염 진단기준 제정 연구반(CARP)'",
+    "다기관 근거": "일본 11개 기관 245례 다기관 연구(Dig Endosc 2020) 기반",
+    "연구 기관": "가와사키의과대학·하마마츠의과대학·시가의과대학 등, 일본",
+    "핵심 메시지": "일본 최초 AIG 공식 진단기준 — 내시경·조직·자가항체 통합 진단 체계 제시; 조기 AIG 조직기준 포함, 내시경기준은 추가 축적 후 제정 예정"
   },
   related_ids: []
 }
