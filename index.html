@@ -53,6 +53,7 @@
   [현재 현황]
   - 마지막 논문 ID: 250
   - 총 논문 수: 236편 (2026-05-04 기준)
+  - 마지막 점검: 2026-05-04 (ID 결번 확인, related_ids 양방향 수정 완료)
   - 다음 정기 점검 기준: 250편 도달 시 → 정기 점검 실시
 
 ════════════════════════════════════════════════════════════
@@ -2570,7 +2571,7 @@ const PAPERS = [
       "저널 인용": "2026년 4월 게재",
       "가이드라인": "RE.GA.IN 기반"
     },
-    related_ids: [49, 55, 156, 192, 194]
+    related_ids: [2, 44, 49, 50, 55, 156, 157, 158, 192, 194]
   },
   {
     id: 2,
@@ -2739,8 +2740,8 @@ const PAPERS = [
       "연구 기간": "2013~2023년 (추적 최대 2024년)",
       "연구 기관": "Albany Medical Center, NY, USA"
     },
-    related_ids: [125, 126]
-  },
+  related_ids: [124, 125, 126]
+},
   {
     id: 8,
     title: "Beyond Type 1 Diabetes: Autoimmune Gastritis-Driven Multisystem Disease in Autoimmune Polyglandular Syndrome Type 3",
@@ -3919,7 +3920,7 @@ const PAPERS = [
     "문헌 검색": "2025년 3월까지 PubMed·EMBASE·Scopus·Cochrane·Google Scholar",
     "연구 기관": "Sapienza Univ. Rome / Univ. Pavia / Univ. Vita-Salute San Raffaele / Univ. Padua / Univ. Siena / IEO Milan / Univ. Milano-Bicocca, Italy"
   },
-  related_ids: [1, 55, 156, 158]
+  related_ids: [1, 2, 50, 55, 156, 158]
 },
 {
   id: 50,
@@ -4681,7 +4682,7 @@ const PAPERS = [
     "원 논문": "Ma et al., J Gastroenterol Hepatol 2025 (doi: 10.1111/jgh.16912)",
     "연구 기관": "덩양인민병원 한방과 / 청두중의약대학교 부속병원 / 청두중의약대학교, 중국"
   },
-  related_ids: [86, 88, 89]
+  related_ids: [57, 86, 88, 89]
 },
 {
   id: 88,
@@ -4709,7 +4710,7 @@ const PAPERS = [
     "원 논문": "Ma et al., J Gastroenterol Hepatol 2025 (doi: 10.1111/jgh.16912)",
     "연구 기관": "연방 세아라대학교 약물개발연구센터(NPDM) / 암세포유전체학연구소 / 생의학연구센터(NUBIMED), 브라질"
   },
-  related_ids: [86, 87, 89]
+  related_ids: [57, 86, 87, 89]
 },
 {
   id: 89,
@@ -4738,7 +4739,7 @@ const PAPERS = [
     "원 논문": "Ma et al., J Gastroenterol Hepatol 2025 (doi: 10.1111/jgh.16912)",
     "연구 기관": "진나 신드 의과대학교, 카라치, 파키스탄"
   },
-  related_ids: [86, 87, 88]
+  related_ids: [57, 86, 87, 88]
 },
 {
   id: 90,
@@ -5534,8 +5535,8 @@ const PAPERS = [
       "분석 도구": "CiteSpace, VOSviewer",
       "연구 기관": "Peking University / Xiyuan Hospital, China Academy of Chinese Medical Sciences, Beijing"
     },
-    related_ids: [157]
-  },
+  related_ids: [157]
+},
   {
     id: 119,
     title: "Clinical Manifestations of Helicobacter pylori–Negative Gastritis",
@@ -5828,8 +5829,8 @@ const PAPERS = [
       "출판일": "2026년 4월 2일",
       "연구 기관": "University of Padova, Italy"
     },
-    related_ids: [7, 126]
-  },
+  related_ids: [3, 7, 126]
+},
   {
     id: 126,
     title: "Reply to Rugge, M. Autoimmune Gastritis Diagnosis: Encompassing Pessimism, Realism, and Wish for the Future. Comment on Vienneau et al. Diagnostics 2025, 15, 2906",
@@ -5855,7 +5856,7 @@ const PAPERS = [
       "출판일": "2026년 4월 2일",
       "연구 기관": "Albany Medical Center, NY, USA"
     },
-    related_ids: [7, 125]
+    related_ids: [3, 7, 124, 125]
   },
   {
     id: 127,
@@ -6158,7 +6159,7 @@ const PAPERS = [
       "게재": "Gastroenterology 2025;168:405–416",
       "BPA 항목 수": "15개"
     },
-    related_ids: [35]
+    related_ids: [22, 35]
   },
   {
     id: 138,
@@ -6440,7 +6441,7 @@ const PAPERS = [
       "연구 기관": "University of Tokyo Hospital / Tokushima Health Screening Center",
       "관련 Letter": "Rugge M et al., J Gastroenterol 2026 (id 21)"
     },
-    related_ids: [21]
+    related_ids: [8, 21]
   },
   {
     id: 148,
@@ -6531,7 +6532,7 @@ const PAPERS = [
       "임상시험 등록": "NCT02624271",
       "비교 방법": "FEIA (Phadia™ 250) vs 면역블롯 (BlueDiver) vs IIF (쥐 조직 절편, APCA만)"
     },
-    related_ids: [180]
+    related_ids: [178, 180]
   },
   {
     id: 151,
@@ -6715,7 +6716,7 @@ const PAPERS = [
       "연구 기관": "LMU 뮌헨 대학병원 내과 II / 빈 의과대학 소화기내과, 오스트리아",
       "이해충돌": "Orgler·Dabsch: Marinomed Biotech AG에 매각된 국소 면역억제제 특허 보유"
     },
-    related_ids: [1, 49, 55]
+    related_ids: [1, 44, 49, 50, 55]
   },
   {
     id: 157,
@@ -6748,7 +6749,7 @@ const PAPERS = [
       "분석 도구": "VOSviewer 1.6.19 / CiteSpace 6.2.2 / Pajek 5.16 / Scimago Graphica 1.0.34",
       "연구 기관": "후난중의약대학교 제1병원 / 저장성중의약대학교 제3병원, 중국"
     },
-    related_ids: [1, 120, 200]
+    related_ids: [1, 114, 120, 200]
   },
   {
     id: 158,
@@ -6784,7 +6785,7 @@ const PAPERS = [
       "게재": "Am J Gastroenterol 2024;119:2408-2417",
       "통계": "Cox 회귀, Kaplan-Meier, Fisher's exact test; Harrell's C=0.82"
     },
-    related_ids: [1, 2, 21, 49]
+    related_ids: [1, 2, 8, 21, 44, 49]
   },
   {
     id: 159,
@@ -6816,7 +6817,7 @@ const PAPERS = [
       "연구 기관": "Stanford Health Care / Stanford University, California, USA",
       "연구비": "NCI K08CA252635, P01CA265772"
     },
-    related_ids: [43, 113]
+    related_ids: [36, 43, 90, 113]
   },
   {
     id: 160,
@@ -7897,7 +7898,7 @@ const PAPERS = [
     "주요 가이드라인 참조": "MAPS II 2019, 업데이트 시드니 분류, 교토 세계 합의문 2015",
     "연구 기관": "이탈리아 파비아대학교 산 마테오 병원 외 벨기에·이스라엘·미국·이탈리아(파도바·로마) 공동 저술"
   },
-  related_ids: [1]
+  related_ids: [1, 194]
 },
 {
   id: 193,
@@ -8334,7 +8335,7 @@ const PAPERS = [
     "분석 방법": "Mann-Whitney U 검정, 다변량 로지스틱 회귀분석, Spearman 상관분석(SPSS 16.0)",
     "연구 기관": "앙카라대학교 의과대학 소화기내과·핵의학과, 터키"
   },
-  related_ids: []
+  related_ids: [217]
 },
 {
   id: 208,
@@ -8675,7 +8676,7 @@ const PAPERS = [
     "누적 추적": "10,541인년",
     "연구 기관": "University of Padova (DIMED) / Baylor College of Medicine / LMU Munich"
   },
-  related_ids: [219, 21]
+  related_ids: [8, 21, 219]
 },
 {
   id: 219,
@@ -9527,7 +9528,7 @@ const PAPERS = [
     "방법론": "AGREE 프로세스 + GRADE 근거 평가 + Delphi 합의 투표",
     "핵심 변경": "MAPS I 대비 — LGD 가시 병변 치료 추가, OLGIM 선호, 이형성 즉각 재평가, 국소 GIM 위험층화 신설, H. pylori 제균 근거 강화"
   },
-  related_ids: [55]
+  related_ids: [50, 55]
 },
 {
   id: 245,
@@ -10217,7 +10218,7 @@ function openDetail(id) {
   document.getElementById("p-abstract").textContent = p.abstract_ko;
 
   document.getElementById("p-keypoints").innerHTML = p.keypoints.map(k =>
-    `<li><span class="kp-dot"></span><span>${k}</span></li>`
+    `<li><span class="kp-dot"></span><span>${escHtml(k)}</span></li>`
   ).join("");
 
   const metaEntries = [
@@ -10226,13 +10227,21 @@ function openDetail(id) {
   ];
   document.getElementById("p-meta").innerHTML = metaEntries.map(([k,v]) =>
     `<div class="meta-item">
-      <div class="meta-label">${k}</div>
-      <div class="meta-value">${v}</div>
+      <div class="meta-label">${escHtml(String(k))}</div>
+      <div class="meta-value">${escHtml(String(v))}</div>
     </div>`
   ).join("");
 
   const linkBtn = document.getElementById("p-link-btn");
-  linkBtn.onclick = () => window.open("https://doi.org/" + p.doi, "_blank");
+  if (p.doi) {
+    linkBtn.disabled = false;
+    linkBtn.textContent = "원문 보기 →";
+    linkBtn.onclick = () => window.open("https://doi.org/" + p.doi, "_blank");
+  } else {
+    linkBtn.disabled = true;
+    linkBtn.textContent = "DOI 없음";
+    linkBtn.onclick = null;
+  }
 
   // ── 관련 논문 섹션 ──
   const relatedSection = document.getElementById("related-section");
@@ -10247,10 +10256,10 @@ function openDetail(id) {
       const typeClass = isLetter ? "related-type-letter" : "related-type-original";
       const firstAuthor = rp.authors.split(',')[0] + (rp.authors.includes(',') ? ' 외' : '');
       return `<button class="related-card" onclick="openDetail(${rp.id})">
-        <span class="related-type-badge ${typeClass}">${typeLabel}</span>
+        <span class="related-type-badge ${typeClass}">${escHtml(typeLabel)}</span>
         <div class="related-card-body">
-          <div class="related-card-title">${rp.title_ko}</div>
-          <div class="related-card-meta">${firstAuthor} · ${rp.year} · ${rp.journal_short}</div>
+          <div class="related-card-title">${escHtml(rp.title_ko)}</div>
+          <div class="related-card-meta">${escHtml(firstAuthor)} · ${rp.year} · ${escHtml(rp.journal_short)}</div>
         </div>
         <span class="related-card-arrow">→</span>
       </button>`;
@@ -10378,7 +10387,7 @@ function saveNewPaper() {
   const keypoints = kpRaw ? kpRaw.split("\n").map(s => s.trim()).filter(Boolean) : [];
   const topics   = [...document.querySelectorAll(".topic-check:checked")].map(c => c.value);
 
-  const newId = PAPERS.length > 0 ? Math.max(...PAPERS.map(p => p.id)) + 1 : 1;
+  const newId = PAPERS.length > 0 ? PAPERS.reduce((max, p) => p.id > max ? p.id : max, 0) + 1 : 1;
   const paper = {
     id: newId, title, title_ko, journal, journal_short,
     year, authors, doi, source, topics,
@@ -11160,17 +11169,17 @@ function evRenderList() {
       <div class="ev-top">
         <div class="ev-date-block">
           <div class="ev-year-lbl">${yr}</div>
-          <div class="ev-month-lbl">${mo}</div>
+          <div class="ev-month-lbl">${escHtml(mo)}</div>
           <div class="ev-day">${day}</div>
         </div>
         <div class="ev-main">
-          <div class="ev-title">${ev.title}</div>
+          <div class="ev-title">${escHtml(ev.title)}</div>
           <div class="ev-meta">
-            <span class="ev-type-badge">${ev.type}</span>
-            <span class="ev-region-badge">${reg}</span>
-            <span class="ev-society">${ev.society}</span>
+            <span class="ev-type-badge">${escHtml(ev.type)}</span>
+            <span class="ev-region-badge">${escHtml(reg)}</span>
+            <span class="ev-society">${escHtml(ev.society)}</span>
           </div>
-          ${ev.location ? `<div class="ev-location">📍 ${ev.location}</div>` : ''}
+          ${ev.location ? `<div class="ev-location">📍 ${escHtml(ev.location)}</div>` : ''}
         </div>
       </div>`;
     card.onclick = () => evOpenDetail(ev.id);
@@ -11284,9 +11293,40 @@ function evSave() {
       String(d.getDate()).padStart(2,'0');
   }
 
+  // 90일 초과 daily 데이터 정리 (localStorage 용량 보호)
+  function purgeStaleDates(s) {
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 90);
+    const cutoffStr = cutoff.getFullYear() + '-' +
+      String(cutoff.getMonth()+1).padStart(2,'0') + '-' +
+      String(cutoff.getDate()).padStart(2,'0');
+    const dailyFields = ['visits', 'uniqueVisits'];
+    dailyFields.forEach(field => {
+      if (s[field]) {
+        Object.keys(s[field]).forEach(dk => { if (dk < cutoffStr) delete s[field][dk]; });
+      }
+    });
+    if (s.paperClicks) {
+      Object.values(s.paperClicks).forEach(entry => {
+        if (entry.daily) {
+          Object.keys(entry.daily).forEach(dk => { if (dk < cutoffStr) delete entry.daily[dk]; });
+        }
+      });
+    }
+    if (s.bannerClicks) {
+      Object.values(s.bannerClicks).forEach(entry => {
+        if (entry.daily) {
+          Object.keys(entry.daily).forEach(dk => { if (dk < cutoffStr) delete entry.daily[dk]; });
+        }
+      });
+    }
+    return s;
+  }
+
   // 고유 방문자: 오늘 처음 방문인지 확인
   function trackVisit() {
-    const s = getStore();
+    let s = getStore();
+    s = purgeStaleDates(s);
     const dk = todayKey();
     if (!s.visits) s.visits = {};
     if (!s.visits[dk]) s.visits[dk] = 0;
@@ -11470,12 +11510,14 @@ evRenderAll();
     const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
     if (dx < 0 && currentPage < totalPages) {
       // 왼쪽 스와이프 → 다음 페이지
-      goPage(currentPage + 1);
-      showPageToast(currentPage);
+      const nextPage = currentPage + 1;
+      goPage(nextPage);
+      showPageToast(nextPage);
     } else if (dx > 0 && currentPage > 1) {
       // 오른쪽 스와이프 → 이전 페이지
-      goPage(currentPage - 1);
-      showPageToast(currentPage);
+      const prevPage = currentPage - 1;
+      goPage(prevPage);
+      showPageToast(prevPage);
     }
   }, { passive: true });
 
@@ -11505,7 +11547,7 @@ evRenderAll();
 </script>
 
 <!-- 돋보기 글씨 크기 토글 버튼 -->
-<button class="font-zoom-btn" id="fontZoomBtn" title="검색창으로 이동" aria-label="검색창으로 이동">🔍</button>
+<button class="font-zoom-btn" id="fontZoomBtn" title="글씨 크기 확대" aria-label="글씨 크기 확대">🔍</button>
 
 <script>
 (function() {
@@ -11528,10 +11570,9 @@ evRenderAll();
   }
 
   btn.addEventListener('click', () => {
-    // 버튼 클릭 시 항상 검색창 포커스 이동
-    const si = document.getElementById('search-input');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(() => { si.focus(); si.select(); }, 250);
+    zoomed = !zoomed;
+    localStorage.setItem(ZOOM_KEY, zoomed ? '1' : '0');
+    applyZoom();
   });
 
   applyZoom();
