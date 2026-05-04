@@ -1926,6 +1926,14 @@
 </style>
 
 </style>
+<!-- ── Google Analytics 4 ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JV03JHYKVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JV03JHYKVK');
+</script>
 </head>
 <body>
 
@@ -11832,6 +11840,11 @@ function evSave() {
 
   // 논문 클릭 트래킹
   window.kaigTrackPaper = function(paperId, paperTitle) {
+    // GA4 이벤트 전송
+    if (typeof gtag === 'function') {
+      gtag('event', 'paper_click', { paper_id: String(paperId), paper_title: paperTitle || '' });
+    }
+    // 로컬 캐시 (admin 대시보드용)
     const s = getStore();
     const dk = todayKey();
     if (!s.paperClicks) s.paperClicks = {};
@@ -11844,6 +11857,12 @@ function evSave() {
 
   // 배너 클릭 트래킹
   window.kaigTrackBanner = function(bannerId, bannerName) {
+    // GA4 이벤트 전송
+    if (typeof gtag === 'function') {
+      const position = bannerId.includes('top') ? 'top' : 'bottom';
+      gtag('event', 'banner_click', { banner_position: position, banner_name: bannerName || bannerId });
+    }
+    // 로컬 캐시
     const s = getStore();
     const dk = todayKey();
     if (!s.bannerClicks) s.bannerClicks = {};
