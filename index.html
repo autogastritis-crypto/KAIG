@@ -12415,8 +12415,9 @@ evRenderAll();
 // ── BANNER AUTO-UPDATE: 다가오는 학술행사 순서대로 배너 자동 표시 ──
 (function initEventBanners() {
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const todayStr = today.toISOString().slice(0, 10);
+  const todayStr = today.getFullYear() + '-'
+    + String(today.getMonth() + 1).padStart(2, '0') + '-'
+    + String(today.getDate()).padStart(2, '0');
 
   // 오늘 이후(진행 중 포함) 행사 중 가장 가까운 2개
   const upcoming = evEvents
