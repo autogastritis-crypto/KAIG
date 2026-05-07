@@ -114,8 +114,8 @@
       출판 확정된 논문의 연도·권·호·페이지 등을 업데이트
 
   [현재 현황]
-  - 마지막 논문 ID: 294
-  - 총 논문 수: 272편 (2026-05-07 기준)
+  - 마지막 논문 ID: 296
+  - 총 논문 수: 277편 (2026-05-07 기준)
   - 마지막 점검: 2026-05-04 (ID 결번 확인, related_ids 양방향 수정 완료, 중복 DOI 5건 제거)
   - 다음 정기 점검 기준: 310편 도달 시 → 정기 점검 실시
 
@@ -3198,7 +3198,7 @@ const PAPERS = [
     "출판일": "2026년 4월 2일 (온라인 선출판)",
     "연구 기관": "University of Padova / Baylor College of Medicine / LMU Munich"
   },
-  related_ids: [147, 158, 218]
+  related_ids: [147, 158, 218, 296]
 },
 {
   id: 22,
@@ -3534,7 +3534,8 @@ const PAPERS = [
     "대상": "AIG 14례 / HPG 13례 / 정상 9례 (추가 RT-PCR 코호트 포함)",
     "데이터": "Gene Expression Omnibus GSE233973 공개",
     "연구 기관": "The University of Tokyo / National Cancer Center Research Institute, Tokyo, Japan"
-  }
+  },
+  related_ids: [287, 296]
 },
 {
   id: 34,
@@ -6529,7 +6530,7 @@ const PAPERS = [
       "연구 기관": "University of Tokyo Hospital / Tokushima Health Screening Center",
       "관련 Letter": "Rugge M et al., J Gastroenterol 2026 (id 21)"
     },
-    related_ids: [21]
+    related_ids: [21, 296]
   },
 {
     id: 148,
@@ -10784,7 +10785,7 @@ const PAPERS = [
     "핵심 메시지": "AIG는 HPG보다 약하지만 유의한 수준의 비정상적 DNA 메틸화(암 드라이버 유전자 포함)를 유도하며, 이것이 AIG의 상대적으로 낮은 발암 위험을 후성유전학적으로 설명함",
     "분석 방법": "Infinium MethylationEPIC 어레이(전장 유전체), 백혈구 분획 보정, 화산 플롯·산점도 분석, GSEA·DAVID GO 분석, RT-qPCR"
   },
-  related_ids: []
+  related_ids: [33, 296]
 },
 {
   id: 288,
@@ -11009,6 +11010,71 @@ const PAPERS = [
     "핵심 메시지": "AIG는 이형성증·NET 위험 증가와 연관되며 위암 위험이 과소평가될 가능성이 있음; PA 동반 시 위암 위험 명확히 상승; H. pylori 노출은 오히려 위험을 낮추는 경향이나 탐색적 수준"
   },
   related_ids: [69, 213, 237]
+},
+{
+  id: 295,
+  title: "Concomitant Assessment of Oral and Gastric Microbiota Composition in Autoimmune Gastritis Patients: A Case–Control Study",
+  title_ko: "자가면역성위염 환자에서 구강 및 위 미생물군 동시 평가: 증례-대조 연구",
+  journal: "Microorganisms",
+  journal_short: "Microorganisms",
+  year: 2026,
+  volume: "14",
+  issue: "4",
+  pages: "789",
+  if: 4.1,
+  authors: "Belloni L, Cingolani S, Mancabelli L, Stendardo G, Fabretti F, Vavallo M, Pivetta G, Dilaghi E, Esposito G, Annibale B, Ventura M, Milani C, Lahner E",
+  doi: "10.3390/microorganisms14040789",
+  source: "journal",
+  topics: ["병인기전", "진단", "암위험"],
+  abstract_ko: "로마 사피엔자 대학교 산탄드레아 병원 소화기내과(Lahner E 등)와 파르마 대학교(Milani C, Ventura M 등) 공동 연구팀이 발표한 증례-대조 연구입니다. 조직학적으로 진단된 자가면역성위염(AIG) 환자 20명과 AIG가 없는 대조군 20명을 대상으로, 위내시경 시행 전 타액과 위 생검을 동시에 채취하여 구강 미생물군과 위 미생물군을 함께 분석하였습니다. IlluminaMiSeq 기반 페어드엔드 시퀀싱을 적용하였으며, 구강에서 위로의 세균 이동 가능성과 AIG 환자의 위 이상균총(dysbiosis)에서 구강 유래 세균이 갖는 역할을 규명하고자 하였습니다.",
+  keypoints: [
+    "위 생검 내 세균 다양성 감소(위 이상균총 확인) — AIG 환자의 위 생검에서 Shannon-Wiener 다양성지수가 대조군보다 유의하게 낮았고(2.55 vs 2.61, p=0.0014), 세균 풍부도(분류된 리드 수)는 AIG에서 약 2배 높은 경향이었으나 통계적 유의성에는 미치지 못함(p=0.06). 반면 타액에서는 AIG의 다양성지수가 대조군보다 높았음(2.83 vs 2.73, p<0.0001).",
+    "위 생검에서 AIG와 유의하게 연관된 세균 — Spearman 상관분석에서 Streptococcus oralis, Gemella unknown species, Fusobacterium pseudoperiodonticum, Veillonella rogosae, Gemella sanguinis가 AIG 환자의 위 생검에서 유의하게 높은 양의 상관관계를 보임(모두 p<0.036); 구강 유래 혐기성 세균들이 위산 분비 저하 환경에서 위 점막에 정착하는 것을 시사",
+    "구강-위 공유 세균 분석: AIG에서만 공유되는 4개 세균종 확인 — 전체 공유 세균 중 Streptococcus oralis(AIG 40% vs 대조군 10%)와 Prevotella histicola(AIG 25% vs 대조군 5%)가 가장 많이 공유됨; 특히 Fusobacterium pseudoperiodonticum, Gemella sanguinis, Gemella unknown species, Veillonella rogosae 4종은 AIG 환자에서만 구강-위 공유가 관찰되고 대조군에서는 전혀 공유되지 않음(각 20%)",
+    "구강 유래 세균과 위암 전구 병변의 연관성 — Gemella는 정상 점막 대비 장상피화생·조기위암에서 점진적 증가 보고; Streptococcus는 구강·위암 조직 및 H. pylori 음성 위암에서 풍부하게 검출; Fusobacterium은 H. pylori 감염과 무관하게 위암 및 전구 병변과 연관 — 본 연구의 AIG 소견과 일치",
+    "임상적 시사점: 저산증 환자에서 구강 위생의 중요성 부각 — AIG는 만성적 위산 분비 저하로 위내 pH 상승, 구강 유래 세균의 위 내 생존·정착 가능성 증가; 위산의 스캐빈저 역할 소실이 위 이상균총의 주요 기전; 위산 분비가 저하된 환자에서 구강 유생태(eubiosis) 유지 및 치주 건강 관리가 위 미생물군 조성에 중요할 수 있음을 시사",
+    "연구 제한점 — 소규모(각 군 20명), 횡단면 설계로 인과관계 미확립; 식이 변수 미통제; AIG에 위암 동반 사례 없어 암 단계 비교 불가; 구강 이상균총이 먼저인지 위 이상균총이 먼저인지 방향성 불명확 — 종단 연구 필요"
+  ],
+  meta: {
+    "논문 유형": "증례-대조 연구 (Case–Control Study)",
+    "연구 기관": "산탄드레아 병원·로마 사피엔자 대학교 / 파르마 대학교, 이탈리아",
+    "대상": "AIG 20명, 대조군 20명 (타액 40개, 위 생검 40개)",
+    "시퀀싱 방법": "Shallow shotgun metagenomics (IlluminaMiSeq, METAnnotatorX2)",
+    "핵심 메시지": "AIG 환자의 위 이상균총은 구강 유래 세균과 밀접하게 연관되며, 저산증 환자에서 구강 위생 관리가 위 미생물군 조성에 영향을 미칠 수 있음"
+  },
+  related_ids: []
+},
+{
+  id: 296,
+  title: "Reply to Letter \"Gastric cancer in autoimmune gastritis: ranking the risk\" by Prof. Massimo Rugge",
+  title_ko: "Rugge 교수의 편지 '자가면역성위염에서의 위암: 위험도 순위 재정립'에 대한 답신",
+  journal: "Journal of Gastroenterology",
+  journal_short: "J Gastroenterol",
+  year: 2026,
+  volume: "",
+  issue: "",
+  pages: "",
+  if: 6.9,
+  authors: "Yamamichi N, Aoki R, Takeuchi C",
+  doi: "10.1007/s00535-026-02435-z",
+  source: "journal",
+  topics: ["암위험", "병인기전"],
+  abstract_ko: "야마미치(Yamamichi N), 아오키(Aoki R), 타케우치(Takeuchi C) — 도쿄 대학교 병원 및 도쿠시마 건강검진센터 — 가 Rugge, Genta, Malfertheiner의 편지(id 21)에 대해 발표한 답신입니다. Rugge 등의 핵심 주장, 즉 H. pylori 비노출 AIG 환자에서의 위암 위험이 아직 충분히 규명되지 않았다는 점에 전적으로 동의하면서, 현재 연구의 한계로서 형태학적 평가만으로는 AIG의 생물학적 복잡성을 포착하기 어렵다는 점을 강조합니다. AIG에서 확인된 이상 DNA 메틸화(id 287)와 다발성 전분화(id 33) 등 분자 기전에 대한 집중 연구, 멀티오믹스 통합 분석, 그리고 동물 모델의 체계적 활용이 향후 필수적임을 제안합니다. ⚠️ Article in Press 상태입니다 (2026년 5월 3일 온라인 출판).",
+  keypoints: [
+    "⚠️ Article in Press — J Gastroenterol 2026년 5월 3일 온라인 출판, 최종 권·호·페이지 미확정",
+    "Rugge et al.의 핵심 주장에 동의: H. pylori 비감염 AIG에서 위암 위험의 크기가 아직 불충분하게 정의되어 있으며, 이를 규명하기 위해 대규모 전향적 연구가 필수적임을 재확인",
+    "형태학적 평가의 한계 지적 — 조직학·내시경 평가가 AIG 진단·감시의 근간이나, 만성 염증·고가스트린혈증·면역 이상·광범위한 상피 재프로그래밍을 포함한 AIG의 생물학적 복잡성을 형태학만으로는 온전히 포착할 수 없음",
+    "AIG 고유의 분자 발암 기전 강조 — 이상 DNA 메틸화(id 287)와 장형·췌장형·폐형 다발성 이형분화(id 33)가 AIG에서 확인됨; H. pylori 관련 위염(HPG)에서도 유사한 후성유전학적·이형분화 이상이 보고되어, 두 병인이 공통 분자 경로로 수렴할 가능성 제시",
+    "멀티오믹스 연구 방향 제안 — 유전체·후성유전체·전사체·단백질체·대사체·단일세포·공간 프로파일링의 통합 분석이 새로운 발암 경로 발견, 조직학적 기준을 넘는 위험 계층화, 조기 발견 바이오마커 규명에 기여할 수 있음; 대규모 잘 정의된 코호트에서의 전향적 연구와 병행 권고",
+    "AIG 동물 모델의 중요성 강조 — HPG 모델과 달리 AIG 마우스 모델은 사용이 제한적; 벽세포 소실·고가스트린혈증·ECL세포 과증식 등 인간 AIG 핵심 특성을 재현하는 모델이 존재하나 종양 발생 종단 분석은 부족; AIG 고유의 발암 잠재력을 규명하기 위한 체계적 모델 개발·활용 촉구"
+  ],
+  meta: {
+    "논문 유형": "Letter to the Editor (Reply)",
+    "답신 대상": "Rugge M, Genta RM, Malfertheiner P. J Gastroenterol 2026 (id 21)",
+    "출판일": "2026년 5월 3일 (온라인 선출판)",
+    "연구 기관": "도쿄 대학교 병원 역학·예방의학센터 / 도쿠시마 건강검진센터 / 도쿄 대학교 대학원 의학계연구과"
+  },
+  related_ids: [21, 147, 287, 33]
 }
 ];
 
