@@ -11722,7 +11722,18 @@ function openDetail(id) {
   if (p.doi) {
     linkBtn.disabled = false;
     linkBtn.textContent = "원문 보기 →";
-    linkBtn.onclick = () => window.open("https://doi.org/" + p.doi, "_blank");
+    linkBtn.onclick = () => {
+      try {
+        const _data = JSON.parse(localStorage.getItem('kaig_analytics')) || {};
+        const _today = new Date().toISOString().slice(0,10);
+        if (!_data.paperClicks) _data.paperClicks = {};
+        const _pid = 'paper-' + p.id;
+        if (!_data.paperClicks[_pid]) _data.paperClicks[_pid] = { title: p.title_ko || p.title, daily: {} };
+        _data.paperClicks[_pid].daily[_today] = (_data.paperClicks[_pid].daily[_today] || 0) + 1;
+        localStorage.setItem('kaig_analytics', JSON.stringify(_data));
+      } catch(e) {}
+      window.open("https://doi.org/" + p.doi, "_blank");
+    };
   } else {
     linkBtn.disabled = true;
     linkBtn.textContent = "DOI 없음";
@@ -13076,5 +13087,6 @@ evRenderAll();
   applyZoom();
 })();
 </script>
+<script src="ga-tracker.js"></script>
 </body>
 </html>
