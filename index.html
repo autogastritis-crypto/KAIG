@@ -114,8 +114,8 @@
       출판 확정된 논문의 연도·권·호·페이지 등을 업데이트
 
   [현재 현황]
-  - 마지막 논문 ID: 307
-  - 총 논문 수: 288편 (2026-05-12 기준)
+  - 마지막 논문 ID: 308
+  - 총 논문 수: 289편 (2026-05-13 기준)
   - 마지막 점검: 2026-05-04 (ID 결번 확인, related_ids 양방향 수정 완료, 중복 DOI 5건 제거)
   - 2026-05-11: ID 27 volume/issue/pages 추가 (106권 3호 265-269쪽); ID 1·2 내용 전면 보강(abstract_ko, keypoints, meta, topics)
   - 2026-05-12: ID 303 추가 — BSG 위선암 위험 환자 가이드라인 (Banks M et al., Gut 2019;68:1545-1575)
@@ -123,6 +123,7 @@
   - 2026-05-12: ID 305 추가 — 위염 원인별 특성 및 조직학적 접근 (Pennelli G et al., Pathologica 2020;112:153-165)
   - 2026-05-12: ID 306 추가 — 위염 임상병리학적 스펙트럼 (Rugge M et al., Dig Liver Dis 2021, AiP)
   - 2026-05-12: ID 307 추가 — 세포 가소성·paligenosis·위 화생 종설 (Goldenring JR, Mills JC, Gastroenterology 2022;162:415-430); 자가면역성위염 관련성 확인 — 선암보다 1형 NET 위험 강조, M2 대식세포 결여로 선암 위험 상대적 낮음 기술; related_ids 연결 기준 해당 없음
+  - 2026-05-13: ID 308 추가 — 무증상 건강검진 수검자 혈청 펩시노겐 진단 가치 (Tong Y et al., Front Oncol 2021;11:652574); Hp 상태·지역별 PGR 절단값 제시; 기존 ID 269·270과 주제 유사성만 있어 related_ids 미연결
   - 다음 정기 점검 기준: 310편 도달 시 → 정기 점검 실시
 
 ════════════════════════════════════════════════════════════
@@ -11453,6 +11454,39 @@ const PAPERS = [
     "핵심 메시지": "주세포 재프로그래밍(paligenosis)이 위 유문 화생의 핵심 기전이며, 만성 염증에 의한 계통 혼란(SPEM+불완전형 장상피화생 공존)이 위암 발생의 고위험 미세환경을 형성함. 자가면역성위염에서는 이 경로로 선암보다 1형 NET이 주로 발생",
     "동물 모델": "DMP-777·L635·tamoxifen 투여 마우스, H. felis·H. pylori 감염 마우스·저빌, Mist1-Kras(G12D) 마우스, 위내인자-rtTA 마우스",
     "자가면역성위염 관련 섹션": "Immune Cell Regulation of Metaplasia Induction and Progression (p. 420-422) 및 Diagnosing SPEM and Incomplete vs Complete Intestinal Metaplasia (p. 422-423)"
+  },
+  related_ids: []
+},
+{
+  id: 308,
+  title: "Diagnostic Value of Serum Pepsinogen Levels for Screening Gastric Cancer and Atrophic Gastritis in Asymptomatic Individuals: A Cross-Sectional Study",
+  title_ko: "무증상 건강검진 수검자에서 혈청 펩시노겐의 위암 및 위축성위염 선별 진단 가치: 단면 연구",
+  journal: "Frontiers in Oncology",
+  journal_short: "Front Oncol",
+  year: 2021,
+  volume: "11",
+  issue: "",
+  pages: "652574",
+  if: 3.5,
+  authors: "Tong Y, Wang H, Zhao Y, He X, Xu H, Li H, Shuai P, Gong L, Wu H, Xu H, Luo Y, Wang D, Liu S, Song Z",
+  doi: "10.3389/fonc.2021.652574",
+  source: "journal",
+  topics: ["바이오마커", "진단", "암위험", "헬리코박터"],
+  abstract_ko: "절강대학교 제2부속병원 등 중국 9개 국제건강검진센터에서 2016~2018년 건강검진 수검자 1,922명(무증상, 25~75세)을 대상으로 한 다기관 단면 연구입니다. 모든 참가자가 같은 날 위내시경·조직병리(시드니 분류, OLGA 병기), 혈청 PGI·PGII, 13C-요소호기검사 및/또는 Hp 혈청 현감염지표검사를 동시에 시행했습니다. 병리 중증도가 높아질수록 PGI 및 PGR이 유의하게 감소하였으며, 같은 병리 군 내에서 Hp 양성 시 PGI·PGII 상승, PGR 감소가 관찰되었습니다. 최적 절단값은 위축 진단에 PGI ≤73.1 ng/ml·PGR ≤9.8, 중증 위축에 PGR ≤9.09, 위암에 PGR ≤4.7로 도출되었으며, Hp 상태 및 중국 지역별로 절단값이 유의하게 달랐습니다.",
+  keypoints: [
+    "연구 설계 및 대상 — 중국 9개 국제건강검진센터 다기관 단면 연구; 무증상 건강검진 수검자 1,922명(최종 분석); NAG 1,590명, MAG 273명, SAG 49명, GC 10명; OLGA 0=NAG, OLGA I-II=MAG, OLGA III-IV=SAG로 분류; Hp 양성률 41.7%(중국 내 평균 수준)",
+    "PGR이 위축 중증도를 가장 잘 반영하는 지표 — PGI 및 PGR은 병리 중증도가 높아질수록 단계적으로 유의하게 감소; PGR이 PGI보다 일관성 있는 위축 지표; Hp 양성 군에서는 같은 병리군 내에서도 PGI·PGII가 음성군보다 높고 PGR은 낮음 → Hp 상태가 PG 수치에 독립적으로 영향",
+    "최적 절단값 — 위축 전체: PGI ≤73.1 ng/ml(AUC 0.596), PGR ≤9.8(AUC 0.636); 중증 위축: PGR ≤9.09(AUC 0.737), Hp 양성군에서 PGR ≤4.5(AUC 0.768); 위암: PGR ≤4.7(AUC 0.715), Hp 음성군에서 PGR ≤7.1(AUC 0.797); Hp 양성군 위암에서는 유의한 절단값 미도출(P>0.05)",
+    "Hp 상태별 절단값 차이 — Hp 음성 위축군 최적값: PGI ≤62.5 ng/ml, PGR ≤11.5; Hp 양성 위축군: PGI ≤90.2 ng/ml, PGR ≤8.8; 기존 일본·한국 기준(PGI ≤70, PGR ≤3)을 그대로 중국에 적용하면 부적합; Hp 감염률이 높은 인구집단에서 Hp 상태를 고려한 별도 절단값 적용 필요성 제시",
+    "지역별 기저 PG 수치 차이 — NAG군 내에서도 중국 5개 권역(남부·동부·서남부·동북부·중북부) 간 PGI·PGII·PGR이 유의하게 상이; 지역 차이는 Hp 감염률, 식습관, 민족 구성, 흡연율 등 기저 특성 차이에 의한 것으로 추정; 지역별 별도 절단값 적용 필요성 제시(중증 위축 절단값: 동부 PGR ≤4.5, 서남부 PGR ≤7.4, 동북부 PGR ≤8.9)",
+    "AG/GC 독립적 위험 인자(로지스틱 회귀) — 연령 70세 이상(OR 2.93), 과일 섭취 부족(OR 1.9), 흡연(OR 1.8), Hp 감염(OR 2.0), 낮은 PGR(OR 1.44); 성별·가족력·고염식·음주는 단변량에서 유의하지 않음; 채소·과일 정기 섭취가 보호 효과 가능"
+  ],
+  meta: {
+    "논문 유형": "원저 (Original Research) — 다기관 단면 연구",
+    "연구 기관": "절강대학교 제2부속병원(주관) 외 9개 중국 국제건강검진센터",
+    "핵심 메시지": "혈청 PGR이 위축성위염 및 위암 선별에 유용하나, Hp 감염 상태 및 지역에 따라 절단값이 달라야 하며, 기존 일본·한국 기준을 중국에 그대로 적용하기 어려움",
+    "검사 방법": "혈청 PG: Abbott ARCHITECT 화학발광 미립자 면역분석법; Hp: 13C-요소호기검사 + Hp 혈청 현감염지표 신속검사 + 병리 중 1개 이상 양성 시 Hp 양성 판정",
+    "한계": "GC 및 SAG 사례 수 소규모(GC 10명, SAG 49명); 건강검진 자발 수검자 선택 편향 가능; 전향적 검증 연구 필요"
   },
   related_ids: []
 }
