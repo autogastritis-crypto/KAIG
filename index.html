@@ -114,14 +114,15 @@
       출판 확정된 논문의 연도·권·호·페이지 등을 업데이트
 
   [현재 현황]
-  - 마지막 논문 ID: 306
-  - 총 논문 수: 287편 (2026-05-12 기준)
+  - 마지막 논문 ID: 307
+  - 총 논문 수: 288편 (2026-05-12 기준)
   - 마지막 점검: 2026-05-04 (ID 결번 확인, related_ids 양방향 수정 완료, 중복 DOI 5건 제거)
   - 2026-05-11: ID 27 volume/issue/pages 추가 (106권 3호 265-269쪽); ID 1·2 내용 전면 보강(abstract_ko, keypoints, meta, topics)
   - 2026-05-12: ID 303 추가 — BSG 위선암 위험 환자 가이드라인 (Banks M et al., Gut 2019;68:1545-1575)
   - 2026-05-12: ID 304 추가 — AGA 위 장상피화생 관리 가이드라인 (Gupta S et al., Gastroenterology 2020;158:693-702)
   - 2026-05-12: ID 305 추가 — 위염 원인별 특성 및 조직학적 접근 (Pennelli G et al., Pathologica 2020;112:153-165)
   - 2026-05-12: ID 306 추가 — 위염 임상병리학적 스펙트럼 (Rugge M et al., Dig Liver Dis 2021, AiP)
+  - 2026-05-12: ID 307 추가 — 세포 가소성·paligenosis·위 화생 종설 (Goldenring JR, Mills JC, Gastroenterology 2022;162:415-430); 자가면역성위염 관련성 확인 — 선암보다 1형 NET 위험 강조, M2 대식세포 결여로 선암 위험 상대적 낮음 기술; related_ids 연결 기준 해당 없음
   - 다음 정기 점검 기준: 310편 도달 시 → 정기 점검 실시
 
 ════════════════════════════════════════════════════════════
@@ -11419,6 +11420,39 @@ const PAPERS = [
     "핵심 메시지": "SPEM을 포함한 위축 전체 스펙트럼 평가가 위암 위험도 예측에 필수적이며, OLGA 병기가 OLGIM보다 포괄적인 이유; 교토 분류 기반 원인 분류와 배아 발생학적 근거를 통한 생검 프로토콜의 합리화",
     "출판 상태": "Article in Press (2021년 3월 수락, volume/pages 미확정)",
     "주요 강조점": "SPEM/위소화성 화생의 임상적 중요성 재부각; 장상피화생 아형보다 OLGA 병기 우선"
+  },
+  related_ids: []
+},
+{
+  id: 307,
+  title: "Cellular Plasticity, Reprogramming, and Regeneration: Metaplasia in the Stomach and Beyond",
+  title_ko: "세포 가소성, 재프로그래밍, 재생: 위장과 그 너머의 화생",
+  journal: "Gastroenterology",
+  journal_short: "Gastroenterology",
+  year: 2022,
+  volume: "162",
+  issue: "2",
+  pages: "415-430",
+  if: 29.4,
+  authors: "Goldenring JR, Mills JC",
+  doi: "10.1053/j.gastro.2021.10.036",
+  source: "journal",
+  topics: ["병리", "병인기전", "암위험"],
+  abstract_ko: "밴더빌트 대학교 Goldenring JR과 베일러 의과대학 Mills JC가 공동 저술한 포괄적 종설로, 위 체부 점막의 손상 반응 기전인 화생(metaplasia)을 세포 가소성 관점에서 체계적으로 정리합니다. 위는 손상 깊이에 따라 두 가지 반응을 보입니다. 표층 손상에는 포소세포 과형성으로, 심부·만성 손상(주로 H. pylori)에는 샘 전체의 유문화생으로 반응합니다. 핵심 기전은 벽세포 소실 후 주세포(chief cell)가 단계적 재프로그래밍(paligenosis)을 거쳐 TFF2 발현 점액 분비 세포, 즉 유문경련 폴리펩타이드 발현 화생(SPEM) 세포로 전환되는 것입니다. 만성 염증이 지속되면 SPEM 세포에 장상피화생이 혼합된 '계통 혼란(lineage confusion)' 상태가 형성되며, 이것이 이형성 및 위암으로 진행하는 고위험 병변임을 강조합니다. 또한 이 paligenosis 프로그램이 식도(바렛 식도)·췌장(선방세포-관세포 화생)·장(궤양 관련 세포 계통)에서도 보존되어 있음을 논의합니다. 자가면역성위염에서는 벽세포 소실이 SPEM을 유도하지만, H. pylori 동반 감염 없이는 M2 대식세포 매개 염증 미세환경이 제한되어 선암 위험이 상대적으로 낮고, 대신 ECL 세포 증식을 통한 카르시노이드(1형 신경내분비종양) 위험이 높음을 별도로 기술합니다.",
+  keypoints: [
+    "손상 깊이에 따른 위 점막의 두 가지 반응 — 표층 손상: 포소세포 이주 → 포소세포 과형성(isthmus 줄기세포 재생); 심부 만성 손상: ①벽세포 소실(위축성위염) ②주세포 재프로그래밍 → SPEM 형성 ③포소세포 과형성 동반. 두 반응은 동시에 발생 가능(예: 궤양). SPEM 세포는 TFF2+/MUC6+/PGC-저발현 점액 세포로서 유문 화생의 샘 기저부를 정의하는 세포 계통",
+    "주세포 재프로그래밍(paligenosis) 3단계 — 1단계: MIST1·miR-148a 감소 + mTORC1 억제 + ROS 증가 → 라이소솜 활성화·자가소화로 지모겐 과립 제거(ATF3→RAB7B 경로); 2단계: xCT/CD44v9 증가(ROS 적응) + TFF2·MUC6 발현 유도 → SPEM 표현형 확립; 3단계: 지속 염증 시 mTORC1 재유도 → 증식성 SPEM. 각 단계는 약물·유전자 조작으로 차단 가능하며, paligenosis 프로그램이 조직·종 간 보존된 보편적 기전임을 제시",
+    "자가면역성위염과 SPEM — 자가면역성위염(악성빈혈 포함)에서 벽세포 소실 자체는 SPEM을 유도하기에 충분하며, 유문 화생 및 장상피화생이 동반 발생함. 그러나 H. pylori 동반 감염 없는 순수 자가면역성위염 환자는 선암 위험이 낮음 — 주요 이유: H. pylori 유도 M2 대식세포(선암 촉진 미세환경) 결여. 대신 고가스트린혈증에 의한 ECL 세포 자극 → 1형 NET(카르시노이드) 다발성 발생 위험이 현저히 높음. DMP-777 장기 투여 쥐 모델(1년 이상 벽세포 소실 유지)에서 이형성·선암 발생 없었으나, H. pylori 감염 동물 모델과 달리 뚜렷한 면역 반응 부재가 그 원인으로 제시됨",
+    "SPEM에서 장상피화생·이형성으로의 진행 경로 — 장상피화생은 SPEM에서 발생하는 것으로 추정: H. pylori 감염 저빌 모델에서 기존 유문 화생 내에 장상피화생 출현; Mist1-Kras(G12D) 마우스에서 SPEM 출현 후 1개월, 장상피화생은 3개월, 이형성은 4개월에 순차 발생. 고위험 병변: AQP5+ SPEM 세포가 기저부에 존재하는 '불완전형 장상피화생'(완전형 대비 위암 위험 높음). 이형성 표지자 TROP2는 불완전형 장상피화생·이형성에서 상향 조절(SPEM에서는 미발현). 주기적 paligenosis 사이클 반복 + 돌연변이 축적 → '순환적 돌연변이 모델(cyclical hit model)'로 종양 발생 설명",
+    "ILC2-IL-13 축이 SPEM 개시의 핵심 면역 신호 — 심부 손상 시: ①표면 점액세포에서 IL-33 분비 ②tuft 세포에서 IL-25 분비 → ③ILC2 활성화·확장 → ④IL-13(및 IL-4·amphiregulin) 분비 → ⑤주세포의 IL13RA1 수용체를 통한 재프로그래밍 개시. ILC2 제거 시 SPEM 유도 차단. M2 대식세포는 SPEM에서 증식성 화생으로 진행 촉진. 자가면역성위염 관련 선암 위험이 낮은 근거는 M2 대식세포 비율이 위선암 관련 CAG 환자보다 현저히 낮다는 관찰로 뒷받침됨",
+    "소화관 전체에서 보존된 pyloric 유사 화생 패턴 — ①바렛 식도: squamous→pyloric-like 상피 전환(심부 손상), cardia형 샘 기원 추정; ②췌장: 선방세포→관세포 화생(ADM, SOX9+ MUC 발현, SPEM과 유사 전사체), 췌관 선암 전구 병변(PanIN)으로 진행; ③장(Crohn's disease): 궤양 관련 세포 계통(UACL)이 TFF2+/SOX9+ pyloric 유사 표현형; ④담낭·십이지장·결장: 유문 유사 화생 보고. 위 체부 점막은 발생학적으로 먼저 pyloric 유사 → 주세포·벽세포 성숙화(인간에서 임신 6개월 이후), 즉 pyloric 화생은 발생 초기 표현형으로의 회귀로도 이해 가능"
+  ],
+  meta: {
+    "논문 유형": "종설 (Review) — Reviews in Basic and Clinical Gastroenterology and Hepatology",
+    "연구 기관": "밴더빌트 대학교 의과대학(Nashville Veterans Affairs Medical Center 포함), 베일러 의과대학",
+    "핵심 메시지": "주세포 재프로그래밍(paligenosis)이 위 유문 화생의 핵심 기전이며, 만성 염증에 의한 계통 혼란(SPEM+불완전형 장상피화생 공존)이 위암 발생의 고위험 미세환경을 형성함. 자가면역성위염에서는 이 경로로 선암보다 1형 NET이 주로 발생",
+    "동물 모델": "DMP-777·L635·tamoxifen 투여 마우스, H. felis·H. pylori 감염 마우스·저빌, Mist1-Kras(G12D) 마우스, 위내인자-rtTA 마우스",
+    "자가면역성위염 관련 섹션": "Immune Cell Regulation of Metaplasia Induction and Progression (p. 420-422) 및 Diagnosing SPEM and Incomplete vs Complete Intestinal Metaplasia (p. 422-423)"
   },
   related_ids: []
 }
