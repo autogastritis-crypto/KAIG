@@ -2063,6 +2063,7 @@
         </button>
         <div class="sort-menu" id="sort-menu">
           <button class="sort-option active" data-sort="default" onclick="setSort('default','추가순')">추가순</button>
+          <button class="sort-option" data-sort="newest" onclick="setSort('newest','최신 추가순')">최신 추가순 (ID↓)</button>
           <button class="sort-option" data-sort="year" onclick="setSort('year','최신순')">최신순 (연도↓)</button>
           <button class="sort-option" data-sort="if" onclick="setSort('if','IF 높은순')">IF 높은순</button>
         </div>
@@ -11647,6 +11648,7 @@ function setSort(key, label) {
   renderPapers();
 }
 function getSorted(list) {
+  if (activeSort === "newest") return [...list].sort((a,b) => b.id - a.id);
   if (activeSort === "year") return [...list].sort((a,b) => b.year - a.year || b.id - a.id);
   if (activeSort === "if")   return [...list].sort((a,b) => (b.if||0) - (a.if||0));
   return list; // default: insertion order
@@ -12396,8 +12398,8 @@ function ttsCleanText(text) {
     'GERD': '위식도역류질환',
     'APCA': '항벽세포항체',
     'AIFA': '내인인자항체',
-    'Tregs': '조절T세포',
-    'Treg': '조절T세포',
+    'Tregs': 'regulatory T cells',
+    'Treg': 'regulatory T cell',
     'AIRE': '자가면역조절유전자',
     'AMAG': '자가면역성화생성위축성위염',
     'AIG': '자가면역성위염',
@@ -12426,6 +12428,15 @@ function ttsCleanText(text) {
   };
 
   let t = text;
+
+  // -2. Type I/II/III 로마자 → 타입 원/투/삼 (가장 먼저 처리)
+  t = t.replace(/\bType\s+III\b/gi, '타입 삼');
+  t = t.replace(/\bType\s+II\b/gi,  '타입 투');
+  t = t.replace(/\bType\s+I\b/gi,   '타입 원');
+  // 숫자+로마자 혼용 패턴도 처리 (예: Type 1/Type 2)
+  t = t.replace(/\bType\s+3\b/gi, '타입 삼');
+  t = t.replace(/\bType\s+2\b/gi, '타입 투');
+  t = t.replace(/\bType\s+1\b/gi, '타입 원');
 
   // -1. H+/K+-ATPase 및 관련 표현 → 하이드로젠펌프 (가장 먼저 처리)
   t = t.replace(/H\+\s*\/\s*K\+[-–]?ATPase/gi, '하이드로젠, 포타슘, 에이티피에이즈');
@@ -12456,7 +12467,9 @@ function ttsCleanText(text) {
     t = t.replace(new RegExp('\\b' + abbr + '\\b', 'g'), full);
   }
 
-  // 3. 괄호 처리 — 한글 포함 괄호만 유지, 나머지(통계값·약어 등)는 무음 삭제
+  // 2b. TxA23 → 흉선절제 형질전환 마우스
+  t = t.replace(/\bTxA23\b/g, '흉선절제 형질전환 마우스');
+
   t = t.replace(/\(([^)]{1,120})\)/g, (match, inner) => {
     if (/[가-힣]/.test(inner)) return match;
     return ' ';
@@ -12514,6 +12527,30 @@ function ttsCleanText(text) {
   });
   t = t.replace(/(\d+)%/g, (_, intPart) => {
     return intToKorean(parseInt(intPart, 10)) + ' 퍼센트';
+  });
+
+  // 5c. IL 약어 → Interleukin + 번호 영어 수사
+  // IL-17A → Interleukin seventeen A, IL-6 → Interleukin six
+  const intToEnglish = (n => {
+    const ones = ['','one','two','three','four','five','six','seven','eight','nine',
+                  'ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen',
+                  'seventeen','eighteen','nineteen'];
+    const tens = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+    if (n < 20) return ones[n];
+    if (n < 100) return tens[Math.floor(n/10)] + (n%10 ? ' ' + ones[n%10] : '');
+    return n; // 100 이상은 숫자 그대로
+  });
+  t = t.replace(/\bIL[-–](\d+)([A-Za-z]?)\b/g, (_, num, suffix) => {
+    return 'Interleukin ' + intToEnglish(parseInt(num, 10)) + (suffix ? ' ' + suffix : '');
+  });
+  t = t.replace(/\bIL(\d+)([A-Za-z]?)\b/g, (_, num, suffix) => {
+    return 'Interleukin ' + intToEnglish(parseInt(num, 10)) + (suffix ? ' ' + suffix : '');
+  });
+
+  // 5d. Th 아형 → helper T cell + 번호 영어 수사
+  // Th17 → helper T cell seventeen, Th1 → helper T cell one
+  t = t.replace(/\bTh(\d+)\b/g, (_, num) => {
+    return 'helper T cell ' + intToEnglish(parseInt(num, 10));
   });
 
   // 6. 소수점 처리 — 정수부는 낱자로, 소수부는 낱자로 읽기
