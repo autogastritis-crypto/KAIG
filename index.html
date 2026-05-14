@@ -12467,7 +12467,8 @@ function ttsCleanText(text) {
     t = t.replace(new RegExp('\\b' + abbr + '\\b', 'g'), full);
   }
 
-  // 2b. TxA23 → 흉선절제 형질전환 마우스
+  // 2b. TxA23 → 흉선절제 형질전환 마우스 (뒤에 '마우스'가 오면 중복 방지)
+  t = t.replace(/\bTxA23\s*마우스/g, '흉선절제 형질전환 마우스');
   t = t.replace(/\bTxA23\b/g, '흉선절제 형질전환 마우스');
 
   t = t.replace(/\(([^)]{1,120})\)/g, (match, inner) => {
