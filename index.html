@@ -635,7 +635,22 @@
   }
   .close-btn:hover { background: var(--rule); }
 
-  /* ── FONT SIZE TOGGLE ── */
+  /* ── PANEL BOOKMARK BUTTON ── */
+  .panel-btn.panel-bookmark-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    background: var(--amber-pale);
+    border-color: rgba(186,117,23,0.25);
+    color: var(--amber);
+    font-weight: 600;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .panel-btn.panel-bookmark-btn:hover {
+    background: #f5dfa8 !important;
+    border-color: var(--amber) !important;
+    color: #8a5210 !important;
+  }
+
   .panel-btn.font-size-btn {
     flex: 0 0 auto;
     padding: 11px 13px;
@@ -1198,32 +1213,7 @@
     align-items: center;
     gap: 4px;
   }
-  .bookmark-save-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 300;
-    display: none;
-    background: var(--amber);
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 16px;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(186,117,23,0.4);
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-    animation: fadeUp 0.25s ease;
-  }
-  .bookmark-save-btn.show { display: flex; }
-  .bookmark-save-btn:hover {
-    background: #a3650f;
-    transform: translateY(-1px);
-  }
+
   .bookmark-toast {
     position: fixed;
     bottom: 70px;
@@ -2159,10 +2149,7 @@
   </div>
 </div>
 
-<!-- BOOKMARK SAVE BUTTON -->
-<button class="bookmark-save-btn" id="bookmark-save-btn" onclick="saveBookmark()">
-  🔖 여기에 책갈피
-</button>
+
 <div class="bookmark-toast" id="bookmark-toast">책갈피가 저장되었어요 ✓</div>
 
 <!-- ── EVENTS DETAIL OVERLAY ── -->
@@ -2288,6 +2275,7 @@
     </div>
     <div class="panel-actions">
       <button class="panel-btn primary" id="p-link-btn">원문 보기 →</button>
+      <button class="panel-btn panel-bookmark-btn" id="panel-bookmark-btn" onclick="saveBookmark()">🔖 책갈피</button>
       <button class="panel-btn" id="p-done-btn" onclick="clearBookmark()" style="display:none">✓ 다 읽었어요</button>
       <button class="panel-btn font-size-btn" id="font-size-btn" onclick="toggleFontSize()" title="글씨 크기 변경">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block">
@@ -11989,16 +11977,22 @@ function clearBookmark() {
   bookmarkScrollPct = 0;
   try { localStorage.removeItem('kaig_bookmark'); } catch(e) {}
   document.getElementById('bookmark-line').classList.remove('visible');
-  document.getElementById('bookmark-save-btn').classList.remove('show');
   updateDoneBtn();
-  showBookmarkToast('다 읽으셨군요! 책갈피가 삭제되었어요 ✓');
   renderPapers();
   renderBookmarkBanner();
 }
 
 function updateDoneBtn() {
   const btn = document.getElementById('p-done-btn');
-  if (btn) btn.style.display = (bookmarkPaperId === _currentPaperId) ? '' : 'none';
+  const bmBtn = document.getElementById('panel-bookmark-btn');
+  const isBookmarked = (bookmarkPaperId === _currentPaperId);
+  if (btn) btn.style.display = isBookmarked ? '' : 'none';
+  if (bmBtn) {
+    bmBtn.textContent = isBookmarked ? '🔖 저장됨' : '🔖 책갈피';
+    bmBtn.style.background = isBookmarked ? 'var(--amber)' : '';
+    bmBtn.style.borderColor = isBookmarked ? 'var(--amber)' : '';
+    bmBtn.style.color = isBookmarked ? '#fff' : '';
+  }
 }
 
 function showBookmarkToast(msg) {
@@ -12025,18 +12019,10 @@ function renderBookmarkLine() {
   line.style.position = 'absolute';
 }
 
-// 패널 스크롤 시 "여기에 책갈피" 버튼 표시
+// 패널 스크롤 초기화
 let _currentPaperId = null;
 function initPanelScroll() {
-  const panel = document.getElementById('detail-panel');
-  const btn   = document.getElementById('bookmark-save-btn');
-  panel.addEventListener('scroll', () => {
-    if (panel.scrollTop > 60) {
-      btn.classList.add('show');
-    } else {
-      btn.classList.remove('show');
-    }
-  });
+  // floating 책갈피 버튼 제거됨 — scroll listener 불필요
 }
 
 // ═══════════════════════════════════════════════
@@ -12135,7 +12121,7 @@ function openDetail(id) {
   // 책갈피 복원
   const panel = document.getElementById('detail-panel');
   panel.scrollTop = 0;
-  document.getElementById('bookmark-save-btn').classList.remove('show');
+  updateDoneBtn();
 
   if (bookmarkPaperId === id && bookmarkScrollPct > 0) {
     // 패널 렌더 완료 후 스크롤 복원
