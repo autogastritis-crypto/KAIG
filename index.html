@@ -12319,10 +12319,6 @@ function openDetail(id) {
 function closeDetail(e) {
   if (e.target === document.getElementById("detail-overlay")) closeDetailBtn();
 }
-function closeDetailBtn() {
-  document.getElementById("detail-overlay").classList.remove("open");
-  document.body.style.overflow = "";
-}
 
 // ── FONT SIZE TOGGLE ──
 let _fontLarge = false;
@@ -13023,9 +13019,9 @@ function ttsFinish() {
 })();
 
 // 패널 닫을 때 음성 중지
-// 패널 닫을 때 음성 중지 (closeDetailBtn 재정의)
+// 패널 닫을 때 음성 중지
 function closeDetailBtn() {
-  ttsStop();
+  try { ttsStop(); } catch(e) {}
   document.getElementById("detail-overlay").classList.remove("open");
   document.body.style.overflow = "";
 }
