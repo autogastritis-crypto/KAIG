@@ -50,8 +50,8 @@
       출판 확정된 논문의 연도·권·호·페이지 등을 업데이트
 
   [현재 현황]
-  - 마지막 논문 ID: 297
-  - 총 논문 수: 297편 (2026-05-25 기준)
+  - 마지막 논문 ID: 298
+  - 총 논문 수: 298편 (2026-05-28 기준)
   - 마지막 점검: 2026-05-04 (ID 결번 확인, related_ids 양방향 수정 완료, 중복 DOI 5건 제거)
   - 2026-05-11: ID 27 volume/issue/pages 추가 (106권 3호 265-269쪽); ID 1·2 내용 전면 보강(abstract_ko, keypoints, meta, topics)
   - 2026-05-12: ID 303 추가 — BSG 위선암 위험 환자 가이드라인 (Banks M et al., Gut 2019;68:1545-1575)
@@ -71,6 +71,7 @@
   - 2026-05-25: ID 297 추가 — 비전형 유경성 발적 형태 위 G2 NET 증례 (Ohashi T et al., Clin J Gastroenterol 2026;19:446-450); 자가면역성위염 동반 Rindi 1형, ESD 후 림프관 침윤으로 복강경 수술 추가; topics: 증례·종양·용종·내시경·동반질환; related_ids 없음
   - 2026-05-25: ID 296 추가 — ISPAD: 자가면역 연관 악성빈혈 진단을 위한 퍼지 AI 프레임워크 (Boumela N et al., Front Immunol 2026;17:1700751); 6개 입력(OLGA·전정부·APCA·AIFA·B12·페리틴) 통합, 7개 실제 증례 PAP 62.5~99.1% 산출; topics: AI·진단·병인기전·바이오마커; related_ids 없음
   - 2026-05-23: ID 295 추가 — 소언어모델(SLM)을 활용한 AIG 환자 이탈리아어 임상 기록 내시경 표지자 추출 (Bergomi L et al., Stud Health Technol Inform 2026, AiP); IT5 파인튜닝 모델이 GPT-4o mini·MedGemma와 비교하여 민감도·균형 정확도 최고 달성; topics: AI·내시경·진단; related_ids 없음
+  - 2026-05-28: ID 298 추가 — 자가면역성위염과 분문부·식도암 연관성 종설 (Lenti MV et al., Gut 2026, AiP); 위-분문부-식도 연속체 발암 기전(위축·IM·비타민B12결핍·고가스트린혈증·미생물군집), 역학 연구 종합, 감시 전략 시사점 고찰; topics: 암위험·병인기전·병리·역학·내시경·바이오마커; related_ids 없음
   - 다음 정기 점검 기준: 320편 도달 시 → 정기 점검 실시
 
 ════════════════════════════════════════════════════════════
@@ -11545,7 +11546,7 @@ const PAPERS = [
   volume: "",
   issue: "",
   pages: "",
-  if: null,
+  if: 2.2,
   authors: "Sun W, Wang C, Wang Y, Liu H, Zhang J, Bai Y",
   doi: "10.1186/s12883-026-04920-7",
   source: "journal",
@@ -11642,7 +11643,7 @@ const PAPERS = [
   volume: "17",
   issue: "",
   pages: "1700751",
-  if: null,
+  if: 5.9,
   authors: "Boumela N, Cadiot G, Chaoui F",
   doi: "10.3389/fimmu.2026.1700751",
   source: "journal",
@@ -11692,6 +11693,38 @@ const PAPERS = [
     "대상": "48세 남성 1명 (췌장-신장 이식 후, 제1형 당뇨 기저)",
     "종양 특성": "G2 NET, Ki-67 17.7%, 12×17mm, pT2, Ly1, V0, pHM0, pVM0",
     "연구 기관": "Chiba University Graduate School of Medicine, Japan (소화기내과·진단병리학과)"
+  },
+  related_ids: []
+},
+
+{
+  id: 298,
+  title: "Autoimmune gastritis: a hidden gateway to cardia and oesophageal cancers beyond non-cardia gastric adenocarcinoma",
+  title_ko: "자가면역성위염: 비분문부 위선암을 넘어 분문부 및 식도암으로 이어지는 숨겨진 관문",
+  journal: "Gut",
+  journal_short: "Gut",
+  year: 2026,
+  volume: "",
+  issue: "",
+  pages: "",
+  if: 23.0,
+  authors: "Lenti MV, DiPaolo RJ, Di Sabatino A, Camargo MC",
+  doi: "10.1136/gutjnl-2025-336392",
+  source: "journal",
+  topics: ["암위험", "병인기전", "병리", "역학", "내시경", "바이오마커"],
+  abstract_ko: "자가면역성위염(AIG)은 전통적으로 1형 위 신경내분비종양(NET) 및 비분문부 위선암의 전구 상태로 인식되어 왔습니다. 그러나 최근 증가하는 증거들은 AIG의 발암적 영향이 위체부를 넘어 분문부, 위식도경계부(GOJ), 식도까지 확장될 수 있음을 시사합니다. 본 종설에서는 AIG 및 그 후기 발현인 악성빈혈과 분문부/GOJ 선암 및 식도암의 연관성을 다룬 역학·임상 연구들을 종합합니다. 비분문부 위뿐만 아니라 GOJ 및 그 너머에서도 발암성 미세환경을 조성할 수 있는 체부 우세 위축, 장상피화생, 비타민 B12 결핍 등 여러 조직병리학적·면역학적 기전을 고찰합니다. 또한 위 분문부의 정의 어려움, 자가면역 경로와 다른 경로의 구별, 임상에서 AIG의 과소 인식 등 이러한 연관성을 가려온 진단적·역학적 문제점들을 논의합니다. 끝으로 위-분문부-식도 연속체에 걸친 악성 위험도를 명확히 하기 위한 연구 과제를 제시하며, 잘 표현형화된 코호트, 바이오마커 기반 위험도 층화, 정교한 감시 전략의 필요성을 강조합니다.",
+  keypoints: [
+    "AIG의 확장된 발암 스펙트럼 — AIG는 기존에 비분문부 위선암 및 1형 NET의 전구 상태로 알려져 있었으나, 최근 증거들은 GOJ 선암(OR 1.28~2.77) 및 식도 편평세포암(OR 2.12~5.62) 위험 증가와도 연관됨을 시사; AIG의 병변이 주로 침범하는 위체부·위저부·위분문부는 해부학적으로 GOJ와 연속선상에 있어, 만성 자가면역 염증이 인접 부위의 종양 발생 환경에 영향을 미칠 수 있음",
+    "주요 역학 연구 요약 — 스웨덴 코호트(Hsing 등): 악성빈혈 환자에서 식도암 SIR 3.2, 위암 SIR 2.9; SEER-Medicare 연구(Murphy 등): 악성빈혈에서 식도 편평세포암 OR 2.12, 비분문부 위암 OR 2.02; 영국 CPRD 연구(Murphy 등): 악성빈혈에서 위암 전체 OR 2.75, 분문부암 OR 1.71; 만성 위축성위염 메타분석(Li 등): 식도암 OR 2.08, GOJ암 OR 2.77, 위암 OR 4.12",
+    "발암 기전 — ① 체부 위축·장상피화생: CD4+/CD8+ T세포·B세포 침윤에 의한 벽세포 파괴가 위산 분비 소실과 IM-이형성-암 경로를 촉진; IL-13이 화생성 재프로그래밍에 관여하며, ANPEP/CD13 양성 암 유사 화생 세포가 AIG 환자에서 확인됨 ② 비타민 B12 결핍: 메티오닌 합성효소 활성 저하, 호모시스테인 축적, DNA 저메틸화, 산화 스트레스 증가로 유전체 불안정성 초래; 특히 편평세포암종(구강·인두·식도) 및 HPV 관련 병변과의 연관성이 보고됨 ③ 고가스트린혈증: CCK2R이 분문부암 및 Barrett 식도에서 발현·상향조절되며, 가스트린-17이 하부식도괄약근 일시적 이완을 유발하여 위식도역류를 악화시킬 수 있음 ④ 미생물군집 변화: 산저하증으로 인한 질산염 환원 그람음성균 과증식이 니트로사민 생성 및 친염증 대사산물을 증가시켜 발암 촉진",
+    "진단 및 역학적 과제 — AIG는 흔히 증상이 없거나 다른 질환(소화성궤양·기능성소화불량·위식도역류)과 유사하여 과소 진단됨; OLGA/OLGIM 분류는 전정부가 통상 보존되는 AIG에서 중증도를 과소평가; 분문부암은 GOJ암·'중복/비특이 부위'로 혼입되어 분류 오류 발생; 항벽세포항체(PCA)는 민감하나 특이도 낮고, 항내인성인자항체(AIFA)는 특이적이나 민감도 낮으며 말기에는 감소; 다중 자가면역질환(유병률 약 35%)이 암 위험 귀속을 어렵게 함",
+    "임상 및 연구 시사점 — 내시경 시 분문부/GOJ 점막의 위축·장상피화생·결절·미란·이형성을 체계적으로 기술하고 이상 소견 시 생검 시행 권고; 고위험군(Barrett 식도·역류·비만·흡연 동반)에서는 생검 역치 하향; MAPS III 가이드라인은 AIG에서 3년 간격 감시를 제안하나, NET 위험이 선암보다 높은 AIG 특성을 고려한 차별화된 감시 전략 필요; 잘 표현형화된 전향적 코호트, 분자·면역 바이오마커, 인과 추론 방법론을 통한 AIG-GOJ/식도암 인과관계 규명 연구가 시급함"
+  ],
+  meta: {
+    "논문 유형": "종설 (Narrative Review / Recent Advances in Clinical Practice)",
+    "주요 데이터베이스": "SEER-Medicare, 스웨덴 코호트, 영국 CPRD, 핀란드 Maternity 코호트 등 다수 역학 연구 종합",
+    "핵심 연관 암종": "비분문부 위선암, 분문부/GOJ 선암, 식도 편평세포암, 1형 위 NET",
+    "연구 기관": "University of Pavia / Fondazione IRCCS Policlinico San Matteo (이탈리아), Saint Louis University (미국), National Cancer Institute / NIH (미국)"
   },
   related_ids: []
 },
