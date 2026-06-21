@@ -50,9 +50,13 @@
       출판 확정된 논문의 연도·권·호·페이지 등을 업데이트
 
   [현재 현황]
-  - 마지막 논문 ID: 304
-  - 총 논문 수: 304편 (2026-06-17 기준)
+  - 마지막 논문 ID: 305
+  - 총 논문 수: 305편 (2026-06-21 기준)
   - 마지막 점검: 2026-05-04 (ID 결번 확인, related_ids 양방향 수정 완료, 중복 DOI 5건 제거)
+  - 2026-06-21: 중복 항목 제거 및 재번호 — Celiac+AIG 중복(구 ID 278·282 중 IF 결측인 282) 삭제 후, 구 283~306을 282~305로 연속 재번호(결번 없음); related_ids 전체 재매핑(161→[162,163,298], 200→[275,305], 262→[305], 구295=현294→[299], 구300=현299→[294]); 참고: 직전 추가분 구 ID 305(내시경 스펙트럼)→현 304, 구 306(펩시노겐)→현 305
+  - 2026-06-21: 기본 정렬을 '추가순'→'최신순(연도↓→ID↓)'으로 변경 — 새로 추가한 논문이 첫 화면 상단에 노출되도록 설정
+  - 2026-06-21: ID 306 추가 — AMAG 비침습 예측 표지자로서 혈청 PG I·PG I/II 비율 (Chen C et al., J Transl Autoimmun 2026;12:100377); 베이징 우의병원 AMAG 520명 vs 대조군 223명 후향, PG I<22.45 ng/mL(AUC 0.964)·PGR<2.25(AUC 0.957) 최적 절단값, 병용 시 특이도 97.3%; NET 20.2%·HGD/조기위암 3.7%; topics: 진단·바이오마커·암위험·종양·용종; related_ids: [200, 262] — 동일 저자군(베이징 우의병원 Chen/Hu/Li/Shao/Zhang) 선행 연구로 양방향 연결(ID 200·262 related_ids에 306 추가); IF는 J Transl Autoimmun 2024 JIF≈4.07 및 ID 85 선례에 맞춰 4.1 적용
+  - 2026-06-21: ID 305 추가 — 질병 단계별 AIG 내시경 스펙트럼: 바렛식도·ME-NBI 중심 (Zhang Z et al., Front Immunol 2026;17:1765070); 중국인 52명 후향, ROM 기반 조기/말기 이분 병기; BE 73.08%(SSBE 조기 우세 60.9% vs 31.0% P<0.05·LSBE 말기 우세), 가성유문화생 75%·CSA·WGA 말기 우세(각 P=0.03), 다변량 독립 예측인자 없음; 무산증 하 십이지장위역류 비산 기전 제안; topics: 내시경·진단·병리·병인기전; related_ids 없음(동일 저자군 연속 연구 미해당; 주제 유사 ID 173은 저자군 상이로 미연결)
   - 2026-05-11: ID 27 volume/issue/pages 추가 (106권 3호 265-269쪽); ID 1·2 내용 전면 보강(abstract_ko, keypoints, meta, topics)
   - 2026-05-12: ID 303 추가 — BSG 위선암 위험 환자 가이드라인 (Banks M et al., Gut 2019;68:1545-1575)
   - 2026-05-12: ID 304 추가 — AGA 위 장상피화생 관리 가이드라인 (Gupta S et al., Gastroenterology 2020;158:693-702)
@@ -73,7 +77,7 @@
   - 2026-05-23: ID 295 추가 — 소언어모델(SLM)을 활용한 AIG 환자 이탈리아어 임상 기록 내시경 표지자 추출 (Bergomi L et al., Stud Health Technol Inform 2026, AiP); IT5 파인튜닝 모델이 GPT-4o mini·MedGemma와 비교하여 민감도·균형 정확도 최고 달성; topics: AI·내시경·진단; related_ids 없음
   - 2026-05-28: ID 298 추가 — 자가면역성위염과 분문부·식도암 연관성 종설 (Lenti MV et al., Gut 2026, AiP); 위-분문부-식도 연속체 발암 기전(위축·IM·비타민B12결핍·고가스트린혈증·미생물군집), 역학 연구 종합, 감시 전략 시사점 고찰; topics: 암위험·병인기전·병리·역학·내시경·바이오마커; related_ids 없음
   - 2026-05-30: ID 299 추가 — 자가면역성위염의 성적 이형성 기전·임상 함의 종설 (Ahn YH, Kim YS, Sex Gender Biomed 2026;1(2):104-114); 여성 우세성의 생물학적 기반(에스트로겐·AIRE·Th17/Treg, XCI 탈출·X연관 유전자/miRNA, HLA-DRB1 성별 분포, DNA 메틸화·DNMT/TET, 자가면역질환 동반) 다층적 기전 종합; topics: 병인기전·역학·동반질환·암위험; related_ids: [161] — 동일 저자군(Ahn YH·Kim YS) 동일 주제(AIG) 후속 종설로 양방향 연결(161↔299), ID 161 related_ids에 299 추가
-  - 2026-05-31: ID 300 추가 — 합의 클러스터링·트랜스포머 NLP 통합 멀티모달 EHR 표현형 분석 프레임워크 (Pala D et al., Int J Med Inform 2026;217:106511); AIG 환자 1,598명→607명, K-medoids+계층적+K-modes 메타클러스터링으로 3개 하위 그룹 식별, IT5 NLP 내시경 표지자 추출(정확도 90.2%·균형정확도 89.3%), 시간 정규화 진행 지표로 클러스터 2 빠른 진행 확인; topics: AI·내시경·역학·진단·병리; related_ids: [295] — 동일 저자군(Pala D·Bergomi L·Lenti MV 등)·동일 데이터셋(AIG 1,598명, 임상기록 425건, IT5 모델) 연속 연구로 양방향 연결(295↔300), ID 295 related_ids에 300 추가
+  - 2026-05-31: ID 300 추가 — 합의 클러스터링·트랜스포머 NLP 통합 멀티모달 EHR 표현형 분석 프레임워크 (Pala D et al., Int J Med Inform 2026;217:106511); AIG 환자 1,598명→607명, K-medoids+계층적+K-modes 메타클러스터링으로 3개 하위 그룹 식별, IT5 NLP 내시경 표지자 추출(정확도 90.2%·균형정확도 89.3%), 시간 정규화 진행 지표로 클러스터 2 빠른 진행 확인; topics: AI·내시경·역학·진단·병리; related_ids: [294] — 동일 저자군(Pala D·Bergomi L·Lenti MV 등)·동일 데이터셋(AIG 1,598명, 임상기록 425건, IT5 모델) 연속 연구로 양방향 연결(295↔300), ID 295 related_ids에 300 추가
   - 2026-06-02: ID 301 추가 — 소아의 포착하기 어려운 위 위축: 진단의 함정과 단계적 접근 (Rodenbach N et al., Case Rep Pediatr 2026;2026:9929872); 학동기 남아 재발성 철결핍빈혈 → 레이노 현상 계기 자가면역 선별검사에서 항벽세포항체 강양성 → 육안상 거의 정상 내시경에도 표적 생검으로 체부 우세 조기 자가면역성 화생성 위축성위염 확진; topics: 증례·진단·병리·내시경·동반질환·바이오마커; related_ids 없음(동일 저자군·letter 관계 해당 없음, 단순 인용 관계만 존재)
   - 2026-06-10: ID 302 추가 — 자가면역성위염의 유문선화생·가성유문선화생·SPEM: 일본인 22례 증례 시리즈 (Wada Y et al., Virchows Arch 2021;479:169-178); 위체부 유문선 유사 선 1,567개 정량 분석 → 유문선화생 88.1%·가성유문선화생 11.9%, TFF2 양성률 유문선화생 26.9%(409/1,381) vs 가성유문선화생 14.5%(27/186)(P<0.01) → SPEM(TFF2+)은 사람 AIG에서 가성유문선화생(PGI+)과 불일치, 화생 대부분은 유문선화생; ECL 과증식 전례·신생물 없음; topics: 병리·병인기전·증례; related_ids 없음(공저자 Kushima R 외 동일 저자군 연속 연구·letter 관계 해당 없음, ID 68 등과는 주제 유사성만)
   - 2026-06-17: ID 303 변경 이력 보강 — 기존 배열에 존재했으나 헤더 누락분 기록: 철 흡수장애 연관 철결핍빈혈에서 IV 페릭카르복시말토스 전향적 연구 (Scalamonti S et al., Nutrients 2026;18(11):1807); AIG·셀리악병·위절제 37명, Ganzoni 공식 용량, T12 약 80% IDA 회복; topics: 치료·동반질환·바이오마커; related_ids 없음
@@ -2000,12 +2004,12 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="9" y1="18" x2="15" y2="18"/>
           </svg>
-          <span id="sort-label">추가순</span>
+          <span id="sort-label">최신순</span>
         </button>
         <div class="sort-menu" id="sort-menu">
-          <button class="sort-option active" data-sort="default" onclick="setSort('default','추가순')">추가순</button>
+          <button class="sort-option" data-sort="default" onclick="setSort('default','추가순')">추가순</button>
           <button class="sort-option" data-sort="newest" onclick="setSort('newest','최신 추가순')">최신 추가순 (ID↓)</button>
-          <button class="sort-option" data-sort="year" onclick="setSort('year','최신순')">최신순 (연도↓)</button>
+          <button class="sort-option active" data-sort="year" onclick="setSort('year','최신순')">최신순 (연도↓)</button>
           <button class="sort-option" data-sort="if" onclick="setSort('if','IF 높은순')">IF 높은순</button>
         </div>
       </div>
@@ -7335,7 +7339,7 @@ const PAPERS = [
       "연구 기관": "만족병원 내과(부천) / 원광대학교 의과대학 소화기병연구소(익산)",
       "주요 특징": "한국 임상 환경에서의 AIG 진단·관리 전략 종합 검토; 진단 플로차트 및 혈청 바이오마커 절단값 비교표 제시"
     },
-    related_ids: [162, 163, 299]
+    related_ids: [162, 163, 298]
   },
 {
     id: 162,
@@ -8581,7 +8585,7 @@ const PAPERS = [
     "분석 소프트웨어": "STATA 15.0",
     "연구 기관": "수도의과대학교 베이징우의병원 소화기내과, 중국"
   },
-  related_ids: [275]
+  related_ids: [275, 305]
 },
 {
   id: 201,
@@ -10572,7 +10576,7 @@ const PAPERS = [
     "핵심 메시지": "AMAG 환자의 약 69%에서 위 신생물 동반(g-NET 37%, GHP 31.9%, 조기위암 5.9%); PGI 저하·PGI/II 비율 저하가 AMAG 진단의 예측 표지자; 정기 내시경 감시 필수",
     "등록 번호": "ChiCTR2000041163 (중국임상시험등록)"
   },
-  related_ids: []
+  related_ids: [305]
 },
 {
   id: 263,
@@ -11179,38 +11183,6 @@ const PAPERS = [
 },
 {
   id: 282,
-  title: "Prevalence and Predictors of Autoimmune Gastritis in Patients with Celiac Disease",
-  title_ko: "셀리악병 환자에서 자가면역성위염의 유병률 및 예측인자",
-  journal: "Journal of Investigative Medicine",
-  journal_short: "J Investig Med",
-  year: 2026,
-  volume: "74",
-  issue: "4",
-  pages: "321-328",
-  if: null,
-  authors: "Er RE, Yilmaz V, Baykara Y, Acehan F, Kalkan C, Soykan I",
-  doi: "10.1177/10815589251361891",
-  source: "journal",
-  topics: ["동반질환", "역학", "진단"],
-  abstract_ko: "터키 앙카라대학교 의과대학 이브니시나병원 소화기내과 Soykan I 연구팀이 발표한 단일기관 횡단면 연구로, 셀리악병(CD) 환자에서 자가면역성위염(AIG)의 유병률과 예측인자를 분석하였습니다. Marsh 분류 기준으로 진단된 CD 환자 183명(중앙값 37세, 여성 76%)을 대상으로 인구학적 특성, 동반 자가면역질환, 혈청 마커, 미량영양소 수치를 수집하였습니다. 183명 중 19명(10.4%)에서 AIG가 동반 확인되었습니다. 다변량 회귀분석에서 Marsh 2형 CD(OR: 15.838; 95% CI: 4.774–52.545)와 항엔도미시움 IgA 음성(OR: 0.257; 95% CI: 0.084–0.786)이 AIG의 독립적 예측인자로 확인되었습니다. 이 두 인자의 조합 AUC는 0.858(95% CI: 0.763–0.953)이었습니다.",
-  keypoints: [
-    "CD 환자 183명 중 AIG 동반 유병률 10.4%(19명) — AIG 동반군의 중앙 연령이 더 높음(47세 vs 36세, p=0.013); AIG 동반군에서 동반 자가면역질환 비율 유의하게 높음(47.4% vs 23.8%, p=0.049); 자가면역갑상선염이 전체에서 가장 흔한 동반 자가면역질환(20명), CD+AIG군에서 5명",
-    "Marsh 분류와 AIG 연관성 — AIG 동반군의 78.9%가 Marsh 2형, AIG 비동반군의 82.9%가 Marsh 3형(p<0.001); Marsh 2형이 AIG의 강력한 독립 예측인자(OR: 15.838, 민감도 78.9%, 특이도 82.9%, 양성우도비 4.61); 중등도 장 위축이 심한 위축보다 AIG와 더 강하게 연관됨",
-    "항엔도미시움 IgA 음성이 AIG 예측인자 — 전체 환자의 약 80%가 항엔도미시움 IgA 양성; AIG 동반군에서 양성률 47.4%, 비동반군 82.3%(p=0.001); 항엔도미시움 IgA 음성의 AIG 예측 민감도 52.6%, 특이도 82.3%, 양성우도비 2.97; 항엔도미시움 IgA 음성 환자 전원이 낮은 항조직트랜스글루타미나제 IgA를 동반",
-    "두 예측인자 조합의 높은 진단 성능 — Marsh 2형 + 항엔도미시움 IgA 음성 조합 AUC 0.858(95% CI: 0.763–0.953); AIG 동반군에서 비타민 B12(157 vs 201 pg/mL, p=0.002) 및 비타민 D(7.0 vs 10.0 마이크로그램/mL, p=0.001) 수치 유의하게 낮음; 페리틴은 낮은 경향이나 통계적 유의성 미달(4 vs 6, p=0.148)",
-    "임상 권고 및 한계 — 항엔도미시움 IgA 음성이고 Marsh 2형 소견을 보이는 CD 환자에서 AIG 선별 검사 권고; AIG 환자에서 비타민 B12 결핍 동반 시 AIG 검사 고려 권고; 3차 기관 단일기관 연구로 선택 편향 가능성, 무글루텐 식이 효과 분석 미포함, Marsh 1형 환자 제외"
-  ],
-  meta: {
-    "논문 유형": "횡단면 연구 (단일기관)",
-    "대상": "CD 환자 183명 (중앙값 37세, 여성 76%); AIG 동반 19명(10.4%)",
-    "연구 기관": "이브니시나병원·앙카라대학교 의과대학, 터키 / 스탠퍼드대학교 병리학과, 미국",
-    "핵심 메시지": "Marsh 2형 CD이면서 항엔도미시움 IgA 음성인 환자에서 AIG 동반 위험이 높으므로 적극적 선별 검사 필요",
-    "연구 기간": "IRB 승인 #2023/447"
-  },
-  related_ids: []
-},
-{
-  id: 283,
   title: "The Application of the Plan–Do–Check–Act Management Model in Improving the Diagnostic Yield of Autoimmune Gastritis",
   title_ko: "PDCA(계획-실행-점검-개선) 관리 모델을 적용한 자가면역성위염 진단율 향상",
   journal: "Digestive Diseases and Sciences",
@@ -11243,7 +11215,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 284,
+  id: 283,
   is_guideline: true,
   title: "British Society of Gastroenterology guidelines on the diagnosis and management of patients at risk of gastric adenocarcinoma",
   title_ko: "위선암 위험 환자의 진단 및 관리에 관한 영국소화기학회(BSG) 가이드라인",
@@ -11278,7 +11250,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 285,
+  id: 284,
   is_guideline: true,
   title: "AGA Clinical Practice Guidelines on Management of Gastric Intestinal Metaplasia",
   title_ko: "위 장상피화생 관리에 관한 미국소화기학회(AGA) 임상 진료 가이드라인",
@@ -11313,7 +11285,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 286,
+  id: 285,
   title: "Gastritis: update on etiological features and histological practical approach",
   title_ko: "위염: 원인별 특성 및 조직학적 실무 접근법 업데이트",
   journal: "Pathologica",
@@ -11345,7 +11317,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 287,
+  id: 286,
   title: "Gastritis: The clinico-pathological spectrum",
   title_ko: "위염: 임상병리학적 스펙트럼",
   journal: "Digestive and Liver Disease",
@@ -11377,7 +11349,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 288,
+  id: 287,
   title: "Cellular Plasticity, Reprogramming, and Regeneration: Metaplasia in the Stomach and Beyond",
   title_ko: "세포 가소성, 재프로그래밍, 재생: 위장과 그 너머의 화생",
   journal: "Gastroenterology",
@@ -11410,7 +11382,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 289,
+  id: 288,
   title: "Diagnostic Value of Serum Pepsinogen Levels for Screening Gastric Cancer and Atrophic Gastritis in Asymptomatic Individuals: A Cross-Sectional Study",
   title_ko: "무증상 건강검진 수검자에서 혈청 펩시노겐의 위암 및 위축성위염 선별 진단 가치: 단면 연구",
   journal: "Frontiers in Oncology",
@@ -11443,7 +11415,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 290,
+  id: 289,
   title: "Long-term use of potassium-competitive acid blockers and proton pump inhibitors and the risk of metachronous gastric cancer after H. pylori eradication: a multicenter cohort study",
   title_ko: "헬리코박터 파일로리 제균 후 칼륨 경쟁적 산 억제제 및 프로톤펌프억제제 장기 사용과 이시성 위암 발생 위험: 다기관 코호트 연구",
   journal: "Gastric Cancer",
@@ -11476,7 +11448,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 291,
+  id: 290,
   title: "Inflammation as an Etiologic Agent of Gastric Cancer",
   title_ko: "위암의 원인 인자로서의 염증",
   journal: "Missouri Medicine",
@@ -11510,7 +11482,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 292,
+  id: 291,
   title: "Gastrointestinal traits, common inflammatory disorders, gallstones, and biliary tract cancer: A network Mendelian randomization study",
   title_ko: "위장관 특성, 흔한 염증 질환, 담석, 담도암: 네트워크 멘델 무작위화 연구",
   journal: "Journal of Advanced Research",
@@ -11543,7 +11515,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 293,
+  id: 292,
   title: "A case of autoimmune encephalitis with autoimmune gastritis presenting as refractory hyponatremia",
   title_ko: "난치성 저나트륨혈증으로 발현한 자가면역성위염 동반 자가면역뇌염 증례",
   journal: "BMC Neurology",
@@ -11575,7 +11547,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 294,
+  id: 293,
   title: "Atrophic gastritis of distinct etiologies: malignant potential in Helicobacter pylori-associated and autoimmune forms",
   title_ko: "원인별 위축성위염의 악성 잠재력: 헬리코박터 파일로리 연관형 및 자가면역형 비교 종설",
   journal: "Annals of Gastroenterology",
@@ -11608,7 +11580,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 295,
+  id: 294,
   title: "Extraction of Endoscopic Markers from Clinical Notes in Italian Patients with Autoimmune Atrophic Gastritis Using Small Language Models",
   title_ko: "소언어모델을 활용한 이탈리아 자가면역성 위축성위염 환자 임상 기록에서의 내시경 표지자 추출",
   journal: "Studies in Health Technology and Informatics",
@@ -11636,11 +11608,11 @@ const PAPERS = [
     "핵심 메시지": "과제 특화 파인튜닝을 적용한 소형 로컬 SLM(IT5)이 GPT-4o mini 등 대형 범용 모델과 경쟁하며, 의료 기관 내 프라이버시 보호 임상 정보 추출에 실용적 대안이 됨을 입증",
     "모델 비교 요약": "IT5(파인튜닝, 2.2억 파라미터) > GPT-4o mini(범용) > MedGemma(의료특화, 파인튜닝 없음) 순 성능"
   },
-  related_ids: [300]
+  related_ids: [299]
 },
 
 {
-  id: 296,
+  id: 295,
   title: "ISPAD, Bridging Clinical Expertise and AI for Autoimmune-Related Pernicious Anemia Diagnosis",
   title_ko: "ISPAD: 자가면역 연관 악성빈혈 진단을 위한 임상 전문 지식과 인공지능의 가교",
   journal: "Frontiers in Immunology",
@@ -11672,7 +11644,7 @@ const PAPERS = [
 },
 
 {
-  id: 297,
+  id: 296,
   title: "A case of gastric neuroendocrine tumor with an unusual morphology",
   title_ko: "비전형적 형태를 보인 위 신경내분비종양 증례: 유경성 발적 병변",
   journal: "Clinical Journal of Gastroenterology",
@@ -11704,7 +11676,7 @@ const PAPERS = [
 },
 
 {
-  id: 298,
+  id: 297,
   title: "Autoimmune gastritis: a hidden gateway to cardia and oesophageal cancers beyond non-cardia gastric adenocarcinoma",
   title_ko: "자가면역성위염: 비분문부 위선암을 넘어 분문부 및 식도암으로 이어지는 숨겨진 관문",
   journal: "Gut",
@@ -11736,7 +11708,7 @@ const PAPERS = [
 },
 
 {
-  id: 299,
+  id: 298,
   title: "Sexual Dimorphism in Autoimmune Gastritis: Mechanisms and Clinical Implications",
   title_ko: "자가면역성위염의 성적 이형성: 기전과 임상적 함의",
   journal: "Sex- and Gender-Specific Biomedicine",
@@ -11768,7 +11740,7 @@ const PAPERS = [
 },
 
 {
-  id: 300,
+  id: 299,
   title: "A multimodal EHR-based phenotyping framework integrating consensus clustering and transformer-based clinical NLP: application to autoimmune gastritis",
   title_ko: "합의 클러스터링과 트랜스포머 기반 임상 자연어처리를 통합한 멀티모달 EHR 표현형 분석 프레임워크: 자가면역성위염에의 적용",
   journal: "International Journal of Medical Informatics",
@@ -11797,10 +11769,10 @@ const PAPERS = [
     "방법론 구성": "정적 데이터(진단 시점) → 합의 클러스터링 3개 군집 / 동적 OGD 데이터 → IT5 NLP 구조화 추출 + 조직학·내시경 진행 점수 → 클러스터별 위축·충혈·저형성 시점 검증",
     "연구 기관": "베르가모대학 경영·정보·생산공학과 / 파비아대학 전기·컴퓨터·생의공학과 및 내과·치료학과 / IRCCS 산 마테오 정책병원 제1내과 (이탈리아)"
   },
-  related_ids: [295]
+  related_ids: [294]
 },
 {
-  id: 301,
+  id: 300,
   title: "Elusive Gastric Atrophy in Children: Diagnostic Pitfalls and a Stepwise Approach",
   title_ko: "소아의 포착하기 어려운 위 위축: 진단의 함정과 단계적 접근",
   journal: "Case Reports in Pediatrics",
@@ -11832,7 +11804,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 302,
+  id: 301,
   title: "Pyloric, pseudopyloric, and spasmolytic polypeptide-expressing metaplasias in autoimmune gastritis: a case series of 22 Japanese patients",
   title_ko: "자가면역성위염의 유문선화생·가성유문선화생·연축폴리펩티드발현화생(SPEM): 일본인 환자 22례 증례 시리즈",
   journal: "Virchows Archiv",
@@ -11865,7 +11837,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 303,
+  id: 302,
   title: "Efficacy, Safety, and Hematologic Recovery Following Intravenous Ferric Carboxymaltose in Patients with Iron Malabsorption-Related Iron Deficiency Anemia: A Prospective Clinical Study",
   title_ko: "철 흡수장애 연관 철결핍빈혈 환자에서 정맥 페릭카르복시말토스 치료의 유효성·안전성 및 혈액학적 회복: 전향적 임상 연구",
   journal: "Nutrients",
@@ -11898,7 +11870,7 @@ const PAPERS = [
   related_ids: []
 },
 {
-  id: 304,
+  id: 303,
   title: "Diagnostic practices and variability in autoimmune gastritis: a national survey of gastrointestinal pathologists",
   title_ko: "자가면역성위염의 진단 관행과 변이: 소화기병리의사 전국 설문조사",
   journal: "American Journal of Clinical Pathology",
@@ -11929,6 +11901,73 @@ const PAPERS = [
     "핵심 수치": "한정 용어('조기/의심') 사용 79.1%(전임의 수련 보정 오즈비 3.26, 95% CI 1.39~7.66, P=0.01); AIG 주 보고 기재 21.5%; 가스트린 IHC 정기 의뢰 52.1%; IM 아형 보고 36.2%; ECL 평가 IHC 71.2%; 헬리코박터+위축 사례 54.6%가 헬리코박터 주 진단+AIG 가능성 코멘트"
   },
   related_ids: []
+},
+
+{
+  id: 304,
+  title: "Endoscopic spectrum of autoimmune gastritis across disease stages: a focus on Barrett's esophagus and ME-NBI features",
+  title_ko: "질병 단계별 자가면역성위염의 내시경 스펙트럼: 바렛식도와 ME-NBI 소견을 중심으로",
+  journal: "Frontiers in Immunology",
+  journal_short: "Front Immunol",
+  year: 2026,
+  volume: "17",
+  pages: "1765070",
+  if: 5.9,
+  authors: "Zhang Z, Tao J, Zhang L, Wang L, Wang J, Zhang J, Han R, Li Z",
+  doi: "10.3389/fimmu.2026.1765070",
+  source: "journal",
+  topics: ["내시경", "진단", "병리", "병인기전"],
+  abstract_ko: "중국 베이징중의약대학 둥즈먼병원 소화기내과 연구팀이 자가면역성위염(AIG)의 내시경 소견을 질병 단계에 따라 체계적으로 분석하고, 특히 바렛식도(BE)의 높은 유병률에 주목한 단일기관 후향 연구입니다. AIG는 벽세포의 H+/K+-ATPase를 표적으로 하는 자가항체에 의해 산분비샘(oxyntic gland)이 면역매개로 파괴되어 위체부 우세 위축·무산증·보상성 고가스트린혈증을 초래하며, 혈청 표지자는 선별검사에 유용하나 점막 위축의 동적 진행을 충분히 반영하지 못해 내시경이 진단·병기 결정의 핵심으로 남아 있습니다. 그러나 기존 연구는 개별 또는 소수 내시경 소견의 기술에 치중해 전체 내시경 스펙트럼의 체계적 분석이 부족했습니다. 연구팀은 2022년 1월~2025년 6월 사전 정의된 진단기준(AIG에 합당한 내시경/조직학적 소견 + 항벽세포항체 10배 이상 양성)을 충족한 82명에서 확대내시경 영상 결여 22명·검사자료 광범위 결손 5명을 제외하고 최종 52명을 분석했습니다. 잔존 산분비샘(remnant oxyntic mucosa, ROM) 면적을 기준으로 AIG-위축병기(AIG-AS)를 참조해 조기(ROM>10%, n=23, 44.2%)와 말기(ROM≤10%, n=29, 55.8%)로 이분 분류했고, 백색광내시경(WLE)과 협대역영상 확대내시경(ME-NBI)으로 포괄적 소견을 평가했습니다. 평균 연령 56.68±11.15세, 여성 우세(61.5%, 남:여 1:1.6)였고, 고가스트린혈증 82.5%·항벽세포항체 양성 87.76%·펩시노겐 I 및 PGR 감소·정상 범위의 비타민 B12(586.50±68.59 pg/ml)와 엽산이 확인되어 AIG의 핵심 병태생리를 반영했습니다. WLE에서는 끈적한 치밀 점액(sticky adherent dense mucus, 51.9%)과 위소구 종창(swelling of areae gastricae, 55.8%)이 흔했고, ME-NBI에서는 가성유문화생(pseudopyloric metaplasia)이 75%로 가장 빈번했습니다. 특히 BE가 73.08%(SSBE 44.23%·LSBE 28.85%)에서 검출되어 비역류(2.2%)·역류(7%) 일반 인구를 크게 상회했으며, 단소절 BE(SSBE)는 조기(60.9% vs 31.0%, P<0.05), 장소절 BE(LSBE)는 말기(37.9% vs 17.4%)에서 우세했습니다. 진행된 위축을 시사하는 박리피부양상(cast-off skin appearance, CSA)과 백색구상(white globe appearance, WGA)도 말기에서 유의하게 흔했습니다(각 P=0.03). 그러나 다변량 분석에서는 어떤 단일 내시경 소견도 AIG 병기의 독립적 예측인자로 부각되지 않았습니다. 연구팀은 무산증 환경에서 십이지장위역류(담즙산 등)가 BE 발생의 비산(non-acid) 기전으로 작용하고 고가스트린혈증이 화생 상피의 근위 확장을 촉진할 가능성을 제시하며, AIG 환자에서 식도 평가의 필요성과 WLE·ME-NBI를 결합한 다중모달 평가의 가치를 강조했습니다.",
+  keypoints: [
+    "연구 설계 및 코호트 — 중국 베이징중의약대학 둥즈먼병원 단일기관 후향 연구(2022.1~2025.6); 내시경/조직학적 AIG 소견 + 항벽세포항체(APCA) 10배 이상 양성을 모두 충족한 82명에서 확대내시경 영상 결여 22명·검사자료 결손 5명 제외 후 최종 52명 분석; 평균 연령 56.68±11.15세, 남 20명(38.5%)·여 32명(61.5%, 남:여 1:1.6); APCA 양성 87.76%(43/49)·고가스트린혈증 82.5%(33/40)·항갑상글로불린항체 양성 33.33%(10/30); 펩시노겐 I(34.60±30.37 μg/L)과 PGR(1.31±0.42) 감소, 비타민 B12(586.50±68.59 pg/ml)·엽산 정상; 진단·BE 판정·ROM 추정은 합의회의 후 각 의사가 보관 영상으로 독립 평가",
+    "ROM 기반 2단계 병기 분류 — 잔존 산분비샘(ROM) 면적을 위축 정도·진행의 '면적 기반(area-based)' 2차원 지표로 활용, 일본 AIG-위축병기(AIG-AS)를 참조; 조기 ROM>10%(n=23, 44.2%)·말기 ROM≤10%(n=29, 55.8%)로 이분 — 3단계 AIG-AS는 더 상세하나 ROM의 관찰자 간 일치도가 낮아 '부재(absent)' 병기 오분류 위험이 커 본 연구는 단순화한 이분 체계 채택; 객관적 ROM 정량화 방법 개발이 향후 과제로 명시(이분 체계가 연속적 질병 스펙트럼을 단순화하는 한계 인정)",
+    "WLE·ME-NBI 내시경 스펙트럼 빈도 — WLE: 위소구 종창 55.8%·끈적한 치밀 점액 51.9%·SSBE 44.23%가 흔했고, 백색반(7.7%)·미만성 발적(7.7%)·산분비샘 가성용종(5.8%)·황색종(1.9%)은 드물었음; ME-NBI: 가성유문화생 75%(최다)·WGA 28.8%·변연와상피(MCE) 종창 26.9%·CSA 17.3%·소실된 와공(crypt pit) 13.5%·WOS 7.7%·LBC 5.8%·백색간상 장상피화생반 1.9%; 끈적한 치밀 점액은 무산증 하 세균 과증식·위분비 감소를, 가성유문화생은 산분비샘 점막의 전정부형(antral-type) 전환을 반영(AIG에서 장상피화생보다 흔함); WLE 백색반과 ME-NBI 백색간상 장상피화생반은 AIG에서 처음 보고하는 소견이라고 기술",
+    "바렛식도의 높은 유병률 — 신규 연관성(핵심 소견) — BE 73.08%(SSBE 44.23%·LSBE 28.85%·판정불가 26.92%)에서 검출, 비역류 일반 인구(2.2%)·역류 인구(7%)를 크게 상회; BE는 식도위접합부에서 ≥1 cm 원주상피 연장으로 정의(USSBE는 관찰자 간 신뢰도 저하로 위험인자 분석에서 제외), 식도위접합부는 위주름 구측 말단 또는 책상혈관 원위 경계로 식별(일본식도학회 지침); 무산증은 이론상 산유발 BE를 방어해야 하므로 이 역설은 비산 기전을 시사 — 연구팀은 담즙산 등 십이지장위역류가 일차 역할을 하고 무산증이 위 장벽 방어를 약화시켜 약산성·알칼리 물질의 식도 역류·점막손상·화생을 촉진한다고 제안",
+    "BE 아형 분포·내시경 소견의 병기별 차이 — SSBE는 조기에서 우세(60.9% vs 말기 31.0%, P<0.05), LSBE는 말기에서 더 빈번(37.9% vs 17.4%) — SSBE→LSBE 진행은 위축 진행에 따른 유해 역류물 노출 누적과 말기 고가스트린혈증의 영양인자(trophic) 작용에 의한 화생 상피 근위 확장 가능성을 반영; CSA(8/29 vs 1/23, P=0.03)와 WGA(12/29 vs 3/23, P=0.03)는 말기에서 유의하게 흔해 심한 선구조 위축·파괴를 시사(WGA는 조기 위암 특이 표지자이기도 해 신생물 위험 증가 가능성); 위소구 종창은 병기와 유의 연관(P<0.05)되나 그 '부재'가 말기와 연관(종창 없는 환자의 65.2%가 말기) — 조기 염증성 부종이 위축 진행으로 소실됨을 반영, 종창 소실이 간접적 진행 지표일 수 있음; 펩시노겐 I(P=0.05)·II(P=0.04)는 말기에서 유의하게 낮음",
+    "다변량 분석의 한계·임상 함의 — PG I·PG II·BE·위소구 종창·CSA·WGA로 보정한 다변량 로지스틱 회귀에서 어떤 변수도 통계적 유의성에 도달하지 못함(PG I OR 1.00[0.98~1.02, P=0.81], PG II OR 0.91[0.79~1.06, P=0.22], BE OR 1.40[0.63~3.13, P=0.41], 위소구 종창 OR 0.61[0.16~2.34, P=0.47], CSA OR 6.68[0.68~65.78, P=0.10], WGA OR 2.85[0.57~14.23, P=0.20]); CSA·WGA는 수치상 높은 OR과 넓은 신뢰구간을 보여 표본 수(n=52) 한계에 따른 검정력 부족이 시사됨 — 단일 내시경 소견으로 AIG 병기를 신뢰성 있게 규정할 수 없으며, 임상정보·혈청자료·WLE·ME-NBI를 통합한 다중모달 평가가 필요함을 결론으로 제시; AIG 환자(특히 진행성 위축)에서 BE·이형성 선별을 위한 식도 평가의 필요성 강조; 후향·단일기관·소표본의 한계와 대규모 다기관 전향 코호트 검증의 필요성 명시",
+    "편집·심사·출판 정보 — 게재: Frontiers in Immunology 2026;17:1765070(2026년 6월 3일 출판), doi 10.3389/fimmu.2026.1765070, CC BY; 편집위원 Edith Lahner(사피엔차대학교, 로마), 심사위원 Chiara Della Bella(시에나대학교)·Alexander Tertychnyy(세체노프 제1모스크바국립의대); 중국 국가자연과학기금(82505425) 지원; 둥즈먼병원 윤리위원회 승인(2025DZMEC-540-01), 후향 연구 특성상 사전동의 면제"
+  ],
+  meta: {
+    "논문 유형": "원저 (단일기관 후향 관찰 연구)",
+    "대상": "혈청학적(APCA 10배 이상 양성)·내시경/조직학적 기준을 모두 충족한 중국인 AIG 환자 52명 (당초 82명에서 확대내시경 영상 결여 22명·검사자료 결손 5명 제외); 조기 23명(44.2%)·말기 29명(55.8%)",
+    "연구 기관": "베이징중의약대학 둥즈먼병원 소화기내과 외, 중국 베이징",
+    "핵심 메시지": "AIG의 내시경 양상은 다양하고 질병 진행에 따라 진화하며, WLE와 ME-NBI를 결합한 다중모달 평가가 진단·병기 결정에 유용하다 — 단일 내시경 소견으로는 병기를 규정할 수 없음; 특히 무산증에도 불구하고 BE 유병률이 매우 높아(73.08%) 산역류 중심의 BE 발생 패러다임에 도전하며 십이지장위역류 등 비산 기전을 시사",
+    "핵심 수치": "BE 73.08%(SSBE 44.23%·LSBE 28.85%); SSBE 조기 우세(60.9% vs 31.0%, P<0.05)·LSBE 말기 우세(37.9% vs 17.4%); 가성유문화생 75%·위소구 종창 55.8%·끈적한 치밀 점액 51.9%; CSA·WGA 말기 우세(각 P=0.03); 펩시노겐 I·II 말기 감소(P=0.05·0.04); 다변량 분석상 독립 예측인자 없음"
+  },
+  related_ids: []
+},
+
+{
+  id: 305,
+  title: "Serum pepsinogen I and the pepsinogen I/II ratio as a non-invasive predictive marker for autoimmune metaplastic atrophic gastritis",
+  title_ko: "자가면역성 화생성 위축성위염의 비침습적 예측 표지자로서 혈청 펩시노겐 I과 펩시노겐 I/II 비율",
+  journal: "Journal of Translational Autoimmunity",
+  journal_short: "J Transl Autoimmun",
+  year: 2026,
+  volume: "12",
+  pages: "100377",
+  if: 4.1,
+  authors: "Chen C, Meng F, Shao L, Zhang S, Li P, Hu H",
+  doi: "10.1016/j.jtauto.2026.100377",
+  source: "journal",
+  topics: ["진단", "바이오마커", "암위험", "종양·용종"],
+  abstract_ko: "중국 베이징 우의병원(수도의과대학) 소화기내과 연구팀이 자가면역성 화생성 위축성위염(AMAG)을 비침습적으로 선별하기 위한 혈청 펩시노겐(PG)의 최적 절단값을 대규모 후향 코호트에서 도출한 연구입니다. AMAG은 벽세포의 자가면역 파괴로 위체부·위저부의 광범위 위축·저산증·이차성 고가스트린혈증을 초래하며, 조기에는 무증상이거나 비특이적 소화불량으로 발현해 진료 현장에서 흔히 간과·오진됩니다. 확진은 내시경/조직학 소견과 항벽세포항체(APCA)·항내인자항체(AIFA) 등 혈청 표지자의 조합에 의존하나, APCA 양성률은 약 81%이고 약 20%는 진단 시 혈청음성이며(고령에서 흔함) AIFA 양성률은 25~27%로 더 낮아 비침습 진단법의 필요성이 큽니다. 연구팀은 2019년 1월~2025년 9월 2022년 일본위장내시경학회(JGES)/CARP 진단기준으로 진단된 AMAG 520명과, 동일 기간 다양한 적응증으로 혈청 PG 검사와 상부위장관내시경(EGD)을 받은 대조군 223명(헬리코박터 음성 비위축성 위염 69명·양성 비위축성 위염 17명·헬리코박터 연관 위축성위염 124명·소화성궤양 13명)을 비교했습니다. AMAG군은 현재·과거 헬리코박터 감염을 모두 배제했고(대조군 69.1%가 감염력 보유), 전신 자가면역질환·악성종양 환자는 대조군에서 제외해 실제 임상에서 AMAG을 헬리코박터 연관 위축과 감별해야 하는 상황을 반영했습니다(ChiCTR2200062001 등록). AMAG군은 대조군 대비 여성 우세(74.6% vs 45.2%, p<0.001)·빈혈(46.3% vs 7.2%, p<0.001)이 두드러졌고 23.1%가 진단 시 무증상이었습니다. APCA 양성 65.9%(309/469)·AIFA 양성 39.1%(61/156), 비타민 B12 결핍 51.9%·철 결핍 35.8%·고호모시스테인혈증 22.7%·갑상선질환 동반 43.3%였으며, 위 신경내분비종양(NET)이 가장 흔한 종양성 소견으로 20.2%(105명)에서, 고도이형성(HGD) 또는 조기 위암이 3.7%(19명)에서 관찰됐습니다. 공복 가스트린-17은 AMAG군에서 현저히 상승(중앙값 155.15 vs 6.40 pmol/L)했고 PG I(7.90 vs 62.00 ng/mL)과 PG I/II 비율(0.90 vs 5.60)은 현저히 감소했습니다(모두 p<0.001). ROC 분석에서 PG I<22.45 ng/mL(AUC 0.964, 민감도 88.9%·특이도 96.0%)와 PG I/II 비율<2.25(AUC 0.957, 민감도 89.6%·특이도 95.1%)가 최적 절단값으로 도출됐고, 두 표지자를 병용하면 특이도가 97.3%까지 상승했습니다. 결론적으로 혈청 PG I과 PG I/II 비율은 AMAG에 대해 특히 높은 특이도의 우수한 진단 성능을 보여, 이미 많은 건강검진에 포함된 검사로서 인구집단 수준의 비침습적 AMAG 선별 도구로 활용될 수 있습니다. 다만 AMAG에 적용되는 최적 절단값은 일반 위축성위염의 통상 기준(PG I<70, PGR<3)보다 훨씬 낮아, AMAG의 미만성·완전 산분비샘 소실이라는 특성을 반영합니다.",
+  keypoints: [
+    "연구 설계 및 코호트 구성 — 중국 베이징 우의병원(수도의과대학) 단일기관 후향 연구(2019.1~2025.9); 2022년 JGES/CARP 진단기준(내시경+조직학 소견 충족)으로 진단된 AMAG 520명, 임상자료 불완전 또는 현재·과거 헬리코박터 감염 증거가 있으면 제외; 진단 성능 평가를 위해 동일 기간 PG 검사+EGD 시행 대조군 223명 포함(헬리코박터 음성 비위축성 위염 69·양성 비위축성 위염 17·헬리코박터 연관 위축성위염 124·소화성궤양 13), 전신 자가면역질환·악성종양 보유자는 대조군에서 제외; ChiCTR2200062001 등록; 위축 정도는 Kimura-Takemoto 분류, 조직검사는 위저부·위체부·위전정부 최소 1개씩 채취, 조직학적 판정은 2022 JGES/CARP(벽세포 소실·가성유문/장상피화생·림프형질세포 침윤·ECL 과증식·가스트린세포 과증식) 준수",
+    "임상·혈청 기저 특성 — AMAG군은 대조군 대비 여성 우세(74.6% vs 45.2%, p<0.001), 빈혈 유병률 높음(46.3% vs 7.2%, p<0.001), 연령 중앙값 약간 높음(60세[50-66] vs 58세[43-66], p=0.038); AMAG군은 헬리코박터 감염력 0%(대조군 69.1%, p<0.001 — 비대칭 제외); 첫 내원 시 임상양상은 복부 팽만/팽창 44.4%가 최다, 무증상 23.1%, 빈혈 23.8%, 원위부 사지 저림 5.0%, 건강검진 중 고가스트린혈증 우연 발견 2.1%·저펩시노겐혈증 1.5%; APCA 양성 65.9%(309/469)·AIFA 양성 39.1%(61/156); 비타민 B12 결핍 51.9%(270)·철 결핍 35.8%(186)·고호모시스테인혈증 22.7%(118)·자가면역 갑상선질환(하시모토·갑상선기능저하/항진) 동반 43.3%(225)",
+    "종양·전종양성 병변의 높은 부담 — 종양성 병변 없음 57.7%(300); 위 신경내분비종양(NET)이 가장 흔한 종양성 소견 20.2%(105)로 1/5 이상에서 이미 발생; 위 과형성 용종 16.0%(83), 종양성 변화(저/고도이형성) 동반 과형성 용종 3.7%(19), 고도이형성(HGD) 또는 조기 위암 3.7%(19), 위선종 1.3%(7), 위장관기질종양(GIST) 1.2%(6), 염증성 용종 0.6%(3) — 진단 지연·누락 시 혈액학적 이상과 위 종양성 병변 위험이 크며(연구팀 선행 연구에서 AMAG의 위암 상대위험 11.05배 보고), 일상 진료에서 적시 진단·감별의 중요성을 강조",
+    "혈청 표지자 차이와 PG 단독 진단 성능(핵심 결과) — AMAG군은 공복 가스트린-17 현저 상승(중앙값 155.15[70.25-299.50] vs 6.40[2.96-18.83] pmol/L), PG I 현저 감소(7.90[5.50-13.10] vs 62.00[41.83-97.50] ng/mL), PG II 감소(9.10 vs 11.00), PG I/II 비율 현저 감소(0.90[0.60-1.30] vs 5.60[4.00-7.60]) — 모두 p<0.001; ROC: PG I AUC 0.964(95% CI 0.950-0.978), 절단값 22.45 ng/mL에서 민감도 88.9%·특이도 96.0%·PPV 97.9%·NPV 80.4%·LR+ 21.93·LR- 0.12; PG I/II 비율 AUC 0.957(0.941-0.974), 절단값 2.25에서 민감도 89.6%·특이도 95.1%·PPV 97.5%·NPV 81.2%; 이 절단값들은 일반 위축성위염 통상 기준(PG I<70, PGR<3)보다 훨씬 낮아 AMAG의 미만성·완전 산분비샘 소실을 반영",
+    "병용 검사 전략 — 선별용 vs 확진용 — 두 표지자를 순차(serial) 양성 정의로 병용; 병용1(최적화: PG I<22.45 & PGR<2.25): 민감도 85.7%·특이도 97.3%·정확도 89.4%·PPV 98.5%·NPV 76.3% → 누락 최소화가 중요한 인구집단 선별에 적합; 병용2(임상경험 기반 엄격 기준: PG I<10 & PGR<1): 특이도 98.7%·정확도 64.3%이나 민감도 48.0%로 낮음 → 진행성 위축 환자를 가려내는 고확실성 확진 도구로 적합(이 엄격 기준은 동일 기관 선행 연구에서 AMAG의 40.7%가 PG I<10, 45.9%가 PGR<1을 보인 데이터에서 유래); 가스트린-17 단독은 AUC 0.943(절단값 37.8 pmol/L에서 민감도 89.0%·특이도 87.8%, 보충자료)였으나 본 연구 목적이 PG 절단값 도출이어서 최종 진단 모델에는 미포함",
+    "임상 함의·한계 — PG I과 PG I/II 비율은 이미 많은 건강검진에 포함된 접근성 높은 검사로, AMAG을 헬리코박터 연관 위축과 겹치는 혈청 양상에도 불구하고 감별할 수 있는 비침습 선별 도구로 제시; PG 기반 프로파일링은 NET 등 고위험 AMAG 환자의 조기 인지·감시 전략 수립에도 기여 가능(이탈리아 코호트의 PGR<2.3 + 가스트린-17>29.6 pmol/L 조합이 NET 위험군 식별에 양호한 변별력을 보인 선행 근거 인용); 한계로 (1) 단일기관 설계에 따른 일반화 제한, (2) AMAG 병기 분류 부재로 조기 AMAG에서의 PG 진단 가치 평가 불가, (3) 양 군 간 헬리코박터 감염력의 비대칭 제외로 PG 특이도가 과소평가될 수 있으나 임상적으로 더 엄격한 검정을 제공함을 명시; 향후 다기관·대규모 검증과 가스트린-17 등 추가 표지자 통합으로 진단 정확도·위험 층화 향상 필요; 원고 작성 시 언어 다듬기에 ChatGPT 사용 후 저자 검토 명시"
+  ],
+  meta: {
+    "논문 유형": "원저 (단일기관 후향 진단정확도 연구)",
+    "대상": "2022 JGES/CARP 기준으로 진단된 AMAG 환자 520명 vs 대조군 223명(헬리코박터 음성 비위축성 위염 69·양성 비위축성 위염 17·헬리코박터 연관 위축성위염 124·소화성궤양 13); AMAG군은 현재·과거 헬리코박터 감염 모두 배제",
+    "연구 기관": "수도의과대학 베이징 우의병원 소화기내과·소화기질환 국가임상연구센터, 중국 베이징",
+    "핵심 메시지": "혈청 PG I과 PG I/II 비율은 AMAG에 대해 특히 높은 특이도의 우수한 진단 성능을 보이는 비침습 선별 표지자이며, AMAG의 미만성 산분비샘 소실을 반영해 일반 위축성위염보다 훨씬 낮은 절단값(PG I<22.45 ng/mL, PGR<2.25)이 적용된다 — 이미 건강검진에 포함된 검사로 인구집단 수준 선별에 활용 가능",
+    "핵심 수치": "PG I<22.45 ng/mL(AUC 0.964, 민감도 88.9%·특이도 96.0%); PG I/II 비율<2.25(AUC 0.957, 민감도 89.6%·특이도 95.1%); 병용 시 특이도 97.3%; AMAG군 NET 20.2%·HGD/조기위암 3.7%·여성 74.6%·빈혈 46.3%·무증상 23.1%; 가스트린-17 155.15 vs 6.40 pmol/L"
+  },
+  related_ids: [200, 262]
 },
 
 ];
@@ -11983,7 +12022,7 @@ let activeSource = "all";
 let activeYear   = "all";
 let activeSpecial = "all"; // "all" | "highif" | "guide"
 let searchQuery  = "";
-let activeSort   = "default";
+let activeSort   = "year";
 let currentPage  = 1;
 const PAGE_SIZE  = 15;
 
