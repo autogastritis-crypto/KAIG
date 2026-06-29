@@ -12927,9 +12927,10 @@ function ttsCleanText(text) {
   t = t.replace(/\bMAPS\b/g, '맵스');
 
   // -1. H+/K+-ATPase 및 관련 표현 → 하이드로젠펌프 (가장 먼저 처리)
-  t = t.replace(/H\+\s*\/\s*K\+[-–]?ATPase/gi, '하이드로젠, 포타슘, 에이티피에이즈');
-  t = t.replace(/H\+,\s*K\+[-–]?ATPase/gi, '하이드로젠, 포타슘, 에이티피에이즈');
-  t = t.replace(/H\+\/K\+ATPase/gi, '하이드로젠, 포타슘, 에이티피에이즈');
+  // H+/K+ ATPase 통합 규칙: H+·K+ 사이 구분자(/ 또는 ,), 각 + 주변 공백,
+  // K+와 ATPase 사이 공백/하이픈을 모두 허용. 위첨자 ⁺도 인식.
+  // (이전 규칙은 'K+ ATPase'처럼 공백이 있으면 못 잡아 'H 플러스 K 플러스 ATPase'로 읽혔음)
+  t = t.replace(/H\s*[+⁺]\s*[\/,]\s*K\s*[+⁺]\s*[-–]?\s*ATPase/gi, '하이드로젠, 포타슘, 에이티피에이즈');
   t = t.replace(/gastric\s+proton\s+pump/gi, '위 양성자펌프');
   t = t.replace(/proton\s+pump/gi, '양성자펌프');
 
@@ -13124,6 +13125,11 @@ function ttsCleanText(text) {
   t = t.replace(/([1-9]|10)(차|형|기|군|선|단계)(?=[가-힣\s,.]|$)/g, (_, num, unit) => {
     return (sinoOrdMap[num] || num) + unit;
   });
+
+  // 7-0e0. 물결표(범위) 처리 — '~'/'～'를 '에서'로 변환 (예: 3~5년 → 3 에서 5년)
+  // 미처리 시 음성 엔진이 '물결표 사인'으로 읽음. 앞뒤 공백은 뒤에서 정리됨.
+  // '부터'·'내지'로 바꾸려면 ' 에서 ' 부분만 수정하면 됨.
+  t = t.replace(/\s*[~～]\s*/g, ' 에서 ');
 
   // 7-0e. 분수 처리 — a/b → "b분의 a" (예: 1/2 → 이분의 일, 1/3 → 삼분의 일, 2/3 → 삼분의 이)
   // 반드시 슬래시 제거(7-1) 전에 실행해야 함. 그렇지 않으면 "1/2"가 "일 이"로 읽힘.
